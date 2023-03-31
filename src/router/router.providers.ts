@@ -4,7 +4,7 @@ import ManageProviders from '../controllers/GestionProviders'
 
 class RouterProviders extends ManageProviders{
     public GetProviders(){
-        router.get('/providers',this.getProviders)
+        router.get('/providers/:id',this.getProviders)
         return router;
     }
     public GetProvidersId(){

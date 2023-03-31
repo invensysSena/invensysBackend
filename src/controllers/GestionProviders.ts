@@ -10,12 +10,15 @@ abstract class ManageProviders {
     res: Response,
     next: NextFunction
   ): Promise<Response | Request | any> {
+    console.log(req.body);
     try {
 
-      const tokenCreated: any = req.headers["token"];
+      const tokenCreated: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
-      const {idCategory, name, company, email, phone, address,fecha } = req.body;
+      console.log(tokenIdUser);
+      
+      const {idCategory, name, company, email, phone, address } = req.body.data;
       if (!tokenIdUser) {
         return res.status(400).json({
           message: "No existe el token",
@@ -31,16 +34,16 @@ abstract class ManageProviders {
           address,
         });
 
-        const prov = await provider.save();
-        console.log(prov);
+        const providers = await provider.save();
+       
         return res.status(201).json({
-          message: "Provider created",
+          message: "Provider created",providers
         });
       }
     } catch (error) {
-      console.log(error);
+      
       return res.status(500).json({
-        message: "Internal server error",
+        message: "Internal server error",error
       });
     }
   }
@@ -50,7 +53,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["token"];
+      const tokenCreated: any = req.params.id;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -62,9 +65,9 @@ abstract class ManageProviders {
         return res.status(200).json(providers);
       }
     } catch (error) {
-      console.log(error);
+      
       return res.status(500).json({
-        message: "Internal server error",
+        message: "Internal server error",error,
       });
     }
   }
@@ -75,7 +78,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["token"];
+      const tokenCreated: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -101,7 +104,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["token"];
+      const tokenCreated: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -139,7 +142,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["token"];
+      const tokenCreated: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -165,7 +168,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["token"];
+      const tokenCreated: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -179,7 +182,7 @@ abstract class ManageProviders {
       }
     } catch (error) {
       console.log(error);
-      return res.status(500).json({
+      return res.status(400).json({
         message: "Internal server error",
       });
     }

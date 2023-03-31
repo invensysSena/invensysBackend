@@ -9,8 +9,8 @@ const providerSchema= new Schema({
     company: {type: String, required: true},
     email: {type: String, required: true},
     phone: {type: Number, required: true},
-    address: {type: String, required: true},
-    fecha: {type: String, required: true},
+    address: {type: String, required: true}
+   
     
 },{
     timestamps:true

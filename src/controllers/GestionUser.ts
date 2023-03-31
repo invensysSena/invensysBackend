@@ -193,6 +193,13 @@ public async getAdminData(req: any,
               {expiresIn: 60 * 60 * 24}
             
             );
+
+            if (modulo == "") {
+              console.log("Hola");
+              
+              return res.status(201).json({ message: "NOT_ACCCESO", module:"error", type:"error"})
+              
+            }
        
              
              return res.status(200).json({message:"LOGIN_SUCCESSFULL",token,token1,auth:true,
@@ -222,7 +229,7 @@ public async getAdminData(req: any,
       const {email, name, picture} = req.body.data;
      
       
-      const fecha = momet().format('MMMM Do YYYY');
+      const fecha = momet().format("Do MMMM  YYYY");
       const hora = momet().format('h:mm:ss a');
       conn.query( "SELECT * FROM admin  Where correo = ?",
         [email], async ( error: Array<Error> | any, rows: any ) => {
