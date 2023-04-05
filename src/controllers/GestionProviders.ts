@@ -61,7 +61,7 @@ abstract class ManageProviders {
           message: "No existe el token",
         });
       } else {
-        const providers = await ProviderSchema.find();
+        const providers = await ProviderSchema.find({tokenIdUser});
         return res.status(200).json(providers);
       }
     } catch (error) {

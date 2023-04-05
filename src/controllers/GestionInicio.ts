@@ -17,11 +17,13 @@ import CategoryM from '../models/CategoryM';
     ):Promise<Request|Response|any>{
         try {
             
-          const TokenCreate:string = req.headers["x-id-token"]!;
+          const TokenCreate:string = req.params.id!;
           const veryfyToken: Array<any> |any = jwt.verify(TokenCreate,SECRET)!;
-          const TokenIdUser = veryfyToken;
+          const tokenIdUser = veryfyToken.id;
+          console.log(tokenIdUser);
+          
 
-          if(!TokenIdUser){
+          if(!tokenIdUser){
             return res.json({
                 message:"El token no existe!"
             })
@@ -29,10 +31,18 @@ import CategoryM from '../models/CategoryM';
 
           else{
             
-            const dataProduct:Product[] = await ProductSchema.find({TokenIdUser})
-            const dataCategory = await CategorySchema.find({TokenIdUser})
-            const dataProvider = await ProviderSchema.find({TokenIdUser})
-            return res.status(200).json({ ok: true, dataCategory,dataProduct,dataProvider})
+            const dataProduct:Product[] = await ProductSchema.find({tokenIdUser})
+            const dataCategory = await CategorySchema.find({tokenIdUser})
+            const dataProvider = await ProviderSchema.find({ tokenIdUser })
+            
+            const originProduct = {
+
+              fecha: dataProduct.map((item: any) => item.fechaInicio),
+              price: dataProduct.map((item: any) => item.price),
+              
+            }
+
+            return res.status(200).json({ ok: true, dataCategory,dataProduct,dataProvider,originProduct})
           }
           
          
