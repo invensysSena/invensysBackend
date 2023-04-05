@@ -11,6 +11,7 @@ import RoutersPlanificator from "../router/router.planificator";
 import RoutersCompras from "../router/router.compras";
 import RouterInicio from "../router/router.inicio";
 import {connect} from '../database/mongodb'
+import { getLogger } from "nodemailer/lib/shared";
 mongoose.set('strictQuery', true);
 const AppServer: express.Application = express();
 const startServer = () => {
@@ -100,11 +101,15 @@ const startServer = () => {
 
         // Here there are routes Compras
         AppServer.use(new RoutersCompras().GetCompras())
+        AppServer.use(new RoutersCompras().GetComprasById())
+        AppServer.use(new RoutersCompras().PostCompras())
+        AppServer.use(new RoutersCompras().PutCompras())
+        AppServer.use(new RoutersCompras().DeleteCompras()) 
 
         // Here connect MongoDB
         const con =  connect()
         console.log(con)
-
+     
         
     } catch ( error:any ) {
         
