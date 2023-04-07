@@ -16,7 +16,7 @@ abstract class ManageCompras{
         const verifyToken:any = jwt.verify(tokenCreated, SECRET);
         const id_user_token = verifyToken.id;
 
-        const {id_product, company, quantity, total, date} = req.body.data;
+        const {id_product, company, id_provider, quantity, total, date} = req.body.data;
 
         if(!id_user_token){
             return res.status(400).json({
@@ -27,6 +27,7 @@ abstract class ManageCompras{
                 id_user_token,
                 id_product,
                 company,
+                id_provider
                 quantity,
                 total,
                 date                              
