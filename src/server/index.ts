@@ -7,8 +7,6 @@ import RouterUser from "../router/router";
 import RouterProducts from '../router/router.products'
 import RouterCategory from '../router/router.category'
 import RouterProviders from '../router/router.providers'
-import RoutersPlanificator from "../router/router.planificator";
-import RoutersCompras from "../router/router.compras";
 import RouterInicio from "../router/router.inicio";
 import {connect} from '../database/mongodb'
 import { getLogger } from "nodemailer/lib/shared";
@@ -94,18 +92,7 @@ const startServer = () => {
         // AppServer.use(new RouterInventory().DeleteInventoryId())
         // AppServer.use(new RouterInventory().PutInventoryId())
       
-
-
-
-        // Here there are routes Planificator
-        AppServer.use(new RoutersPlanificator().GetPlanificator())
-
-        // Here there are routes Compras
-        AppServer.use(new RoutersCompras().GetCompras())
-        AppServer.use(new RoutersCompras().GetComprasById())
-        AppServer.use(new RoutersCompras().PostCompras())
-        AppServer.use(new RoutersCompras().PutCompras())
-        AppServer.use(new RoutersCompras().DeleteCompras()) 
+        // Here there are routes Pedidos
 
         // Here connect MongoDB
         const con =  connect()
