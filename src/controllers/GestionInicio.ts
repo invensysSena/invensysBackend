@@ -31,18 +31,11 @@ import CategoryM from '../models/CategoryM';
 
           else{
             
-            const dataProduct:Product[] = await ProductSchema.find({tokenIdUser})
-            const dataCategory = await CategorySchema.find({tokenIdUser})
-            const dataProvider = await ProviderSchema.find({ tokenIdUser })
-            
-            const originProduct = {
-
-              fecha: dataProduct.map((item: any) => item.fechaInicio),
-              price: dataProduct.map((item: any) => item.price),
-              
-            }
-
-            return res.status(200).json({ ok: true, dataCategory,dataProduct,dataProvider,originProduct})
+            const dataProduct:Product[] = await ProductSchema.find({TokenIdUser})
+            const dataSumProduct = await ProductSchema.aggregate([]).match({TokenIdUser}).group({_id: null, total: {$sum: "$quantity"}})
+            const dataCategory = await CategorySchema.find({TokenIdUser})
+            const dataProvider = await ProviderSchema.find({TokenIdUser})
+            return res.status(200).json({ ok: true, dataCategory,dataProduct,dataProvider, dataSumProduct})
           }
           
          

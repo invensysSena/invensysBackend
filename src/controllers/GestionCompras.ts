@@ -27,7 +27,7 @@ abstract class ManageCompras{
                 id_user_token,
                 id_product,
                 company,
-                id_provider
+                id_provider ,
                 quantity,
                 total,
                 date                              
