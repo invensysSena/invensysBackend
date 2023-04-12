@@ -8,6 +8,7 @@ import RouterProducts from '../router/router.products'
 import RouterCategory from '../router/router.category'
 import RouterProviders from '../router/router.providers'
 import RouterInicio from "../router/router.inicio";
+import RouterPedidos from "../router/router.pedidos";
 import {connect} from '../database/mongodb'
 import { getLogger } from "nodemailer/lib/shared";
 mongoose.set('strictQuery', true);
@@ -93,6 +94,11 @@ const startServer = () => {
         // AppServer.use(new RouterInventory().PutInventoryId())
       
         // Here there are routes Pedidos
+        AppServer.use(new RouterPedidos().GetPedidos())
+        AppServer.use(new RouterPedidos().GetPedidosId())
+        AppServer.use(new RouterPedidos().PostPedidos())
+        AppServer.use(new RouterPedidos().PutPedidos())
+        AppServer.use(new RouterPedidos().DeletePedidos())
 
         // Here connect MongoDB
         const con =  connect()
