@@ -36,11 +36,7 @@ import CategoryM from '../models/CategoryM';
             const dataCategory = await CategorySchema.find({tokenIdUser})
             const dataProvider = await ProviderSchema.find({tokenIdUser})
             return res.status(200).json({ ok: true, dataCategory,dataProduct,dataProvider, dataSumProduct})
-          }
-          
-         
-         
-          
+          }    
         } catch (error) {
            return res.status(500).json({error, message : 'ERROR_SERVER'})            
         }

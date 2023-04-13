@@ -1,16 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
-import SchemaPedidos from '../models/pedidos';
+import SchemaPedidos from '../models/modelPedidos';
 
 abstract class ManagePedidos {
 
   public async postPedidos(req: Request, res: Response, next: NextFunction): Promise<Response | Request | any> {
     try {
 
-      const { id_producto, id_provedor, id_inventario, company, cantidad, fecha, totalCompra } = req.body;
-     
-      //const inventario = await SchemaPedidos.findOne({ id_inventario: id_inventario });
-      if (id_inventario === id_inventario) { // aqui faltan los subProductos
-        const newPedidos = new SchemaPedidos({
+  
+      const id_inventario = req.params;
+      const { id_producto, id_provedor, company, cantidad, fecha, totalCompra } = req.body;
+      if(id_inventario === id_inventario){
+        const pedidos = await SchemaPedidos.create({
           id_producto,
           id_provedor,
           id_inventario,
@@ -19,10 +19,9 @@ abstract class ManagePedidos {
           fecha,
           totalCompra
         });
-        const pedidosSaved = await newPedidos.save();
-        return res.status(201).json({ message: 'PEDIDOS_CREATED', pedidosSaved });
-      } else {
-        return res.status(400).json({ message: 'BAD_REQUEST' });
+        return res.status(200).json({ message: 'PEDIDOS_CREATED', pedidos });
+      }else{
+        return res.status(400).json({ message: 'PEDIDOS_NOT_CREATED, SUBPRODUCTS_NOT_FOUND' });
       }
     } catch (error) {
 
@@ -79,5 +78,6 @@ abstract class ManagePedidos {
   }
 
 }
+
 
 export default ManagePedidos;
