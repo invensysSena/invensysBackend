@@ -3,7 +3,7 @@ import CategorySchema from "../models/CategoryM";
 import { category } from "../interfaces/CategoryI";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config"; 
-
+import Todo from "../class/Notification.Todo";
 class InventoryProduct {
 
     public async getInventory(){}

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import CategorySchema from "../models/CategoryM";
 import { category } from "../interfaces/CategoryI";
 import jwt from "jsonwebtoken";
+import Todo from "../class/Notification.Todo";
 import { SECRET } from "../config/config"; 
 abstract class Categorys {
 
@@ -18,8 +19,6 @@ abstract class Categorys {
       const Tokenid_U:any = req.headers["x-id-token"]  
       const verifyToken: Array<any> | any = jwt.verify( Tokenid_U, SECRET )!;
       const tokeIdUser = verifyToken.id;
-      console.log(tokeIdUser);
-      
       if(!tokeIdUser){
         return res.status(400).json({
           ok: false,
@@ -34,10 +33,17 @@ abstract class Categorys {
           imgId
         })
         const dataCategory = await data.save();
-        console.log(dataCategory);
-        
-
-        
+        let arrayData = [];
+        arrayData.push(dataCategory)
+        if (arrayData.includes(tokeIdUser)) {
+        }
+         
+        await new Todo().createNotificationClass(
+          "Se creo una nueva categoria",
+          name_category,
+          "category",
+          tokeIdUser
+        );
           return res.status(201).json({
               status : 201,
               message: 'Categoria creada',
@@ -200,6 +206,12 @@ abstract class Categorys {
       }
   
       const dataCategory = await CategorySchema.findByIdAndDelete(req.params._id);
+        await new Todo().createNotificationClass(
+          "Eliminaste una categoria",
+          "Se borro con exito",
+          "category",
+          tokeIdUser
+        );
       return res.status(200).json({
         ok: true,
         message: 'Delete category',  

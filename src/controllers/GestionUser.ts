@@ -17,9 +17,9 @@ import { sendMailAdmin } from "../libs/libs";
 import { recoveryAdminPass } from "../libs/forGotPassword";
 import moment from "moment-with-locales-es6";
 // import { newPasswordUser } from "../interfaces/users";
+import Todo from "../class/Notification.Todo";
 import { uploadImage, deleteImage } from "../utils/cloudinary";
 let momet: any = moment;
-
 moment.locale("es");
 abstract class LoginRegister {
   public async veryfidCode(
@@ -119,7 +119,12 @@ abstract class LoginRegister {
                 { expiresIn: 60 * 60 * 24 }
               );
               const resultEmail = new sendMailAdmin().sendMailer(data.correo);
-
+              await new Todo().createNotificationClass(
+                `Creaste una cuenta de administrado: ${datas.correo}`,
+                "Comienza a administrar tu negocio",
+                "users",
+                `${datas.correo}`
+              );
               return res.status(200).json({
                 message: "USER_CREATE_SUCCESFULL",
                 token,
@@ -273,7 +278,7 @@ abstract class LoginRegister {
                                 '${city}','${country_name}','${region}','${
                                     rows[0][0].idAccount
                                   }')`,
-                                  (error, rows) => {}
+                                  (error, self) => {}
                                 );
                               }
                             );
@@ -288,7 +293,12 @@ abstract class LoginRegister {
                           type: "error",
                         });
                       }
-
+                      await new Todo().createNotificationClass(
+                        `Un usuario acaba de iniciar sesion en el sistema`,
+                        `${data.correo}`,
+                        "users",
+                        `${rows[0][0].idUsers1}`
+                      );
                       return res.status(200).json({
                         message: "LOGIN_SUCCESSFULL",
                         token,
@@ -504,11 +514,17 @@ abstract class LoginRegister {
                                 if (rowsData) {
                                   conn.query(
                                     `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
-                                    (error, rowsData) => {
+                                    async (error, rowsData) => {
                                       if (rowsData) {
                                         conn.query(
                                           `CALL GET_USER_CREATE('${data.correo}')`,
-                                          (error, rows) => {
+                                          async (error, rows) => {
+                                            await new Todo().createNotificationClass(
+                                              `Creaste un nuevo usuario`,
+                                              data.correo,
+                                              "users",
+                                              `${verifyToken.id}`
+                                            );
                                             return res.status(201).json({
                                               message:
                                                 "USER_REGISTER_SUCCESFULL",
@@ -589,13 +605,19 @@ abstract class LoginRegister {
               conn.query(
                 "UPDATE usuario SET password = ? WHERE correo = ?",
                 [password, validate.correo],
-                (error, rows) => {
+                async (error, rows) => {
                   if (error)
                     return res.json({
                       message: "ERROR_UPDATE_PASS",
                       error: error,
                     });
                   if (rows) {
+                    await new Todo().createNotificationClass(
+                      "Se cambio la contraseña de tu cuenta correctamente",
+                      correo,
+                      "users",
+                      correo
+                    );
                     return res.json({ message: "PASS_UPDATE_SUCCESFULLY" });
                   }
                 }
@@ -883,8 +905,14 @@ abstract class LoginRegister {
           (error, rows) => {
             conn.query(
               `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
-              (error, rows) => {
+              async (error, rows) => {
                 if (rows) {
+                  await new Todo().createNotificationClass(
+                    "Se elimino un usuario de la plataforma",
+                    "usuario",
+                    "users",
+                    id
+                  );
                   return res.status(200).json({ message: "DELETE_ALL_USERS" });
                 } else {
                   return res
@@ -1156,7 +1184,7 @@ abstract class LoginRegister {
         const conn = await conexion.connect();
         conn.query(
           `CALL DELETE_PERMISIONS_MODULE_USER('${id}','${req.body.idModule}')`,
-          (error, rows) => {
+          async (error, rows) => {
             if (rows) {
               return res
                 .status(200)
@@ -1286,9 +1314,15 @@ abstract class LoginRegister {
         const conn = await conexion.connect();
         conn.query(
           `CALL ADMIN_UPDATE_DATA('${id}','${req.body.data.name}','${req.body.data.document}','${req.body.data.telefono}','${req.body.data.empresa}')`,
-          (error, rows) => {
+          async (error, rows) => {
             if (rows) {
-              conn.query(`CALL ADMIN_SELECT('${id}')`, (error, rows) => {
+              conn.query(`CALL ADMIN_SELECT('${id}')`, async (error, rows) => {
+                await new Todo().createNotificationClass(
+                  `Tus datos se actualizaron correctamente`,
+                  "se mantendra la misma contraseña",
+                  "users",
+                  `${id}`
+                );
                 return res
                   .status(200)
                   .json({ message: "UPDATE_ADMIN_ALL", data: rows[0] });
@@ -1312,27 +1346,20 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
     try {
-
       if (req.params.id === "undefined") {
-        
-        return  res.send({ message: "ERROR_ID" });
+        return res.send({ message: "ERROR_ID" });
       }
-     
+
       const conn = await conexion.connect();
-      conn.query(
-        `CALL GET_SERVICE_USER('${req.params.id}')`,
-        (error, rows) => {
-          if (rows) {
-            return res
-              .status(200)
-              .json({ message: "GET_SERVICE_USER", data: rows[0] });
-          } else {
-            return res.status(400).json({ message: "ERROR_GET_SERVICE_USER" });
-          }
+      conn.query(`CALL GET_SERVICE_USER('${req.params.id}')`, (error, rows) => {
+        if (rows) {
+          return res
+            .status(200)
+            .json({ message: "GET_SERVICE_USER", data: rows[0] });
+        } else {
+          return res.status(400).json({ message: "ERROR_GET_SERVICE_USER" });
         }
-      );
-       
-     
+      });
     } catch (error) {
       return res.status(400).json({ message: "ERROR_TOKEN" });
     }
