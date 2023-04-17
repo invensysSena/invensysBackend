@@ -15,20 +15,25 @@ abstract class ManagePedidos {
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
 
-      let { id_inventario, id_provedor, id_subproducto } = req.params;
+      let [id_inventario, id_provedor, id_subproducto]   = [req.body.id_inventario, req.body.id_provedor, req.body.id_subproducto];
 
       const { company, cantidad, tipo, totalCompra } = req.body;
       const inventario = await SchemaPedidos.find({ id_inventario });
-      if (inventario.length === 0)
-        return res.status(404).json({ message: "INVENTARIO_NOT_FOUND" });
-      const provedor = await SchemaPedidos.find({ id_provedor });
-      if (provedor.length === 0)
-        return res.status(404).json({ message: "PROVEDOR_NOT_FOUND" });
+      if (inventario.length > 0){
+           const provedor = await SchemaPedidos.find({ id_provedor });
+        if(provedor.length > 0){
+        res.status(404).json({ message: "PROVEDOR_NOT_FOUND" });
+      }
+         
+      }
+        // return res.status(404).json({ message: "INVENTARIO_NOT_FOUND" });
+
+   
 
       const subproducto = await SchemaPedidos.find({
         id_inventario: id_subproducto,
       });
-      if (subproducto.length === 0)
+      if (subproducto.length > 0)
         return res.status(404).json({ message: "SUBPRODUCTO_NOT_FOUND" });
 
       if (!idTokenAdmin){
