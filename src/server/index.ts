@@ -8,9 +8,14 @@ import RouterProducts from "../router/router.products";
 import RouterCategory from "../router/router.category";
 import RouterProviders from "../router/router.providers";
 import RouterInicio from "../router/router.inicio";
-import RouterPedidos from "../router/router.pedidos";
+<<<<<<<<< Temporary merge branch 1
+import RouterNotification from "../router/router.Notification";
 import RouterInventory from "../router/router.inventary";
+import { connect } from "../database/mongodb";
+=========
+import RouterPedidos from "../router/router.pedidos";
 import {connect} from '../database/mongodb'
+>>>>>>>>> Temporary merge branch 2
 import { getLogger } from "nodemailer/lib/shared";
 mongoose.set("strictQuery", true);
 const AppServer: express.Application = express();
@@ -81,6 +86,20 @@ const startServer = () => {
     AppServer.use(new RouterCategory().DeleteCategory());
     AppServer.use(new RouterCategory().GetCategoryProducts());
 
+<<<<<<<<< Temporary merge branch 1
+    // Here there are routes Providers
+    AppServer.use(new RouterProviders().GetProviders());
+    AppServer.use(new RouterProviders().GetProvidersId());
+    AppServer.use(new RouterProviders().PostProviders());
+    AppServer.use(new RouterProviders().PutProviders());
+    AppServer.use(new RouterProviders().DeleteProviders());
+    AppServer.use(new RouterProviders().GetProvidersProducts());
+    // notification
+    AppServer.use(new RouterNotification().GetNotification());
+    AppServer.use(new RouterNotification().GetNotificationId());
+    AppServer.use(new RouterNotification().PostcreateNotification());
+    AppServer.use(new RouterNotification().DeleteNotificationId());
+=========
         // Here there are routes Providers
         AppServer.use(new RouterProviders().GetProviders())
         AppServer.use(new RouterProviders().GetProvidersId())
@@ -100,6 +119,7 @@ const startServer = () => {
         AppServer.use(new RouterPedidos().PostPedidos())
         AppServer.use(new RouterPedidos().PutPedidos())
         AppServer.use(new RouterPedidos().DeletePedidos())
+>>>>>>>>> Temporary merge branch 2
 
     // inventory
     AppServer.use(new RouterInventory().PostInventory());
