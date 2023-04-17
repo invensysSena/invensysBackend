@@ -17,8 +17,6 @@ abstract class ManageProviders {
       const tokenCreated: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
-  
-      
       const {idCategory, name, company, email, phone, address } = req.body.data;
       if (!tokenIdUser) {
         return res.status(400).json({
