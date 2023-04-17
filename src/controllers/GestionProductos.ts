@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import ProductSchema from "../models/modelProduct";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
-
+import Todo from "../class/Notification.Todo";
 abstract class ManageProducts {
   public async postProducts(req: Request, res: Response) {
  
@@ -30,9 +30,6 @@ abstract class ManageProducts {
           .json({ ok: false, message: "No existe el token" });
       } else {
 
-        // coment code for test
-        console.log("Hellow");
-        
         const product: Product = new ProductSchema({
           iva,
           name,
@@ -45,7 +42,12 @@ abstract class ManageProducts {
           fechaFin,
         });
         const produ = await product.save();
-
+ await new Todo().createNotificationClass(
+   "Se creo un nuevo  producto",
+   name,
+   "product",
+   tokenIdUser
+ );
         return res
           .status(200)
           .json({ ok: true, message: "Producto creado correctamente",data: produ });
@@ -201,7 +203,13 @@ abstract class ManageProducts {
           .status(400)
           .json({ ok: false, message: "No existe el token" });
       }
-      const product = await ProductSchema.findByIdAndDelete(req.params.id,{tokenIdUser});
+      const product = await ProductSchema.findByIdAndDelete(req.params.id, { tokenIdUser });
+      await new Todo().createNotificationClass(
+        "Se Elimino el producto con exito",
+        "Se elimino el producto",
+        "product",
+        tokenIdUser
+      );
       return res
         .status(200)
         .json({ ok: true, message: "Product Delete", product });

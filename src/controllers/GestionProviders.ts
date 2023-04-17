@@ -3,8 +3,9 @@ import ProviderSchema from "../models/modelProviders";
 import { Provider } from "../interfaces/providers";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
-
+import Todo from "../class/Notification.Todo";
 abstract class ManageProviders {
+
   public async postProviders(
     req: Request,
     res: Response,
@@ -33,7 +34,13 @@ abstract class ManageProviders {
         });
 
         const providers = await provider.save();
-       
+        await new Todo().createNotificationClass(
+          "Se creo un nuevo un proveedor",
+          name,
+          "provider",
+          tokenIdUser
+        );
+   
         return res.status(201).json({
           message: "Provider created",providers
         });
@@ -149,6 +156,12 @@ abstract class ManageProviders {
         });
       } else {
         const { id } = req.params;
+         await new Todo().createNotificationClass(
+           "Se Elimino  un proveedor",
+           "Se elimino con exito",
+           "provider",
+           tokenIdUser
+         );
         const providerDeleted = await ProviderSchema.findByIdAndDelete(id);
         return res.status(200).json(providerDeleted);
       }
