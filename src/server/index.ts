@@ -95,6 +95,7 @@ const startServer = () => {
     AppServer.use(new RouterNotification().DeleteNotificationId());
 
     // inventory
+    
     AppServer.use(new RouterInventory().PostInventory());
     AppServer.use(new RouterInventory().GetInventory());
     AppServer.use(new RouterInventory().DeleteInventoryId());
