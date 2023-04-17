@@ -9,6 +9,7 @@ import RouterCategory from "../router/router.category";
 import RouterProviders from "../router/router.providers";
 import RouterInicio from "../router/router.inicio";
 import RouterNotification from "../router/router.Notification";
+import RouterInventory from "../router/router.inventary";
 import { connect } from "../database/mongodb";
 import { getLogger } from "nodemailer/lib/shared";
 mongoose.set("strictQuery", true);
@@ -94,10 +95,12 @@ const startServer = () => {
     AppServer.use(new RouterNotification().DeleteNotificationId());
 
     // inventory
-    // AppServer.use(new RouterInventory().GetInventory())
-    // AppServer.use(new RouterInventory().GetInventoryId())
-    // AppServer.use(new RouterInventory().DeleteInventoryId())
-    // AppServer.use(new RouterInventory().PutInventoryId())
+    AppServer.use(new RouterInventory().PostInventory());
+    AppServer.use(new RouterInventory().GetInventory());
+    AppServer.use(new RouterInventory().DeleteInventoryId());
+    AppServer.use(new RouterInventory().PutInventoryId());
+    AppServer.use(new RouterInventory().UploadInsertProduct());
+    AppServer.use(new RouterInventory().getSubProducts());
 
     // Here there are routes Pedidos
 

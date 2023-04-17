@@ -34,13 +34,12 @@ abstract class Notification {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     let idToken: any = req.params.id;
-    console.log(idToken);
+   
     const verifyToken: any = jwt.verify(idToken, SECRET);
     if (verifyToken.id) {
       let responseNotification = await new Todo().getNotificationClass(
         verifyToken.id
       );
-      console.log(responseNotification);
 
       res.status(200).json({ message: "ok", responseNotification });
     } else {
@@ -64,7 +63,6 @@ abstract class Notification {
       let responseNotification = await new Todo().deleteNotificationClass(
         req.params.id
       );
-      console.log(responseNotification);
 
       res.status(200).json({ message: "ok", responseNotification });
     } else {
