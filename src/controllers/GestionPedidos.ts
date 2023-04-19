@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import SchemaPedidos from "../models/modelPedidos";
-import { IPedidos } from "../interfaces/pedidos";
+
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
-import subProductoSchema from "../models/SubProductos.model";import PedidosValiadation from "../class/Pedidos.model";
+import PedidosValiadation from "../class/Pedidos.model";
  ;
 
 
@@ -17,9 +17,18 @@ abstract class ManagePedidos {
       const tokenAccesId: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
-      await new PedidosValiadation().ValidateBodega(
-        //idTokenAdmin,
-
+      const { id_producto, id_provedor, id_inventario, company, cantidad, fecha } = req.body;
+      const {precio_compra, precio_venta} = req.body
+      await new PedidosValiadation().ValidateInventario(
+        idTokenAdmin,
+        id_producto,
+        id_provedor,
+        id_inventario,
+        company,
+        cantidad,
+        fecha,
+        precio_compra,
+        precio_venta
       );
 
     } catch (error) {
