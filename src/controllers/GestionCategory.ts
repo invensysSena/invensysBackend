@@ -74,12 +74,19 @@ abstract class Categorys {
   ): Promise<Response | Request | any> {
 
     
-
-   try {
     const Tokenid_U:any = req.params.id  
+    console.log(Tokenid_U);
+    
     const verifyToken: Array<any> | any = jwt.verify( Tokenid_U, SECRET )!;
+    console.log(verifyToken);
+    
 
     const tokeIdUser = verifyToken.id;
+    console.log("-----");
+    console.log("id",tokeIdUser);
+    
+    
+   try {
 
     if(!tokeIdUser){
       return res.status(400).json({

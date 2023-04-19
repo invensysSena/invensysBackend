@@ -5,31 +5,77 @@ import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import Todo from "../class/Notification.Todo";
 import subProductSchema from "../models/SubProductos.model";
-
+import { conexion } from "../database/database";
+import modelInventoryData from "../class/Inventory.model"
 class InventoryProduct {
   public async postInventory(req: Request, res: Response, next: NextFunction) {
     try {
       const { name_inventory, description } = req.body.data;
       const token: any = req.headers["authorization"];
+      let typeUser:any = req.headers["typeautorization"];
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
+      const conn = await conexion.connect();
+      
+      if(typeUser = "superAdmin"){
+        conn.query("SELECT correo FROM admin WHERE idUsers = ? ",[tokeIdUser],async (err,rows,fields)=>{
+       if(rows){
+       
+        
+         const inventory = new InventorySchema({
+           tokeIdUser,
+           name_inventory,
+           description,
+           estadoInventory:"activo",
+           responsableInventory: rows[0].correo,
+         });
+         const response = await inventory.save();
+         await new Todo().createNotificationClass(
+           "Se creo un nuevo inventario",
+           name_inventory,
+           "inventory",
+           tokeIdUser
+         );
+         res.status(200).json({ message: "Inventory created", response });
+  
+  
+       }
+        })
 
-      const inventory = new InventorySchema({
-        tokeIdUser,
-        name_inventory,
-        description,
-      });
-      const response = await inventory.save();
-      await new Todo().createNotificationClass(
-        "Se creo un nuevo inventario",
-        name_inventory,
-        "inventory",
-        tokeIdUser
-      );
-      res.status(200).json({ message: "Inventory created", response });
+      }else{
+        conn.query("SELECT account FROM admin WHERE idAccount   = ? ",[tokeIdUser],async (err,rows,fields)=>{
+          if(rows){
+          
+           
+            const inventory = new InventorySchema({
+              tokeIdUser,
+              name_inventory,
+              description,
+              estadoInventory:"activo",
+              responsableInventory: rows[0].correo,
+            });
+            const response = await inventory.save();
+            await new Todo().createNotificationClass(
+              "Se creo un nuevo inventario",
+              name_inventory,
+              "inventory",
+              tokeIdUser
+            );
+            res.status(200).json({ message: "Inventory created", response });
+     
+     
+          }
+           })
+   
+        
+
+      }
+
+      
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
+      
   }
 
   public async getInventory(req: Request, res: Response, next: NextFunction) {
