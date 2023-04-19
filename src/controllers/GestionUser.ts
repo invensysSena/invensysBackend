@@ -7,7 +7,7 @@ import {
   forgotPassword,
   newPasswordAdmin,
 } from "../interfaces/users";
-import DeviceDetector from "device-detector-js";
+//import DeviceDetector from "device-detector-js";
 import fs from "fs-extra";
 import csvtojson from "csvtojson";
 import { conexion } from "../database/database";

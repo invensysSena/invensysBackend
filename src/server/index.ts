@@ -11,6 +11,7 @@ import RouterInicio from "../router/router.inicio";
 import RouterNotification from "../router/router.Notification";
 import RouterInventory from "../router/router.inventary";
 import { connect } from "../database/mongodb";
+import RouterPedidos from "../router/router.pedidos";
 import { getLogger } from "nodemailer/lib/shared";
 mongoose.set("strictQuery", true);
 const AppServer: express.Application = express();
@@ -81,6 +82,7 @@ const startServer = () => {
     AppServer.use(new RouterCategory().DeleteCategory());
     AppServer.use(new RouterCategory().GetCategoryProducts());
 
+
     // Here there are routes Providers
     AppServer.use(new RouterProviders().GetProviders());
     AppServer.use(new RouterProviders().GetProvidersId());
@@ -93,6 +95,27 @@ const startServer = () => {
     AppServer.use(new RouterNotification().GetNotificationId());
     AppServer.use(new RouterNotification().PostcreateNotification());
     AppServer.use(new RouterNotification().DeleteNotificationId());
+
+        // Here there are routes Providers
+        AppServer.use(new RouterProviders().GetProviders())
+        AppServer.use(new RouterProviders().GetProvidersId())
+        AppServer.use(new RouterProviders().PostProviders())
+        AppServer.use(new RouterProviders().PutProviders())
+        AppServer.use(new RouterProviders().DeleteProviders())
+        AppServer.use(new RouterProviders().GetProvidersProducts())
+        // inventory
+        // AppServer.use(new RouterInventory().GetInventory())
+        // AppServer.use(new RouterInventory().GetInventoryId())
+        // AppServer.use(new RouterInventory().DeleteInventoryId())
+        // AppServer.use(new RouterInventory().PutInventoryId())
+      
+        // Here there are routes Pedidos
+        AppServer.use(new RouterPedidos().GetPedidos())
+        AppServer.use(new RouterPedidos().GetPedidosId())
+        AppServer.use(new RouterPedidos().PostPedidos())
+        AppServer.use(new RouterPedidos().PutPedidos())
+        AppServer.use(new RouterPedidos().DeletePedidos())
+
 
     // inventory
     
