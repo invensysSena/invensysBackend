@@ -4,7 +4,7 @@ export interface IPedidos extends Document{
     idTokenAdmin: string;
     id_subProducto: string;
     id_provedor: string;
-    id_inventario: string;
+    id_bodega: string;
     company : string;
     cantidad: number;  
     tipo: string;
