@@ -18,18 +18,19 @@ abstract class ManagePedidos {
         idBodega,
         idProvedor,
         idSubproducto,
-        tipo,
-        unidades,
+        company,
+        unidades, 
+        tipo,  
+        totalCompra,
         precioCompra,
         precioVenta,
         estado,
         fecha,
-        company, 
-        totalCompra
+       
+      
       } = req.body;
     
-     const responseClass = await new PedidosValiadation().setProperties(
-        
+     const responseClass = await new PedidosValiadation().setProperties(  
         idBodega,
         idProvedor,
         idSubproducto,

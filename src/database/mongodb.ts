@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { MONGO_URI_LOCAL , MONGO_URI_ATLAS} from '../config/config';
+//import { MONGO_URI_LOCAL , MONGO_URI_ATLAS} from '../config/config';
 
 
 export const connect = async () => {
