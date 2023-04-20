@@ -188,6 +188,8 @@ abstract class LoginRegister {
             conn.query(
               `CALL USER_LOGIN('${data.correo}')`,
               async (error, rows) => {
+                console.log(rows);
+                
                 if (error)
                   return res
                     .status(400)
