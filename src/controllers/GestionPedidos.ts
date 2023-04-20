@@ -4,9 +4,6 @@ import SchemaPedidos from "../models/modelPedidos";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import PedidosValiadation from "../class/Pedidos.model";
- ;
-
-
 abstract class ManagePedidos {
   public async postPedidos(
     req: Request,
@@ -17,20 +14,37 @@ abstract class ManagePedidos {
       const tokenAccesId: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
-      const { id_producto, id_provedor, id_inventario, company, cantidad, fecha } = req.body;
-      const {precio_compra, precio_venta} = req.body
-      await new PedidosValiadation().ValidateInventario(
-        idTokenAdmin,
-        id_producto,
-        id_provedor,
-        id_inventario,
-        company,
-        cantidad,
+      const {
+        idBodega,
+        idProvedor,
+        idSubproducto,
+        tipo,
+        unidades,
+        precioCompra,
+        precioVenta,
+        estado,
         fecha,
-        precio_compra,
-        precio_venta
+        company, 
+        totalCompra
+      } = req.body;
+    
+     const responseClass = await new PedidosValiadation().setProperties(
+        
+        idBodega,
+        idProvedor,
+        idSubproducto,
+        tipo,
+        company,
+        unidades,
+        fecha,
+        totalCompra,
+        precioCompra,
+        precioVenta, 
+        estado,
+        idTokenAdmin
       );
-
+      
+      res.status(200).json({ message: "Success", responseClass });
     } catch (error) {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
@@ -112,4 +126,3 @@ abstract class ManagePedidos {
 }
 
 export default ManagePedidos;
-  
