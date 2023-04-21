@@ -2,10 +2,12 @@ import InventorySchema from "../models/modelInventario";
 import subProductSchema from "../models/SubProductos.model";
 import ProviderSchema from "../models/modelProviders";
 import PedidosPendientesSchema from "../models/modelPedidosPendientes";
+import { IPendientes} from '../interfaces/PedidosPendientes';
 import PedidosSchema from "../models/modelPedidos";
 import { IPedidos } from "../interfaces/pedidos";
 
-class PedidosValiadation {
+class PedidosValiadation { 
+  private idTokenAdmin: string = "";
   private idBodega: string = "";
   private idProvedor: string = "";
   private idSubproducto: string = "";
@@ -14,14 +16,14 @@ class PedidosValiadation {
   private tipo: string = ""; // ? pendiente o completado  
   private fecha: string = "";
   private totalCompra: number = 0;
+  private name: string = "";
   private precioCompra: number = 0;
   private precioVenta: number = 0;
   private estado: string = "";
+  private caducidad: string = "";
 
- 
-  private idTokenAdmin: string = "";
-
-  public async setProperties(
+  public async setProperties(  
+    idTokenAdmin: string,
     idBodega: string,
     idProvedor: string,
     idSubproducto: string,
@@ -30,12 +32,13 @@ class PedidosValiadation {
     tipo: string,  
     fecha: string,
     totalCompra: number,
+    name: string,
     precioCompra: number,
     precioVenta: number,
     estado: string,
-  
-    idTokenAdmin: string
+    caducidad: string
   ) {
+    this.idTokenAdmin = idTokenAdmin;
     this.idBodega = idBodega;
     this.idProvedor = idProvedor;
     this.idSubproducto = idSubproducto;
@@ -44,10 +47,12 @@ class PedidosValiadation {
     this.tipo = tipo;
     this.fecha = fecha;
     this.totalCompra = totalCompra;
+    this.name = name;
     this.precioCompra = precioCompra;
     this.precioVenta = precioVenta;
     this.estado = estado;
-    this.idTokenAdmin = idTokenAdmin;
+    this.caducidad = caducidad;
+ 
     return await this.GetValidateBodega();
   }
 
@@ -77,52 +82,64 @@ class PedidosValiadation {
     try {
       const subProducts = await subProductSchema.findById(idPsubProduct);
       if (subProducts){
-       return await this.CreateSubProduct();
+       return await this.CreatePedido();
       } 
       else {
       // { message: "Producto no existe" };
         
       }; 
     } catch (error) {
-      console.log("----------",error); 
-      return await this.CreateSubProduct();
+      
+      return await this.CreatePedido();
     }
   }
   
-  protected async CreateSubProduct() {
-    console.log("CreateSubProduct");
- 
-   
+  protected async CreatePedido() {
+
     try {
       const pedido: IPedidos = new PedidosSchema({
-        //this.idTokenAdmin,
-        // id_subProducto: this.idSubproducto,
-        // id_provedor: this.idProvedor,
-        // id_bodega: this.idBodega,
-        // company: this.company,
-        // unidades: this.unidades,
-        // tipo: this.tipo,
-        // fecha: this.fecha,
-        // totalCompra: this.precioCompra * this.unidades,
-
-        idTokenAdmin:this.idTokenAdmin, //"5f9f1b0b0b9b9c0b0c0b0b0b",
-        id_subProducto: this.idSubproducto,//"64408204142c2c5aa3fdd36bl",
-        id_provedor: this.idProvedor,// "643ae964a55fbcb20eab99c3",
-        id_bodega: this.idBodega,//"643ffee7d11f5e0c17c06ebd",
-        company: this.company,//"don leche",
-        unidades: this.unidades,// 10,
+        idTokenAdmin:this.idTokenAdmin,
+        id_subProducto: this.idSubproducto,
+        id_provedor: this.idProvedor,
+        id_bodega: this.idBodega,
+        company: this.company,
+        unidades: this.unidades,
         tipo: this.tipo,
-        fecha:this.fecha, //"2020-11-02",
-        totalCompra:this.totalCompra// 500,
+        fecha:this.fecha, 
+        totalCompra:this.totalCompra
 
       });
 
-      const pedidoCreated = await pedido.save();
-      console.log("pedidoCreated", pedidoCreated);
-    } catch (error) {}
+      const pedidoCreated = await pedido.save(); 
+      await this.CreateSubPendiente();
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
-  protected async UpdateSubProduct(subProduct: string) {}
+  protected async CreateSubPendiente() {
+    
+    try {
+       const pedidosPendientes : IPendientes =  new PedidosPendientesSchema({
+        name:this.name,
+        precioCompra:this.precioCompra,
+        precioVenta:this.precioVenta,
+        tipo:this.tipo,
+        estado:this.estado,
+        unidades:this.unidades,
+        caducidad: this.caducidad,
+        idBodega: this.idBodega,
+       })
+
+       const resPedidosPendientes = await pedidosPendientes.save();
+        console.log("resPedidosPendientes", resPedidosPendientes);
+    } catch (error) {
+      console.log("error", error);
+      
+    }
+  }
+
+  
 }
 
 export default PedidosValiadation;

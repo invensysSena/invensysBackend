@@ -8,6 +8,6 @@ export interface IPedidos extends Document{
     company : string;
     cantidad: number;  
     tipo: string;
-    fecha: Date;
+    fecha: string;
     totalCompra: number;
 } 

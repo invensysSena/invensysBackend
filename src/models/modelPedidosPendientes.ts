@@ -3,15 +3,15 @@ import { IPendientes} from '../interfaces/PedidosPendientes';
 
 const PedidosPendientesSchema = new Schema({
     name: { type: String, required: true },
-    priceCompra: {
+    precioCompra: {
       type: String,
       required: true,
     },
-    priceVenta: {
+    precioVenta: {
       type: Number,
       required: true,
     },
-    unidad: {
+    unidades: {
       type: Number,
       required: true,
     },
@@ -24,7 +24,7 @@ const PedidosPendientesSchema = new Schema({
         required: true,
         
     },
-    idInventory: {
+    idBodega: {
       type: String,
       required: true,
     },

@@ -10,7 +10,7 @@ const PedidosSchema = new Schema({
     company : {type: String, required: true},
     unidades: {type: Number, required: true},
     tipo: {type: String, required: true},
-    fecha: {type: Date, default: Date.now},
+    fecha: {type: String},
     totalCompra: {type: Number, required: true},
 },{
     timestamps: true,

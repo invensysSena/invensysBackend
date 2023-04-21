@@ -2,11 +2,13 @@ import mongoose from "mongoose";
 
 export interface IPendientes extends mongoose.Document {
   name: string;
-  priceCompra: string;
-  priceVenta: number;
+  precioCompra: string;
+  pricioVenta: number;
   stockMinimo: number;
   stockMaximo: number;
-  unidad: number;
+  unidades: number;
+  tipo: string;
+  estado: string;
   caducidad: string;
-  idInventory: string;
+  idBodega: string;
 }

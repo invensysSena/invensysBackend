@@ -22,27 +22,29 @@ abstract class ManagePedidos {
         unidades, 
         tipo,  
         totalCompra,
+        name,
         precioCompra,
         precioVenta,
         estado,
         fecha,
-       
-      
+        caducidad
       } = req.body;
     
      const responseClass = await new PedidosValiadation().setProperties(  
+        idTokenAdmin,
         idBodega,
         idProvedor,
-        idSubproducto,
-        tipo,
+        idSubproducto, 
         company,
         unidades,
+        tipo,
         fecha,
         totalCompra,
+        name,
         precioCompra,
         precioVenta, 
         estado,
-        idTokenAdmin
+        caducidad
       );
       
       res.status(200).json({ message: "Success", responseClass });
