@@ -128,7 +128,7 @@ abstract class LoginRegister {
               return res.status(200).json({
                 message: "USER_CREATE_SUCCESFULL",
                 token,
-                auht: data.authCuenta,
+                auht: data.authCuenta, 
               });
             } else {
               return res.status(400).json({ message: "ERROR_DATA_ADMIN" });

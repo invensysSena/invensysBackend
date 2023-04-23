@@ -80,7 +80,9 @@ class PedidosValiadation {
  
   protected async ValidateProducto(idPsubProduct: string) {
     try {
-      const subProducts = await subProductSchema.findById(idPsubProduct);
+      
+      if(idPsubProduct.length > 1){
+         const subProducts = await subProductSchema.findById(idPsubProduct);
       if (subProducts){
        return await this.CreatePedido();
       } 
@@ -88,6 +90,8 @@ class PedidosValiadation {
       // { message: "Producto no existe" };
         
       }; 
+      }
+     
     } catch (error) {
       
       return await this.CreatePedido();
@@ -120,6 +124,7 @@ class PedidosValiadation {
   protected async CreateSubPendiente() {
     
     try {
+      
        const pedidosPendientes : IPendientes =  new PedidosPendientesSchema({
         name:this.name,
         precioCompra:this.precioCompra,
