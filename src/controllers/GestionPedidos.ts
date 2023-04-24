@@ -14,6 +14,7 @@ abstract class ManagePedidos {
       const tokenAccesId: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
+      
       const {
         idBodega,
         idProvedor,
