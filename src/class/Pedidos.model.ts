@@ -80,8 +80,6 @@ class PedidosValiadation {
  
   protected async ValidateProducto(idPsubProduct: string) {
     try {
-      
-      if(idPsubProduct.length > 1){
          const subProducts = await subProductSchema.findById(idPsubProduct);
       if (subProducts){
        return await this.CreatePedido();
@@ -90,7 +88,7 @@ class PedidosValiadation {
       // { message: "Producto no existe" };
         
       }; 
-      }
+      
      
     } catch (error) {
       
@@ -99,7 +97,7 @@ class PedidosValiadation {
   }
   
   protected async CreatePedido() {
-
+ console.log("entrooooo");
     try {
       const pedido: IPedidos = new PedidosSchema({
         idTokenAdmin:this.idTokenAdmin,
@@ -122,6 +120,9 @@ class PedidosValiadation {
   }
 
   protected async CreateSubPendiente() {
+
+   
+    
     
     try {
       
