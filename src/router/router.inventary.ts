@@ -34,6 +34,19 @@ class RouterInventory extends InventoryProduct {
     router.get("/subProducts/:id", this.GetSubProducta);
     return router;
   }
+
+  public postTranslateProducts() {
+    router.post("/translateProducts", this.TranslateProducts);
+    return router;
+  }
+  public getTranslateProducts() {
+    router.get("/translateProducts/:id", this.GetTranslateProducts);
+    return router;
+  }
+  public UpdateSubProducts() {
+    router.put("/translateSubProducts/:id", this.postTranslateProductsOrigen);
+    return router;
+  }
 }
 
 export default RouterInventory;
