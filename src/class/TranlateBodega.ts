@@ -53,22 +53,28 @@ class TranslateBodega {
   protected async updateUnidades(searchSubProducts: any, searchInventory: any) {
     try {
       const newUnidades = searchSubProducts.unidad - this.cantidad;
-      const response = await subProductSchema.findByIdAndUpdate(
+      const responseX = await subProductSchema.findByIdAndUpdate(
         this.idSubProducto,
         {
           unidad: newUnidades,
         },
         { new: true }
       );
-      return this.InserTranslateSubP(searchInventory, searchInventory);
+
+      return this.InserTranslateSubP(
+        searchInventory,
+        searchInventory,
+        responseX
+      );
     } catch (error) {
-      return { messaje: "ErrorUpdateUnidades" };
+      return "ErrorUpdateUnidades";
     }
   }
 
   protected async InserTranslateSubP(
     searchInventory: any,
-    searchSubProducts: any
+    searchSubProducts: any,
+    responseX: any
   ) {
     try {
       const data = {
@@ -89,7 +95,7 @@ class TranslateBodega {
       if (SearchTranslateSubP.length === 0) {
         const response = new TranslateSubPSchema(data);
         const dataResponse = await response.save();
-        return { messaje: "InsertTranslateSubP", dataResponse };
+        return responseX;
       } else {
         for (let i = 0; i < SearchTranslateSubP.length; i++) {
           if (SearchTranslateSubP[i].userCorreo === this.userCorreo) {
@@ -106,7 +112,7 @@ class TranslateBodega {
           } else {
             const response = new TranslateSubPSchema(data);
             const dataResponse = await response.save();
-            return { messaje: "InsertTranslateSubP", dataResponse };
+            return responseX;
           }
         }
       }
@@ -116,34 +122,33 @@ class TranslateBodega {
   }
 
   public async TranslateProduct(id: string, type: string) {
+    console.log("id", id, "type", type);
+
     if (type === "Aceptado") {
       const searchTranslateProduct: any = await TranslateSubPSchema.findById(
         id
       );
+
+
       if (searchTranslateProduct) {
         const Searchinventory = await InventorySchema.findById(
           searchTranslateProduct.idDestino
         );
+
         if (Searchinventory) {
           const searchSubProducts = await subProductSchema.find({
             idInventory: Searchinventory._id,
           });
+
           if (searchSubProducts.length > 0) {
             const filterSearchSubProducts: any = searchSubProducts.filter(
               (item) => item.name === searchTranslateProduct.userCorreo
             );
             if (filterSearchSubProducts.length > 0) {
-              console.log("existe", filterSearchSubProducts[0].name);
-
               if (
                 filterSearchSubProducts[0].name ===
                 searchTranslateProduct.userCorreo
               ) {
-                console.log(
-                  "Los nombres son iguales",
-                  filterSearchSubProducts[0].name,
-                  searchTranslateProduct.userCorreo
-                );
                 const updateUnidades = await subProductSchema.findByIdAndUpdate(
                   filterSearchSubProducts[0]._id,
                   {
@@ -159,12 +164,12 @@ class TranslateBodega {
             } else {
               const dataPost = {
                 name: searchTranslateProduct.userCorreo,
-                priceCompra: 0,
-                priceVenta: 0,
-                stockMinimo: 0,
-                stockMaximo: 0,
+                priceCompra: searchSubProducts[0].priceCompra,
+                priceVenta: searchSubProducts[0].priceVenta,
+                stockMinimo: searchSubProducts[0].stockMinimo,
+                stockMaximo: searchSubProducts[0].stockMaximo,
                 unidad: searchTranslateProduct.cantidad,
-                caducidad: 0,
+                caducidad: searchSubProducts[0].caducidad,
                 idInventory: Searchinventory._id,
               };
               const {
@@ -211,6 +216,7 @@ class TranslateBodega {
           { new: true }
         );
       await TranslateSubPSchema.findByIdAndDelete(id);
+      return searchSubProducts;
     }
   }
 }

@@ -5,7 +5,7 @@ const subProductSchema = new Schema(
   {
     name: { type: String, required: true },
     priceCompra: {
-      type: String,
+      type: Number,
       required: true,
     },
     priceVenta: {

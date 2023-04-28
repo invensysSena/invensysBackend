@@ -222,7 +222,7 @@ class InventoryProduct {
         req.body.data;
       console.log(req.body);
 
-      const responseClass = new TranslateBodega(
+      const responseClass = await new TranslateBodega(
         tokeIdUser,
         idDestino,
         idOrigen,
@@ -274,6 +274,32 @@ class InventoryProduct {
         ""
       ).TranslateProduct(id, req.body.data);
       res.status(200).json({ message: "get products", responseDataClass });
+    } catch (error) {
+      res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+  public async UpdateCorreoBodega(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | Request | any> {
+    try {
+      const { id } = req.params;
+      const token: any = req.headers["authorization"];
+      const decoded: any = jwt.verify(token, SECRET);
+      const tokeIdUser = decoded.id;
+      console.log(id);
+
+      const responseEmailUpdate = await InventorySchema.findByIdAndUpdate(
+        { _id: id },
+        {
+          responsableInventory: req.body.data,
+          type: "Usuario",
+        },
+        { new: true }
+      );
+
+      res.status(200).json({ message: "updateEmail", responseEmailUpdate });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }

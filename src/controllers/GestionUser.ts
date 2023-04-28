@@ -96,7 +96,7 @@ abstract class LoginRegister {
           version,
         } = data;
 
-        let cuenta = "Stored";
+        let cuenta = "Invensys";
         let state = "activo";
         let tc = "si";
         let authCount = "OK";
@@ -128,7 +128,7 @@ abstract class LoginRegister {
               return res.status(200).json({
                 message: "USER_CREATE_SUCCESFULL",
                 token,
-                auht: data.authCuenta, 
+                auht: data.authCuenta,
               });
             } else {
               return res.status(400).json({ message: "ERROR_DATA_ADMIN" });
@@ -160,7 +160,7 @@ abstract class LoginRegister {
         async (error: Array<Error> | any, rows: any) => {
           if (error)
             return res.status(400).json({ message: "ERROR_DB", error: error });
-          
+
           if (rows[0].length > 0) {
             const user = rows[0][0];
             const validPassword = await bcrypt.compare(
@@ -195,7 +195,6 @@ abstract class LoginRegister {
                     .json({ message: "ERROR_DB", error: error });
 
                 if (rows[0].length > 0) {
-
                   const validPassword = await bcrypt.compare(
                     data.password,
                     rows[0][0].password
@@ -209,18 +208,18 @@ abstract class LoginRegister {
                             .status(400)
                             .json({ message: "ERROR_DB", error: error });
                         let modulo: any = rowsP[0];
-  
+
                         const token: any = jwt.sign(
                           { id: rows[0][0].idUsers1 },
                           SECRET || "authToken",
                           { expiresIn: 60 * 60 * 24 }
                         );
                         // console.log(window.navigator.userAgent);
-  
+
                         // const deviceDetector = new DeviceDetector();
                         // const userAgent = window.navigator.userAgent;
                         // const device = deviceDetector.parse(userAgent);
-  
+
                         const url = "https://ipapi.co/json/";
                         const response = await fetch(url);
                         const data = await response.json();
@@ -246,7 +245,7 @@ abstract class LoginRegister {
                           navegador: "chrome",
                           infoNavegIp: "34.56",
                         };
-  
+
                         await conn.execute(
                           "SELECT * FROM services WHERE idAccountUsers = ?",
                           [rows[0][0].idAccount],
@@ -288,7 +287,7 @@ abstract class LoginRegister {
                             }
                           }
                         );
-  
+
                         if (modulo == "") {
                           return res.status(201).json({
                             message: "NOT_ACCCESO",
@@ -320,7 +319,6 @@ abstract class LoginRegister {
                     .status(401)
                     .json({ message: "ERROR_USER", statu: 401 });
                 }
-                
               }
             );
         }
@@ -869,6 +867,9 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
+    console.log("delete");
+    console.log(req.body);
+
     try {
       let tokenIdAcc: any = req.headers["isallowed-x-token"];
 
@@ -876,6 +877,9 @@ abstract class LoginRegister {
       const { id } = verifyToken;
       if (id) {
         const conn = await conexion.connect();
+        conn.query("DELETE  FROM services WHERE idAccountUsers = ?", [
+          req.body.deleteData,
+        ]);
         conn.query(
           `CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`,
           (error: any, rows: any) => {

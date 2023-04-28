@@ -47,6 +47,10 @@ class RouterInventory extends InventoryProduct {
     router.put("/translateSubProducts/:id", this.postTranslateProductsOrigen);
     return router;
   }
+  public UpdateEmailBodega() {
+    router.put("/updateEmailBodega/:id", this.UpdateCorreoBodega);
+    return router;
+  }
 }
 
 export default RouterInventory;

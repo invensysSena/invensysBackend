@@ -126,6 +126,7 @@ const startServer = () => {
     AppServer.use(new RouterInventory().postTranslateProducts());
     AppServer.use(new RouterInventory().getTranslateProducts());
     AppServer.use(new RouterInventory().UpdateSubProducts());
+    AppServer.use(new RouterInventory().UpdateEmailBodega());
 
     // Here there are routes Pedidos
 
