@@ -36,7 +36,9 @@ class PedidosValiadation {
     precioCompra: number,
     precioVenta: number,
     estado: string,
-    caducidad: string
+    caducidad: string,
+    data:any
+
   ) {
     this.idTokenAdmin = idTokenAdmin;
     this.idBodega = idBodega;
@@ -52,13 +54,31 @@ class PedidosValiadation {
     this.precioVenta = precioVenta;
     this.estado = estado;
     this.caducidad = caducidad;
- 
-    return await this.GetValidateBodega();
+   
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        this.idTokenAdmin = data[i].idTokenAdmin;
+        this.idBodega = data[i].idBodega;
+        this.idProvedor = data[i].idProvedor;
+        this.idSubproducto = data[i].idSubproducto;
+        this.company = data[i].company;
+        this.unidades = data[i].unidades;
+        this.tipo = data[i].tipo;
+        this.fecha = data[i].fecha;
+        this.totalCompra = data[i].totalCompra;
+        this.name = data[i].name;
+        this.precioCompra = data[i].precioCompra;
+        this.precioVenta = data[i].precioVenta;
+        this.estado = data[i].estado;
+        this.caducidad = data[i].caducidad;
+        return await this.GetValidateBodega();
+      }
+    }
   }
 
   protected async GetValidateBodega() {
     try {
-      const bodega = await InventorySchema.findById(this.idBodega);
+      const bodega = await InventorySchema.find({_id : this.idBodega});
 
       if (!bodega) return { message: "Bodega no existe" };
       else return this.ValidateProvedor(this.idProvedor);
@@ -69,7 +89,7 @@ class PedidosValiadation {
 
   protected async ValidateProvedor(idProvedor: string) {
     try {
-      const provedor = await ProviderSchema.findById(idProvedor);
+      const provedor = await ProviderSchema.find({_id:idProvedor});
 
       if (!provedor) return { message: "Provedor no existe" };
       else return this.ValidateProducto(this.idSubproducto);
@@ -121,9 +141,6 @@ class PedidosValiadation {
 
   protected async CreateSubPendiente() {
 
-   
-    
-    
     try {
       
        const pedidosPendientes : IPendientes =  new PedidosPendientesSchema({

@@ -30,7 +30,7 @@ abstract class ManagePedidos {
         fecha,
         caducidad,
       } = req.body;
-     
+      
       const responseClass = await new PedidosValiadation().setProperties(
         idTokenAdmin,
         idBodega,
@@ -45,51 +45,10 @@ abstract class ManagePedidos {
         precioCompra,
         precioVenta,
         estado,
-        caducidad
+        caducidad,
+        req.body
       );
      res.status(200).json({message:"sucess", responseClass})
-
-      // if (req.body.length > 1) {
-      //   for (let i = 0; i < req.body.length; i++) {
-      //     const responseClass = await new PedidosValiadation().setProperties(
-      //       idTokenAdmin,
-      //       idBodega,
-      //       idProvedor,
-      //       idSubproducto,
-      //       company,
-      //       unidades,
-      //       tipo,
-      //       fecha,
-      //       totalCompra,
-      //       name,
-      //       precioCompra,
-      //       precioVenta,
-      //       estado,
-      //       caducidad
-      //     );
-       
-      //   }
-          
-      // } else {
-      //   const responseClass = await new PedidosValiadation().setProperties(
-      //     idTokenAdmin,
-      //     idBodega,
-      //     idProvedor,
-      //     idSubproducto,
-      //     company,
-      //     unidades,
-      //     tipo,
-      //     fecha,
-      //     totalCompra,
-      //     name,
-      //     precioCompra,
-      //     precioVenta,
-      //     estado,
-      //     caducidad
-      //   );
-      //  res.status(200).json({message:"sucess", responseClass})
-      // }
-  
     } catch (error) {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
