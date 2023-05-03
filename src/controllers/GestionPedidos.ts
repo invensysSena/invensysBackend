@@ -30,24 +30,10 @@ abstract class ManagePedidos {
         fecha,
         caducidad,
       } = req.body;
-      
-      const responseClass = await new PedidosValiadation().setProperties(
-        idTokenAdmin,
-        idBodega,
-        idProvedor,
-        idSubproducto,
-        company,
-        unidades,
-        tipo,
-        fecha,
-        totalCompra,
-        name,
-        precioCompra,
-        precioVenta,
-        estado,
-        caducidad,
-        req.body
-      );
+
+      await new PedidosValiadation().CreatePedido(req.body , idTokenAdmin);
+      const responseClass = null 
+   
      res.status(200).json({message:"sucess", responseClass})
     } catch (error) {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
