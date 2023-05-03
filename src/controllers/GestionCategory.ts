@@ -32,12 +32,7 @@ abstract class Categorys {
           imgURL,
           imgId
         })
-        const dataCategory = await data.save();
-        let arrayData = [];
-        arrayData.push(dataCategory)
-        if (arrayData.includes(tokeIdUser)) {
-        }
-         
+        const dataCategory = await data.save();     
         await new Todo().createNotificationClass(
           "Se creo una nueva categoria",
           name_category,

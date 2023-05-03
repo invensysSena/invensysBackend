@@ -6,7 +6,6 @@ import { SECRET } from "../config/config";
 import Todo from "../class/Notification.Todo";
 abstract class ManageProducts {
   public async postProducts(req: Request, res: Response) {
- 
     try {
       const {
         iva,
@@ -18,7 +17,6 @@ abstract class ManageProducts {
         description,
         fechaFin,
       } = req.body.data;
-    
 
       const tokenCreate: string = req.headers["x-id-token"] as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
@@ -29,7 +27,6 @@ abstract class ManageProducts {
           .status(400)
           .json({ ok: false, message: "No existe el token" });
       } else {
-
         const product: Product = new ProductSchema({
           iva,
           name,
@@ -42,15 +39,19 @@ abstract class ManageProducts {
           fechaFin,
         });
         const produ = await product.save();
- await new Todo().createNotificationClass(
-   "Se creo un nuevo  producto",
-   name,
-   "product",
-   tokenIdUser
- );
+        await new Todo().createNotificationClass(
+          "Se creo un nuevo  producto",
+          name,
+          "product",
+          tokenIdUser
+        );
         return res
           .status(200)
-          .json({ ok: true, message: "Producto creado correctamente",data: produ });
+          .json({
+            ok: true,
+            message: "Producto creado correctamente",
+            data: produ,
+          });
       }
     } catch (error) {
       console.log(error);
@@ -66,10 +67,8 @@ abstract class ManageProducts {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-
       const tokenCreate: string = req.params._id;
-     
-      
+
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
 
@@ -83,17 +82,9 @@ abstract class ManageProducts {
         tokenIdUser,
       });
 
-     const data = ()=>{
-        products
-      }
-      
-     
       return res.status(200).json({ ok: true, products });
     } catch (error) {
-    
-      return res
-        .status(500)
-        .json({ ok: false, message: error });
+      return res.status(500).json({ ok: false, message: error });
     }
   }
   public async getProductsId(
@@ -102,7 +93,6 @@ abstract class ManageProducts {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-
       const tokenCreate: string = req.headers["id-token"] as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
@@ -156,10 +146,9 @@ abstract class ManageProducts {
     res: Response,
     next: NextFunction
   ): Promise<Response | Request | any> {
-    console.log("body",req.body);
-    
-    try {
+    console.log("body", req.body);
 
+    try {
       const tokenCreate: string = req.headers["id-token"] as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
@@ -170,9 +159,13 @@ abstract class ManageProducts {
           .json({ ok: false, message: "No existe el token" });
       }
 
-      const product = await ProductSchema.findByIdAndUpdate(req.params.id,req.body.data,{
-        new: true,
-      });
+      const product = await ProductSchema.findByIdAndUpdate(
+        req.params.id,
+        req.body.data,
+        {
+          new: true,
+        }
+      );
       console.log(product);
 
       return res
@@ -192,8 +185,6 @@ abstract class ManageProducts {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-
-
       const tokenCreate: string = req.headers["id-token"] as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
@@ -203,7 +194,9 @@ abstract class ManageProducts {
           .status(400)
           .json({ ok: false, message: "No existe el token" });
       }
-      const product = await ProductSchema.findByIdAndDelete(req.params.id, { tokenIdUser });
+      const product = await ProductSchema.findByIdAndDelete(req.params.id, {
+        tokenIdUser,
+      });
       await new Todo().createNotificationClass(
         "Se Elimino el producto con exito",
         "Se elimino el producto",
