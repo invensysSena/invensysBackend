@@ -14,41 +14,27 @@ abstract class ManagePedidos {
       const tokenAccesId: any = req.headers["x-id-token"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
-      
+
       const {
         idBodega,
         idProvedor,
         idSubproducto,
         company,
-        unidades, 
-        tipo,  
+        unidades,
+        tipo,
         totalCompra,
         name,
         precioCompra,
         precioVenta,
         estado,
         fecha,
-        caducidad
+        caducidad,
       } = req.body;
-    
-     const responseClass = await new PedidosValiadation().setProperties(  
-        idTokenAdmin,
-        idBodega,
-        idProvedor,
-        idSubproducto, 
-        company,
-        unidades,
-        tipo,
-        fecha,
-        totalCompra,
-        name,
-        precioCompra,
-        precioVenta, 
-        estado,
-        caducidad
-      );
-      
-      res.status(200).json({ message: "Success", responseClass });
+
+      await new PedidosValiadation().CreatePedido(req.body , idTokenAdmin);
+      const responseClass = null 
+   
+     res.status(200).json({message:"sucess", responseClass})
     } catch (error) {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
@@ -66,7 +52,7 @@ abstract class ManagePedidos {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
-
+ 
   public async getPedidosId(
     req: Request,
     res: Response,
@@ -128,5 +114,7 @@ abstract class ManagePedidos {
     }
   }
 }
+
+
 
 export default ManagePedidos;
