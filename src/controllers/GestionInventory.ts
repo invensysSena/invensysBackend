@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import InventorySchema from "../models/modelInventario";
 import TranslateSubPSchema from "../interfaces/TranslateSubP.Model";
+
 import { category } from "../interfaces/CategoryI";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
@@ -132,28 +133,45 @@ class InventoryProduct {
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
 
-      const response = await InventorySchema.deleteOne({ _id });
-
-      const response2 = await subProductSchema.deleteMany({
+      const searchSubProduct = await subProductSchema.find({
         idInventory: _id,
       });
+      console.log(searchSubProduct);
 
-      if (response2) {
+      if (searchSubProduct.length > 0) {
         await new Todo().createNotificationClass(
-          "se elimino los subproductos con exito",
+          "No se puede eliminar el inventario",
+          "Error",
+          "inventory",
+          tokeIdUser
+        );
+        return res.status(400).json({
+          message: "No se puede eliminar el inventario, tiene subproductos",
+        });
+      } else {
+        const response = await InventorySchema.deleteOne({ _id });
+
+        const response2 = await subProductSchema.deleteMany({
+          idInventory: _id,
+        });
+
+        if (response2) {
+          await new Todo().createNotificationClass(
+            "se elimino los subproductos con exito",
+            "Sucessfull",
+            "inventory",
+            tokeIdUser
+          );
+        }
+
+        await new Todo().createNotificationClass(
+          "se elimino el inventario con exito",
           "Sucessfull",
           "inventory",
           tokeIdUser
         );
+        res.status(200).json({ message: "Inventory deleted", response });
       }
-
-      await new Todo().createNotificationClass(
-        "se elimino el inventario con exito",
-        "Sucessfull",
-        "inventory",
-        tokeIdUser
-      );
-      res.status(200).json({ message: "Inventory deleted", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
