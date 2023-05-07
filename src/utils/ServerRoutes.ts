@@ -102,6 +102,7 @@ export class ServerRoutes {
     AppServer.use(new RouterInventory().getTranslateProducts());
     AppServer.use(new RouterInventory().UpdateSubProducts());
     AppServer.use(new RouterInventory().UpdateEmailBodega());
+    AppServer.use(new RouterInventory().GetAllSubProducts());
 
     return AppServer;
   }

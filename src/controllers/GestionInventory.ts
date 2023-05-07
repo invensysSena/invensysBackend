@@ -136,7 +136,6 @@ class InventoryProduct {
       const searchSubProduct = await subProductSchema.find({
         idInventory: _id,
       });
-      console.log(searchSubProduct);
 
       if (searchSubProduct.length > 0) {
         await new Todo().createNotificationClass(
@@ -198,6 +197,7 @@ class InventoryProduct {
         idInventory,
       } = req.body.data;
       const subProduct = new subProductSchema({
+        idUser: tokeIdUser,
         name,
         priceCompra,
         priceVenta,
@@ -318,6 +318,24 @@ class InventoryProduct {
       );
 
       res.status(200).json({ message: "updateEmail", responseEmailUpdate });
+    } catch (error) {
+      res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+
+  public async SubProductsIdAll(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | Request | any> {
+    try {
+      const { id } = req.params;
+      const token: any = req.headers["authorization"];
+      const decoded: any = jwt.verify(token, SECRET);
+      const tokeIdUser = decoded.id;
+
+      const response = await subProductSchema.find({ idUser: tokeIdUser });
+      res.status(200).json({ message: "get products", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
