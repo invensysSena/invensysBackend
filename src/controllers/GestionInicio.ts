@@ -5,8 +5,6 @@ import ProviderSchema from '../models/modelProviders';
 import { Product } from '../interfaces/product';
 import jwt from 'jsonwebtoken';
 import { SECRET } from '../config/config';
-import CategoryM from '../models/CategoryM';
-import Todo from "../class/Notification.Todo";
 
   
  class AllModules {
@@ -35,6 +33,7 @@ import Todo from "../class/Notification.Todo";
             const dataSumProduct = await ProductSchema.aggregate([]).match({tokenIdUser}).group({_id: null, total: {$sum: "$quantity"}})
             const dataCategory = await CategorySchema.find({tokenIdUser})
             const dataProvider = await ProviderSchema.find({tokenIdUser})
+            const dataInventary = null
             return res.status(200).json({ ok: true, dataCategory,dataProduct,dataProvider, dataSumProduct})
           }    
         } catch (error) {
