@@ -1,81 +1,87 @@
 import { Request, Response, NextFunction } from "express";
 import InventorySchema from "../models/modelInventario";
+import TranslateSubPSchema from "../interfaces/TranslateSubP.Model";
+
 import { category } from "../interfaces/CategoryI";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import Todo from "../class/Notification.Todo";
 import subProductSchema from "../models/SubProductos.model";
 import { conexion } from "../database/database";
-import modelInventoryData from "../class/Inventory.model"
+import modelInventoryData from "../class/Inventory.model";
+import TranslateBodega from "../class/TranlateBodega";
 class InventoryProduct {
   public async postInventory(req: Request, res: Response, next: NextFunction) {
     try {
       const { name_inventory, description } = req.body.data;
       const token: any = req.headers["authorization"];
-      let typeUser:any = req.headers["typeautorization"];
+      let typeUser: any = req.headers["typeautorization"];
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const conn = await conexion.connect();
-      
-      if(typeUser = "superAdmin"){
-        conn.query("SELECT correo FROM admin WHERE idUsers = ? ",[tokeIdUser],async (err,rows,fields)=>{
-       if(rows){
-       
-        
-         const inventory = new InventorySchema({
-           tokeIdUser,
-           name_inventory,
-           description,
-           estadoInventory:"activo",
-           responsableInventory: rows[0].correo,
-         });
-         const response = await inventory.save();
-         await new Todo().createNotificationClass(
-           "Se creo un nuevo inventario",
-           name_inventory,
-           "inventory",
-           tokeIdUser
-         );
-         res.status(200).json({ message: "Inventory created", response });
-  
-  
-       }
-        })
+      console.log(typeUser);
 
-      }else{
-        conn.query("SELECT account FROM admin WHERE idAccount   = ? ",[tokeIdUser],async (err,rows,fields)=>{
-          if(rows){
-          
-           
-            const inventory = new InventorySchema({
-              tokeIdUser,
-              name_inventory,
-              description,
-              estadoInventory:"activo",
-              responsableInventory: rows[0].correo,
-            });
-            const response = await inventory.save();
-            await new Todo().createNotificationClass(
-              "Se creo un nuevo inventario",
-              name_inventory,
-              "inventory",
-              tokeIdUser
-            );
-            res.status(200).json({ message: "Inventory created", response });
-     
-     
+      if (typeUser === "superAdmin") {
+        conn.query(
+          "SELECT correo FROM admin WHERE idUsers = ? ",
+          [tokeIdUser],
+          async (err, rows: any, fields) => {
+            if (rows) {
+              const inventory = new InventorySchema({
+                tokeIdUser,
+                name_inventory,
+                description,
+                estadoInventory: "activo",
+                responsableInventory: rows[0].correo,
+                type: "Administrador",
+              });
+              const response = await inventory.save();
+              await new Todo().createNotificationClass(
+                "Se creo un nuevo inventario",
+                name_inventory,
+                "inventory",
+                tokeIdUser
+              );
+              res.status(200).json({ message: "Inventory created", response });
+            }
           }
-           })
-   
-        
+        );
+      } else if (typeUser === "user") {
+        console.log(typeUser);
+        const token: any = req.headers["authorization1"];
 
+        const decoded: any = jwt.verify(token, SECRET);
+        const tokeIdUser1 = decoded.id1;
+        console.log(tokeIdUser);
+
+        conn.query(
+          "SELECT correo FROM account WHERE idAccount    = ? ",
+          [tokeIdUser1],
+          async (err, rows: any, fields) => {
+            if (rows) {
+              const inventory = new InventorySchema({
+                tokeIdUser,
+                name_inventory,
+                description,
+                estadoInventory: "Activo",
+                responsableInventory: rows[0].correo,
+                type: "Usuario",
+              });
+              const response = await inventory.save();
+              await new Todo().createNotificationClass(
+                "Se creo un nuevo inventario",
+                name_inventory,
+                "inventory",
+                tokeIdUser
+              );
+              res.status(200).json({ message: "Inventory created", response });
+            }
+          }
+        );
       }
-
-      
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
-      
   }
 
   public async getInventory(req: Request, res: Response, next: NextFunction) {
@@ -127,28 +133,44 @@ class InventoryProduct {
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
 
-      const response = await InventorySchema.deleteOne({ _id });
-
-      const response2 = await subProductSchema.deleteMany({
+      const searchSubProduct = await subProductSchema.find({
         idInventory: _id,
       });
 
-      if (response2) {
+      if (searchSubProduct.length > 0) {
         await new Todo().createNotificationClass(
-          "se elimino los subproductos con exito",
+          "No se puede eliminar el inventario",
+          "Error",
+          "inventory",
+          tokeIdUser
+        );
+        return res.status(400).json({
+          message: "No se puede eliminar el inventario, tiene subproductos",
+        });
+      } else {
+        const response = await InventorySchema.deleteOne({ _id });
+
+        const response2 = await subProductSchema.deleteMany({
+          idInventory: _id,
+        });
+
+        if (response2) {
+          await new Todo().createNotificationClass(
+            "se elimino los subproductos con exito",
+            "Sucessfull",
+            "inventory",
+            tokeIdUser
+          );
+        }
+
+        await new Todo().createNotificationClass(
+          "se elimino el inventario con exito",
           "Sucessfull",
           "inventory",
           tokeIdUser
         );
+        res.status(200).json({ message: "Inventory deleted", response });
       }
-
-      await new Todo().createNotificationClass(
-        "se elimino el inventario con exito",
-        "Sucessfull",
-        "inventory",
-        tokeIdUser
-      );
-      res.status(200).json({ message: "Inventory deleted", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
@@ -175,6 +197,7 @@ class InventoryProduct {
         idInventory,
       } = req.body.data;
       const subProduct = new subProductSchema({
+        idUser: tokeIdUser,
         name,
         priceCompra,
         priceVenta,
@@ -198,6 +221,120 @@ class InventoryProduct {
       const tokeIdUser = decoded.id;
       const response = await subProductSchema.find({ idInventory: id });
 
+      res.status(200).json({ message: "get products", response });
+    } catch (error) {
+      res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+
+  public async TranslateProducts(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const token: any = req.headers["authorization"];
+      const decoded: any = jwt.verify(token, SECRET);
+      const tokeIdUser = decoded.id;
+      const { idDestino, idOrigen, idSubProducto, cantidad, userCorreo } =
+        req.body.data;
+      console.log(req.body);
+
+      const responseClass = await new TranslateBodega(
+        tokeIdUser,
+        idDestino,
+        idOrigen,
+        idSubProducto,
+        cantidad,
+        userCorreo
+      ).Initial();
+
+      return res.status(200).json({ message: "get products", responseClass });
+    } catch (error) {
+      return res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+
+  public async GetTranslateProducts(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | Request | any> {
+    try {
+      const { id } = req.params;
+      const token: any = req.headers["authorization"];
+      const decoded: any = jwt.verify(token, SECRET);
+      const tokeIdUser = decoded.id;
+      const response = await TranslateSubPSchema.find({ idDestino: id });
+
+      res.status(200).json({ message: "get products", response });
+    } catch (error) {
+      res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+
+  public async postTranslateProductsOrigen(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | Request | any> {
+    try {
+      const { id } = req.params;
+      const token: any = req.headers["authorization"];
+      const decoded: any = jwt.verify(token, SECRET);
+      const tokeIdUser = decoded.id;
+      const responseDataClass = new TranslateBodega(
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ).TranslateProduct(id, req.body.data);
+      res.status(200).json({ message: "get products", responseDataClass });
+    } catch (error) {
+      res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+  public async UpdateCorreoBodega(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | Request | any> {
+    try {
+      const { id } = req.params;
+      const token: any = req.headers["authorization"];
+      const decoded: any = jwt.verify(token, SECRET);
+      const tokeIdUser = decoded.id;
+      console.log(id);
+
+      const responseEmailUpdate = await InventorySchema.findByIdAndUpdate(
+        { _id: id },
+        {
+          responsableInventory: req.body.data,
+          type: "Usuario",
+        },
+        { new: true }
+      );
+
+      res.status(200).json({ message: "updateEmail", responseEmailUpdate });
+    } catch (error) {
+      res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+
+  public async SubProductsIdAll(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | Request | any> {
+    try {
+      const { id } = req.params;
+      const token: any = req.headers["authorization"];
+      const decoded: any = jwt.verify(token, SECRET);
+      const tokeIdUser = decoded.id;
+
+      const response = await subProductSchema.find({ idUser: tokeIdUser });
       res.status(200).json({ message: "get products", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });

@@ -30,7 +30,7 @@ abstract class LoginRegister {
     const conn = await conexion.connect();
     conn.query(
       `CALL ADMIN_SELECT_CODE('${req.body.data.email}')`,
-      async (error, rows) => {
+      async (error: any, rows: any) => {
         for (let i = 0; i < rows.length; i++) {
           if (rows[i][0].codigo == parseInt(req.body.data.codigo)) {
             return res
@@ -72,12 +72,12 @@ abstract class LoginRegister {
       let state = (datas.authCuenta = true);
       let estado = "activo";
       const conn = await conexion.connect();
-      conn.query("SELECT * FROM admin", async (error, rows) => {
-        if (rows.length < 0) {
+      conn.query("SELECT * FROM admin", async (error: any, row: any) => {
+        if (row.length < 0) {
           return res.status(400).json({ message: "ERROR_DATA_ADMIN" });
         }
-        for (let i = 0; i < rows.length; i++) {
-          if (rows[i].correo == datas.correo)
+        for (let i = 0; i < row.length; i++) {
+          if (row[i].correo == datas.correo)
             return res.status(400).json({ message: "ERR_EXIST_EMAIL" });
         }
 
@@ -96,7 +96,7 @@ abstract class LoginRegister {
           version,
         } = data;
 
-        let cuenta = "Stored";
+        let cuenta = "Invensys";
         let state = "activo";
         let tc = "si";
         let authCount = "OK";
@@ -128,7 +128,7 @@ abstract class LoginRegister {
               return res.status(200).json({
                 message: "USER_CREATE_SUCCESFULL",
                 token,
-                auht: data.authCuenta, 
+                auht: data.authCuenta,
               });
             } else {
               return res.status(400).json({ message: "ERROR_DATA_ADMIN" });
@@ -160,6 +160,7 @@ abstract class LoginRegister {
         async (error: Array<Error> | any, rows: any) => {
           if (error)
             return res.status(400).json({ message: "ERROR_DB", error: error });
+
           if (rows[0].length > 0) {
             const user = rows[0][0];
             const validPassword = await bcrypt.compare(
@@ -187,132 +188,136 @@ abstract class LoginRegister {
           } else
             conn.query(
               `CALL USER_LOGIN('${data.correo}')`,
-              async (error, rows) => {
-                console.log(rows);
-                
+              async (error: any, rows: any) => {
                 if (error)
                   return res
                     .status(400)
                     .json({ message: "ERROR_DB", error: error });
 
-                const validPassword = await bcrypt.compare(
-                  data.password,
-                  rows[0][0].password
-                );
-                if (validPassword) {
-                  conn.query(
-                    `CALL USER_LOGIN_MODULO('${rows[0][0].idAccount}')`,
-                    async (error, rowsP) => {
-                      if (error)
-                        return res
-                          .status(400)
-                          .json({ message: "ERROR_DB", error: error });
-                      let modulo: any = rowsP[0];
+                if (rows[0].length > 0) {
+                  const validPassword = await bcrypt.compare(
+                    data.password,
+                    rows[0][0].password
+                  );
+                  if (validPassword) {
+                    conn.query(
+                      `CALL USER_LOGIN_MODULO('${rows[0][0].idAccount}')`,
+                      async (error: any, rowsP: any) => {
+                        if (error)
+                          return res
+                            .status(400)
+                            .json({ message: "ERROR_DB", error: error });
+                        let modulo: any = rowsP[0];
 
-                      const token: any = jwt.sign(
-                        { id: rows[0][0].idUsers1 },
-                        SECRET || "authToken",
-                        { expiresIn: 60 * 60 * 24 }
-                      );
-                      // console.log(window.navigator.userAgent);
+                        const token: any = jwt.sign(
+                          { id: rows[0][0].idUsers1 },
+                          SECRET || "authToken",
+                          { expiresIn: 60 * 60 * 24 }
+                        );
+                        // console.log(window.navigator.userAgent);
 
-                      // const deviceDetector = new DeviceDetector();
-                      // const userAgent = window.navigator.userAgent;
-                      // const device = deviceDetector.parse(userAgent);
+                        // const deviceDetector = new DeviceDetector();
+                        // const userAgent = window.navigator.userAgent;
+                        // const device = deviceDetector.parse(userAgent);
 
-                      const url = "https://ipapi.co/json/";
-                      const response = await fetch(url);
-                      const data = await response.json();
-                      const {
-                        country_name,
-                        city,
-                        longitude,
-                        region,
-                        latitude,
-                        country_calling_code,
-                        languages,
-                        ip,
-                        network,
-                        version,
-                      } = data;
-                      const token1: any = jwt.sign(
-                        { id1: rows[0][0].idAccount },
-                        SECRET || "authToken",
-                        { expiresIn: 60 * 60 * 24 }
-                      );
-                      let dataDevice = {
-                        device: "desktop",
-                        navegador: "chrome",
-                        infoNavegIp: "34.56",
-                      };
+                        const url = "https://ipapi.co/json/";
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        const {
+                          country_name,
+                          city,
+                          longitude,
+                          region,
+                          latitude,
+                          country_calling_code,
+                          languages,
+                          ip,
+                          network,
+                          version,
+                        } = data;
+                        const token1: any = jwt.sign(
+                          { id1: rows[0][0].idAccount },
+                          SECRET || "authToken",
+                          { expiresIn: 60 * 60 * 24 }
+                        );
+                        let dataDevice = {
+                          device: "desktop",
+                          navegador: "chrome",
+                          infoNavegIp: "34.56",
+                        };
 
-                      conn.query(
-                        "SELECT * FROM services WHERE idAccountUsers = ?",
-                        [rows[0][0].idAccount],
-                        async (error, coll) => {
-                          if (coll.length > 0) {
-                            conn.query(
-                              `CALL UPDATE_SESION_USER('${
-                                dataDevice.device
-                              }', '${ip}','${token1}','${momet().format(
-                                "LLLL"
-                              )}','${city}','${languages}','${
-                                dataDevice.navegador
-                              }','${dataDevice.infoNavegIp}',
-                        '${city}','${country_name}','${region}','${
-                                rows[0][0].idAccount
-                              }')`,
-                              (error, rows) => {}
-                            );
-                          } else {
-                            conn.query(
-                              `INSERT INTO services(idAccountUsers) VALUES(?)`,
-                              [rows[0][0].idAccount],
-                              (error, coll) => {
-                                conn.query(
-                                  `CALL UPDATE_SESION_USER('${
-                                    dataDevice.device
-                                  }', '${ip}','${token1}','${momet().format(
-                                    "LLLL"
-                                  )}','${city}','${languages}','${
-                                    dataDevice.navegador
-                                  }','${dataDevice.infoNavegIp}',
-                                '${city}','${country_name}','${region}','${
-                                    rows[0][0].idAccount
-                                  }')`,
-                                  (error, self) => {}
-                                );
-                              }
-                            );
+                        await conn.execute(
+                          "SELECT * FROM services WHERE idAccountUsers = ?",
+                          [rows[0][0].idAccount],
+                          async (error: any, coll: any) => {
+                            if (coll.length > 0) {
+                              conn.query(
+                                `CALL UPDATE_SESION_USER('${
+                                  dataDevice.device
+                                }', '${ip}','${token1}','${momet().format(
+                                  "LLLL"
+                                )}','${city}','${languages}','${
+                                  dataDevice.navegador
+                                }','${dataDevice.infoNavegIp}',
+                          '${city}','${country_name}','${region}','${
+                                  rows[0][0].idAccount
+                                }')`,
+                                (error: any, rows: any) => {}
+                              );
+                            } else {
+                              conn.execute(
+                                `INSERT INTO services(idAccountUsers) VALUES(?)`,
+                                [rows[0][0].idAccount],
+                                (error: any, coll: any) => {
+                                  conn.query(
+                                    `CALL UPDATE_SESION_USER('${
+                                      dataDevice.device
+                                    }', '${ip}','${token1}','${momet().format(
+                                      "LLLL"
+                                    )}','${city}','${languages}','${
+                                      dataDevice.navegador
+                                    }','${dataDevice.infoNavegIp}',
+                                  '${city}','${country_name}','${region}','${
+                                      rows[0][0].idAccount
+                                    }')`,
+                                    (error: any, self: any) => {}
+                                  );
+                                }
+                              );
+                            }
                           }
-                        }
-                      );
+                        );
 
-                      if (modulo == "") {
-                        return res.status(201).json({
-                          message: "NOT_ACCCESO",
-                          module: "error",
-                          type: "error",
+                        if (modulo == "") {
+                          return res.status(201).json({
+                            message: "NOT_ACCCESO",
+                            module: "error",
+                            type: "error",
+                          });
+                        }
+                        await new Todo().createNotificationClass(
+                          `Un usuario acaba de iniciar sesion en el sistema`,
+                          `${data.correo}`,
+                          "users",
+                          `${rows[0][0].idUsers1}`
+                        );
+                        return res.status(200).json({
+                          message: "LOGIN_SUCCESSFULL",
+                          token,
+                          token1,
+                          auth: true,
+                          module: modulo,
+                          type: "user",
                         });
                       }
-                      await new Todo().createNotificationClass(
-                        `Un usuario acaba de iniciar sesion en el sistema`,
-                        `${data.correo}`,
-                        "users",
-                        `${rows[0][0].idUsers1}`
-                      );
-                      return res.status(200).json({
-                        message: "LOGIN_SUCCESSFULL",
-                        token,
-                        token1,
-                        auth: true,
-                        module: modulo,
-                        type: "user",
-                      });
-                    }
-                  );
+                    );
+                  } else {
+                    return res.status(401).json({ message: "ERROR_PASSWORD" });
+                  }
                 } else {
-                  return res.status(401).json({ message: "ERROR_PASSWORD" });
+                  return res
+                    .status(401)
+                    .json({ message: "ERROR_USER", statu: 401 });
                 }
               }
             );
@@ -488,7 +493,7 @@ abstract class LoginRegister {
         const encriptarPassword = await bcrypt.genSalt(roundNumber);
         const hasPassword = await bcrypt.hash(data.password, encriptarPassword);
         const conn = await conexion.connect();
-        conn.query("SELECT * FROM account", async (error, rows) => {
+        conn.query("SELECT * FROM account", async (error, rows: any) => {
           if (rows.length > 0) {
             for (let i = 0; i < rows.length; i++) {
               if (rows[i].correo == data.correo)
@@ -504,15 +509,15 @@ abstract class LoginRegister {
               if (rows) {
                 conn.query(
                   `CALL GET_USER_SECOND_USER('${data.correo}')`,
-                  (error, rows) => {
+                  (error, rows: any) => {
                     if (rows) {
                       conn.query(
                         `CALL INSERT_MODULE_USER('${req.body.postDataUserRegister.modulo}','${req.body.postDataUserRegister.modulo}','${rows[0][0].idAccount}')`,
-                        (error, rowsid) => {
+                        (error, rowsid: any) => {
                           if (rowsid) {
                             conn.query(
                               `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
-                              (error, rowsData) => {
+                              (error, rowsData: any) => {
                                 if (rowsData) {
                                   conn.query(
                                     `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
@@ -598,7 +603,7 @@ abstract class LoginRegister {
         conn.query(
           "SELECT * FROM usuario WHERE correo = ? AND codigo = ?",
           [validate.correo, validate.codePass],
-          async (error, rows) => {
+          async (error, rows: any) => {
             if (error) {
               return res.json({ message: "ERROR_NEW_PASS", error: error });
             }
@@ -651,7 +656,7 @@ abstract class LoginRegister {
       conn.query(
         `CALL ADMIN_SELECT_EMAIL('${mail.correo}')`,
         [mail.correo],
-        (error, rows) => {
+        (error: any, rows: any) => {
           if (error) {
             return res.json({ message: error });
           }
@@ -659,39 +664,6 @@ abstract class LoginRegister {
             const min = 100000;
             const max = 999999;
             let codeAcceso = Math.floor(Math.random() * (max - min + 1) + min);
-
-            conn.query(
-              `CALL ADMIN_RECOVERY__PASSWORD_CODE('${mail.correo}','${codeAcceso}')`,
-              (error, rows) => {
-                if (error)
-                  return res.json({ message: "ERROR_CODE_WZ", err: error });
-
-                conn.query(
-                  `CALL ADMIN_SELECT_CODE('${mail.correo}')`,
-                  (error, rows) => {
-                    if (error)
-                      return res.json({
-                        message: "ERROR_CODE_OBTENER_CODE_SQL",
-                      });
-
-                    if (rows.length) {
-                      const resultCode = new recoveryAdminPass().sendCode(
-                        rows[0][0].codigo,
-                        mail.correo
-                      );
-                      return res
-                        .status(200)
-                        .json({ message: "VERIFY", email: mail.correo });
-                    } else {
-                      if (error)
-                        return res.json({
-                          message: "ERROR_CODE_OBTENER_CODE_SQL",
-                        });
-                    }
-                  }
-                );
-              }
-            );
           } else {
             res.status(401).json({ message: "EMAIL_NOT_EXIST" });
           }
@@ -722,7 +694,7 @@ abstract class LoginRegister {
       );
       conn.query(
         `CALL ADMIN_SELECT_EMAIL('${validate.correo}')`,
-        (error, rows) => {
+        (error: any, rows: any) => {
           if (error)
             return res
               .status(500)
@@ -730,7 +702,7 @@ abstract class LoginRegister {
           if (rows.length > 0) {
             conn.query(
               `CALL ADMIN_UPDATE_PASSWORD('${validate.correo}','${hasPassword}')`,
-              (error, rows) => {
+              (error: any, rows: any) => {
                 if (error)
                   return res
                     .status(400)
@@ -790,7 +762,7 @@ abstract class LoginRegister {
                 password,
                 encriptarPassword
               );
-              conn.query("SELECT * FROM account", async (error, rows) => {
+              conn.query("SELECT * FROM account", async (error, rows: any) => {
                 for (let i = 0; i < rows.length; i++) {
                   if (rows[i].correo == correo)
                     return res.json({
@@ -804,15 +776,15 @@ abstract class LoginRegister {
                     if (rows) {
                       conn.query(
                         `CALL GET_USER_SECOND_USER('${correo}')`,
-                        (error, rows) => {
+                        (error, rows: any) => {
                           if (rows) {
                             conn.query(
                               `CALL INSERT_MODULE_USER('${req.body["formDataCsv[modulo]"]}','${req.body["formDataCsv[modulo]"]}','${rows[0][0].idAccount}')`,
-                              (error, rowsid) => {
+                              (error, rowsid: any) => {
                                 if (rowsid) {
                                   conn.query(
                                     `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
-                                    (error, rowsData) => {
+                                    (error, rowsData: any) => {
                                       if (rowsData) {
                                         conn.query(
                                           `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
@@ -872,7 +844,7 @@ abstract class LoginRegister {
 
       if (id) {
         const conn = await conexion.connect();
-        conn.query(`CALL GET_USER('${id}')`, (error, rows) => {
+        conn.query(`CALL GET_USER('${id}')`, (error, rows: any) => {
           if (error)
             return res
               .status(500)
@@ -895,6 +867,9 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
+    console.log("delete");
+    console.log(req.body);
+
     try {
       let tokenIdAcc: any = req.headers["isallowed-x-token"];
 
@@ -902,12 +877,15 @@ abstract class LoginRegister {
       const { id } = verifyToken;
       if (id) {
         const conn = await conexion.connect();
+        conn.query("DELETE  FROM services WHERE idAccountUsers = ?", [
+          req.body.deleteData,
+        ]);
         conn.query(
           `CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`,
-          (error, rows) => {
+          (error: any, rows: any) => {
             conn.query(
               `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
-              async (error, rows) => {
+              async (error: any, rows: any) => {
                 if (rows) {
                   await new Todo().createNotificationClass(
                     "Se elimino un usuario de la plataforma",
@@ -947,26 +925,29 @@ abstract class LoginRegister {
 
       if (id) {
         const conn = await conexion.connect();
-        conn.query(`CALL GET_COUNT_USERS('${id}')`, (error, rows) => {
-          conn.query(`CALL COUNT_STATE_USER('${id}')`, (error, rowsActive) => {
-            conn.query(
-              `CALL COUNT_STATE_USER_INACTIVO('${id}')`,
-              (error, rowsInactive) => {
-                if (rows) {
-                  return res.status(200).json({
-                    message: "COUNT_USERS_ALL",
-                    countUsers: rows[0][0].total,
-                    stateActive: rowsActive[0][0].totalActive,
-                    stateInactive: rowsInactive[0][0].totalActive,
-                  });
-                } else {
-                  return res
-                    .status(400)
-                    .json({ message: "ERROR_COUNT_USERS_ALL" });
+        conn.query(`CALL GET_COUNT_USERS('${id}')`, (error, rows: any) => {
+          conn.query(
+            `CALL COUNT_STATE_USER('${id}')`,
+            (error, rowsActive: any) => {
+              conn.query(
+                `CALL COUNT_STATE_USER_INACTIVO('${id}')`,
+                (error, rowsInactive: any) => {
+                  if (rows) {
+                    return res.status(200).json({
+                      message: "COUNT_USERS_ALL",
+                      countUsers: rows[0][0].total,
+                      stateActive: rowsActive[0][0].totalActive,
+                      stateInactive: rowsInactive[0][0].totalActive,
+                    });
+                  } else {
+                    return res
+                      .status(400)
+                      .json({ message: "ERROR_COUNT_USERS_ALL" });
+                  }
                 }
-              }
-            );
-          });
+              );
+            }
+          );
         });
       }
     } catch (error) {
@@ -989,7 +970,7 @@ abstract class LoginRegister {
         const conn = await conexion.connect();
         conn.query(
           `CALL GET_MODULE_ACCOUNT_USER('${req.params.id}')`,
-          (error, rows) => {
+          (error, rows: any) => {
             if (rows) {
               return res
                 .status(200)
@@ -1022,7 +1003,7 @@ abstract class LoginRegister {
         const conn = await conexion.connect();
         conn.query(
           `CALL GET_PERMISIONS_MODULE_USER('${id}')`,
-          (error, rows) => {
+          (error, rows: any) => {
             if (rows) {
               return res
                 .status(200)
@@ -1116,11 +1097,11 @@ abstract class LoginRegister {
         const conn = await conexion.connect();
         conn.query(
           `CALL INSERT_MODULE_USER('${req.body.data.module}','${req.body.data.module}','${req.body.data.idAccount}')`,
-          (error, rows) => {
+          (error: any, rows: any) => {
             conn.query(
               "SELECT IDmodulo, titulo FROM modulo WHERE titulo = ?",
               [req.body.data.module],
-              (error, row) => {
+              (error: any, row: any) => {
                 if (rows) {
                   return res
                     .status(200)
@@ -1154,7 +1135,7 @@ abstract class LoginRegister {
         const conn = await conexion.connect();
         conn.query(
           `CALL ASIGNED_PERMISION_USER_ACCOUNT('${id}','${req.body.idModule}','${req.body.permisions}')`,
-          (error, rows) => {
+          (error: any, rows: any) => {
             if (rows) {
               return res
                 .status(200)
@@ -1186,7 +1167,7 @@ abstract class LoginRegister {
         const conn = await conexion.connect();
         conn.query(
           `CALL DELETE_PERMISIONS_MODULE_USER('${id}','${req.body.idModule}')`,
-          async (error, rows) => {
+          async (error: any, rows: any) => {
             if (rows) {
               return res
                 .status(200)
@@ -1214,15 +1195,20 @@ abstract class LoginRegister {
       const { id1 } = verifyToken;
       if (id1) {
         const conn = await conexion.connect();
-        conn.query(`CALL GET_MODULE_ACCOUNT_USER('${id1}')`, (error, rows) => {
-          if (rows) {
-            return res
-              .status(200)
-              .json({ message: "GET_MODULES_USER", data: rows[0] });
-          } else {
-            return res.status(400).json({ message: "ERROR_GET_MODULES_USER" });
+        conn.execute(
+          `CALL GET_MODULE_ACCOUNT_USER('${id1}')`,
+          (error: any, rows: any) => {
+            if (rows) {
+              return res
+                .status(200)
+                .json({ message: "GET_MODULES_USER", data: rows[0] });
+            } else {
+              return res
+                .status(400)
+                .json({ message: "ERROR_GET_MODULES_USER" });
+            }
           }
-        });
+        );
       }
     } catch (error) {
       return res.status(400).json({ message: "ERROR_GET_MODULES_USER" });
@@ -1239,7 +1225,7 @@ abstract class LoginRegister {
       const { id } = verifyToken;
       if (id) {
         const conn = await conexion.connect();
-        conn.query(`CALL ADMIN_SELECT('${id}')`, (error, rows) => {
+        conn.query(`CALL ADMIN_SELECT('${id}')`, (error: any, rows: any) => {
           if (rows) {
             return res
               .status(200)
@@ -1280,7 +1266,7 @@ abstract class LoginRegister {
           const conn = await conexion.connect();
           conn.query(
             `CALL ADMIN_UPLOAD_IMG('${id}','${url_imagen}','${id_img}')`,
-            (error, rows) => {
+            (error: any, rows: any) => {
               if (rows) {
                 return res.status(200).json({ message: "UPLOAD_IMAGE_ADMIN" });
               } else {
@@ -1314,21 +1300,24 @@ abstract class LoginRegister {
       const { id } = verifyToken;
       if (id) {
         const conn = await conexion.connect();
-        conn.query(
+        conn.execute(
           `CALL ADMIN_UPDATE_DATA('${id}','${req.body.data.name}','${req.body.data.document}','${req.body.data.telefono}','${req.body.data.empresa}')`,
-          async (error, rows) => {
+          async (error: any, rows: any) => {
             if (rows) {
-              conn.query(`CALL ADMIN_SELECT('${id}')`, async (error, rows) => {
-                await new Todo().createNotificationClass(
-                  `Tus datos se actualizaron correctamente`,
-                  "se mantendra la misma contraseña",
-                  "users",
-                  `${id}`
-                );
-                return res
-                  .status(200)
-                  .json({ message: "UPDATE_ADMIN_ALL", data: rows[0] });
-              });
+              conn.query(
+                `CALL ADMIN_SELECT('${id}')`,
+                async (error: any, rows: any) => {
+                  await new Todo().createNotificationClass(
+                    `Tus datos se actualizaron correctamente`,
+                    "se mantendra la misma contraseña",
+                    "users",
+                    `${id}`
+                  );
+                  return res
+                    .status(200)
+                    .json({ message: "UPDATE_ADMIN_ALL", data: rows[0] });
+                }
+              );
             } else {
               return res.status(400).json({ message: "ERROR_DATA" });
             }
@@ -1353,15 +1342,18 @@ abstract class LoginRegister {
       }
 
       const conn = await conexion.connect();
-      conn.query(`CALL GET_SERVICE_USER('${req.params.id}')`, (error, rows) => {
-        if (rows) {
-          return res
-            .status(200)
-            .json({ message: "GET_SERVICE_USER", data: rows[0] });
-        } else {
-          return res.status(400).json({ message: "ERROR_GET_SERVICE_USER" });
+      conn.query(
+        `CALL GET_SERVICE_USER('${req.params.id}')`,
+        (error: any, rows: any) => {
+          if (rows) {
+            return res
+              .status(200)
+              .json({ message: "GET_SERVICE_USER", data: rows[0] });
+          } else {
+            return res.status(400).json({ message: "ERROR_GET_SERVICE_USER" });
+          }
         }
-      });
+      );
     } catch (error) {
       return res.status(400).json({ message: "ERROR_TOKEN" });
     }

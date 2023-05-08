@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export interface subProducts extends mongoose.Document {
   name: string;
-  priceCompra: string;
+  priceCompra: number;
   priceVenta: number;
   stockMinimo: number;
   stockMaximo: number;

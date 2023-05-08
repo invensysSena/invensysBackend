@@ -7,7 +7,8 @@ export interface inventory extends mongoose.Document{
     name_inventory: string,
     description: string,
     estadoInventory: string
-    responsableInventory:string
+    responsableInventory: string
+    type: string
    
     
 }
