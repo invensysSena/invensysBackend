@@ -5,9 +5,7 @@ import ProviderSchema from "../models/modelProviders";
 import { Product } from "../interfaces/product";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
-import CategoryM from "../models/CategoryM";
-import Todo from "../class/Notification.Todo";
-
+import InventorySchema from "../models/modelInventario";
 class AllModules {
   public async getModules(
     req: Request | any,
@@ -33,6 +31,7 @@ class AllModules {
           .group({ _id: null, total: { $sum: "$quantity" } });
         const dataCategory = await CategorySchema.find({ tokenIdUser });
         const dataProvider = await ProviderSchema.find({ tokenIdUser });
+        const dataInventary = await InventorySchema.find({ tokenIdUser });
         return res
           .status(200)
           .json({
@@ -41,6 +40,7 @@ class AllModules {
             dataProduct,
             dataProvider,
             dataSumProduct,
+            dataInventary,
           });
       }
     } catch (error) {
