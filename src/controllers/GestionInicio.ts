@@ -23,25 +23,43 @@ class AllModules {
           message: "El token no existe!",
         });
       } else {
-        const dataProduct: Product[] = await ProductSchema.find({
+        const dataProduct = await ProductSchema.find({
           tokenIdUser,
         });
         const dataSumProduct = await ProductSchema.aggregate([])
           .match({ tokenIdUser })
           .group({ _id: null, total: { $sum: "$quantity" } });
         const dataCategory = await CategorySchema.find({ tokenIdUser });
+        const dataProductCategory = await CategorySchema.distinct(
+          "categories",
+          (err: any, categorias: any) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+
+            categorias.forEach(async (categoria: any) => {
+              const productosCategory = await CategorySchema.find({
+                categoria,
+              });
+            });
+          }
+        );
+
         const dataProvider = await ProviderSchema.find({ tokenIdUser });
-        const dataInventary = await InventorySchema.find({ tokenIdUser });
-        return res
-          .status(200)
-          .json({
-            ok: true,
-            dataCategory,
-            dataProduct,
-            dataProvider,
-            dataSumProduct,
-            dataInventary,
-          });
+        const dataInventary = await InventorySchema.aggregate([])
+          .match({ tokenIdUser })
+          .group({ _id: null, total: { $sum: "$quantity" } });
+
+        return res.status(200).json({
+          ok: true,
+          dataCategory,
+          dataProductCategory,
+          dataProduct,
+          dataProvider,
+          dataSumProduct,
+          dataInventary,
+        });
       }
     } catch (error) {
       return res.status(500).json({ error, message: "ERROR_SERVER" });
