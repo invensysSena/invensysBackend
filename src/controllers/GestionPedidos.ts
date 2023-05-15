@@ -11,7 +11,9 @@ abstract class ManagePedidos {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenAccesId: any = req.headers["x-id-token"];
+      console.log(req.body);
+      
+      const tokenAccesId: any = req.headers["authorization"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
 
@@ -31,7 +33,7 @@ abstract class ManagePedidos {
         caducidad,
       } = req.body;
 
-      await new PedidosValiadation().CreatePedido(req.body , idTokenAdmin);
+      await new PedidosValiadation().CreatePedido(req.body.data , idTokenAdmin);
       const responseClass = null 
    
      res.status(200).json({message:"sucess", responseClass})

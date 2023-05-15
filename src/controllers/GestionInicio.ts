@@ -12,11 +12,12 @@ class AllModules {
     res: Response | any,
     next: NextFunction
   ): Promise<Request | Response | any> {
-    try {
+    
+    
       const TokenCreate: string = req.params.id!;
       const veryfyToken: Array<any> | any = jwt.verify(TokenCreate, SECRET)!;
       const tokenIdUser = veryfyToken.id;
-      console.log(tokenIdUser);
+      console.log(veryfyToken);
 
       if (!tokenIdUser) {
         return res.json({
@@ -24,8 +25,10 @@ class AllModules {
         });
       } else {
         const dataProduct = await ProductSchema.find({
-          tokenIdUser,
+          tokenIdUser:tokenIdUser,
         });
+        console.log("produuuuuct", dataProduct);
+        
         const dataSumProduct = await ProductSchema.aggregate([])
           .match({ tokenIdUser })
           .group({ _id: null, total: { $sum: "$quantity" } });
@@ -42,6 +45,7 @@ class AllModules {
               const productosCategory = await CategorySchema.find({
                 categoria,
               });
+              return productosCategory
             });
           }
         );
@@ -61,9 +65,8 @@ class AllModules {
           dataInventary,
         });
       }
-    } catch (error) {
-      return res.status(500).json({ error, message: "ERROR_SERVER" });
-    }
+   
+      
   }
 }
 
