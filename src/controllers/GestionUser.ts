@@ -1190,7 +1190,11 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
+    
+    
     try {
+      
+      
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
       const { id1 } = verifyToken;
       if (id1) {

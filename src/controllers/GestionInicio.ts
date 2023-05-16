@@ -14,7 +14,7 @@ class AllModules {
     next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      const TokenCreate: string = req.headers["x-id-token"]!;
+      const TokenCreate: string = req.params?.id!;
       const veryfyToken: Array<any> | any = jwt.verify(TokenCreate, SECRET)!;
       const tokenIdUser = veryfyToken.id;
       //console.log(tokenIdUser);
@@ -24,7 +24,7 @@ class AllModules {
           message: "El token no existe!",
         });
       } else {
-        const dataProduct = await ProductSchema.find({ });
+        const dataProduct = await ProductSchema.find({  });
         const dataCategory = await CategorySchema.find({ });
         const dataProvider = await ProviderSchema.find({ });
         const dataInventary = await InventorySchema.find({ });
