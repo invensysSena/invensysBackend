@@ -8,7 +8,6 @@
     "build": "tsc",
     "dev": "ts-node-dev --respawn src/server/index.ts",
     "start": "ts-node-dev --respawn src/server/index.ts"
-    
   },
   "repository": {
     "type": "git",
@@ -55,6 +54,7 @@
     "device-detector-js": "^3.0.3",
     "dotenv": "^16.0.3",
     "fileupload": "^1.0.0",
+    "gh-pages": "^5.0.0",
     "moment-es6": "^1.0.0",
     "moment-with-locales-es6": "^1.0.1",
     "mongodb": "^5.1.0",
