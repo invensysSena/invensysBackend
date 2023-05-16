@@ -137,8 +137,9 @@ class PedidosValiadation {
         id_subProducto: idSubproducto,
         id_provedor: idProvedor,
       });
+      await this.CreateSubPendiente(pedidos);
       await newOrder.save();
-     // await this.CreateSubPendiente();
+     
       } catch (error) {
         return error
       }
@@ -161,24 +162,24 @@ class PedidosValiadation {
     };
   };
 
-  protected async CreateSubPendiente() {
-    try {
-      const pedidosPendientes: IPendientes = new PedidosPendientesSchema({
-        name: this.name,
-        precioCompra: this.precioCompra,
-        precioVenta: this.precioVenta,
-        tipo: this.tipo,
-        estado: this.estado,
-        unidades: this.unidades,
-        caducidad: this.caducidad,
-        idBodega: this.idBodega,
-      });
+  protected async CreateSubPendiente(pedidos: PedidosValiadation[]) {
+    pedidos.forEach(async (order) => {
+      try {
+        const { idSubproducto, idProvedor, idBodega, ...props } = order;
 
-      const resPedidosPendientes = await pedidosPendientes.save();
-      console.log("resPedidosPendientes", resPedidosPendientes);
-    } catch (error) {
-      console.log("error", error);
-    }
+        const newPedidosP = new PedidosPendientesSchema({
+          ...props,
+          id_bodega: idBodega,
+          id_subProducto: idSubproducto,
+          id_provedor: idProvedor,
+        });
+       //await newPedidosP.save()
+        console.log("-------",newPedidosP );
+        
+      } catch (error) {
+        return error;
+      }
+    });
   }
 }
 

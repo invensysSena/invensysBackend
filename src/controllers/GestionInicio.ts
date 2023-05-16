@@ -2,12 +2,11 @@ import { Request, Response, NextFunction, json } from "express";
 import ProductSchema from "../models/modelProduct";
 import CategorySchema from "../models/CategoryM";
 import ProviderSchema from "../models/modelProviders";
-import { Product } from "../interfaces/product";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
-import CategoryM from "../models/CategoryM";
-import Todo from "../class/Notification.Todo";
-
+import InventorySchema from "../models/modelInventario";
+import PedidosSchema from "../models/modelPedidos";
+import NotificationSchema from "../models/modelNotfication";
 class AllModules {
   public async getModules(
     req: Request | any,
@@ -15,35 +14,38 @@ class AllModules {
     next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      const TokenCreate: string = req.params.id!;
+      const TokenCreate: string = req.headers["x-id-token"]!;
       const veryfyToken: Array<any> | any = jwt.verify(TokenCreate, SECRET)!;
       const tokenIdUser = veryfyToken.id;
-      console.log(tokenIdUser);
+      //console.log(tokenIdUser);
 
       if (!tokenIdUser) {
         return res.json({
           message: "El token no existe!",
         });
       } else {
-        const dataProduct: Product[] = await ProductSchema.find({
-          tokenIdUser,
+        const dataProduct = await ProductSchema.find({ });
+        const dataCategory = await CategorySchema.find({ });
+        const dataProvider = await ProviderSchema.find({ });
+        const dataInventary = await InventorySchema.find({ });
+        const dataPedidos = await PedidosSchema.find({ });
+        const dataNotify = await NotificationSchema.find({  });
+
+        return res.status(200).json({
+          ok: true,
+          dataCategory,
+          dataProduct,
+          dataProvider,
+          dataInventary,
+          dataPedidos,
+          dataNotify,
+          
         });
-        const dataSumProduct = await ProductSchema.aggregate([])
-          .match({ tokenIdUser })
-          .group({ _id: null, total: { $sum: "$quantity" } });
-        const dataCategory = await CategorySchema.find({ tokenIdUser });
-        const dataProvider = await ProviderSchema.find({ tokenIdUser });
-        return res
-          .status(200)
-          .json({
-            ok: true,
-            dataCategory,
-            dataProduct,
-            dataProvider,
-            dataSumProduct,
-          });
       }
+    
     } catch (error) {
+      console.log(error);
+
       return res.status(500).json({ error, message: "ERROR_SERVER" });
     }
   }
