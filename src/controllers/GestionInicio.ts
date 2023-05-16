@@ -13,8 +13,10 @@ class AllModules {
     res: Response | any,
     next: NextFunction
   ): Promise<Request | Response | any> {
+    console.log("entro");
+    
     try {
-      const TokenCreate: string = req.headers["x-id-token"]!;
+      const TokenCreate: string = req.params?.id!;
       const veryfyToken: Array<any> | any = jwt.verify(TokenCreate, SECRET)!;
       const tokenIdUser = veryfyToken.id;
       //console.log(tokenIdUser);
@@ -23,13 +25,15 @@ class AllModules {
         return res.json({
           message: "El token no existe!",
         });
-      } else {
-        const dataProduct = await ProductSchema.find({ });
-        const dataCategory = await CategorySchema.find({ });
-        const dataProvider = await ProviderSchema.find({ });
-        const dataInventary = await InventorySchema.find({ });
-        const dataPedidos = await PedidosSchema.find({ });
-        const dataNotify = await NotificationSchema.find({  });
+      } else { 
+        const dataProduct = await ProductSchema.find({tokenIdUser: tokenIdUser });
+        const dataCategory = await CategorySchema.find({ tokenIdUser: tokenIdUser});
+        const dataProvider = await ProviderSchema.find({ tokenIdUser: tokenIdUser});
+        const dataInventary = await InventorySchema.find({ tokenIdUser: tokenIdUser});
+        const dataPedidos = await PedidosSchema.find({ tokenIdUser: tokenIdUser});
+        const dataNotify = await NotificationSchema.find({ tokenIdUser: tokenIdUser});
+        console.log(dataProduct);
+        
 
         return res.status(200).json({
           ok: true,
