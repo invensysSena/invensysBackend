@@ -7,6 +7,7 @@ import RouterInicio from "../router/router.inicio";
 import RouterNotification from "../router/router.Notification";
 import RouterInventory from "../router/router.inventary";
 import RouterPedidos from "../router/router.pedidos";
+import RouterCompras from "../router/router.compras";
 const AppServer: express.Application = express();
 export class ServerRoutes {
   public async Inicio(): Promise<any> {
@@ -103,6 +104,8 @@ export class ServerRoutes {
     AppServer.use(new RouterInventory().UpdateSubProducts());
     AppServer.use(new RouterInventory().UpdateEmailBodega());
     AppServer.use(new RouterInventory().GetAllSubProducts());
+    // compras
+    AppServer.use(new RouterCompras().PostComprasRouter());
 
     return AppServer;
   }
