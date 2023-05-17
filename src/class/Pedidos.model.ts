@@ -138,7 +138,7 @@ class PedidosValiadation {
         id_provedor: idProvedor,
       });
       await this.CreateSubPendiente(pedidos);
-      await newOrder.save();
+      //await newOrder.save();
      
       } catch (error) {
         return error
@@ -163,6 +163,8 @@ class PedidosValiadation {
   };
 
   protected async CreateSubPendiente(pedidos: PedidosValiadation[]) {
+    console.log("pedidos", pedidos);
+    
     pedidos.forEach(async (order) => {
       try {
         const { idSubproducto, idProvedor, idBodega, ...props } = order;
