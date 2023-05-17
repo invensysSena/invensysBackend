@@ -2,187 +2,91 @@ import InventorySchema from "../models/modelInventario";
 import subProductSchema from "../models/SubProductos.model";
 import ProviderSchema from "../models/modelProviders";
 import PedidosPendientesSchema from "../models/modelPedidosPendientes";
-import { IPendientes } from "../interfaces/PedidosPendientes";
 import PedidosSchema from "../models/modelPedidos";
 import { IPedidos } from "../interfaces/pedidos";
 
 class PedidosValiadation {
   private idTokenAdmin: string = "";
-  private idBodega: string = "";
-  private idProvedor: string = "";
-  private idSubproducto: string = "";
-  private company: string = "";
-  private unidades: number = 0;
-  private tipo: string = ""; // ? pendiente o completado
-  private fecha: string = "";
-  private totalCompra: number = 0;
-  private name: string = "";
-  private precioCompra: number = 0;
-  private precioVenta: number = 0;
-  private estado: string = "";
-  private caducidad: string = "";
   data: any;
 
-  public async setProperties(
-    idTokenAdmin: string,
-    idBodega: string,
-    idProvedor: string,
-    idSubproducto: string,
-    company: string,
-    unidades: number | any,
-    tipo: string,
-    fecha: string,
-    totalCompra: number  | any,
-    name: string,
-    precioCompra: number  | any,
-    precioVenta: number  | any,
-    estado: string,
-    caducidad: string,
-    data: any
-  ) {
+  public async setProperties(data: any, idTokenAdmin: string) {
+    this.data = data;
     this.idTokenAdmin = idTokenAdmin;
-    this.idBodega = idBodega;
-    this.idProvedor = idProvedor;
-    this.idSubproducto = idSubproducto;
-    this.company = company;
-    this.unidades = unidades;
-    this.tipo = tipo;
-    this.fecha = fecha;
-    this.totalCompra = totalCompra;
-    this.name = name;
-    this.precioCompra = precioCompra;
-    this.precioVenta = precioVenta;
-    this.estado = estado;
-    this.caducidad = caducidad;
-    data;
 
-    //const classIntance = new PedidosValiadation();
-
-   for(
-      let i = 0;
-      i < data.length;
-      i++
-    ){
-      this.idBodega = idBodega[i]
-      this.idProvedor = idProvedor[i]
-      this.idSubproducto = idSubproducto[i]
-      this.company = company[i]
-      this.unidades = unidades[i]
-      this.tipo = tipo[i]
-      this.fecha = fecha[i]
-      this.totalCompra = totalCompra[i]
-      this.name = name[i]
-      this.precioCompra = precioCompra[i]
-      this.precioVenta = precioVenta[i]
-      this.estado = estado[i]
-      this.caducidad = caducidad[i]
-
-
-    }
-     
-
-
+    
+  
+      return await this.validateData(data);
+    
   }
+  private async validateData(data: any) {
+    console.log(data);
+    
+    
+    if(data.length > 1){
+      
+      for(let i = 0; i < data.length; i++){
+        //console.log(data.length, "data");
 
-  protected async GetValidateBodega() {
-    try {
-      const bodega = await InventorySchema.find({ _id: this.idBodega });
-
-      if (!bodega) return { message: "Bodega no existe" };
-      else return this.ValidateProvedor(this.idProvedor);
-    } catch (error) {
-      return error;
-    }
-  }
-
-  protected async ValidateProvedor(idProvedor: string) {
-    try {
-      const provedor = await ProviderSchema.find({ _id: idProvedor });
-
-      if (!provedor) return { message: "Provedor no existe" };
-      else return this.ValidateProducto(this.idSubproducto);
-    } catch (error) {
-      return error;
-    }
-  }
-
-  protected async ValidateProducto(idPsubProduct: string) {
-    try {
-      const subProducts = await subProductSchema.findById(idPsubProduct);
-
-      if (subProducts) {
-        return await this.CreatePedido([]);
-      } else {
-        {
-          message: "Producto no existe";
+      const pedidosCreate = new PedidosSchema({
+        idTokenAdmin: this.idTokenAdmin,
+        id_subProducto: data[i].idSubproducto,
+        id_provedor: data[i].idProvedor,
+        id_bodega: data[i].idBodega,
+        company: data[i].company,
+        unidades: data[i].unidades,
+        tipo: data[i].tipo,
+        fecha: data[i].fecha,
+        totalCompra: data[i].totalCompra
+      });
+      await pedidosCreate.save();
+        const exitsSubProduct:any = await subProductSchema.findById(data[i].idSubproducto);
+        const newUnidades = exitsSubProduct.unidad + data[i].unidades; 
+        if (!exitsSubProduct) {
+          throw new Error("SUBPRODUCT_NOT_FOUND");
+        }else{
+          // const updateUnidades = await subProductSchema.findByIdAndUpdate(
+          //   {_id:data[i].idSubproducto},
+          //   {
+          //     unidad: newUnidades,
+          //   }, 
+          //   { new: true}
+          //  );
+            // console.log(updateUnidades); 
         }
       }
-    } catch (error) {
-      return await this.CreatePedido([]);
+
+    }else{
+      
+    const [{idSubproducto, unidades,
+      idProvedor, idBodega, company, tipo, fecha, totalCompra}] = data
+    const pedidosCreate = new PedidosSchema({
+      idTokenAdmin: this.idTokenAdmin,
+      id_subProducto: idSubproducto,
+      id_provedor: idProvedor,
+      id_bodega: idBodega,
+      company: company,
+      unidades: unidades,
+      tipo: tipo,
+      fecha: fecha,
+      totalCompra: totalCompra,
+    });
+    await pedidosCreate.save();
+    const exitsSubProduct:any = await subProductSchema.findById(idSubproducto);
+    const newUnidades = exitsSubProduct.unidad + unidades;
+    if (!exitsSubProduct) {
+      throw new Error("SUBPRODUCT_NOT_FOUND");
+    }else{
+      const updateUnidades = await subProductSchema.findByIdAndUpdate(
+        {_id:idSubproducto},
+        {
+          unidad: newUnidades,
+        }, 
+        { new: true}
+       );
+         console.log(updateUnidades); 
+    }
     }
   }
-
-  async CreatePedido(
-    pedidos: PedidosValiadation[],
-    idTokenAdmin?: string | unknown
-  ) {
-    pedidos.forEach(async (order) => {
-      try { 
-             const { idSubproducto, idProvedor, idBodega, ...props } = order;
-
-          const newOrder = new PedidosSchema({
-        ...props,
-        idTokenAdmin,
-        id_bodega: idBodega,
-        id_subProducto: idSubproducto,
-        id_provedor: idProvedor,
-      });
-      await this.CreateSubPendiente(pedidos);
-      //await newOrder.save();
-     
-      } catch (error) {
-        return error
-      }
-    
-    });
-   
-  }
-
-  createOrder = (data: any) => {
-    return {
-      idTokenAdmin: data.idTokenAdmin,
-      id_subProducto: data.idSubproducto,
-      id_provedor: data.idProvedor,
-      id_bodega: data.idBodega,
-      company: data.company,
-      unidades: data.unidades,
-      tipo: data.tipo,
-      fecha: data.fecha,
-      totalCompra: data.totalCompra,
-    };
-  };
-
-  protected async CreateSubPendiente(pedidos: PedidosValiadation[]) {
-    console.log("pedidos", pedidos);
-    
-    pedidos.forEach(async (order) => {
-      try {
-        const { idSubproducto, idProvedor, idBodega, ...props } = order;
-
-        const newPedidosP = new PedidosPendientesSchema({
-          ...props,
-          id_bodega: idBodega,
-          id_subProducto: idSubproducto,
-          id_provedor: idProvedor,
-        });
-       //await newPedidosP.save()
-        console.log("-------",newPedidosP );
-        
-      } catch (error) {
-        return error;
-      }
-    });
-  }
 }
-
+  
 export default PedidosValiadation;
