@@ -11,7 +11,10 @@ abstract class ManagePedidos {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
+      console.log("Holllla");
       console.log(req.body);
+      
+      
       
       const tokenAccesId: any = req.headers["authorization"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);

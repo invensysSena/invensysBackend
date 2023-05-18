@@ -174,7 +174,7 @@ class PedidosValiadation {
           id_provedor: idProvedor,
         });
        //await newPedidosP.save()
-        console.log("-------",newPedidosP );
+        
         
       } catch (error) {
         return error;

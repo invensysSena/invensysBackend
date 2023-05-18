@@ -867,8 +867,7 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
-    console.log("delete");
-    console.log(req.body);
+  
 
     try {
       let tokenIdAcc: any = req.headers["isallowed-x-token"];

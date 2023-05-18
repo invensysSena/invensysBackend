@@ -8,7 +8,7 @@ class ComprasClass {
   public async getComprasId(req: Request, res: Response): Promise<any> {}
 
   public async postCompras(req: Request, res: Response): Promise<any> {
-    console.log("body", req.body);
+   
     try {
       let idToken: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(idToken, SECRET);

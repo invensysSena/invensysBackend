@@ -49,7 +49,8 @@ abstract class Categorys {
       }
         
     } catch (error) {
-      console.log("error categoria");
+     
+      
       
         return res.status(500).json({
             ok: false,
@@ -70,15 +71,13 @@ abstract class Categorys {
 
     
     const Tokenid_U:any = req.params.id  
-    console.log(Tokenid_U);
+  ;
     
     const verifyToken: Array<any> | any = jwt.verify( Tokenid_U, SECRET )!;
-    console.log(verifyToken);
+   
     
 
     const tokeIdUser = verifyToken.id;
-    console.log("-----");
-    console.log("id",tokeIdUser);
     
     
    try {
@@ -148,8 +147,6 @@ abstract class Categorys {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
 
-    console.log("---",req.params._id);
-    console.log("body",req.body);
     try {
       
       const {name_category,description} = req.body.data;    
