@@ -9,7 +9,7 @@ const PedidosSchema = new Schema({
     id_bodega: {type: String, required: true,},
     company : {type: String, required: true},
     unidades: {type: Number, required: true},
-    tipo: {type: String, required: true},
+    tipo: {type: String, },
     fecha: {type: String},
     totalCompra: {type: Number, required: true},
 },{

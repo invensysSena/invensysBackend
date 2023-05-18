@@ -1,9 +1,6 @@
-import InventorySchema from "../models/modelInventario";
 import subProductSchema from "../models/SubProductos.model";
-import ProviderSchema from "../models/modelProviders";
 import PedidosPendientesSchema from "../models/modelPedidosPendientes";
 import PedidosSchema from "../models/modelPedidos";
-import { IPedidos } from "../interfaces/pedidos";
 
 class PedidosValiadation {
   private idTokenAdmin: string = "";
@@ -12,21 +9,14 @@ class PedidosValiadation {
   public async setProperties(data: any, idTokenAdmin: string) {
     this.data = data;
     this.idTokenAdmin = idTokenAdmin;
-
-    
-  
-      return await this.validateData(data);
-    
+    return await this.validateData(data); 
   }
+
   private async validateData(data: any) {
     console.log(data);
-    
-    
     if(data.length > 1){
       
       for(let i = 0; i < data.length; i++){
-        //console.log(data.length, "data");
-
       const pedidosCreate = new PedidosSchema({
         idTokenAdmin: this.idTokenAdmin,
         id_subProducto: data[i].idSubproducto,
@@ -38,20 +28,22 @@ class PedidosValiadation {
         fecha: data[i].fecha,
         totalCompra: data[i].totalCompra
       });
-      await pedidosCreate.save();
+      await pedidosCreate.save()
+      console.log("pedidos",pedidosCreate);
+      
         const exitsSubProduct:any = await subProductSchema.findById(data[i].idSubproducto);
         const newUnidades = exitsSubProduct.unidad + data[i].unidades; 
         if (!exitsSubProduct) {
           throw new Error("SUBPRODUCT_NOT_FOUND");
         }else{
-          // const updateUnidades = await subProductSchema.findByIdAndUpdate(
-          //   {_id:data[i].idSubproducto},
-          //   {
-          //     unidad: newUnidades,
-          //   }, 
-          //   { new: true}
-          //  );
-            // console.log(updateUnidades); 
+          const updateUnidades = await subProductSchema.findByIdAndUpdate(
+            {_id:data[i].idSubproducto},
+            {
+              unidad: newUnidades,
+            }, 
+            { new: true}
+           );
+            console.log(updateUnidades); 
         }
       }
 
