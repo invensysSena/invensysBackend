@@ -2,7 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import Todo from "../class/Notification.Todo";
 import { SECRET } from "../config/config";
-class ComprasClass {
+import comprasModelClass from "../class/comprasModelClass"
+class ComprasClass  {
   public async getCompras(req: Request, res: Response): Promise<any> {}
 
   public async getComprasId(req: Request, res: Response): Promise<any> {}
@@ -12,6 +13,10 @@ class ComprasClass {
     try {
       let idToken: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(idToken, SECRET);
+  
+      
+      const response = new comprasModelClass().setProperties(req.body.data,verifyToken.id)
+
     } catch (error) {
       return res
         .status(500)

@@ -11,8 +11,7 @@ abstract class ManagePedidos {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      console.log("Holllla");
-      console.log(req.body);
+      
       
       
       
@@ -20,23 +19,8 @@ abstract class ManagePedidos {
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
 
-      const {
-        idBodega,
-        idProvedor,
-        idSubproducto,
-        company,
-        unidades,
-        tipo,
-        totalCompra,
-        name,
-        precioCompra,
-        precioVenta,
-        estado,
-        fecha,
-        caducidad,
-      } = req.body;
-
-      await new PedidosValiadation().CreatePedido(req.body.data , idTokenAdmin);
+      
+      await new PedidosValiadation().setProperties(req.body.data , idTokenAdmin);
       const responseClass = null 
    
      res.status(200).json({message:"sucess", responseClass})

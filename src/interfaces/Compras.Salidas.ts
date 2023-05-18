@@ -1,23 +1,42 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 
-export interface Compras extends mongoose.Document {
+export interface ComprasInterface extends mongoose.Document {
 
     tokeIdUser: string,
-    name: string,
-    description: string,
-    type: string,
+    idCompra: string,
+    idBodega: string,
+    idSubProduct:string,
+    nameProduct: string,
     price: number,
-    priceBuy: number,
-    cantidad: number,
+    unidades: number,
     total: number,
     fecha: string,
-    estado: string,
-    nameInventory: string,
-    nameCategory: string,
-    nameUser: string,
-    nameProduct: string,
-    nameSalida: string,
+    
 }
 
+
+export interface ComprasNF extends mongoose.Document {
+
+    tokeIdUser:string,
+    numFactura:number,
+    fecha: string
+    cantidadProducts:number,
+    total:number,
+    responsable:string,
+}
+const ComprasFvModule = new Schema({
+    tokeIdUser:{type:String,require:true},
+    numFactura:1,
+    fecha:{type:String,require:true},
+    cantidadProducts:{type:Number,require:true},
+    total:{type:Number,require:true},
+    responsable:{type:String,require:true}
+  })
+  
    
+export default mongoose.model<ComprasNF>(
+    "ComprasNf",
+    ComprasFvModule
+  )
+  

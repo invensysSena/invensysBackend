@@ -169,7 +169,7 @@ abstract class LoginRegister {
             );
             if (validPassword) {
               const token: any = jwt.sign(
-                { id: rows[0][0].idUsers },
+                { id: rows[0][0].idUsers,email:data.correo },
                 SECRET || "authToken",
                 { expiresIn: 60 * 60 * 24 }
               );
