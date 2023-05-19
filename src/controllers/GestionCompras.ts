@@ -16,6 +16,9 @@ class ComprasClass  {
   
       
       const response = new comprasModelClass().setProperties(req.body.data,verifyToken.id)
+      return res
+      .status(200)
+      .json({ message: "OK_SUCESSFUL_COMPRA",response });
 
     } catch (error) {
       return res

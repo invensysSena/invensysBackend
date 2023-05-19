@@ -19,7 +19,7 @@ export interface ComprasInterface extends mongoose.Document {
 export interface ComprasNF extends mongoose.Document {
 
     tokeIdUser:string,
-    numFactura:number,
+    numFactura:string,
     fecha: string
     cantidadProducts:number,
     total:number,
@@ -27,7 +27,7 @@ export interface ComprasNF extends mongoose.Document {
 }
 const ComprasFvModule = new Schema({
     tokeIdUser:{type:String,require:true},
-    numFactura:1,
+    numFactura:{type:String},
     fecha:{type:String,require:true},
     cantidadProducts:{type:Number,require:true},
     total:{type:Number,require:true},
