@@ -19,7 +19,7 @@ class InventoryProduct {
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const conn = await conexion.connect();
-      console.log(typeUser);
+    
 
       if (typeUser === "superAdmin") {
         conn.query(
@@ -47,12 +47,12 @@ class InventoryProduct {
           }
         );
       } else if (typeUser === "user") {
-        console.log(typeUser);
+     
         const token: any = req.headers["authorization1"];
 
         const decoded: any = jwt.verify(token, SECRET);
         const tokeIdUser1 = decoded.id1;
-        console.log(tokeIdUser);
+   
 
         conn.query(
           "SELECT correo FROM account WHERE idAccount    = ? ",
@@ -104,7 +104,7 @@ class InventoryProduct {
     next: NextFunction
   ): Promise<Response | Request | any> {
     //actualizar inventario
-    console.log(req.body);
+  
 
     try {
       const { _id } = req.params;
@@ -238,7 +238,7 @@ class InventoryProduct {
       const tokeIdUser = decoded.id;
       const { idDestino, idOrigen, idSubProducto, cantidad, userCorreo } =
         req.body.data;
-      console.log(req.body);
+      
 
       const responseClass = await new TranslateBodega(
         tokeIdUser,
@@ -306,7 +306,7 @@ class InventoryProduct {
       const token: any = req.headers["authorization"];
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
-      console.log(id);
+ 
 
       const responseEmailUpdate = await InventorySchema.findByIdAndUpdate(
         { _id: id },

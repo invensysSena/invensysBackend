@@ -16,52 +16,25 @@ class PedidosValiadation {
 
   private async validateData(data: any) {
     console.log(data);
-    if (data.length > 1) {
-      const [{ fecha }] = data;
-      const TotalCompra = data
-        .map((item: any) => item.totalCompra)
-        .reduce((a: number, b: number) => a + b);
-
-      const uuidAut: any = {
-        node: [0x01, 0x23, 0x45, 0x67, 0x89, 0xab],
-        clockseq: 0x1234,
-        msecs: new Date().getTime(),
-        nsecs: 5678,
-      };
-
-      const pedidosProvider = new PedidoProvider({
-        nr: uuidv4(uuidAut),
-        fecha: fecha,
-        cantidadProductos: data.length,
-        totalComprap: TotalCompra,
+    if(data.length > 1){
+      
+      for(let i = 0; i < data.length; i++){
+      const pedidosCreate = new PedidosSchema({
+        idTokenAdmin: this.idTokenAdmin,
+        id_subProducto: data[i].idSubproducto,
+        id_provedor: data[i].idProvedor,
+        id_bodega: data[i].idBodega,
+        company: data[i].company,
+        unidades: data[i].unidades,
+        tipo: data[i].tipo,
+        fecha: data[i].fecha,
+        totalCompra: data[i].totalCompra
       });
-
-      const res = await pedidosProvider.save();
-
-      const { _id } = res;
-
-      console.log("res", _id);
-      console.log("sisiisisiis", pedidosProvider);
-      for (let i = 0; i < data.length; i++) {
-        const pedidosCreate = new PedidosSchema({
-          idTokenAdmin: this.idTokenAdmin,
-          id_subProducto: data[i].idSubproducto,
-          id_provedor: data[i].idProvedor,
-          id_bodega: data[i].idBodega,
-          company: data[i].company,
-          unidades: data[i].unidades,
-          tipo: data[i].tipo,
-          fecha: data[i].fecha,
-          totalCompra: data[i].totalCompra,
-          idPedidoProvedor: _id,
-        });
-        await pedidosCreate.save();
-        console.log("pedidos", pedidosCreate);
-
-        const exitsSubProduct: any = await subProductSchema.findById(
-          data[i].idSubproducto
-        );
-        const newUnidades = exitsSubProduct.unidad + data[i].unidades;
+      await pedidosCreate.save()
+      console.log("pedidos",pedidosCreate);
+      
+        const exitsSubProduct:any = await subProductSchema.findById(data[i].idSubproducto);
+        const newUnidades = exitsSubProduct.unidad + data[i].unidades; 
         if (!exitsSubProduct) {
           throw new Error("SUBPRODUCT_NOT_FOUND");
         } else {

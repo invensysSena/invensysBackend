@@ -54,7 +54,7 @@ abstract class ManageProducts {
           });
       }
     } catch (error) {
-      console.log(error);
+ 
       return res
         .status(500)
         .json({ ok: false, message: "Error en el servidor" });
@@ -104,10 +104,10 @@ abstract class ManageProducts {
       }
 
       const product = await ProductSchema.findById(req.params.id);
-      console.log(product);
+    
       return res.status(200).json({ ok: true, data: product });
     } catch (error) {
-      console.log(error);
+      
       return res
         .status(500)
         .json({ ok: false, message: "Error en el servidor" });
@@ -131,10 +131,10 @@ abstract class ManageProducts {
       }
       const idCategory = req.params.idCategory;
       const product = await ProductSchema.find({ idCategory }, { tokenIdUser });
-      console.log(product);
+      
       return res.status(200).json({ ok: true, product });
     } catch (error) {
-      console.log(error);
+
       return res
         .status(500)
         .json({ ok: false, message: "Error en el servidor" });
@@ -146,7 +146,7 @@ abstract class ManageProducts {
     res: Response,
     next: NextFunction
   ): Promise<Response | Request | any> {
-    console.log("body", req.body);
+
 
     try {
       const tokenCreate: string = req.headers["id-token"] as string;
@@ -166,13 +166,13 @@ abstract class ManageProducts {
           new: true,
         }
       );
-      console.log(product);
+  
 
       return res
         .status(200)
         .json({ ok: true, message: "Product Update", product });
     } catch (error) {
-      console.log(error);
+   
       return res
         .status(500)
         .json({ ok: false, message: "Error en el servidor" });
@@ -207,7 +207,7 @@ abstract class ManageProducts {
         .status(200)
         .json({ ok: true, message: "Product Delete", product });
     } catch (error) {
-      console.log(error);
+     
       return res
         .status(500)
         .json({ ok: false, message: "Error en el servidor" });

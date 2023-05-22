@@ -13,6 +13,8 @@ abstract class ManagePedidos {
     try {
       
       
+      
+      
       const tokenAccesId: any = req.headers["authorization"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;

@@ -169,7 +169,7 @@ abstract class LoginRegister {
             );
             if (validPassword) {
               const token: any = jwt.sign(
-                { id: rows[0][0].idUsers },
+                { id: rows[0][0].idUsers,email:data.correo },
                 SECRET || "authToken",
                 { expiresIn: 60 * 60 * 24 }
               );
@@ -867,8 +867,7 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
-    console.log("delete");
-    console.log(req.body);
+  
 
     try {
       let tokenIdAcc: any = req.headers["isallowed-x-token"];
@@ -1190,7 +1189,11 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
+    
+    
     try {
+      
+      
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
       const { id1 } = verifyToken;
       if (id1) {

@@ -13,7 +13,7 @@ class AllModules {
     res: Response | any,
     next: NextFunction
   ): Promise<Request | Response | any> {
-    console.log("entro");
+    
     
     try {
       const TokenCreate: string = req.params?.id!;
@@ -32,7 +32,7 @@ class AllModules {
         const dataInventary = await InventorySchema.find({ tokenIdUser: tokenIdUser});
         const dataPedidos = await PedidosSchema.find({ tokenIdUser: tokenIdUser});
         const dataNotify = await NotificationSchema.find({ tokenIdUser: tokenIdUser});
-        console.log(dataProduct);
+       
         
 
         return res.status(200).json({
@@ -48,7 +48,7 @@ class AllModules {
       }
     
     } catch (error) {
-      console.log(error);
+  
 
       return res.status(500).json({ error, message: "ERROR_SERVER" });
     }

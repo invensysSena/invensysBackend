@@ -3,6 +3,7 @@ import {IPedidos} from '../interfaces/pedidos';
 
 
 const PedidosSchema = new Schema({
+    
     idTokenAdmin: {type: String, required: true},
     id_subProducto: {type: String, required: true},
     id_provedor: {type: String, required: true},

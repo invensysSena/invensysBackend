@@ -11,7 +11,7 @@ abstract class ManageProviders {
     res: Response,
     next: NextFunction
   ): Promise<Response | Request | any> {
-    console.log(req.body);
+
     try {
 
       const tokenCreated: any = req.headers["x-id-token"];
@@ -98,7 +98,7 @@ abstract class ManageProviders {
         return res.status(200).json(provider);
       }
     } catch (error) {
-      console.log(error);
+     
       return res.status(500).json({
         message: "Internal server error",
       });
@@ -136,7 +136,7 @@ abstract class ManageProviders {
         return res.status(200).json(providerUpdated);
       }
     } catch (error) {
-      console.log(error);
+    
       return res.status(500).json({
         message: "Internal server error",
       });
@@ -168,7 +168,7 @@ abstract class ManageProviders {
         return res.status(200).json(providerDeleted);
       }
     } catch (error) {
-      console.log(error);
+      
       return res.status(500).json({
         message: "Internal server error",
       });
@@ -194,7 +194,7 @@ abstract class ManageProviders {
         return res.status(200).json(provider);
       }
     } catch (error) {
-      console.log(error);
+     
       return res.status(400).json({
         message: "Internal server error",
       });

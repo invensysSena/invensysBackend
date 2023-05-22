@@ -26,7 +26,10 @@ class App {
       AppServer.use(
         cors({
           origin: [urlConnectionAcceso, "http://localhost:3000"],
-          methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+          methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", 
+          
+
+        ],
           optionsSuccessStatus: statusCors,
         })
       );
