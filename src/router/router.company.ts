@@ -4,22 +4,22 @@ import ManageCompany from '../controllers/GestionCompany';
 const router: Router = Router();
 
 class RouterCompany extends ManageCompany {
-    public postCompany(){
+    public PostCompany(){
         router.post('/company', this.postCompany)
         return router;
     }
 
-    public getCompany(){
+    public GetCompany(){
         router.get('/company', this.getCompany)
         return router;
     }
 
-    public updateCompany(){
+    public UpdateCompany(){
         router.put('/company/:id', this.updateCompany)
         return router;
     }
 
-    public deleteCompany(){
+    public DeleteCompany(){
         router.delete('/company/:id', this.deleteCompany)
         return router;
     }
