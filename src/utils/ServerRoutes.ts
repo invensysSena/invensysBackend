@@ -104,10 +104,10 @@ export class ServerRoutes {
     AppServer.use(new RouterCompras().PostComprasRouter());
 
     // company
-    AppServer.use(new RouterCompany().postCompany());
-    AppServer.use(new RouterCompany().getCompany());
-    AppServer.use(new RouterCompany().updateCompany());
-    AppServer.use(new RouterCompany().deleteCompany());
+    AppServer.use(new RouterCompany().PostCompany());
+    AppServer.use(new RouterCompany().GetCompany());
+    AppServer.use(new RouterCompany().UpdateCompany());
+    AppServer.use(new RouterCompany().DeleteCompany());
 
     return AppServer;
   }
