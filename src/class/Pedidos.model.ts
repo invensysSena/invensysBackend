@@ -1,6 +1,8 @@
 import subProductSchema from "../models/SubProductos.model";
 import PedidosPendientesSchema from "../models/modelPedidosPendientes";
 import PedidosSchema from "../models/modelPedidos";
+import PedidoProvider from "../models/PedidosProvedor";
+import { v4 as uuidv4 } from "uuid";
 
 class PedidosValiadation {
   private idTokenAdmin: string = "";
@@ -9,11 +11,11 @@ class PedidosValiadation {
   public async setProperties(data: any, idTokenAdmin: string) {
     this.data = data;
     this.idTokenAdmin = idTokenAdmin;
-    return await this.validateData(data); 
+    return await this.validateData(data);
   }
 
   private async validateData(data: any) {
-    
+    console.log(data);
     if(data.length > 1){
       
       for(let i = 0; i < data.length; i++){
@@ -35,50 +37,69 @@ class PedidosValiadation {
         const newUnidades = exitsSubProduct.unidad + data[i].unidades; 
         if (!exitsSubProduct) {
           throw new Error("SUBPRODUCT_NOT_FOUND");
-        }else{
+        } else {
           const updateUnidades = await subProductSchema.findByIdAndUpdate(
-            {_id:data[i].idSubproducto},
+            { _id: data[i].idSubproducto },
             {
               unidad: newUnidades,
-            }, 
-            { new: true}
-           );
-            console.log(updateUnidades); 
+            },
+            { new: true }
+          );
+          console.log(updateUnidades);
         }
       }
-
-    }else{
-      
-    const [{idSubproducto, unidades,
-      idProvedor, idBodega, company, tipo, fecha, totalCompra}] = data
-    const pedidosCreate = new PedidosSchema({
-      idTokenAdmin: this.idTokenAdmin,
-      id_subProducto: idSubproducto,
-      id_provedor: idProvedor,
-      id_bodega: idBodega,
-      company: company,
-      unidades: unidades,
-      tipo: tipo,
-      fecha: fecha,
-      totalCompra: totalCompra,
-    });
-    await pedidosCreate.save();
-    const exitsSubProduct:any = await subProductSchema.findById(idSubproducto);
-    const newUnidades = exitsSubProduct.unidad + unidades;
-    if (!exitsSubProduct) {
-      throw new Error("SUBPRODUCT_NOT_FOUND");
-    }else{
-      const updateUnidades = await subProductSchema.findByIdAndUpdate(
-        {_id:idSubproducto},
+    } else {
+      const [
         {
-          unidad: newUnidades,
-        }, 
-        { new: true}
-       );
-         console.log(updateUnidades); 
-    }
+          idSubproducto,
+          unidades,
+          idProvedor,
+          idBodega,
+          company,
+          tipo,
+          fecha,
+          totalCompra,
+        },
+      ] = data;
+      const pedidosCreate = new PedidosSchema({
+        idTokenAdmin: this.idTokenAdmin,
+        id_subProducto: idSubproducto,
+        id_provedor: idProvedor,
+        id_bodega: idBodega,
+        company: company,
+        unidades: unidades,
+        tipo: tipo,
+        fecha: fecha,
+        totalCompra: totalCompra,
+      });
+      await pedidosCreate.save();
+      const exitsSubProduct: any = await subProductSchema.findById(
+        idSubproducto
+      );
+      const newUnidades = exitsSubProduct.unidad + unidades;
+      if (!exitsSubProduct) {
+        throw new Error("SUBPRODUCT_NOT_FOUND");
+      } else {
+        const updateUnidades = await subProductSchema.findByIdAndUpdate(
+          { _id: idSubproducto },
+          {
+            unidad: newUnidades,
+          },
+          { new: true }
+        );
+        console.log(updateUnidades);
+      }
     }
   }
+
+  // private async getNextSequenceValue(sequenceName: any) {
+  //   const sequenceDocument:any = await PedidosProvedor.findOneAndUpdate(
+  //     { nr: sequenceName },
+  //     { $inc: { seq: 1 } },
+  //     { new: true }
+  //   );
+  //   return sequenceDocument.seq;
+  // }
 }
-  
+
 export default PedidosValiadation;

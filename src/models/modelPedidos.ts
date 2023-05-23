@@ -13,6 +13,7 @@ const PedidosSchema = new Schema({
     tipo: {type: String, },
     fecha: {type: String},
     totalCompra: {type: Number, required: true},
+    idPedidoProvedor: {type: String, required: true},
 },{
     timestamps: true,
 }); 

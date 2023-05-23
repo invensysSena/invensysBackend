@@ -8,6 +8,7 @@ import RouterNotification from "../router/router.Notification";
 import RouterInventory from "../router/router.inventary";
 import RouterPedidos from "../router/router.pedidos";
 import RouterCompras from "../router/router.compras";
+import RouterCompany from "../router/router.company";
 const AppServer: express.Application = express();
 export class ServerRoutes {
   public async Inicio(): Promise<any> {
@@ -77,12 +78,7 @@ export class ServerRoutes {
     AppServer.use(new RouterProviders().PutProviders());
     AppServer.use(new RouterProviders().DeleteProviders());
     AppServer.use(new RouterProviders().GetProvidersProducts());
-    // inventory
-    // AppServer.use(new RouterInventory().GetInventory())
-    // AppServer.use(new RouterInventory().GetInventoryId())
-    // AppServer.use(new RouterInventory().DeleteInventoryId())
-    // AppServer.use(new RouterInventory().PutInventoryId())
-
+  
     // Here there are routes Pedidos
     AppServer;
     AppServer.use(new RouterPedidos().GetPedidos());
@@ -108,6 +104,12 @@ export class ServerRoutes {
     AppServer.use(new RouterCompras().PostComprasRouter());
     AppServer.use(new RouterCompras().GetComprasRouter());
     AppServer.use(new RouterCompras().GetComprasFvRouter());
+
+    // company
+    AppServer.use(new RouterCompany().PostCompany());
+    AppServer.use(new RouterCompany().GetCompany());
+    AppServer.use(new RouterCompany().UpdateCompany());
+    AppServer.use(new RouterCompany().DeleteCompany());
 
     return AppServer;
   }
