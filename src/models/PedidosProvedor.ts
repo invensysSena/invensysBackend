@@ -3,7 +3,9 @@ import { IPedidoProvider } from "../interfaces/IpedidosProvedor";
 
 const PedidoProvider = new mongoose.Schema(
   {
-    nr: { type: Number, required: true },
+    tokenIDAdmin: { type: String, required: true },
+    NR: { type: Number, required: true },
+    name: { type: String, required: true },
     fecha: { type: String, required: true },
     cantidadProductos: { type: Number, required: true },
     totalComprap: { type: Number, required: true },
