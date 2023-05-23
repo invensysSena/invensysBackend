@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 class ManageCompany {
 public async postCompany(req: Request, res: Response, next: NextFunction): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers["authorization"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {

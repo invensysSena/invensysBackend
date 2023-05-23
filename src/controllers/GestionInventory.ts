@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import InventorySchema from "../models/modelInventario";
 import TranslateSubPSchema from "../interfaces/TranslateSubP.Model";
-
 import { category } from "../interfaces/CategoryI";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
