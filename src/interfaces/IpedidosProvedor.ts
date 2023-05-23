@@ -2,7 +2,9 @@
 import mongoose from "mongoose";
 
 export interface IPedidoProvider extends mongoose.Document {
-    nr: number;
+    tokenIDAdmin: string;
+    NR: number;
+    name: string;
     fecha: string;
     cantidadProductos: number;
     totalComprap: number;
