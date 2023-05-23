@@ -32,17 +32,23 @@ abstract class Notification {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
-    let idToken: any = req.params.id;
-   
-    const verifyToken: any = jwt.verify(idToken, SECRET);
-    if (verifyToken.id) {
-      let responseNotification = await new Todo().getNotificationClass(
-        verifyToken.id
-      );
+    try {
+      let idToken: any = req.params.id;
 
-      res.status(200).json({ message: "ok", responseNotification });
-    } else {
-      return res.status(401).json({ message: "NO_PERMISION" });
+      const verifyToken: any = jwt.verify(idToken, SECRET);
+      if (verifyToken.id) {
+        let responseNotification = await new Todo().getNotificationClass(
+          verifyToken.id
+        );
+
+        res.status(200).json({ message: "ok", responseNotification });
+      } else {
+        return res.status(401).json({ message: "NO_PERMISION" });
+      }
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Error en el servidor ok", error });
     }
   }
   public async getNotificationId(

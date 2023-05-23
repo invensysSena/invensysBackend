@@ -27,21 +27,25 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
-    const conn = await conexion.connect();
-    conn.query(
-      `CALL ADMIN_SELECT_CODE('${req.body.data.email}')`,
-      async (error: any, rows: any) => {
-        for (let i = 0; i < rows.length; i++) {
-          if (rows[i][0].codigo == parseInt(req.body.data.codigo)) {
-            return res
-              .status(200)
-              .json({ message: "CODE_CORRECT", code: rows[i].codigo });
-          } else {
-            return res.status(400).json({ message: "CODE_INCORRECT" });
+    try {
+      const conn = await conexion.connect();
+      conn.query(
+        `CALL ADMIN_SELECT_CODE('${req.body.data.email}')`,
+        async (error: any, rows: any) => {
+          for (let i = 0; i < rows.length; i++) {
+            if (rows[i][0].codigo == parseInt(req.body.data.codigo)) {
+              return res
+                .status(200)
+                .json({ message: "CODE_CORRECT", code: rows[i].codigo });
+            } else {
+              return res.status(400).json({ message: "CODE_INCORRECT" });
+            }
           }
         }
-      }
-    );
+      );
+    } catch (error) {
+      return res.status(500).json({ message: "ERROR_SERVER", error });
+    }
   }
 
   public async getAdminData(
@@ -169,7 +173,7 @@ abstract class LoginRegister {
             );
             if (validPassword) {
               const token: any = jwt.sign(
-                { id: rows[0][0].idUsers,email:data.correo },
+                { id: rows[0][0].idUsers, email: data.correo },
                 SECRET || "authToken",
                 { expiresIn: 60 * 60 * 24 }
               );
@@ -867,8 +871,6 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
-  
-
     try {
       let tokenIdAcc: any = req.headers["isallowed-x-token"];
 
@@ -1189,11 +1191,7 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
-    
-    
     try {
-      
-      
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
       const { id1 } = verifyToken;
       if (id1) {

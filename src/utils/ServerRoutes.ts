@@ -106,6 +106,8 @@ export class ServerRoutes {
     AppServer.use(new RouterInventory().GetAllSubProducts());
     // compras
     AppServer.use(new RouterCompras().PostComprasRouter());
+    AppServer.use(new RouterCompras().GetComprasRouter());
+    AppServer.use(new RouterCompras().GetComprasFvRouter());
 
     return AppServer;
   }
