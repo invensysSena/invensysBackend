@@ -10,12 +10,15 @@ public async postCompany(req: Request, res: Response, next: NextFunction): Promi
       const tokenCreated: any = req.headers["authorization"];
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
+      console.log(tokenIdUser);
+      
       if (!tokenIdUser) {
         return res.status(400).json({
           message: "No existe el token",
         });
       } else {
         const {
+          
             tipoPersona, 
             nit,
             tipoIdentificacion,
@@ -27,8 +30,9 @@ public async postCompany(req: Request, res: Response, next: NextFunction): Promi
             departamento,
             ciudad,
             direccion,
-        } = req.body;
+        } = req.body.data;
         const company = new CompanySchema({
+             tokenIdUser,
             tipoPersona,
             nit,
             tipoIdentificacion,
@@ -61,7 +65,7 @@ public async postCompany(req: Request, res: Response, next: NextFunction): Promi
 public async getCompany(req: Request , res: Response, next: NextFunction):Promise<Request| Response | any> {
         
         try {
-            const tokenCreated: any = req.headers["x-id-token"];
+            const tokenCreated: any = req.headers["authorization"];
             const verifyToken: any = jwt.verify(tokenCreated, SECRET);
             const tokenIdUser = verifyToken.id;
             if (!tokenIdUser) {
@@ -69,7 +73,7 @@ public async getCompany(req: Request , res: Response, next: NextFunction):Promis
                 message: "No existe el token",
               });
             } else {
-                const company = await CompanySchema.find();
+                const company = await CompanySchema.find({tokenIdUser});
                 return res.status(200).json({
                     message: "Company created successfully",
                     company,

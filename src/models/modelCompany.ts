@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { ICompany } from '../interfaces/Icompany'; 
 
 const CompanySchema = new mongoose.Schema({
+  
+  tokenIdUser: {type: String, require: true},
   tipoPersona: { type: String, require: true },
   nit: { type: Number, require: true },
   tipoIdentificacion: { type: String, require: true },

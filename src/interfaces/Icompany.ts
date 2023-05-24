@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface ICompany extends mongoose.Document {
+    tokenIdUser:string
     tipoPersona: string;
     nit: number;
     tipoIdentificacion: string;
