@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export interface IinventoryG extends mongoose.Document {
-  tokeIdUser: string;
+  tokenIdUser: string;
   name_inventory: string;
   idBodega: string;
   description: string;

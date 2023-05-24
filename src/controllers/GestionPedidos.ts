@@ -11,19 +11,13 @@ abstract class ManagePedidos {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      
-      
-      
-      
       const tokenAccesId: any = req.headers["authorization"];
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
 
-      
-      await new PedidosValiadation().setProperties(req.body.data , idTokenAdmin);
-      const responseClass = null 
-   
-     res.status(200).json({message:"sucess", responseClass})
+      const response = await new PedidosValiadation().setProperties(req.body.data, idTokenAdmin);
+
+      res.status(200).json({ message: "sucess", response});
     } catch (error) {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
@@ -41,7 +35,7 @@ abstract class ManagePedidos {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
- 
+
   public async getPedidosId(
     req: Request,
     res: Response,
@@ -103,7 +97,5 @@ abstract class ManagePedidos {
     }
   }
 }
-
-
 
 export default ManagePedidos;
