@@ -18,6 +18,8 @@ class GerneralInventary {
   }
 
   protected async createInventaryGeneral(data: any) {
+    console.log("entroooooo",data);
+    
     const conn = await conexion.connect();
     const { name_inventory, description, idBodega } = data;
 
