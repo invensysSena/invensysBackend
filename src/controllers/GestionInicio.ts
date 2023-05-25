@@ -11,6 +11,7 @@ import Compras from "../models/Compras";
 import modelCompany from "../models/modelCompany";
 import SubProductosModel from "../models/SubProductos.model";
 import PedidosProvedor from "../models/PedidosProvedor";
+import InventaryGeneral from "../models/InventaryGeneral";
 class AllModules {
   public async getModules(
     req: Request | any,
@@ -56,6 +57,10 @@ class AllModules {
           idTokenAdmin: tokenIdUser,
         });
 
+        const dataIGeneral = await InventaryGeneral.find(
+          { idTokenAdmin: tokenIdUser },
+        );
+
         return res.status(200).json({
           ok: true,
           dataCategory,
@@ -68,6 +73,7 @@ class AllModules {
           dataCompras,
           dataCompany,
           dataPedidoProvedor,
+          dataIGeneral
         });
       }
     } catch (error) {

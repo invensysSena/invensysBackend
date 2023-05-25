@@ -3,6 +3,7 @@ import { IPedidoProvider } from "../interfaces/IpedidosProvedor";
 
 const PedidoProvider = new mongoose.Schema(
   {
+
     
     tokeIdUser: { type: String, required: true },
     NR: { type: String, required: true },
