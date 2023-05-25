@@ -3,7 +3,7 @@ import { IinventoryG } from '../interfaces/IinventaryGeneral';
 
 const inventaryGeneralSchema = new Schema(
   {
-    tokeIdUser: { type: String, require: true },
+    tokenIdUser: { type: String, require: true },
     name_inventory: { type: String, require: true },
     idBodega: { type: String, require: true },
     description: { type: String, require: true },

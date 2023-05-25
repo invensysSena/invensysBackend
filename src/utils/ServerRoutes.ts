@@ -9,6 +9,7 @@ import RouterInventory from "../router/router.inventary";
 import RouterPedidos from "../router/router.pedidos";
 import RouterCompras from "../router/router.compras";
 import RouterCompany from "../router/router.company";
+import RouterInventaryGeneral from "../router/router.InventaryGeneral";
 const AppServer: express.Application = express();
 export class ServerRoutes {
   public async Inicio(): Promise<any> {
@@ -110,6 +111,13 @@ export class ServerRoutes {
     AppServer.use(new RouterCompany().GetCompany());
     AppServer.use(new RouterCompany().UpdateCompany());
     AppServer.use(new RouterCompany().DeleteCompany());
+
+    // Inventary General
+   
+    AppServer.use(new RouterInventaryGeneral().PostInventaryGeneral());
+     AppServer.use(new RouterInventaryGeneral().GetInventaryGeneral());
+    AppServer.use(new RouterInventaryGeneral().PutInventaryGeneral());
+    AppServer.use(new RouterInventaryGeneral().DeleteInventaryGeneral());
 
     return AppServer;
   }

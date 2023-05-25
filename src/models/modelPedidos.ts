@@ -4,7 +4,8 @@ import {IPedidos} from '../interfaces/pedidos';
 
 const PedidosSchema = new Schema({
     
-    idTokenAdmin: {type: String, required: true},
+    
+    tokeIdUser: {type: String, required: true},
     id_subProducto: {type: String, required: true},
     id_provedor: {type: String, required: true},
     id_bodega: {type: String, required: true,},
@@ -13,7 +14,7 @@ const PedidosSchema = new Schema({
     tipo: {type: String, },
     fecha: {type: String},
     totalCompra: {type: Number, required: true},
-    idPedidoProvedor: {type: String, required: true},
+    idPedidoProvider: {type: String, required: true},
 },{
     timestamps: true,
 }); 

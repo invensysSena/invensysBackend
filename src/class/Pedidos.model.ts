@@ -9,6 +9,8 @@ class PedidosValiadation {
   data: any;
 
   public async setProperties(data: any, idTokenAdmin: string) {
+    console.log("ggg",idTokenAdmin);
+    
     this.data = data;
     this.idTokenAdmin = idTokenAdmin;
     return await this.validateData(data);
@@ -26,23 +28,26 @@ class PedidosValiadation {
     const [{fecha, name}] = data
     const TotalComprap = data.map((i: any) => i.totalCompra).reduce((a:number, b:number) => a + b);
     const newPedidoProvider = new PedidoProvider({
-      idTokenAdmin: this.idTokenAdmin,
+      
+      tokeIdUser: this.idTokenAdmin,
       NR: uuidv4(uuidAuth),
       name: name,
       fecha: fecha,
       cantidadProductos: data.length,
       totalComprap: TotalComprap,
     });
+    console.log("ññññ",newPedidoProvider);
+    
 
     const response = await newPedidoProvider.save();
-
     const { _id } = response;
-
-
+    let id:number = _id
+    console.log("___id,"  ,_id);
     if (data.length > 1) {
       for (let i = 0; i < data.length; i++) {
         const pedidosCreate = new PedidosSchema({
-          idTokenAdmin: this.idTokenAdmin,
+          
+          tokeIdUser: this.idTokenAdmin,
           id_subProducto: data[i].idSubproducto,
           id_provedor: data[i].idProvedor,
           id_bodega: data[i].idBodega,
@@ -51,7 +56,7 @@ class PedidosValiadation {
           tipo: data[i].tipo,
           fecha: data[i].fecha,
           totalCompra: data[i].totalCompra,
-          idPedidoProvider: _id,
+          idPedidoProvider: id,
         });
         await pedidosCreate.save();
 
@@ -85,7 +90,8 @@ class PedidosValiadation {
         },
       ] = data;
       const pedidosCreate = new PedidosSchema({
-        idTokenAdmin: this.idTokenAdmin,
+        
+        tokeIdUser: this.idTokenAdmin,
         id_subProducto: idSubproducto,
         id_provedor: idProvedor,
         id_bodega: idBodega,
@@ -94,7 +100,7 @@ class PedidosValiadation {
         tipo: tipo,
         fecha: fecha,
         totalCompra: totalCompra,
-        idPedidoProvider: _id,
+        idPedidoProvider: id,
       });
       await pedidosCreate.save();
       const exitsSubProduct: any = await subProductSchema.findById(
