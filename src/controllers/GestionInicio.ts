@@ -12,9 +12,9 @@ import modelCompany from "../models/modelCompany";
 import SubProductosModel from "../models/SubProductos.model";
 import PedidosProvedor from "../models/PedidosProvedor";
 import InventaryGeneral from "../models/InventaryGeneral";
-import ComprasFvModule  from '../interfaces/Compras.Salidas';
+import ComprasFvModule from "../interfaces/Compras.Salidas";
 import TranslateSubPModel from "../interfaces/TranslateSubP.Model";
-TranslateSubPModel
+TranslateSubPModel;
 
 class AllModules {
   public async getModules(
@@ -32,58 +32,52 @@ class AllModules {
           message: "El token no existe!",
         });
       } else {
-        const products = await ProductSchema.find({
+        const dataProduct = await ProductSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const catagories = await CategorySchema.find({
+        const dataCategory = await CategorySchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const providers = await ProviderSchema.find({
+        const dataProvider = await ProviderSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const bodegas = await InventorySchema.find({
+        const dataInventary = await InventorySchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const pedidos = await PedidosSchema.find({
+        const dataPedidos = await PedidosSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const subProducts = await SubProductosModel.find({
+        const dataSubProduct = await SubProductosModel.find({
           tokenIdUser: tokenIdUser,
         });
-        const translateSubps = await TranslateSubPModel.find({
+        const dataNotify = await NotificationSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const notifications = await NotificationSchema.find({
+        const dataCompras = await Compras.find({ tokenIdUser: tokenIdUser });
+        const dataCompany = await modelCompany.find({
           tokenIdUser: tokenIdUser,
         });
-        const compras = await Compras.find({ tokenIdUser: tokenIdUser });
-        const comprasNFS = await ComprasFvModule.find({ tokeIdUser: tokenIdUser });
-        const companies = await modelCompany.find({
-          tokenIdUser: tokenIdUser,
-        });
-        const pedidoProviders = await PedidosProvedor.find({
+        const dataPedidoProvedor = await PedidosProvedor.find({
           idTokenAdmin: tokenIdUser,
         });
 
-        const inventaryGeneral = await InventaryGeneral.find(
-          { idTokenAdmin: tokenIdUser },
-        );
+        const dataIGeneral = await InventaryGeneral.find({
+          idTokenAdmin: tokenIdUser,
+        });
 
         return res.status(200).json({
           ok: true,
-          products,
-          catagories,
-          providers,
-          bodegas,
-          pedidos,
-          subProducts,
-          translateSubps,
-          notifications,
-          compras,
-          comprasNFS,
-          companies,
-          pedidoProviders,
-          inventaryGeneral,
+          dataCategory,
+          dataProduct,
+          dataProvider,
+          dataInventary,
+          dataPedidos,
+          dataSubProduct,
+          dataNotify,
+          dataCompras,
+          dataCompany,
+          dataPedidoProvedor,
+          dataIGeneral,
         });
       }
     } catch (error) {
