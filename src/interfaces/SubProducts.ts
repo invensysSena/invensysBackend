@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 export interface subProducts extends mongoose.Document {
+  tokenIdUser: string;
   name: string;
   priceCompra: number;
   priceVenta: number;

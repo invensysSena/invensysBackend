@@ -18,7 +18,6 @@ class InventoryProduct {
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const conn = await conexion.connect();
-    
 
       if (typeUser === "superAdmin") {
         conn.query(
@@ -46,12 +45,10 @@ class InventoryProduct {
           }
         );
       } else if (typeUser === "user") {
-     
         const token: any = req.headers["authorization1"];
 
         const decoded: any = jwt.verify(token, SECRET);
         const tokeIdUser1 = decoded.id1;
-   
 
         conn.query(
           "SELECT correo FROM account WHERE idAccount    = ? ",
@@ -103,7 +100,6 @@ class InventoryProduct {
     next: NextFunction
   ): Promise<Response | Request | any> {
     //actualizar inventario
-  
 
     try {
       const { _id } = req.params;
@@ -196,7 +192,7 @@ class InventoryProduct {
         idInventory,
       } = req.body.data;
       const subProduct = new subProductSchema({
-        idUser: tokeIdUser,
+        tokenIdUser: tokeIdUser,
         name,
         priceCompra,
         priceVenta,
@@ -237,7 +233,6 @@ class InventoryProduct {
       const tokeIdUser = decoded.id;
       const { idDestino, idOrigen, idSubProducto, cantidad, userCorreo } =
         req.body.data;
-      
 
       const responseClass = await new TranslateBodega(
         tokeIdUser,
@@ -305,7 +300,6 @@ class InventoryProduct {
       const token: any = req.headers["authorization"];
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
- 
 
       const responseEmailUpdate = await InventorySchema.findByIdAndUpdate(
         { _id: id },

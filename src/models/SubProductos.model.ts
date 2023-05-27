@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 
 const subProductSchema = new Schema(
   {
+    tokenIdUser: { type: String, required: true },
     name: { type: String, required: true },
     priceCompra: {
       type: Number,
