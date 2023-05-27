@@ -7,7 +7,7 @@ class modelInventoryData  {
             const conn = await conexion.connect();
             conn.query("SELECT correo FROM admin WHERE idUsers = ? ", [tokeIdUser], async (err, rows:any, fields) => {
                 if (rows) {
-                    console.log(rows[0].correo);
+                    
                     return await rows[0].correo;
                 }
             }

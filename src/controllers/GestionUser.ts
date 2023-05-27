@@ -218,11 +218,7 @@ abstract class LoginRegister {
                           SECRET || "authToken",
                           { expiresIn: 60 * 60 * 24 }
                         );
-                        // console.log(window.navigator.userAgent);
-
-                        // const deviceDetector = new DeviceDetector();
-                        // const userAgent = window.navigator.userAgent;
-                        // const device = deviceDetector.parse(userAgent);
+                        
 
                         const url = "https://ipapi.co/json/";
                         const response = await fetch(url);

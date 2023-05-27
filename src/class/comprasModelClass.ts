@@ -64,7 +64,7 @@ class comprasModelClass {
         fecha: moment().format('l'),
       });
       await pedidosCreate.save()
-      console.log("pedidos",pedidosCreate);
+      
       
         const exitsSubProduct:any = await subProductSchema.findById(data[i].idSubproducto);
         const newUnidades = exitsSubProduct.unidad - data[i].unidades; 
@@ -78,13 +78,12 @@ class comprasModelClass {
             }, 
             { new: true}
            );
-            console.log(updateUnidades); 
+            
         }
       }
 
     }else{
-      console.log("es uno ",data.idBodega);
-      console.log(data);
+      
       
       
       
@@ -101,7 +100,7 @@ class comprasModelClass {
       fecha: moment().format('l'),
     });
     const res = await comprasCreate.save();
-    console.log("new",res);
+   
     
     const exitsSubProduct:any = await subProductSchema.findById(idSubproducto);
     const newUnidades = exitsSubProduct.unidad - unidades;

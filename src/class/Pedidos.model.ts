@@ -9,8 +9,7 @@ class PedidosValiadation {
   data: any;
 
   public async setProperties(data: any, idTokenAdmin: string) {
-    console.log("ggg",idTokenAdmin);
-    
+   
     this.data = data;
     this.idTokenAdmin = idTokenAdmin;
     return await this.validateData(data);
@@ -36,13 +35,14 @@ class PedidosValiadation {
       cantidadProductos: data.length,
       totalComprap: TotalComprap,
     });
-    console.log("ññññ",newPedidoProvider);
+   
     
 
     const response = await newPedidoProvider.save();
     const { _id } = response;
     let id:number = _id
-    console.log("___id,"  ,_id);
+    
+
     if (data.length > 1) {
       for (let i = 0; i < data.length; i++) {
         const pedidosCreate = new PedidosSchema({
@@ -117,7 +117,7 @@ class PedidosValiadation {
           },
           { new: true }
         );
-        console.log(updateUnidades);
+        
       }
     }
   }

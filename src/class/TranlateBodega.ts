@@ -122,7 +122,7 @@ class TranslateBodega {
   }
 
   public async TranslateProduct(id: string, type: string) {
-    console.log("id", id, "type", type);
+  
 
     if (type === "Aceptado") {
       const searchTranslateProduct: any = await TranslateSubPSchema.findById(
@@ -183,7 +183,7 @@ class TranslateBodega {
                 caducidad,
                 idInventory,
               } = dataPost;
-              console.log("www", this.idAdmin);
+              
 
               const subProduct = new subProductSchema({
                 tokenIdUser,

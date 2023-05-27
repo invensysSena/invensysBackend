@@ -22,7 +22,7 @@ abstract class MaganeIGeneral {
       );
       return res.status(200).json({ message: "sucess" });
     } catch (error) {
-      console.log(error);
+      
 
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
@@ -36,7 +36,7 @@ abstract class MaganeIGeneral {
     try {
       const { id } = req.params;
       const dataSubProduct = await SubProductosModel.find({ idInventario: id });
-      console.log(dataSubProduct);
+     
 
       return res.status(200).json({ message: "sucess", dataSubProduct });
     } catch (error) {

@@ -24,11 +24,10 @@ class AllModules {
   ): Promise<Request | Response | any> {
     try {
       const Token: string = req.params?.id!;
-      console.log(Token);
 
       const veryfyToken: Array<any> | any = jwt.verify(Token, SECRET)!;
       const tokenIdUser = veryfyToken.id;
-      console.log(tokenIdUser);
+     
 
       if (!tokenIdUser) {
         return res.json({
@@ -39,33 +38,33 @@ class AllModules {
           tokenIdUser: tokenIdUser,
         });
         const dataCategory = await CategorySchema.find({
-          tokenIdUser: tokenIdUser,
+          tokeIdUser: tokenIdUser,
         });
         const dataProvider = await ProviderSchema.find({
           tokenIdUser: tokenIdUser,
         });
         const dataInventary = await InventorySchema.find({
-          tokenIdUser: tokenIdUser,
+          tokeIdUser: tokenIdUser,
         });
         const dataPedidos = await PedidosSchema.find({
-          tokenIdUser: tokenIdUser,
+          tokeIdUser: tokenIdUser,
         });
         const dataSubProduct = await SubProductosModel.find({
           tokenIdUser: tokenIdUser,
         });
         const dataNotify = await NotificationSchema.find({
-          tokenIdUser: tokenIdUser,
+          tokeIdUser: tokenIdUser,
         });
-        const dataCompras = await Compras.find({ tokenIdUser: tokenIdUser });
+        const dataCompras = await Compras.find({ tokeIdUser: tokenIdUser });
         const dataCompany = await modelCompany.find({
           tokenIdUser: tokenIdUser,
         });
         const dataPedidoProvedor = await PedidosProvedor.find({
-          idTokenAdmin: tokenIdUser,
+          tokeIdUser: tokenIdUser,
         });
 
         const dataIGeneral = await InventaryGeneral.find({
-          idTokenAdmin: tokenIdUser,
+          tokenIdUser: tokenIdUser,
         });
 
         return res.status(200).json({
