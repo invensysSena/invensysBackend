@@ -15,17 +15,9 @@ abstract class ManagePedidos {
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
 
-<<<<<<< HEAD
-     
-      
       await new PedidosValiadation().setProperties(req.body.data , idTokenAdmin);
       const responseClass = null 
      res.status(200).json({message:"sucess", responseClass})
-=======
-      const response = await new PedidosValiadation().setProperties(req.body.data, idTokenAdmin);
-
-      res.status(200).json({ message: "sucess", response});
->>>>>>> d49043b1cb41d4cd98a15356870b5da1ac043b6e
     } catch (error) {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
