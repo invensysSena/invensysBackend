@@ -32,60 +32,52 @@ class AllModules {
           message: "El token no existe!",
         });
       } else {
-        const dataproducts = await ProductSchema.find({
+        const dataProduct = await ProductSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const datacatagories = await CategorySchema.find({
+        const dataCategory = await CategorySchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const dataproviders = await ProviderSchema.find({
+        const dataProvider = await ProviderSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const databodegas = await InventorySchema.find({
+        const dataInventary = await InventorySchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const datapedidos = await PedidosSchema.find({
+        const dataPedidos = await PedidosSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const datasubProducts = await SubProductosModel.find({
+        const dataSubProduct = await SubProductosModel.find({
           tokenIdUser: tokenIdUser,
         });
-        const datatranslateSubps = await TranslateSubPModel.find({
+        const dataNotify = await NotificationSchema.find({
           tokenIdUser: tokenIdUser,
         });
-        const datanotifications = await NotificationSchema.find({
+        const dataCompras = await Compras.find({ tokenIdUser: tokenIdUser });
+        const dataCompany = await modelCompany.find({
           tokenIdUser: tokenIdUser,
         });
-        const datacompras = await Compras.find({ tokenIdUser: tokenIdUser });
-        const datacomprasNFS = await ComprasFvModule.find({
-          tokeIdUser: tokenIdUser,
-        });
-        const datacompanies = await modelCompany.find({
-          tokenIdUser: tokenIdUser,
-        });
-        const datapedidoProviders = await PedidosProvedor.find({
+        const dataPedidoProvedor = await PedidosProvedor.find({
           idTokenAdmin: tokenIdUser,
         });
 
-        const inventaryGeneral = await InventaryGeneral.find({
+        const dataIGeneral = await InventaryGeneral.find({
           idTokenAdmin: tokenIdUser,
         });
 
         return res.status(200).json({
           ok: true,
-          dataproducts,
-          datacatagories,
-          dataproviders,
-          databodegas,
-          datapedidos,
-          datasubProducts,
-          datatranslateSubps,
-          datanotifications,
-          datacompras,
-          datacomprasNFS,
-          datacompanies,
-          datapedidoProviders,
-          inventaryGeneral,
+          dataCategory,
+          dataProduct,
+          dataProvider,
+          dataInventary,    
+          dataPedidos,
+          dataSubProduct,
+          dataNotify,
+          dataCompras,
+          dataCompany,
+          dataPedidoProvedor,
+          dataIGeneral,
         });
       }
     } catch (error) {
