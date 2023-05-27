@@ -70,16 +70,10 @@ abstract class Categorys {
   ): Promise<Response | Request | any> {
 
     
-    const Tokenid_U:any = req.params.id  
-  ;
+    const Tokenid_U:any = req.params.id;
     
     const verifyToken: Array<any> | any = jwt.verify( Tokenid_U, SECRET )!;
-   
-    
-
     const tokeIdUser = verifyToken.id;
-    
-    
    try {
 
     if(!tokeIdUser){

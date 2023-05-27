@@ -23,9 +23,12 @@ class AllModules {
     next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      const TokenCreate: string = req.params?.id!;
-      const veryfyToken: Array<any> | any = jwt.verify(TokenCreate, SECRET)!;
+      const Token: string = req.params?.id!;
+      console.log(Token);
+
+      const veryfyToken: Array<any> | any = jwt.verify(Token, SECRET)!;
       const tokenIdUser = veryfyToken.id;
+      console.log(tokenIdUser);
 
       if (!tokenIdUser) {
         return res.json({
@@ -70,7 +73,7 @@ class AllModules {
           dataCategory,
           dataProduct,
           dataProvider,
-          dataInventary,    
+          dataInventary,
           dataPedidos,
           dataSubProduct,
           dataNotify,

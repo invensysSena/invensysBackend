@@ -129,7 +129,6 @@ class TranslateBodega {
         id
       );
 
-
       if (searchTranslateProduct) {
         const Searchinventory = await InventorySchema.findById(
           searchTranslateProduct.idDestino
@@ -163,6 +162,7 @@ class TranslateBodega {
               }
             } else {
               const dataPost = {
+                tokenIdUser: id,
                 name: searchTranslateProduct.userCorreo,
                 priceCompra: searchSubProducts[0].priceCompra,
                 priceVenta: searchSubProducts[0].priceVenta,
@@ -173,6 +173,7 @@ class TranslateBodega {
                 idInventory: Searchinventory._id,
               };
               const {
+                tokenIdUser,
                 name,
                 priceCompra,
                 priceVenta,
@@ -182,7 +183,10 @@ class TranslateBodega {
                 caducidad,
                 idInventory,
               } = dataPost;
+              console.log("www", this.idAdmin);
+
               const subProduct = new subProductSchema({
+                tokenIdUser,
                 name,
                 priceCompra,
                 priceVenta,
