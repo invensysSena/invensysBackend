@@ -7,4 +7,5 @@ export interface NotificationInterface extends mongoose.Document {
     title: string,
     description: string,
     type: string,
+    estado:1
 }

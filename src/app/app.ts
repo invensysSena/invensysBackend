@@ -16,6 +16,7 @@ import { getLogger } from "nodemailer/lib/shared";
 import { ServerRoutes } from "../utils/ServerRoutes";
 mongoose.set("strictQuery", true);
 const AppServer: express.Application = express();
+import { conexion } from "../database/database";
 
 class App {
   public startServer = async () => {
@@ -26,10 +27,7 @@ class App {
       AppServer.use(
         cors({
           origin: [urlConnectionAcceso, "http://localhost:3000"],
-          methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", 
-          
-
-        ],
+          methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
           optionsSuccessStatus: statusCors,
         })
       );
@@ -44,6 +42,7 @@ class App {
   };
   public listen() {
     this.startServer();
+    conexion.connect();
     const port: Number = 8080;
     AppServer.listen(PORT || port, () => {
       console.log("connection in the port: :", PORT);

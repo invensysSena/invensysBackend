@@ -20,14 +20,14 @@ class GerneralInventary {
   protected async createInventaryGeneral(data: any) {
 
     
-    const conn = await conexion.connect();
+    const conn:any = await conexion.connect();
     const { name_inventory, description, idBodega } = data;
 
     if (this.typeUser === "superAdmin") {
       conn.query(
         "SELECT correo FROM admin WHERE idUsers = ? ",
         [this.idTokenAdmin],
-        async (err, rows: any, fields) => {
+        async (err:any, rows: any, fields:any) => {
           if (rows) {
             const inventory: IinventoryG = new InventaryGeneral({
               tokenIdUser: this.idTokenAdmin,

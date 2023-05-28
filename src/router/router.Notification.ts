@@ -22,6 +22,10 @@ class RouterNotification extends Notification {
     router.post("/notification", this.createNotification);
     return router;
   }
+  public DeleteNotificationEstado() {
+    router.delete("/notificationTodoEstado", this.estadoDeleteNotification);
+    return router;
+  }
 }
 
 export default RouterNotification;

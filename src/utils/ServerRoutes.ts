@@ -71,6 +71,7 @@ export class ServerRoutes {
     AppServer.use(new RouterNotification().GetNotificationId());
     AppServer.use(new RouterNotification().PostcreateNotification());
     AppServer.use(new RouterNotification().DeleteNotificationId());
+    AppServer.use(new RouterNotification().DeleteNotificationEstado());
 
     // Here there are routes Providers
     AppServer.use(new RouterProviders().GetProviders());
@@ -79,7 +80,7 @@ export class ServerRoutes {
     AppServer.use(new RouterProviders().PutProviders());
     AppServer.use(new RouterProviders().DeleteProviders());
     AppServer.use(new RouterProviders().GetProvidersProducts());
-  
+
     // Here there are routes Pedidos
     AppServer;
     AppServer.use(new RouterPedidos().GetPedidos());
@@ -113,9 +114,9 @@ export class ServerRoutes {
     AppServer.use(new RouterCompany().DeleteCompany());
 
     // Inventary General
-   
+
     AppServer.use(new RouterInventaryGeneral().PostInventaryGeneral());
-     AppServer.use(new RouterInventaryGeneral().GetInventaryGeneral());
+    AppServer.use(new RouterInventaryGeneral().GetInventaryGeneral());
     AppServer.use(new RouterInventaryGeneral().PutInventaryGeneral());
     AppServer.use(new RouterInventaryGeneral().DeleteInventaryGeneral());
 

@@ -74,5 +74,31 @@ abstract class Notification {
       return res.status(401).json({ message: "NO_PERMISION" });
     }
   }
+
+  public estadoDeleteNotification = async (
+    req: Request,
+    res: Response,
+    next: Partial<NextFunction>
+  ): Promise<Response | Request | any> => {
+    try {
+      let idToken: any = req.headers.authorization;
+      console.log(idToken);
+
+      const verifyToken: any = jwt.verify(idToken, SECRET);
+      if (verifyToken.id) {
+        let responseNotification = await new Todo().deleteEstado(
+          verifyToken.id
+        );
+
+        res.status(200).json({ message: "ok", responseNotification });
+      } else {
+        return res.status(401).json({ message: "NO_PERMISION" });
+      }
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Error en el servidor ok", error });
+    }
+  };
 }
 export default Notification;

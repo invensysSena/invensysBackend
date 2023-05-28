@@ -3,31 +3,30 @@ import PedidosPendientesSchema from "../models/modelPedidosPendientes";
 import PedidosSchema from "../models/modelPedidos";
 import PedidoProvider from "../models/PedidosProvedor";
 import { v4 as uuidv4 } from "uuid";
-
+import Todo from "../class/Notification.Todo";
 class PedidosValiadation {
   private idTokenAdmin: string = "";
   data: any;
 
   public async setProperties(data: any, idTokenAdmin: string) {
-   
     this.data = data;
     this.idTokenAdmin = idTokenAdmin;
     return await this.validateData(data);
   }
 
   private async validateData(data: any) {
-    
-    const uuidAuth: any  = {
+    const uuidAuth: any = {
       node: [0x01, 0x23, 0x45, 0x67, 0x89, 0xab],
       clockseq: 0x1234,
       msecs: new Date().getTime(),
       nsecs: 5678,
     };
-    
-    const [{fecha, name}] = data
-    const TotalComprap = data.map((i: any) => i.totalCompra).reduce((a:number, b:number) => a + b);
+
+    const [{ fecha, name }] = data;
+    const TotalComprap = data
+      .map((i: any) => i.totalCompra)
+      .reduce((a: number, b: number) => a + b);
     const newPedidoProvider = new PedidoProvider({
-      
       tokeIdUser: this.idTokenAdmin,
       NR: uuidv4(uuidAuth),
       name: name,
@@ -35,18 +34,20 @@ class PedidosValiadation {
       cantidadProductos: data.length,
       totalComprap: TotalComprap,
     });
-   
-    
+    const response1 = await new Todo().createNotificationClass(
+      "Se creo un nuevo pedido",
+      `Total del pedido: ${TotalComprap} Cantidad de productos: ${data.length}`,
+      "pedido",
+      this.idTokenAdmin
+    );
 
     const response = await newPedidoProvider.save();
     const { _id } = response;
-    let id:number = _id
-    
+    let id: number = _id;
 
     if (data.length > 1) {
       for (let i = 0; i < data.length; i++) {
         const pedidosCreate = new PedidosSchema({
-          
           tokeIdUser: this.idTokenAdmin,
           id_subProducto: data[i].idSubproducto,
           id_provedor: data[i].idProvedor,
@@ -90,7 +91,6 @@ class PedidosValiadation {
         },
       ] = data;
       const pedidosCreate = new PedidosSchema({
-        
         tokeIdUser: this.idTokenAdmin,
         id_subProducto: idSubproducto,
         id_provedor: idProvedor,
@@ -117,7 +117,6 @@ class PedidosValiadation {
           },
           { new: true }
         );
-        
       }
     }
   }

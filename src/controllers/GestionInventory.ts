@@ -17,13 +17,13 @@ class InventoryProduct {
       let typeUser: any = req.headers["typeautorization"];
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
-      const conn = await conexion.connect();
+      const conn:any = await conexion.connect();
 
       if (typeUser === "superAdmin") {
         conn.query(
           "SELECT correo FROM admin WHERE idUsers = ? ",
           [tokeIdUser],
-          async (err, rows: any, fields) => {
+          async (err:any, rows: any, fields:any) => {
             if (rows) {
               const inventory = new InventorySchema({
                 tokeIdUser,
@@ -35,7 +35,7 @@ class InventoryProduct {
               });
               const response = await inventory.save();
               await new Todo().createNotificationClass(
-                "Se creo un nuevo inventario",
+                "Se creo una nueva bodega",
                 name_inventory,
                 "inventory",
                 tokeIdUser
@@ -53,7 +53,7 @@ class InventoryProduct {
         conn.query(
           "SELECT correo FROM account WHERE idAccount    = ? ",
           [tokeIdUser1],
-          async (err, rows: any, fields) => {
+          async (err:any, rows: any, fields:any) => {
             if (rows) {
               const inventory = new InventorySchema({
                 tokeIdUser,
