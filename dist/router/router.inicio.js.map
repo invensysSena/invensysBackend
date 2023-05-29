@@ -1,0 +1,1 @@
+{"version":3,"file":"router.inicio.js","sourceRoot":"","sources":["../../src/router/router.inicio.ts"],"names":[],"mappings":";;;;;AAAA,qCAA+B;AAC/B,iFAAsD;AAEtD,MAAM,MAAM,GAAU,IAAA,gBAAM,GAAE,CAAA;AAE9B,MAAM,YAAa,SAAQ,uBAAU;IAC1B,UAAU;QACb,MAAM,CAAC,GAAG,CAAC,cAAc,EAAC,IAAI,CAAC,UAAU,CAAC,CAAA;QAC1C,OAAO,MAAM,CAAC;IAClB,CAAC;CACJ;AAED,kBAAe,YAAY,CAAC"}

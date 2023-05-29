@@ -5,6 +5,7 @@
   "main": "index.ts",
   "module": "es6",
   "scripts": {
+    "tsc": "tsc",
     "build": "tsc", 
     "dev": "ts-node-dev --respawn src/server/index.ts",
     "start": "ts-node-dev --respawn src/server/index.ts"

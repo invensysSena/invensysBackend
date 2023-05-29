@@ -22,8 +22,6 @@ abstract class MaganeIGeneral {
       );
       return res.status(200).json({ message: "sucess" });
     } catch (error) {
-      
-
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
@@ -36,7 +34,6 @@ abstract class MaganeIGeneral {
     try {
       const { id } = req.params;
       const dataSubProduct = await SubProductosModel.find({ idInventario: id });
-     
 
       return res.status(200).json({ message: "sucess", dataSubProduct });
     } catch (error) {
@@ -51,6 +48,8 @@ abstract class MaganeIGeneral {
   public deleteInventaryGeneral(req: any, res: any, next: any) {
     res.send("deleteInventaryGeneral");
   }
+
+ 
 }
 
 export default MaganeIGeneral;

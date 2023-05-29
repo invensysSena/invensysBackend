@@ -82,7 +82,7 @@ abstract class Notification {
   ): Promise<Response | Request | any> => {
     try {
       let idToken: any = req.headers.authorization;
-      console.log(idToken);
+  
 
       const verifyToken: any = jwt.verify(idToken, SECRET);
       if (verifyToken.id) {

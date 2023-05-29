@@ -102,6 +102,7 @@ export class ServerRoutes {
     AppServer.use(new RouterInventory().UpdateSubProducts());
     AppServer.use(new RouterInventory().UpdateEmailBodega());
     AppServer.use(new RouterInventory().GetAllSubProducts());
+    AppServer.use(new RouterInventory().DisminucionUnidades());
     // compras
     AppServer.use(new RouterCompras().PostComprasRouter());
     AppServer.use(new RouterCompras().GetComprasRouter());

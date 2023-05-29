@@ -56,6 +56,10 @@ class RouterInventory extends InventoryProduct {
     router.get("/subProducts", this.SubProductsIdAll);
     return router;
   }
+  public DisminucionUnidades() {
+    router.get("/disminucionUnidades", this.searchProductUnidadesDisminucon);
+    return router;
+  }
 }
 
 export default RouterInventory;

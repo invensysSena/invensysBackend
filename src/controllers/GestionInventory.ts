@@ -9,6 +9,8 @@ import subProductSchema from "../models/SubProductos.model";
 import { conexion } from "../database/database";
 import modelInventoryData from "../class/Inventory.model";
 import TranslateBodega from "../class/TranlateBodega";
+import SubProductosModel from "../models/SubProductos.model";
+import NotificationSchema from "../models/modelNotfication";
 class InventoryProduct {
   public async postInventory(req: Request, res: Response, next: NextFunction) {
     try {
@@ -17,13 +19,13 @@ class InventoryProduct {
       let typeUser: any = req.headers["typeautorization"];
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
 
       if (typeUser === "superAdmin") {
         conn.query(
           "SELECT correo FROM admin WHERE idUsers = ? ",
           [tokeIdUser],
-          async (err:any, rows: any, fields:any) => {
+          async (err: any, rows: any, fields: any) => {
             if (rows) {
               const inventory = new InventorySchema({
                 tokeIdUser,
@@ -53,7 +55,7 @@ class InventoryProduct {
         conn.query(
           "SELECT correo FROM account WHERE idAccount    = ? ",
           [tokeIdUser1],
-          async (err:any, rows: any, fields:any) => {
+          async (err: any, rows: any, fields: any) => {
             if (rows) {
               const inventory = new InventorySchema({
                 tokeIdUser,
@@ -331,6 +333,66 @@ class InventoryProduct {
       res.status(200).json({ message: "get products", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
+    }
+  }
+  public async searchProductUnidadesDisminucon(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | Request | any> {
+    try {
+      const idTokenAdmin: any = req.headers.authorization;
+      const verifycationToken: any = jwt.verify(idTokenAdmin, SECRET);
+      const id = verifycationToken.id;
+
+      const dataSubProduct: any = await SubProductosModel.find({
+        idInventario: id,
+      });
+      const SerachProductWithUnidades: any = dataSubProduct.filter(
+        async (element: any) => {
+          if (element.unidad <= 10) {
+            const searchNotificationDuplicate: any =
+              await NotificationSchema.find({
+                name: element.description,
+              });
+            if (searchNotificationDuplicate.length > 0) {
+              const updateNotification: any =
+                await NotificationSchema.findByIdAndUpdate(
+                  { _id: searchNotificationDuplicate[0]._id || "" },
+                  {
+                    name: element.description,
+                    description: `${element.name} tiene ${element.unidad} unidades bajas con un precio de ${element.priceVenta}`,
+                    type: "unidadBaja",
+                  }
+                );
+            
+
+              if (searchNotificationDuplicate.length > 0) {
+              } else {
+                const response = await new Todo().createNotificationClass(
+                  "Este producto esta por agotarse",
+                  `${element.name} tiene ${element.unidad} unidades bajas con un precio de ${element.priceVenta}`,
+                  "unidadBaja",
+                  id
+                );
+              }
+            } else {
+              const response = await new Todo().createNotificationClass(
+                "Este producto esta por agotarse",
+                `${element.name} tiene ${element.unidad} unidades bajas con un precio de ${element.priceVenta}`,
+                "unidadBaja",
+                id
+              );
+            }
+          }
+        }
+      );
+
+      return res
+        .status(200)
+        .json({ message: "sucess", SerachProductWithUnidades });
+    } catch (error) {
+      return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
 }
