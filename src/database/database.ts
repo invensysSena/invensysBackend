@@ -12,7 +12,7 @@ export class Conexion {
   public readonly host?: string | any = "localhost";
   private readonly user?: string | any = "root";
   private readonly password?: string | any = "";
-  protected readonly database: string | any = "storedv1";
+  protected readonly database: string | any = "invensys";
   private readonly charset: string | any = "utf8";
   private readonly port: Number | any = 3306;
 

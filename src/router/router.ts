@@ -1,9 +1,19 @@
 import { Router } from "express";
 import LoginRegister from "../controllers/GestionUser";
+import LicenceSofteareInvensys from "../controllers/GestionLicence";
 import fileUpload from "express-fileupload";
 const router: Router = Router();
 import path from "path";
+
+const licence = new LicenceSofteareInvensys();
 class RouterUser extends LoginRegister {
+  public licenceRouter() {
+    router.get("/getLicence/:id", licence.getLicence);
+    router.post("/createLicence/:id", licence.createLicence);
+
+    return router;
+  }
+
   public Login() {
     router.post("/login", this.LoginAuth);
     return router;
