@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import e, { Request, Response, NextFunction } from "express";
 import ProductSchema from "../models/modelProduct";
 import CategorySchema from "../models/CategoryM";
 import ProviderSchema from "../models/modelProviders";
@@ -14,7 +14,8 @@ import PedidosProvedor from "../models/PedidosProvedor";
 import InventaryGeneral from "../models/InventaryGeneral";
 import ComprasFvModule from "../interfaces/Compras.Salidas";
 import TranslateSubPModel from "../interfaces/TranslateSubP.Model";
-TranslateSubPModel;
+
+
 
 class AllModules {
   public async getModules(

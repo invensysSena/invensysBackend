@@ -6,7 +6,7 @@
   "module": "es6",
   "scripts": {
     "tsc": "tsc",
-    "build": "tsc", 
+    "build": "tsc",
     "dev": "ts-node-dev --respawn src/server/index.ts",
     "start": "ts-node-dev --respawn src/server/index.ts"
   },
@@ -57,6 +57,7 @@
     "dotenv": "^16.0.3",
     "fileupload": "^1.0.0",
     "gh-pages": "^5.0.0",
+    "moment": "^2.29.4",
     "moment-es6": "^1.0.0",
     "moment-with-locales-es6": "^1.0.1",
     "mongodb": "^5.1.0",
