@@ -8,9 +8,12 @@ import path from "path";
 const licence = new LicenceSofteareInvensys();
 class RouterUser extends LoginRegister {
   public licenceRouter() {
-    router.get("/getLicence/:id", licence.getLicence);
     router.post("/createLicence/:id", licence.createLicence);
 
+    return router;
+  }
+  public getLicence() {
+    router.get("/getLicence/:id", licence.getLicence);
     return router;
   }
 

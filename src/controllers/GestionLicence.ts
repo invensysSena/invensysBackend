@@ -3,19 +3,22 @@ import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import { Request, Response, NextFunction } from "express";
 
+import Stripe from "stripe";
 class LicenceSofteareInvensys {
   public async getLicence(
     req: Request | any,
     res: Response | any,
     next: NextFunction
   ) {
+    console.log("Hola");
+
     try {
       const Token: string = req.params?.id!;
       const veryfyToken: Array<any> | any = jwt.verify(Token, SECRET)!;
       const tokenIdUser = veryfyToken.id;
       const conn: any = await conexion.connect();
       conn.query(
-        "SELECT * FROM licence WHERE idUser = ?",
+        "SELECT * FROM licence WHERE idAdmin = ?",
         [tokenIdUser],
         (err: any, result: any) => {
           if (err) {
@@ -47,20 +50,61 @@ class LicenceSofteareInvensys {
     res: Response | any,
     next: NextFunction
   ) {
-    console.log(req.body);
-
     try {
+      const stripe = new Stripe(
+        `sk_test_51NDyJCA1OLE36MkcMDvd8eIYp7AFShFo0RhwZ2zCHwgsw2sgCZ8TsIolsVPE76cj6DRYFb4TEKdsFEUeEriirao500Mm6FILzY`,
+        {
+          apiVersion: "2022-11-15",
+        }
+      );
+      const { id } = req.body;
+      const { data } = req.body;
+
+      const payment = await stripe.paymentIntents.create({
+        amount: req.body.moneyPrice,
+        currency: "usd",
+        payment_method_types: ["card"],
+        receipt_email: "ospinaortizjuandaniel351@gmail.com",
+      });
+
       const Token: string = req.params?.id!;
       const veryfyToken: Array<any> | any = jwt.verify(Token, SECRET)!;
       const tokenIdUser = veryfyToken.id;
       const { licence } = req.body;
       const conn: any = await conexion.connect();
+      const estado = "Activo";
+      const verificado = "verificado";
       conn.query(
-        "INSERT INTO licence (licence, idUser) VALUES (?,?)",
-        [licence, tokenIdUser],
+        `INSERT INTO licence (
+          idAdmin,
+          	name_Card,
+            	licence,
+              	pago,
+                	exp_month,
+                  	exp_year,
+                    	idKey_cliente,
+                      	client_secret,	
+                        object,
+                        estado,
+                        verificado
+        ) VALUES
+         (?,?,?,?,?,?,?,?,?,?,?)`,
+        [
+          tokenIdUser,
+          data.card.brand,
+          id,
+          req.body.moneyPrice,
+          data.card.exp_month,
+          data.card.exp_year,
+          payment.id,
+          payment.client_secret,
+          payment.object,
+          estado,
+          verificado,
+        ],
         (err: any, result: any) => {
           if (err) {
-            return res.json({
+            return res.status(400).json({
               ok: false,
               message: "Error al crear la licencia",
               err,
