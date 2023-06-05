@@ -10,6 +10,7 @@ import RouterPedidos from "../router/router.pedidos";
 import RouterCompras from "../router/router.compras";
 import RouterCompany from "../router/router.company";
 import RouterInventaryGeneral from "../router/router.InventaryGeneral";
+import ExpirationRouter from "../router/router.expiration";
 const AppServer: express.Application = express();
 export class ServerRoutes {
   public async Inicio(): Promise<any> {
@@ -122,6 +123,10 @@ export class ServerRoutes {
     AppServer.use(new RouterInventaryGeneral().GetInventaryGeneral());
     AppServer.use(new RouterInventaryGeneral().PutInventaryGeneral());
     AppServer.use(new RouterInventaryGeneral().DeleteInventaryGeneral());
+
+    // Expiration
+    AppServer.use(new ExpirationRouter().PostCaducidad());
+    AppServer.use(new ExpirationRouter().GetCaducidad());
 
     return AppServer;
   }
