@@ -3,8 +3,23 @@ import LoginRegister from "../controllers/GestionUser";
 import fileUpload from "express-fileupload";
 const router: Router = Router();
 import path from "path";
+import ChangeDataController from "../controllers/ChangeData";
+const dataChange = new ChangeDataController();
 class RouterUser extends LoginRegister {
- // private changePassword: any = new ChangePasswordController().UpdatePassAdmin();
+
+  public changePassAdmin(){
+    router.put("/changePassAdmin", dataChange.UpdatePassAdmin);
+    return router;
+  }
+  public changeEmailUser(){
+    router.put("/changeEmailUser/:id", dataChange.UpdateEmailUser);
+    return router;
+  }
+
+  public changePassUser(){
+    router.put("/changePassUser/:id", dataChange.UpdatePassUser); 
+    return router;
+  }
   
   public Login() {
     router.post("/login", this.LoginAuth);
