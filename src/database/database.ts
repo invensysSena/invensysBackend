@@ -9,6 +9,9 @@ import {
 } from "../config/config";
 import { MysqlError } from "mysql";
 export class Conexion {
+  getRepository(Admin: any) {
+      throw new Error("Method not implemented.");
+  }
   public readonly host?: string | any = "localhost";
   private readonly user?: string | any = "root";
   private readonly password?: string | any = "";
