@@ -17,10 +17,12 @@ import { ServerRoutes } from "../utils/ServerRoutes";
 mongoose.set("strictQuery", true);
 const AppServer: express.Application = express();
 import { conexion } from "../database/database";
-
+import stripe from "stripe";
 class App {
   public startServer = async () => {
     try {
+
+
       const urlConnectionAcceso: string = "http://localhost:3000/*";
       const statusCors: number = 200;
       const port: Number = 8080;

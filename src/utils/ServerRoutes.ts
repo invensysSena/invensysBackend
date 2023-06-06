@@ -31,6 +31,8 @@ export class ServerRoutes {
     AppServer.use(new RouterUser().UsersDelete());
     AppServer.use(new RouterUser().GetCountUsers());
     AppServer.use(new RouterUser().ServiseUser());
+    AppServer.use(new RouterUser().licenceRouter());
+    AppServer.use(new RouterUser().getLicence());
     // Here go the Routes of sydtem control users
     AppServer.use(new RouterUser().GetModuleUsers());
     AppServer.use(new RouterUser().GetPermisions());
