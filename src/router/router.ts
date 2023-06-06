@@ -7,6 +7,9 @@ import path from "path";
 
 const licence = new LicenceSofteareInvensys();
 class RouterUser extends LoginRegister {
+
+ // private changePassword: any = new ChangePasswordController().UpdatePassAdmin();
+
   public licenceRouter() {
     router.post("/createLicence/:id", licence.createLicence);
 
@@ -16,6 +19,7 @@ class RouterUser extends LoginRegister {
     router.get("/getLicence/:id", licence.getLicence);
     return router;
   }
+
 
   public Login() {
     router.post("/login", this.LoginAuth);
