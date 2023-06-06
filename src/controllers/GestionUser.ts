@@ -880,24 +880,41 @@ abstract class LoginRegister {
         conn.query(
           `CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`,
           (error: any, rows: any) => {
-            conn.query(
-              `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
-              async (error: any, rows: any) => {
-                if (rows) {
-                  await new Todo().createNotificationClass(
-                    "Se elimino un usuario de la plataforma",
-                    "usuario",
-                    "users",
-                    id
-                  );
-                  return res.status(200).json({ message: "DELETE_ALL_USERS" });
-                } else {
-                  return res
+            console.log("datos",rows[0].length > 0);
+            if(rows[0].length > 0){
+              conn.query(
+                `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
+                async (error: any, rows: any) => {
+                  try {
+                    if (rows) {
+                      await new Todo().createNotificationClass(
+                        "Se elimino un usuario de la plataforma",
+                        "usuario",
+                        "users",
+                        id
+                      );
+                      console.log("error con exito");
+                      return res.status(200).json({ message: "DELETE_ALL_USERS" });
+                    } else {
+                      return res
+                        .status(400)
+                        .json({ message: "ERROR_DELETE_ALL_USERS", error });
+                        
+                    }
+                  } catch (error) {
+                    return res
                     .status(400)
-                    .json({ message: "ERROR_DELETE_ALL_USERS" });
+                    .json({ message: "ERROR_DELETE_ALL_USERS", error });
+                    
+                  }
                 }
-              }
-            );
+              );
+
+            }else{
+              return res
+                    .status(400)
+                    .json({ message: "ERROR_DELETE_ALL_USERS", error });
+            }
           }
         );
       } else {
