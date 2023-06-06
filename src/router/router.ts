@@ -4,6 +4,8 @@ import fileUpload from "express-fileupload";
 const router: Router = Router();
 import path from "path";
 class RouterUser extends LoginRegister {
+ // private changePassword: any = new ChangePasswordController().UpdatePassAdmin();
+  
   public Login() {
     router.post("/login", this.LoginAuth);
     return router;
