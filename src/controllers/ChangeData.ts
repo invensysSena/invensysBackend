@@ -20,46 +20,49 @@ class ChangeDataController {
       const conn: any = await conexion.connect();
 
       conn.query(
-        "SELECT password from admin where idUsers = ?",
+        "select password from account where idAccount = ?",
         [validateToken],
-        async (err: any, results: any) => {
-          console.log("aaaaaaaaaaaa", results);
-
+        async (err: any, result: any) => {
           if (err) {
             return res.status(400).json({
               ok: false,
               message: "ERROR_DB",
             });
           }
-          if (results.length > 0) {
-            const compare = await bcrypt.compare(hash, results[0].password);
-            console.log("compare", compare);
-
-            if (compare) {
+          if (result[0].password === null) {
+            await conn.query(
+              "update account set ? where idAccount = ?",
+              [{ password: hash }, validateToken]
+            );
+            return res.status(200).json({
+              ok: true,
+              message: "UPDATE_PASSWORD_SUCCESS",
+            });
+           
+          }
+          if(result.length > 0){
+            const validatePass = await bcrypt.compare(
+              password,
+              result[0].password
+            );
+            if (validatePass) {
               return res.status(400).json({
                 ok: false,
                 message: "PASSWORD_EQUAL",
               });
+            } else {
+              await conn.query(
+                "update account set ? where idAccount = ?",
+                [{ password: hash }, validateToken]
+              );
+              return res.status(200).json({
+                ok: true,
+                message: "UPDATE_PASSWORD_SUCCESS",
+              });
             }
-          } else {
-            await conn.query(
-              "update admin set ? where idUsers = ?",
-              [hash, validateToken],
-              async (err: any, results: any) => {
-                if (err) {
-                  return res.status(400).json({
-                    ok: false,
-                    message: "ERROR_DB",
-                  });
-                }
-                return res.status(200).json({
-                  ok: true,
-                  message: "UPDATE_PASSWORD_SUCCESS",
-                });
-              }
-            );
           }
         }
+    
       );
     } catch (error) {
       next(error);
