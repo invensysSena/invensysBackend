@@ -21,7 +21,7 @@ class ChangeDataController {
       const conn: any = await conexion.connect();
 
       conn.query(
-        "select password from account where idAccount = ?",
+        "select password from admin where idUsers = ?",
         [validateToken],
         async (err: any, result: any) => {
           if (err) {
@@ -31,7 +31,7 @@ class ChangeDataController {
             });
           }
           if (result[0].password === null) {
-             conn.query("update account set ? where idAccount = ?", [
+             conn.query("update admin set ? where idUsers = ?", [
               { password: hash },
               validateToken,
             ]);
@@ -51,7 +51,7 @@ class ChangeDataController {
                 message: "PASSWORD_EQUAL",
               });
             } else {
-               conn.query("update account set ? where idAccount = ?", [
+               conn.query("update admin set ? where idUsers = ?", [
                 { password: hash },
                 validateToken,
               ]);
