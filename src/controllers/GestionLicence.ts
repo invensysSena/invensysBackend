@@ -2,6 +2,7 @@ import { conexion } from "../database/database";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import { Request, Response, NextFunction } from "express";
+import { QueryError, RowDataPacket, OkPacket } from 'mysql2';
 
 import Stripe from "stripe";
 class LicenceSofteareInvensys {
@@ -13,13 +14,13 @@ class LicenceSofteareInvensys {
 
     try {
       const Token: string = req.params?.id!;
-      const veryfyToken: Array<any> | any = jwt.verify(Token, SECRET)!;
+      const veryfyToken: any  = jwt.verify(Token, SECRET)!;
       const tokenIdUser = veryfyToken.id;
       const conn: any = await conexion.connect();
       conn.query(
         "SELECT * FROM licence WHERE idAdmin = ?",
         [tokenIdUser],
-        (err: any, result: any) => {
+        (err: QueryError, result: RowDataPacket) => {
           if (err) {
             return res.json({
               ok: false,
@@ -101,7 +102,7 @@ class LicenceSofteareInvensys {
           estado,
           verificado,
         ],
-        (err: any, result: any) => {
+        (err: QueryError, result: RowDataPacket) => {
           if (err) {
             return res.status(400).json({
               ok: false,

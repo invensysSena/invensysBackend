@@ -4,11 +4,26 @@ import LicenceSofteareInvensys from "../controllers/GestionLicence";
 import fileUpload from "express-fileupload";
 const router: Router = Router();
 import path from "path";
-
+import ChangeDataController from "../controllers/ChangeData";
+const changeData = new ChangeDataController();
 const licence = new LicenceSofteareInvensys();
 class RouterUser extends LoginRegister {
 
- // private changePassword: any = new ChangePasswordController().UpdatePassAdmin();
+  public updateAdminPass() {
+    router.put("/updateAdminPass", changeData.UpdatePassAdmin);
+    return router;
+  }
+
+  public updatePassUser() {
+    router.put("/updatePassUser/:id", changeData.UpdatePassUser);
+    return router;
+  }
+
+  public updateEmailUser() {
+    router.put("/updateEmailUser/:id", changeData.UpdateEmailUser);
+    return router;
+  }
+
 
   public licenceRouter() {
     router.post("/createLicence/:id", licence.createLicence);
