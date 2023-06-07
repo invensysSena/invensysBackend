@@ -29,7 +29,6 @@ export const authAdmin = async (
         [correo],
         async (error: Array<Error> | any, rows: any) => {
           if (error) {
-            console.log(error);
 
             return "ERROR_AUTH_ADMIN";
           }

@@ -494,6 +494,8 @@ abstract class LoginRegister {
         const hasPassword = await bcrypt.hash(data.password, encriptarPassword);
         const conn:any = await conexion.connect();
         conn.query("SELECT * FROM account", async (error:any, rows: any) => {
+         
+          
           if (rows.length > 0) {
             for (let i = 0; i < rows.length; i++) {
               if (rows[i].correo == data.correo)
@@ -880,7 +882,6 @@ abstract class LoginRegister {
         conn.query(
           `CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`,
           (error: any, rows: any) => {
-            console.log("datos",rows[0].length > 0);
             if(rows[0].length > 0){
               conn.query(
                 `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
@@ -893,7 +894,6 @@ abstract class LoginRegister {
                         "users",
                         id
                       );
-                      console.log("error con exito");
                       return res.status(200).json({ message: "DELETE_ALL_USERS" });
                     } else {
                       return res

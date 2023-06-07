@@ -23,7 +23,6 @@ class ChangeDataController {
         "SELECT password from admin where idUsers = ?",
         [validateToken],
         async (err: any, results: any) => {
-          console.log("aaaaaaaaaaaa", results);
 
           if (err) {
             return res.status(400).json({
@@ -33,7 +32,6 @@ class ChangeDataController {
           }
           if (results.length > 0) {
             const compare = await bcrypt.compare(hash, results[0].password);
-            console.log("compare", compare);
 
             if (compare) {
               return res.status(400).json({

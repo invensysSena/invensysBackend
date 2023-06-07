@@ -12,12 +12,10 @@ const removeExtension = (fileName: any) => {
 const a = fs.readdirSync(PATH_ROUTES).filter(async (file) => {
   const name = removeExtension(file);
   if (name !== "index") {
-    console.log("cargando rutas", name);
 
     router.use(`/${name}`, await import(`./${name}`));
   }
 });
 
-console.log({ a });
 
 export default router;

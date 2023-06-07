@@ -111,7 +111,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -120,7 +120,7 @@ abstract class ManageProviders {
         });
       } else {
         const { id } = req.params;
-        const { name, company, email, phone, address } = req.body;
+        const { name, company, email, phone, address } = req.body.data;
         const provider: Provider | any = {
           name,
           company,
@@ -138,7 +138,7 @@ abstract class ManageProviders {
     } catch (error) {
     
       return res.status(500).json({
-        message: "Internal server error",
+        message: "Internal server error",error,
       });
     }
   }

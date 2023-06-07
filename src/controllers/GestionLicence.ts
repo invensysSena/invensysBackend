@@ -10,7 +10,6 @@ class LicenceSofteareInvensys {
     res: Response | any,
     next: NextFunction
   ) {
-    console.log("Hola");
 
     try {
       const Token: string = req.params?.id!;

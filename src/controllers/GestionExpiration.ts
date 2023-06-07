@@ -53,7 +53,6 @@ class ManageExpiration {
       { createdAt: 1, _id: 0 }
     );
 
-    console.log("---------", dataSubProduct);
   }
 }
 

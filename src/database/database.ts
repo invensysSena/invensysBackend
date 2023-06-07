@@ -34,7 +34,6 @@ export class Conexion {
 
       return conenct;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
