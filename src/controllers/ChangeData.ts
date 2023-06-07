@@ -3,6 +3,7 @@ import { conexion } from "../database/database";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
+import { QueryError, RowDataPacket } from "mysql2";
 
 class ChangeDataController {
   public async UpdatePassAdmin(
@@ -11,7 +12,7 @@ class ChangeDataController {
     next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
       const { password } = req.body;
@@ -30,17 +31,16 @@ class ChangeDataController {
             });
           }
           if (result[0].password === null) {
-            await conn.query(
-              "update account set ? where idAccount = ?",
-              [{ password: hash }, validateToken]
-            );
+             conn.query("update account set ? where idAccount = ?", [
+              { password: hash },
+              validateToken,
+            ]);
             return res.status(200).json({
               ok: true,
               message: "UPDATE_PASSWORD_SUCCESS",
             });
-           
           }
-          if(result.length > 0){
+          if (result.length > 0) {
             const validatePass = await bcrypt.compare(
               password,
               result[0].password
@@ -51,10 +51,10 @@ class ChangeDataController {
                 message: "PASSWORD_EQUAL",
               });
             } else {
-              await conn.query(
-                "update account set ? where idAccount = ?",
-                [{ password: hash }, validateToken]
-              );
+               conn.query("update account set ? where idAccount = ?", [
+                { password: hash },
+                validateToken,
+              ]);
               return res.status(200).json({
                 ok: true,
                 message: "UPDATE_PASSWORD_SUCCESS",
@@ -62,7 +62,6 @@ class ChangeDataController {
             }
           }
         }
-    
       );
     } catch (error) {
       next(error);
@@ -75,22 +74,22 @@ class ChangeDataController {
     next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      const token = req.params["authorization"];
+      const token = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { email } = req.body.data;
+      const { email } = req.body;
       const { id } = req.params;
-
+      const conn: any = await conexion.connect();
       if (!validateToken) {
         return res.status(400).json({
           ok: false,
           message: "NO_EXIST_TOKEN",
         });
       } else {
-        const conn: any = await conexion.connect();
-        await conn.query(
+
+        conn.query(
           "select correo from account where idAccount = ?",
-          [validateToken],
+          [id],
           async (err: any, result: any) => {
             if (err) {
               return res.status(400).json({
@@ -99,22 +98,21 @@ class ChangeDataController {
               });
             }
             if (result.length > 0) {
-              if (email === result[0].email) {
+              if (email === result[0].correo) {
                 return res.status(400).json({
                   ok: false,
                   message: "EMAIL_EQUAL_USER",
                 });
+              } else {
+                 conn.query(
+                  "update account set ? where idAccount = ?",
+                  [{ correo: email }, id]
+                );
+                return res.status(200).json({
+                  ok: true,
+                  message: "UPDATE_EMAIL_SUCCESS",
+                });
               }
-            } else {
-              await conn.query("update account set ? where idAccount = ?", [
-                { email },
-                id,
-              ]);
-
-              return res.status(200).json({
-                ok: true,
-                message: "UPDATE_EMAIL_SUCCESS",
-              });
             }
           }
         );
@@ -130,10 +128,10 @@ class ChangeDataController {
     next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      const token = req.params["authorization"];
+      const token = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { password } = req.body.data;
+      const { password } = req.body;
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(password, salt);
       const { id } = req.params;
@@ -144,8 +142,8 @@ class ChangeDataController {
           message: "NO_EXIST_TOKEN",
         });
       } else {
-        const conn: any = await conexion.connect();
-        await conn.query(
+        const conn: any =  await conexion.connect();
+       conn.query(
           "select password from account where idAccount = ?",
           [validateToken],
           async (err: any, result: any) => {
@@ -167,7 +165,7 @@ class ChangeDataController {
                 });
               }
             } else {
-              await conn.query("update account set ? where idAccount = ?", [
+              conn.query("update account set ? where idAccount = ?", [
                 { password: hash },
                 id,
               ]);
@@ -175,6 +173,7 @@ class ChangeDataController {
               return res.status(200).json({
                 ok: true,
                 message: "UPDATE_PASSWORD_SUCCESS",
+                hash
               });
             }
           }

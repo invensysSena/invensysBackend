@@ -10,17 +10,17 @@ const licence = new LicenceSofteareInvensys();
 class RouterUser extends LoginRegister {
 
   public updateAdminPass() {
-    router.post("/updateAdminPass", changeData.UpdatePassAdmin);
+    router.put("/updateAdminPass", changeData.UpdatePassAdmin);
     return router;
   }
 
   public updatePassUser() {
-    router.post("/updatePassUser", changeData.UpdatePassUser);
+    router.put("/updatePassUser/:id", changeData.UpdatePassUser);
     return router;
   }
 
   public updateEmailUser() {
-    router.post("/updateEmailUser", changeData.UpdateEmailUser);
+    router.put("/updateEmailUser/:id", changeData.UpdateEmailUser);
     return router;
   }
 
