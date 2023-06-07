@@ -30,7 +30,7 @@ export class Conexion {
         port: this.port,
       });
 
-      this.veryficarConexion(conenct);
+      await this.veryficarConexion(conenct);
 
       return conenct;
     } catch (error) {
@@ -38,7 +38,7 @@ export class Conexion {
       return error;
     }
   }
-  public veryficarConexion(conenct: mysql.Connection) {
+  public async veryficarConexion(conenct: mysql.Connection) {
     // si se cae la conexion se vuelve a conectar
     conenct.on("error", (err: MysqlError) => {
       if (err.code === "PROTOCOL_CONNECTION_LOST") {
