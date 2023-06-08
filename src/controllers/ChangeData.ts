@@ -20,10 +20,7 @@ class ChangeDataController {
       const hash = await bcrypt.hash(password, salt);
       const conn:any = await conexion.connect();
 
-
-    
-
-     await conn.query(
+      conn.query(
         "select password from admin where idUsers = ?",
         [validateToken],
         async (err: QueryError, result: RowDataPacket) => {
@@ -34,7 +31,7 @@ class ChangeDataController {
             });
           }
           if (result[0].password === null) {
-             conn.query("update account set ? where idUsers = ?", [
+             conn.query("update admin set ? where idUsers = ?", [
               { password: hash },
               validateToken,
             ]);
@@ -54,7 +51,7 @@ class ChangeDataController {
                 message: "PASSWORD_EQUAL",
               });
             } else {
-               conn.query("update account set ? where idAccount = ?", [
+               conn.query("update admin set ? where idUsers = ?", [
                 { password: hash },
                 validateToken,
               ]);

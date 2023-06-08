@@ -50,7 +50,7 @@ export class Conexion {
       }
       if (err.code === "ECONNREFUSED") {
         console.error("Database connection was refused");
-        this.connect();
+        
       }
     });
   }
