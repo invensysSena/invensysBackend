@@ -20,6 +20,7 @@ import moment from "moment-with-locales-es6";
 import Todo from "../class/Notification.Todo";
 import { uploadImage, deleteImage } from "../utils/cloudinary";
 import { AnyArray } from "mongoose";
+import { QueryError, RowDataPacket} from 'mysql2';
 let momet: any = moment;
 moment.locale("es");
 abstract class LoginRegister {
@@ -30,9 +31,11 @@ abstract class LoginRegister {
   ): Promise<Response | Request | any> {
     try {
       const conn:any = await conexion.connect();
+
+      
       conn.query(
         `CALL ADMIN_SELECT_CODE('${req.body.data.email}')`,
-        async (error: any, rows: any) => {
+        async (error: QueryError, rows: RowDataPacket) => {
           for (let i = 0; i < rows.length; i++) {
             if (rows[i][0].codigo == parseInt(req.body.data.codigo)) {
               return res
@@ -77,7 +80,7 @@ abstract class LoginRegister {
       let state = (datas.authCuenta = true);
       let estado = "activo";
       const conn:any = await conexion.connect();
-      conn.query("SELECT * FROM admin", async (error: any, row: any) => {
+      conn.query("SELECT * FROM admin", async (error: QueryError, row: RowDataPacket) => {
         if (row.length < 0) {
           return res.status(400).json({ message: "ERROR_DATA_ADMIN" });
         }
@@ -162,7 +165,7 @@ abstract class LoginRegister {
       const conn: any = await conexion.connect();
       conn.query(
         `CALL ADMIN_AUTH_LOGIN('${data.correo}')`,
-        async (error: Array<Error> | any, rows: any) => {
+        async (error: QueryError, rows: RowDataPacket) => {
           if (error)
             return res.status(400).json({ message: "ERROR_DB", error: error });
 
@@ -193,7 +196,7 @@ abstract class LoginRegister {
           } else
             conn.query(
               `CALL USER_LOGIN('${data.correo}')`,
-              async (error: any, rows: any) => {
+              async (error: QueryError, rows: RowDataPacket) => {
                 if (error)
                   return res
                     .status(400)
@@ -207,7 +210,7 @@ abstract class LoginRegister {
                   if (validPassword) {
                     conn.query(
                       `CALL USER_LOGIN_MODULO('${rows[0][0].idAccount}')`,
-                      async (error: any, rowsP: any) => {
+                      async (error: QueryError, rowsP: RowDataPacket) => {
                         if (error)
                           return res
                             .status(400)
@@ -249,7 +252,7 @@ abstract class LoginRegister {
                         await conn.execute(
                           "SELECT * FROM services WHERE idAccountUsers = ?",
                           [rows[0][0].idAccount],
-                          async (error: any, coll: any) => {
+                          async (error: QueryError, coll: RowDataPacket) => {
                             if (coll.length > 0) {
                               conn.query(
                                 `CALL UPDATE_SESION_USER('${
@@ -262,13 +265,13 @@ abstract class LoginRegister {
                           '${city}','${country_name}','${region}','${
                                   rows[0][0].idAccount
                                 }')`,
-                                (error: any, rows: any) => {}
+                                (error: QueryError, rows: RowDataPacket) => {}
                               );
                             } else {
                               conn.execute(
                                 `INSERT INTO services(idAccountUsers) VALUES(?)`,
                                 [rows[0][0].idAccount],
-                                (error: any, coll: any) => {
+                                (error: QueryError, rows: RowDataPacket) => {
                                   conn.query(
                                     `CALL UPDATE_SESION_USER('${
                                       dataDevice.device
@@ -280,7 +283,7 @@ abstract class LoginRegister {
                                   '${city}','${country_name}','${region}','${
                                       rows[0][0].idAccount
                                     }')`,
-                                    (error: any, self: any) => {}
+                                    (error: QueryError, self: RowDataPacket) => {}
                                   );
                                 }
                               );
@@ -344,7 +347,7 @@ abstract class LoginRegister {
       conn.query(
         "SELECT * FROM admin  Where correo = ?",
         [email],
-        async (error: Array<Error> | any, rows: any) => {
+        async (error: QueryError, rows: RowDataPacket) => {
           if (error)
             return res.status(400).json({ message: "ERROR_DB", error: error });
 
@@ -354,7 +357,7 @@ abstract class LoginRegister {
             conn.query(
               "SELECT idUsers,rol FROM admin WHERE correo = ?",
               [email],
-              async (error: Array<Error> | any, rows: any) => {
+              async (error: QueryError, rows: RowDataPacket) => {
                 if (error)
                   return res
                     .status(400)
@@ -405,12 +408,12 @@ abstract class LoginRegister {
               `CALL AUTH_GOOGLE('${email}', '${name}', '${picture}','${fecha}','${hora}',
             '${rol}','${cuenta}','${ip}','${country_name}','${city}','${country_calling_code}',
             '${languages}','${longitude}','${latitude}','${state}','${tc}','${authCount}')`,
-              async (error: Array<Error> | any, rows: any) => {
+              async (error: QueryError, rows: RowDataPacket) => {
                 if (rows) {
                   conn.query(
                     "SELECT idUsers ,rol FROM admin WHERE correo = ?",
                     [email],
-                    async (error: Array<Error> | any, rows: any) => {
+                    async (error: QueryError, rows: RowDataPacket) => {
                       if (error)
                         return res
                           .status(400)
@@ -493,7 +496,9 @@ abstract class LoginRegister {
         const encriptarPassword = await bcrypt.genSalt(roundNumber);
         const hasPassword = await bcrypt.hash(data.password, encriptarPassword);
         const conn:any = await conexion.connect();
-        conn.query("SELECT * FROM account", async (error:any, rows: any) => {
+        conn.query("SELECT * FROM account", async (error: QueryError, rows: RowDataPacket) => {
+         
+          
           if (rows.length > 0) {
             for (let i = 0; i < rows.length; i++) {
               if (rows[i].correo == data.correo)
@@ -505,19 +510,19 @@ abstract class LoginRegister {
           }
           conn.query(
             `CALL CREATE_USER('${data.correo}','${hasPassword}','${fecha}','${verifyToken.id}','${hora}','${req.body.postDataUserRegister.estado}')`,
-            (error:any, rows:any) => {
+            (error: QueryError, rows: RowDataPacket) => {
               if (rows) {
                 conn.query(
                   `CALL GET_USER_SECOND_USER('${data.correo}')`,
-                  (error:any, rows: any) => {
+                  (error: QueryError, rows: RowDataPacket) => {
                     if (rows) {
                       conn.query(
                         `CALL INSERT_MODULE_USER('${req.body.postDataUserRegister.modulo}','${req.body.postDataUserRegister.modulo}','${rows[0][0].idAccount}')`,
-                        (error:any, rowsid: any) => {
+                        (error: QueryError, rowsid: RowDataPacket) => {
                           if (rowsid) {
                             conn.query(
                               `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
-                              (error:any, rowsData: any) => {
+                              (error: QueryError, rowsData: RowDataPacket) => {
                                 if (rowsData) {
                                   conn.query(
                                     `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
@@ -525,7 +530,7 @@ abstract class LoginRegister {
                                       if (rowsData) {
                                         conn.query(
                                           `CALL GET_USER_CREATE('${data.correo}')`,
-                                          async (error:any, rows:any) => {
+                                          async (error: QueryError, rows: RowDataPacket) => {
                                             await new Todo().createNotificationClass(
                                               `Creaste un nuevo usuario`,
                                               data.correo,
@@ -603,7 +608,7 @@ abstract class LoginRegister {
         conn.query(
           "SELECT * FROM usuario WHERE correo = ? AND codigo = ?",
           [validate.correo, validate.codePass],
-          async (error:any, rows: any) => {
+          async (error: QueryError, rows: RowDataPacket) => {
             if (error) {
               return res.json({ message: "ERROR_NEW_PASS", error: error });
             }
@@ -612,7 +617,7 @@ abstract class LoginRegister {
               conn.query(
                 "UPDATE usuario SET password = ? WHERE correo = ?",
                 [password, validate.correo],
-                async (error:any, rows:any) => {
+                async (error: QueryError, rows: RowDataPacket) => {
                   if (error)
                     return res.json({
                       message: "ERROR_UPDATE_PASS",
@@ -656,7 +661,7 @@ abstract class LoginRegister {
       conn.query(
         `CALL ADMIN_SELECT_EMAIL('${mail.correo}')`,
         [mail.correo],
-        (error: any, rows: any) => {
+        (error: QueryError, rows: RowDataPacket) => {
           if (error) {
             return res.json({ message: error });
           }
@@ -694,7 +699,7 @@ abstract class LoginRegister {
       );
       conn.query(
         `CALL ADMIN_SELECT_EMAIL('${validate.correo}')`,
-        (error: any, rows: any) => {
+        (error: QueryError, rows: RowDataPacket) => {
           if (error)
             return res
               .status(500)
@@ -702,7 +707,7 @@ abstract class LoginRegister {
           if (rows.length > 0) {
             conn.query(
               `CALL ADMIN_UPDATE_PASSWORD('${validate.correo}','${hasPassword}')`,
-              (error: any, rows: any) => {
+              (error: QueryError, rows: RowDataPacket) => {
                 if (error)
                   return res
                     .status(400)
@@ -762,7 +767,7 @@ abstract class LoginRegister {
                 password,
                 encriptarPassword
               );
-              conn.query("SELECT * FROM account", async (error:any, rows: any) => {
+              conn.query("SELECT * FROM account", async (error: QueryError, rows: RowDataPacket) => {
                 for (let i = 0; i < rows.length; i++) {
                   if (rows[i].correo == correo)
                     return res.json({
@@ -772,23 +777,23 @@ abstract class LoginRegister {
                 }
                 conn.query(
                   `CALL CREATE_USER('${correo}','${hasPassword}','${fecha}','${id}','${hora}','${req.body["formDataCsv[estado]"]}')`,
-                  (error:any, rows:any) => {
+                  (error: QueryError, rows: RowDataPacket) => {
                     if (rows) {
                       conn.query(
                         `CALL GET_USER_SECOND_USER('${correo}')`,
-                        (error:any, rows: any) => {
+                        (error: QueryError, rows: RowDataPacket) => {
                           if (rows) {
                             conn.query(
                               `CALL INSERT_MODULE_USER('${req.body["formDataCsv[modulo]"]}','${req.body["formDataCsv[modulo]"]}','${rows[0][0].idAccount}')`,
-                              (error:any, rowsid: any) => {
+                              (error: QueryError, rowsid: RowDataPacket) => {
                                 if (rowsid) {
                                   conn.query(
                                     `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
-                                    (error:any, rowsData: any) => {
+                                    (error: QueryError, rowsData: RowDataPacket) => {
                                       if (rowsData) {
                                         conn.query(
                                           `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
-                                          (error:any, rowsData:any) => {}
+                                          (error: QueryError, rowsData: RowDataPacket) => {}
                                         );
                                       }
                                     }
@@ -812,7 +817,7 @@ abstract class LoginRegister {
             }
 
             await fs.remove(req.files?.archivousuariocsv?.tempFilePath);
-            conn.query(`CALL GET_USER('${id}')`, (error:any, rows:any) => {
+            conn.query(`CALL GET_USER('${id}')`, (error: QueryError, rows: RowDataPacket) => {
               return res.status(201).json({
                 message: "USER_REGISTER_SUCCESFULL",
                 status: 201,
@@ -844,7 +849,7 @@ abstract class LoginRegister {
 
       if (id) {
         const conn:any = await conexion.connect();
-        conn.query(`CALL GET_USER('${id}')`, (error:any, rows: any) => {
+        conn.query(`CALL GET_USER('${id}')`, (error: QueryError, rows: RowDataPacket) => {
           if (error)
             return res
               .status(500)
@@ -879,12 +884,11 @@ abstract class LoginRegister {
         ]);
         conn.query(
           `CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`,
-          (error: any, rows: any) => {
-            console.log("datos",rows[0].length > 0);
+          (error: QueryError, rows: RowDataPacket) => {
             if(rows[0].length > 0){
               conn.query(
                 `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
-                async (error: any, rows: any) => {
+                async (error: QueryError, rows: RowDataPacket) => {
                   try {
                     if (rows) {
                       await new Todo().createNotificationClass(
@@ -893,7 +897,6 @@ abstract class LoginRegister {
                         "users",
                         id
                       );
-                      console.log("error con exito");
                       return res.status(200).json({ message: "DELETE_ALL_USERS" });
                     } else {
                       return res
@@ -939,13 +942,13 @@ abstract class LoginRegister {
 
       if (id) {
         const conn:any = await conexion.connect();
-        conn.query(`CALL GET_COUNT_USERS('${id}')`, (error:any, rows: any) => {
+        conn.query(`CALL GET_COUNT_USERS('${id}')`, (error: QueryError, rows: RowDataPacket) => {
           conn.query(
             `CALL COUNT_STATE_USER('${id}')`,
-            (error:any, rowsActive: any) => {
+            (error: QueryError, rowsActive: RowDataPacket) => {
               conn.query(
                 `CALL COUNT_STATE_USER_INACTIVO('${id}')`,
-                (error:any, rowsInactive: any) => {
+                (error: QueryError, rowsInactive: RowDataPacket) => {
                   if (rows) {
                     return res.status(200).json({
                       message: "COUNT_USERS_ALL",
@@ -984,7 +987,7 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.query(
           `CALL GET_MODULE_ACCOUNT_USER('${req.params.id}')`,
-          (error:any, rows: any) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res
                 .status(200)
@@ -1017,7 +1020,7 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.query(
           `CALL GET_PERMISIONS_MODULE_USER('${id}')`,
-          (error:any, rows: any) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res
                 .status(200)
@@ -1050,7 +1053,7 @@ abstract class LoginRegister {
 
         conn.query(
           `CALL ADMIN_UPDATE_DATA('${id}','${req.body.name}','${req.body.lastname}','${req.body.email}')`,
-          (error:any, rows:any) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res.status(200).json({ message: "UPDATE_ADMIN_USER" });
             } else {
@@ -1081,7 +1084,7 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.query(
           `CALL DELETE_MODULE_USER('${req.body.id}')`,
-          (error:any, rows:any) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res.status(200).json({ message: "DELETE_MODULE_USER" });
             } else {
@@ -1111,11 +1114,11 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.query(
           `CALL INSERT_MODULE_USER('${req.body.data.module}','${req.body.data.module}','${req.body.data.idAccount}')`,
-          (error: any, rows: any) => {
+          (error: QueryError, rows: RowDataPacket) => {
             conn.query(
               "SELECT IDmodulo, titulo FROM modulo WHERE titulo = ?",
               [req.body.data.module],
-              (error: any, row: any) => {
+              (error: QueryError, row: RowDataPacket) => {
                 if (rows) {
                   return res
                     .status(200)
@@ -1149,7 +1152,7 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.query(
           `CALL ASIGNED_PERMISION_USER_ACCOUNT('${id}','${req.body.idModule}','${req.body.permisions}')`,
-          (error: any, rows: any) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res
                 .status(200)
@@ -1181,7 +1184,7 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.query(
           `CALL DELETE_PERMISIONS_MODULE_USER('${id}','${req.body.idModule}')`,
-          async (error: any, rows: any) => {
+          async (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res
                 .status(200)
@@ -1211,7 +1214,7 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.execute(
           `CALL GET_MODULE_ACCOUNT_USER('${id1}')`,
-          (error: any, rows: any) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res
                 .status(200)
@@ -1239,7 +1242,7 @@ abstract class LoginRegister {
       const { id } = verifyToken;
       if (id) {
         const conn:any = await conexion.connect();
-        conn.query(`CALL ADMIN_SELECT('${id}')`, (error: any, rows: any) => {
+        conn.query(`CALL ADMIN_SELECT('${id}')`, (error: QueryError, rows: RowDataPacket) => {
           if (rows) {
             return res
               .status(200)
@@ -1280,7 +1283,7 @@ abstract class LoginRegister {
           const conn:any = await conexion.connect();
           conn.query(
             `CALL ADMIN_UPLOAD_IMG('${id}','${url_imagen}','${id_img}')`,
-            (error: any, rows: any) => {
+            (error: QueryError, rows: RowDataPacket) => {
               if (rows) {
                 return res.status(200).json({ message: "UPLOAD_IMAGE_ADMIN" });
               } else {
@@ -1316,11 +1319,11 @@ abstract class LoginRegister {
         const conn:any = await conexion.connect();
         conn.execute(
           `CALL ADMIN_UPDATE_DATA('${id}','${req.body.data.name}','${req.body.data.document}','${req.body.data.telefono}','${req.body.data.empresa}')`,
-          async (error: any, rows: any) => {
+          async (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               conn.query(
                 `CALL ADMIN_SELECT('${id}')`,
-                async (error: any, rows: any) => {
+                async (error: QueryError, rows: RowDataPacket) => {
                   await new Todo().createNotificationClass(
                     `Tus datos se actualizaron correctamente`,
                     "se mantendra la misma contraseña",
@@ -1358,7 +1361,7 @@ abstract class LoginRegister {
       const conn:any = await conexion.connect();
       conn.query(
         `CALL GET_SERVICE_USER('${req.params.id}')`,
-        (error: any, rows: any) => {
+        (error: QueryError, rows: RowDataPacket) => {
           if (rows) {
             return res
               .status(200)

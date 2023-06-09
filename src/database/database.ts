@@ -34,7 +34,6 @@ export class Conexion {
 
       return conenct;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -51,7 +50,7 @@ export class Conexion {
       }
       if (err.code === "ECONNREFUSED") {
         console.error("Database connection was refused");
-        this.connect();
+        
       }
     });
   }

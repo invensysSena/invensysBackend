@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { conexion } from "../database/database";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import { QueryError, RowDataPacket } from "mysql2";
+import { conexion } from "../database/database";
 
 class ChangeDataController {
   public async UpdatePassAdmin(
@@ -17,13 +17,18 @@ class ChangeDataController {
       const validateToken = decoded.id;
       const { password, newPassword } = req.body.data;
       const salt = await bcrypt.genSalt(10);
+<<<<<<< HEAD
       const hash = await bcrypt.hash(newPassword, salt);
       const conn: any = await conexion.connect();
+=======
+      const hash = await bcrypt.hash(password, salt);
+      const conn:any = await conexion.connect();
+>>>>>>> dc83d4f11bbe411c9b2582e3f5f7b1cf96735abd
 
       conn.query(
         "select password from admin where idUsers = ?",
         [validateToken],
-        async (err: any, result: any) => {
+        async (err: QueryError, result: RowDataPacket) => {
           if (err) {
             return res.status(400).json({
               ok: false,
@@ -77,7 +82,7 @@ class ChangeDataController {
       const token = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { email } = req.body;
+      const { email } = req.body.data;
       const { id } = req.params;
       const conn: any = await conexion.connect();
       if (!validateToken) {
@@ -131,7 +136,7 @@ class ChangeDataController {
       const token = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { password } = req.body;
+      const { password } = req.body.data;
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(password, salt);
       const { id } = req.params;
@@ -146,7 +151,7 @@ class ChangeDataController {
        conn.query(
           "select password from account where idAccount = ?",
           [validateToken],
-          async (err: any, result: any) => {
+          async (err: QueryError, result: RowDataPacket) => {
             if (err) {
               return res.status(400).json({
                 ok: false,
