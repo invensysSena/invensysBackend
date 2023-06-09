@@ -15,9 +15,9 @@ class ChangeDataController {
       const token: any = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { password } = req.body;
+      const { password, newPassword } = req.body.data;
       const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(password, salt);
+      const hash = await bcrypt.hash(newPassword, salt);
       const conn: any = await conexion.connect();
 
       conn.query(
