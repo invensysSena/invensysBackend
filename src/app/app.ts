@@ -45,7 +45,6 @@ class App {
     conexion.connect();
     const port: Number = 8080;
     AppServer.listen(PORT || port, () => {
-      console.log("connection in the port: :", PORT);
     });
   }
 }

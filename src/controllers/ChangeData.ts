@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { conexion } from "../database/database";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import { QueryError, RowDataPacket } from "mysql2";
+import { conexion } from "../database/database";
 
 class ChangeDataController {
   public async UpdatePassAdmin(
@@ -15,7 +15,7 @@ class ChangeDataController {
       const token: any = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { password } = req.body;
+      const { password, newPassword } = req.body.data;
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(password, salt);
       const conn: any = await conexion.connect();
@@ -23,7 +23,7 @@ class ChangeDataController {
       conn.query(
         "select password from admin where idUsers = ?",
         [validateToken],
-        async (err: any, result: any) => {
+        async (err: QueryError, result: RowDataPacket) => {
           if (err) {
             return res.status(400).json({
               ok: false,
@@ -146,7 +146,7 @@ class ChangeDataController {
         conn.query(
           "select password from account where idAccount = ?",
           [validateToken],
-          async (err: any, result: any) => {
+          async (err: QueryError, result: RowDataPacket) => {
             if (err) {
               return res.status(400).json({
                 ok: false,
