@@ -1,24 +1,23 @@
 import nodemailer from "nodemailer";
 
- export class recoveryUserPass{
-	 public async sendCode(code:any, email:string): Promise<any>{
+export class recoveryUserPass {
+  public async sendCode(code: any, email: string): Promise<any> {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      auth: {
+        user: "iinvensys@gmail.com",
+        pass: "zylpdncaribhlcdj",
+      },
+    });
 
- const transporter = nodemailer.createTransport({
-                host: "smtp.gmail.com",
-                port: 587,
-                auth: {
-                  user: 'stored754@gmail.com',
-                  pass:'ocgsubbijuoiboiz',
-                },
-              });
-
-              // send email
-            return  await transporter
-                .sendMail({
-                  from: "stored754@gmail.com",
-                  to: email,
-                  subject: "Mensajeria de notificaciónes de Stored",
-                  html: `
+    // send email
+    return await transporter
+      .sendMail({
+        from: "iinvensys@gmail.com",
+        to: email,
+        subject: "Mensajeria de notificaciónes de Invensys",
+        html: `
                    <div style=" width:400px; margin: 10px auto;
                   justify-content:center; border: 1px solid #ccc; border-radius:6px;
 				  padding: 0px; box-shadow: 0px 12px 8px #eee;">
@@ -26,7 +25,7 @@ import nodemailer from "nodemailer";
 				  border-bottom: 1px solid #009AFA;
 				  padding: 6px; text-align: center;">Su correo: ${email}</p>
                   <p style="font-weight: 500; font-size:20px; font-family:Arial, Helvetica, sans-serif;text-align:center;
-				   padding: 5px;">Continue con la recuperacion de su contraseña en stored</p>
+				   padding: 5px;">Continue con la recuperacion de su contraseña en Invensys</p>
                   <p style="font-family:Arial, Helvetica, sans-serif;
 				  text-align: center; ">Su codigo para el cambio de contraseña 🔏</p>
                    <p style="background: #AED6F1 ; color: rgb(20, 28, 39);
@@ -36,7 +35,7 @@ import nodemailer from "nodemailer";
 					 display: block;   margin:4px 9px; ">🔐 ${code}<p/>
 					<p style="font-family:Arial, Helvetica, sans-ser; padding: 8px; color: #009AFA;
 					 text-align:start; display: inline-block; text-align: center;">Una vez completado, puedes comenzar a utilizar todas las funcionalidades
-						de stored 📚📲
+						de Invensys 📚📲
 					</p>
 					<p style="font-family:Arial, Helvetica, sans-ser;
 					text-align: center; border-top: 1px solid #ccc; padding: 4px;">
@@ -46,16 +45,15 @@ import nodemailer from "nodemailer";
 						↪️ <a href="">Terminos y condiciones en privacidad de datos</a> </p>
 <p style="font-family:Arial, Helvetica, sans-ser;
 										text-align: center;  padding: 4px;">
-	© Todos los derechos recervados | Stored </p>
+	© Todos los derechos recervados |Invensys </p>
                   </div>
                  `,
-                })
-                .then((res) => {
-                 let dataEmail:any = res; 
-                })
-                .catch((err) => {
-                  let dataEmailError:any = err; 
-                });
-
-	 }
+      })
+      .then((res) => {
+        let dataEmail: any = res;
+      })
+      .catch((err) => {
+        let dataEmailError: any = err;
+      });
+  }
 }

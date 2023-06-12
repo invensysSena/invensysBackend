@@ -530,6 +530,7 @@ class LoginRegister {
     uploadusersCsv(req, res, next) {
         var _a, _b, _c, _d, _e, _f, _g;
         return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body, req.files);
             const fecha = momet().format("MMMM Do YYYY");
             const hora = momet().format("h:mm:ss a");
             const permisions = {
@@ -558,11 +559,8 @@ class LoginRegister {
                             const hasPassword = yield bcrypt_1.default.hash(password, encriptarPassword);
                             conn.query("SELECT * FROM account", (error, rows) => __awaiter(this, void 0, void 0, function* () {
                                 for (let i = 0; i < rows.length; i++) {
-                                    if (rows[i].correo == correo)
-                                        return res.json({
-                                            message: "ERR_MAIL_EXIST_USER",
-                                            status: 302,
-                                        });
+                                    if (rows[i].correo == correo) {
+                                    }
                                 }
                                 conn.query(`CALL CREATE_USER('${correo}','${hasPassword}','${fecha}','${id}','${hora}','${req.body["formDataCsv[estado]"]}')`, (error, rows) => {
                                     if (rows) {
@@ -578,13 +576,6 @@ class LoginRegister {
                                                     }
                                                 });
                                             }
-                                        });
-                                    }
-                                    else {
-                                        return res.status(400).json({
-                                            message: "USER_REGISTER_ERROR",
-                                            status: 400,
-                                            data: rows,
                                         });
                                     }
                                 });
@@ -651,17 +642,35 @@ class LoginRegister {
                         req.body.deleteData,
                     ]);
                     conn.query(`CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`, (error, rows) => {
-                        conn.query(`CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`, (error, rows) => __awaiter(this, void 0, void 0, function* () {
-                            if (rows) {
-                                yield new Notification_Todo_1.default().createNotificationClass("Se elimino un usuario de la plataforma", "usuario", "users", id);
-                                return res.status(200).json({ message: "DELETE_ALL_USERS" });
-                            }
-                            else {
-                                return res
-                                    .status(400)
-                                    .json({ message: "ERROR_DELETE_ALL_USERS" });
-                            }
-                        }));
+                        console.log("datos", rows[0].length > 0);
+                        if (rows[0].length > 0) {
+                            conn.query(`CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`, (error, rows) => __awaiter(this, void 0, void 0, function* () {
+                                try {
+                                    if (rows) {
+                                        yield new Notification_Todo_1.default().createNotificationClass("Se elimino un usuario de la plataforma", "usuario", "users", id);
+                                        console.log("error con exito");
+                                        return res
+                                            .status(200)
+                                            .json({ message: "DELETE_ALL_USERS" });
+                                    }
+                                    else {
+                                        return res
+                                            .status(400)
+                                            .json({ message: "ERROR_DELETE_ALL_USERS", error });
+                                    }
+                                }
+                                catch (error) {
+                                    return res
+                                        .status(400)
+                                        .json({ message: "ERROR_DELETE_ALL_USERS", error });
+                                }
+                            }));
+                        }
+                        else {
+                            return res
+                                .status(400)
+                                .json({ message: "ERROR_DELETE_ALL_USERS", error });
+                        }
                     });
                 }
                 else {

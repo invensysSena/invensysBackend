@@ -15,10 +15,12 @@ import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config"; // <--- this is the problem
 import { sendMailAdmin } from "../libs/libs";
 import { recoveryAdminPass } from "../libs/forGotPassword";
+import { ConfirmPasswordExito } from "../libs/confirmPasswordExito";
 import moment from "moment-with-locales-es6";
 // import { newPasswordUser } from "../interfaces/users";
 import Todo from "../class/Notification.Todo";
 import { uploadImage, deleteImage } from "../utils/cloudinary";
+import  { QueryError,RowDataPacket } from "mysql2";
 import { AnyArray } from "mongoose";
 let momet: any = moment;
 moment.locale("es");
@@ -29,7 +31,7 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
       conn.query(
         `CALL ADMIN_SELECT_CODE('${req.body.data.email}')`,
         async (error: any, rows: any) => {
@@ -76,7 +78,7 @@ abstract class LoginRegister {
       const hasPassword = await bcrypt.hash(datas.password, encriptarPassword);
       let state = (datas.authCuenta = true);
       let estado = "activo";
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
       conn.query("SELECT * FROM admin", async (error: any, row: any) => {
         if (row.length < 0) {
           return res.status(400).json({ message: "ERROR_DATA_ADMIN" });
@@ -335,8 +337,10 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
+    console.log("ffffffff", "this.passpAuthGoogle");
+
     try {
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
       const { email, name, picture } = req.body.data;
 
       const fecha = momet().format("Do MMMM  YYYY");
@@ -400,7 +404,6 @@ abstract class LoginRegister {
             let state = "activo";
             let tc = "si";
             let authCount = "OK";
-            //cuent,ipA,paisA,ciudadA,country_calling,idiomaA,longA,lagA
             conn.query(
               `CALL AUTH_GOOGLE('${email}', '${name}', '${picture}','${fecha}','${hora}',
             '${rol}','${cuenta}','${ip}','${country_name}','${city}','${country_calling_code}',
@@ -421,9 +424,10 @@ abstract class LoginRegister {
                           SECRET || "tokenGenerate",
                           { expiresIn: 60 * 60 * 24 }
                         );
-                        const resultEmail = new sendMailAdmin().sendMailer(
-                          email
-                        );
+                        const resultEmail =
+                          await new sendMailAdmin().sendMailer(email);
+                        console.log("resultEmail", resultEmail);
+
                         return res.status(200).json({
                           message: "ADMIN_AUTH_SUCCESFULL_GOOGLE",
                           token: token,
@@ -492,8 +496,8 @@ abstract class LoginRegister {
         const roundNumber = 10;
         const encriptarPassword = await bcrypt.genSalt(roundNumber);
         const hasPassword = await bcrypt.hash(data.password, encriptarPassword);
-        const conn:any = await conexion.connect();
-        conn.query("SELECT * FROM account", async (error:any, rows: any) => {
+        const conn: any = await conexion.connect();
+        conn.query("SELECT * FROM account", async (error: any, rows: any) => {
           if (rows.length > 0) {
             for (let i = 0; i < rows.length; i++) {
               if (rows[i].correo == data.correo)
@@ -505,27 +509,27 @@ abstract class LoginRegister {
           }
           conn.query(
             `CALL CREATE_USER('${data.correo}','${hasPassword}','${fecha}','${verifyToken.id}','${hora}','${req.body.postDataUserRegister.estado}')`,
-            (error:any, rows:any) => {
+            (error: any, rows: any) => {
               if (rows) {
                 conn.query(
                   `CALL GET_USER_SECOND_USER('${data.correo}')`,
-                  (error:any, rows: any) => {
+                  (error: any, rows: any) => {
                     if (rows) {
                       conn.query(
                         `CALL INSERT_MODULE_USER('${req.body.postDataUserRegister.modulo}','${req.body.postDataUserRegister.modulo}','${rows[0][0].idAccount}')`,
-                        (error:any, rowsid: any) => {
+                        (error: any, rowsid: any) => {
                           if (rowsid) {
                             conn.query(
                               `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
-                              (error:any, rowsData: any) => {
+                              (error: any, rowsData: any) => {
                                 if (rowsData) {
                                   conn.query(
                                     `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
-                                    async (error:any, rowsData:any) => {
+                                    async (error: any, rowsData: any) => {
                                       if (rowsData) {
                                         conn.query(
                                           `CALL GET_USER_CREATE('${data.correo}')`,
-                                          async (error:any, rows:any) => {
+                                          async (error: any, rows: any) => {
                                             await new Todo().createNotificationClass(
                                               `Creaste un nuevo usuario`,
                                               data.correo,
@@ -589,7 +593,7 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
       const { codigo, correo, newPassword } = req.body;
       const validate: any = {
         correo: correo,
@@ -599,11 +603,12 @@ abstract class LoginRegister {
       const expresiones = {
         password: /^.{4,20}$/,
       };
+
       if (expresiones.password.test(validate.newPassword)) {
         conn.query(
           "SELECT * FROM usuario WHERE correo = ? AND codigo = ?",
           [validate.correo, validate.codePass],
-          async (error:any, rows: any) => {
+          async (error: any, rows: any) => {
             if (error) {
               return res.json({ message: "ERROR_NEW_PASS", error: error });
             }
@@ -612,7 +617,7 @@ abstract class LoginRegister {
               conn.query(
                 "UPDATE usuario SET password = ? WHERE correo = ?",
                 [password, validate.correo],
-                async (error:any, rows:any) => {
+                async (error: any, rows: any) => {
                   if (error)
                     return res.json({
                       message: "ERROR_UPDATE_PASS",
@@ -648,7 +653,7 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
       const { email } = req.body;
       const mail: forgotPassword = {
         correo: email,
@@ -664,6 +669,39 @@ abstract class LoginRegister {
             const min = 100000;
             const max = 999999;
             let codeAcceso = Math.floor(Math.random() * (max - min + 1) + min);
+
+            conn.query(
+              `CALL ADMIN_RECOVERY__PASSWORD_CODE('${mail.correo}','${codeAcceso}')`,
+              (error: any, rows: any) => {
+                if (error)
+                  return res.json({ message: "ERROR_CODE_WZ", err: error });
+
+                conn.query(
+                  `CALL ADMIN_SELECT_CODE('${mail.correo}')`,
+                  (error: any, rows: any) => {
+                    if (error)
+                      return res.json({
+                        message: "ERROR_CODE_OBTENER_CODE_SQL",
+                      });
+
+                    if (rows.length) {
+                      const resultCode = new recoveryAdminPass().sendCode(
+                        rows[0][0].codigo,
+                        mail.correo
+                      );
+                      return res
+                        .status(200)
+                        .json({ message: "VERIFY", email: mail.correo });
+                    } else {
+                      if (error)
+                        return res.json({
+                          message: "ERROR_CODE_OBTENER_CODE_SQL",
+                        });
+                    }
+                  }
+                );
+              }
+            );
           } else {
             res.status(401).json({ message: "EMAIL_NOT_EXIST" });
           }
@@ -679,7 +717,7 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
       const { codigo, correo, newPassword } = req.body.data;
       const validate: newPasswordAdmin = {
         correo: correo,
@@ -702,7 +740,7 @@ abstract class LoginRegister {
           if (rows.length > 0) {
             conn.query(
               `CALL ADMIN_UPDATE_PASSWORD('${validate.correo}','${hasPassword}')`,
-              (error: any, rows: any) => {
+              async (error: any, rows: any) => {
                 if (error)
                   return res
                     .status(400)
@@ -711,6 +749,11 @@ abstract class LoginRegister {
                   conn.query(
                     `UPDATE admin SET codigo = NULL WHERE correo = ? `,
                     [validate.correo]
+                  );
+                  
+
+                  await new ConfirmPasswordExito().sendConfirmEmail(
+                    validate.correo
                   );
                   return res
                     .status(204)
@@ -730,6 +773,8 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
+    console.log(req.body, req.files);
+
     const fecha = momet().format("MMMM Do YYYY");
     const hora = momet().format("h:mm:ss a");
     const permisions = {
@@ -746,7 +791,7 @@ abstract class LoginRegister {
     if (id) {
       const roundNumber = 10;
       const encriptarPassword = await bcrypt.genSalt(roundNumber);
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
 
       if (req.files?.archivousuariocsv) {
         let fileName = req.files?.archivousuariocsv?.tempFilePath!;
@@ -762,57 +807,51 @@ abstract class LoginRegister {
                 password,
                 encriptarPassword
               );
-              conn.query("SELECT * FROM account", async (error:any, rows: any) => {
-                for (let i = 0; i < rows.length; i++) {
-                  if (rows[i].correo == correo)
-                    return res.json({
-                      message: "ERR_MAIL_EXIST_USER",
-                      status: 302,
-                    });
-                }
-                conn.query(
-                  `CALL CREATE_USER('${correo}','${hasPassword}','${fecha}','${id}','${hora}','${req.body["formDataCsv[estado]"]}')`,
-                  (error:any, rows:any) => {
-                    if (rows) {
-                      conn.query(
-                        `CALL GET_USER_SECOND_USER('${correo}')`,
-                        (error:any, rows: any) => {
-                          if (rows) {
-                            conn.query(
-                              `CALL INSERT_MODULE_USER('${req.body["formDataCsv[modulo]"]}','${req.body["formDataCsv[modulo]"]}','${rows[0][0].idAccount}')`,
-                              (error:any, rowsid: any) => {
-                                if (rowsid) {
-                                  conn.query(
-                                    `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
-                                    (error:any, rowsData: any) => {
-                                      if (rowsData) {
-                                        conn.query(
-                                          `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
-                                          (error:any, rowsData:any) => {}
-                                        );
-                                      }
-                                    }
-                                  );
-                                }
-                              }
-                            );
-                          }
-                        }
-                      );
-                    } else {
-                      return res.status(400).json({
-                        message: "USER_REGISTER_ERROR",
-                        status: 400,
-                        data: rows,
-                      });
+              conn.query(
+                "SELECT * FROM account",
+                async (error: any, rows: any) => {
+                  for (let i = 0; i < rows.length; i++) {
+                    if (rows[i].correo == correo) {
                     }
                   }
-                );
-              });
+                  conn.query(
+                    `CALL CREATE_USER('${correo}','${hasPassword}','${fecha}','${id}','${hora}','${req.body["formDataCsv[estado]"]}')`,
+                    (error: any, rows: any) => {
+                      if (rows) {
+                        conn.query(
+                          `CALL GET_USER_SECOND_USER('${correo}')`,
+                          (error: any, rows: any) => {
+                            if (rows) {
+                              conn.query(
+                                `CALL INSERT_MODULE_USER('${req.body["formDataCsv[modulo]"]}','${req.body["formDataCsv[modulo]"]}','${rows[0][0].idAccount}')`,
+                                (error: any, rowsid: any) => {
+                                  if (rowsid) {
+                                    conn.query(
+                                      `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
+                                      (error: any, rowsData: any) => {
+                                        if (rowsData) {
+                                          conn.query(
+                                            `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
+                                            (error: any, rowsData: any) => {}
+                                          );
+                                        }
+                                      }
+                                    );
+                                  }
+                                }
+                              );
+                            }
+                          }
+                        );
+                      }
+                    }
+                  );
+                }
+              );
             }
 
             await fs.remove(req.files?.archivousuariocsv?.tempFilePath);
-            conn.query(`CALL GET_USER('${id}')`, (error:any, rows:any) => {
+            conn.query(`CALL GET_USER('${id}')`, (error: any, rows: any) => {
               return res.status(201).json({
                 message: "USER_REGISTER_SUCCESFULL",
                 status: 201,
@@ -843,8 +882,8 @@ abstract class LoginRegister {
       const { id } = verifyToken;
 
       if (id) {
-        const conn:any = await conexion.connect();
-        conn.query(`CALL GET_USER('${id}')`, (error:any, rows: any) => {
+        const conn: any = await conexion.connect();
+        conn.query(`CALL GET_USER('${id}')`, (error: any, rows: any) => {
           if (error)
             return res
               .status(500)
@@ -873,15 +912,15 @@ abstract class LoginRegister {
       const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query("DELETE  FROM services WHERE idAccountUsers = ?", [
           req.body.deleteData,
         ]);
         conn.query(
           `CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`,
           (error: any, rows: any) => {
-            console.log("datos",rows[0].length > 0);
-            if(rows[0].length > 0){
+            console.log("datos", rows[0].length > 0);
+            if (rows[0].length > 0) {
               conn.query(
                 `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
                 async (error: any, rows: any) => {
@@ -894,26 +933,25 @@ abstract class LoginRegister {
                         id
                       );
                       console.log("error con exito");
-                      return res.status(200).json({ message: "DELETE_ALL_USERS" });
+                      return res
+                        .status(200)
+                        .json({ message: "DELETE_ALL_USERS" });
                     } else {
                       return res
                         .status(400)
                         .json({ message: "ERROR_DELETE_ALL_USERS", error });
-                        
                     }
                   } catch (error) {
                     return res
-                    .status(400)
-                    .json({ message: "ERROR_DELETE_ALL_USERS", error });
-                    
+                      .status(400)
+                      .json({ message: "ERROR_DELETE_ALL_USERS", error });
                   }
                 }
               );
-
-            }else{
+            } else {
               return res
-                    .status(400)
-                    .json({ message: "ERROR_DELETE_ALL_USERS", error });
+                .status(400)
+                .json({ message: "ERROR_DELETE_ALL_USERS", error });
             }
           }
         );
@@ -938,14 +976,14 @@ abstract class LoginRegister {
       const { id } = verifyToken;
 
       if (id) {
-        const conn:any = await conexion.connect();
-        conn.query(`CALL GET_COUNT_USERS('${id}')`, (error:any, rows: any) => {
+        const conn: any = await conexion.connect();
+        conn.query(`CALL GET_COUNT_USERS('${id}')`, (error: any, rows: any) => {
           conn.query(
             `CALL COUNT_STATE_USER('${id}')`,
-            (error:any, rowsActive: any) => {
+            (error: any, rowsActive: any) => {
               conn.query(
                 `CALL COUNT_STATE_USER_INACTIVO('${id}')`,
-                (error:any, rowsInactive: any) => {
+                (error: any, rowsInactive: any) => {
                   if (rows) {
                     return res.status(200).json({
                       message: "COUNT_USERS_ALL",
@@ -981,10 +1019,10 @@ abstract class LoginRegister {
       )!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query(
           `CALL GET_MODULE_ACCOUNT_USER('${req.params.id}')`,
-          (error:any, rows: any) => {
+          (error: any, rows: any) => {
             if (rows) {
               return res
                 .status(200)
@@ -1014,10 +1052,10 @@ abstract class LoginRegister {
       )!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query(
           `CALL GET_PERMISIONS_MODULE_USER('${id}')`,
-          (error:any, rows: any) => {
+          (error: any, rows: any) => {
             if (rows) {
               return res
                 .status(200)
@@ -1046,11 +1084,11 @@ abstract class LoginRegister {
       )!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
 
         conn.query(
           `CALL ADMIN_UPDATE_DATA('${id}','${req.body.name}','${req.body.lastname}','${req.body.email}')`,
-          (error:any, rows:any) => {
+          (error: any, rows: any) => {
             if (rows) {
               return res.status(200).json({ message: "UPDATE_ADMIN_USER" });
             } else {
@@ -1078,10 +1116,10 @@ abstract class LoginRegister {
       const { id } = verifyToken;
 
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query(
           `CALL DELETE_MODULE_USER('${req.body.id}')`,
-          (error:any, rows:any) => {
+          (error: any, rows: any) => {
             if (rows) {
               return res.status(200).json({ message: "DELETE_MODULE_USER" });
             } else {
@@ -1108,7 +1146,7 @@ abstract class LoginRegister {
       )!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query(
           `CALL INSERT_MODULE_USER('${req.body.data.module}','${req.body.data.module}','${req.body.data.idAccount}')`,
           (error: any, rows: any) => {
@@ -1146,7 +1184,7 @@ abstract class LoginRegister {
       )!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query(
           `CALL ASIGNED_PERMISION_USER_ACCOUNT('${id}','${req.body.idModule}','${req.body.permisions}')`,
           (error: any, rows: any) => {
@@ -1178,7 +1216,7 @@ abstract class LoginRegister {
       )!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query(
           `CALL DELETE_PERMISIONS_MODULE_USER('${id}','${req.body.idModule}')`,
           async (error: any, rows: any) => {
@@ -1208,7 +1246,7 @@ abstract class LoginRegister {
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
       const { id1 } = verifyToken;
       if (id1) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.execute(
           `CALL GET_MODULE_ACCOUNT_USER('${id1}')`,
           (error: any, rows: any) => {
@@ -1238,7 +1276,7 @@ abstract class LoginRegister {
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.query(`CALL ADMIN_SELECT('${id}')`, (error: any, rows: any) => {
           if (rows) {
             return res
@@ -1277,7 +1315,7 @@ abstract class LoginRegister {
           id_img = result.public_id;
 
           await fs.remove(req.files?.imgData.tempFilePath);
-          const conn:any = await conexion.connect();
+          const conn: any = await conexion.connect();
           conn.query(
             `CALL ADMIN_UPLOAD_IMG('${id}','${url_imagen}','${id_img}')`,
             (error: any, rows: any) => {
@@ -1313,7 +1351,7 @@ abstract class LoginRegister {
       )!;
       const { id } = verifyToken;
       if (id) {
-        const conn:any = await conexion.connect();
+        const conn: any = await conexion.connect();
         conn.execute(
           `CALL ADMIN_UPDATE_DATA('${id}','${req.body.data.name}','${req.body.data.document}','${req.body.data.telefono}','${req.body.data.empresa}')`,
           async (error: any, rows: any) => {
@@ -1355,7 +1393,7 @@ abstract class LoginRegister {
         return res.send({ message: "ERROR_ID" });
       }
 
-      const conn:any = await conexion.connect();
+      const conn: any = await conexion.connect();
       conn.query(
         `CALL GET_SERVICE_USER('${req.params.id}')`,
         (error: any, rows: any) => {

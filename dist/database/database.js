@@ -23,6 +23,9 @@ class Conexion {
         this.charset = "utf8";
         this.port = 3306;
     }
+    getRepository(Admin) {
+        throw new Error("Method not implemented.");
+    }
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -34,7 +37,7 @@ class Conexion {
                     charset: this.charset,
                     port: this.port,
                 });
-                this.veryficarConexion(conenct);
+                yield this.veryficarConexion(conenct);
                 return conenct;
             }
             catch (error) {
@@ -44,20 +47,22 @@ class Conexion {
         });
     }
     veryficarConexion(conenct) {
-        // si se cae la conexion se vuelve a conectar
-        conenct.on("error", (err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                console.error("Database connection was closed.");
-                this.connect();
-            }
-            if (err.code === "ER_CON_COUNT_ERROR") {
-                console.error("Database has to many connections");
-                this.connect();
-            }
-            if (err.code === "ECONNREFUSED") {
-                console.error("Database connection was refused");
-                this.connect();
-            }
+        return __awaiter(this, void 0, void 0, function* () {
+            // si se cae la conexion se vuelve a conectar
+            conenct.on("error", (err) => {
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    console.error("Database connection was closed.");
+                    this.connect();
+                }
+                if (err.code === "ER_CON_COUNT_ERROR") {
+                    console.error("Database has to many connections");
+                    this.connect();
+                }
+                if (err.code === "ECONNREFUSED") {
+                    console.error("Database connection was refused");
+                    this.connect();
+                }
+            });
         });
     }
 }

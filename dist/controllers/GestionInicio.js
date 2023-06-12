@@ -25,8 +25,6 @@ const modelCompany_1 = __importDefault(require("../models/modelCompany"));
 const SubProductos_model_1 = __importDefault(require("../models/SubProductos.model"));
 const PedidosProvedor_1 = __importDefault(require("../models/PedidosProvedor"));
 const InventaryGeneral_1 = __importDefault(require("../models/InventaryGeneral"));
-const TranslateSubP_Model_1 = __importDefault(require("../interfaces/TranslateSubP.Model"));
-TranslateSubP_Model_1.default;
 class AllModules {
     getModules(req, res, next) {
         var _a;

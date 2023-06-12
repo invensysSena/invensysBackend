@@ -1,0 +1,115 @@
+import nodemailer from "nodemailer";
+
+export class ConfirmPasswordExito {
+  public async sendConfirmEmail(email: string): Promise<any> {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      auth: {
+        user: "iinvensys@gmail.com",
+        pass: "zylpdncaribhlcdj",
+      },
+    });
+
+    // send email
+    return await transporter
+      .sendMail({
+        from: "iinvensys@gmail.com",
+        to: email,
+        subject: "Mensajeria de notificaciónes de Invensys",
+        html: `
+        <div
+      style="
+        width: 400px;
+        margin: 10px auto;
+        justify-content: center;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 0px;
+        box-shadow: 0px 12px 8px #eee;
+      "
+    >
+      <p
+        style="
+          font-family: Arial, Helvetica, sans-serif;
+          border-bottom: 1px solid #e7e7e7;
+          padding: 6px;
+          text-align: center;
+        "
+      >
+        Tu contraseña se cambio correctamente, ahora puedes iniciar sesion con
+        invensys
+      </p>
+
+      <p style="font-family: Arial, Helvetica, sans-serif; text-align: center">
+        Sigue disfrutando de nustra plataforma
+      </p>
+      <p
+        style="
+          background: #ebebeb;
+          color: rgb(20, 28, 39);
+          padding: 8px;
+          font-size: 25px;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+            sans-serif;
+          text-align: center;
+          border-radius: 4px;
+          display: block;
+          margin: 4px 9px;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="#019afa"
+            d="M19 13c.34 0 .67.04 1 .09V10a2 2 0 0 0-2-2h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6a2 2 0 0 0-2 2v10c0 1.11.89 2 2 2h7.81c-.51-.88-.81-1.9-.81-3c0-3.31 2.69-6 6-6M9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6m3 11a2 2 0 1 1 2-2c0 1.11-.89 2-2 2m11 1v2h-3v3h-2v-3h-3v-2h3v-3h2v3h3Z"
+          />
+        </svg>
+      </p>
+      <p />
+
+      <p
+        style="
+          font-family: Arial, Helvetica, sans-ser;
+          text-align: center;
+          border-top: 1px solid #ccc;
+          padding: 4px;
+        "
+      >
+        ⚠️ No compartir este codigo con nadie
+      </p>
+      <p
+        style="
+          font-family: Arial, Helvetica, sans-ser;
+          text-align: center;
+          border-top: 1px solid #ccc;
+          padding: 4px;
+        "
+      >
+        ↪️ <a href="">Terminos y condiciones en privacidad de datos</a>
+      </p>
+      <p
+        style="
+          font-family: Arial, Helvetica, sans-ser;
+          text-align: center;
+          padding: 4px;
+        "
+      >
+        © Todos los derechos recervados | Invensys
+      </p>
+    </div>
+                  
+                 `,
+      })
+      .then((res) => {
+        let dataEmail: any = res;
+      })
+      .catch((err) => {
+        let dataEmailError: any = err;
+      });
+  }
+}

@@ -31,7 +31,7 @@ class ChangeDataController {
             });
           }
           if (result[0].password === null) {
-             conn.query("update admin set ? where idUsers = ?", [
+            conn.query("update admin set ? where idUsers = ?", [
               { password: hash },
               validateToken,
             ]);
@@ -51,7 +51,7 @@ class ChangeDataController {
                 message: "PASSWORD_EQUAL",
               });
             } else {
-               conn.query("update admin set ? where idUsers = ?", [
+              conn.query("update admin set ? where idUsers = ?", [
                 { password: hash },
                 validateToken,
               ]);
@@ -77,7 +77,7 @@ class ChangeDataController {
       const token = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { email } = req.body;
+      const { email } = req.body.data;
       const { id } = req.params;
       const conn: any = await conexion.connect();
       if (!validateToken) {
@@ -86,7 +86,6 @@ class ChangeDataController {
           message: "NO_EXIST_TOKEN",
         });
       } else {
-
         conn.query(
           "select correo from account where idAccount = ?",
           [id],
@@ -104,10 +103,10 @@ class ChangeDataController {
                   message: "EMAIL_EQUAL_USER",
                 });
               } else {
-                 conn.query(
-                  "update account set ? where idAccount = ?",
-                  [{ correo: email }, id]
-                );
+                conn.query("update account set ? where idAccount = ?", [
+                  { correo: email },
+                  id,
+                ]);
                 return res.status(200).json({
                   ok: true,
                   message: "UPDATE_EMAIL_SUCCESS",
@@ -131,10 +130,11 @@ class ChangeDataController {
       const token = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
       const validateToken = decoded.id;
-      const { password } = req.body;
+      const { password, newPassword } = req.body.data;
       const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(password, salt);
+      const hash = await bcrypt.hash(newPassword, salt);
       const { id } = req.params;
+      console.log(req.body);
 
       if (!validateToken) {
         return res.status(400).json({
@@ -142,8 +142,8 @@ class ChangeDataController {
           message: "NO_EXIST_TOKEN",
         });
       } else {
-        const conn: any =  await conexion.connect();
-       conn.query(
+        const conn: any = await conexion.connect();
+        conn.query(
           "select password from account where idAccount = ?",
           [validateToken],
           async (err: any, result: any) => {
@@ -173,7 +173,7 @@ class ChangeDataController {
               return res.status(200).json({
                 ok: true,
                 message: "UPDATE_PASSWORD_SUCCESS",
-                hash
+                hash,
               });
             }
           }

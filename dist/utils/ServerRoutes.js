@@ -25,6 +25,7 @@ const router_pedidos_1 = __importDefault(require("../router/router.pedidos"));
 const router_compras_1 = __importDefault(require("../router/router.compras"));
 const router_company_1 = __importDefault(require("../router/router.company"));
 const router_InventaryGeneral_1 = __importDefault(require("../router/router.InventaryGeneral"));
+const router_expiration_1 = __importDefault(require("../router/router.expiration"));
 const AppServer = (0, express_1.default)();
 class ServerRoutes {
     Inicio() {
@@ -44,6 +45,11 @@ class ServerRoutes {
             AppServer.use(new router_1.default().UsersDelete());
             AppServer.use(new router_1.default().GetCountUsers());
             AppServer.use(new router_1.default().ServiseUser());
+            AppServer.use(new router_1.default().licenceRouter());
+            AppServer.use(new router_1.default().getLicence());
+            AppServer.use(new router_1.default().updateAdminPass());
+            AppServer.use(new router_1.default().updateEmailUser());
+            AppServer.use(new router_1.default().updatePassUser());
             // Here go the Routes of sydtem control users
             AppServer.use(new router_1.default().GetModuleUsers());
             AppServer.use(new router_1.default().GetPermisions());
@@ -124,6 +130,9 @@ class ServerRoutes {
             AppServer.use(new router_InventaryGeneral_1.default().GetInventaryGeneral());
             AppServer.use(new router_InventaryGeneral_1.default().PutInventaryGeneral());
             AppServer.use(new router_InventaryGeneral_1.default().DeleteInventaryGeneral());
+            // Expiration
+            AppServer.use(new router_expiration_1.default().PostCaducidad());
+            AppServer.use(new router_expiration_1.default().GetCaducidad());
             return AppServer;
         });
     }

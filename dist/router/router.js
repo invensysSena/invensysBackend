@@ -5,10 +5,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const GestionUser_1 = __importDefault(require("../controllers/GestionUser"));
+const GestionLicence_1 = __importDefault(require("../controllers/GestionLicence"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const router = (0, express_1.Router)();
 const path_1 = __importDefault(require("path"));
+const ChangeData_1 = __importDefault(require("../controllers/ChangeData"));
+const changeData = new ChangeData_1.default();
+const licence = new GestionLicence_1.default();
 class RouterUser extends GestionUser_1.default {
+    updateAdminPass() {
+        router.put("/updateAdminPass", changeData.UpdatePassAdmin);
+        return router;
+    }
+    updatePassUser() {
+        router.put("/updatePassUser/:id", changeData.UpdatePassUser);
+        return router;
+    }
+    updateEmailUser() {
+        router.put("/updateEmailUser/:id", changeData.UpdateEmailUser);
+        return router;
+    }
+    licenceRouter() {
+        router.post("/createLicence/:id", licence.createLicence);
+        return router;
+    }
+    getLicence() {
+        router.get("/getLicence/:id", licence.getLicence);
+        return router;
+    }
     Login() {
         router.post("/login", this.LoginAuth);
         return router;

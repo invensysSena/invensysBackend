@@ -21,8 +21,6 @@ import stripe from "stripe";
 class App {
   public startServer = async () => {
     try {
-
-
       const urlConnectionAcceso: string = "http://localhost:3000/*";
       const statusCors: number = 200;
       const port: Number = 8080;

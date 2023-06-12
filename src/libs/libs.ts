@@ -1,38 +1,38 @@
 import nodemailer from "nodemailer";
-import {MAIL_PASSWORD, MAIL_USER} from "../config/config"
+import { MAIL_PASSWORD, MAIL_USER } from "../config/config";
 import dotenv from "dotenv";
 import { PersonRegister } from "../interfaces/users";
 
 export class sendMailAdmin {
   public async sendMailer(email: string): Promise<any> {
- const transporter = nodemailer.createTransport({
-                host: "smtp.gmail.com",
-                port: 587,
-                auth: {
-                  user: 'stored754@gmail.com',
-                  pass:'ocgsubbijuoiboiz',
-                },
-              });
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      auth: {
+        user: "iinvensys@gmail.com",
+        pass: "zylpdncaribhlcdj",
+      },
+    });
 
-              // send email
-            return  await transporter
-                .sendMail({
-                  from: "stored754@gmail.com",
-                  to: email,
-                  subject: "Bienvenido(a) a Stored",
-                  html: `
+    // send email
+    return await transporter
+      .sendMail({
+        from: "iinvensys@gmail.com",
+        to: email,
+        subject: "Bienvenido(a) a Invensys",
+        html: `
                    <div style=" width:400px; margin: 2px 0px;
                    border-radius:6px; overflow: hidden;
 				  padding: 0px; box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
 				  <div style="font-family: Arial, Helvetica, sans-serif;
 				  border-bottom: 1px solid #009AFA; background-color: #009AFA; color: white;
-				   text-align: center; font-size: 26px; padding: 15px;">Bienvenido(a)  a stored..</div>
+				   text-align: center; font-size: 26px; padding: 15px;">Bienvenido(a)  a Invensys..</div>
                   <p style="font-weight: 500; font-size:20px; font-family:Arial, Helvetica, sans-serif;text-align:center;
 				   padding: 5px;">
 				<img src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1668635577/2807611_n1l9wx_fc3a67.jpg" alt="" style="width: 350px;">   
 				</p>
                   <p style="font-family:Arial, Helvetica, sans-serif;
-				  text-align: center; padding: 10px; ">Gracias por Registrarte en nuestra plataforma stored,
+				  text-align: center; padding: 10px; ">Gracias por Registrarte en nuestra plataforma Invensys,
 				  te brindaremos la mejor experiancia y calidad, disfrutaras  de todos los beneficios 
 				que tenemos para tu negocio.  </p>
 				<div>
@@ -95,18 +95,16 @@ export class sendMailAdmin {
 						↪️ <a href="/terminos">Terminos y condiciones en privacidad de datos y uso de cokies</a> </p>
 <p style="font-family:Arial, Helvetica, sans-ser;
 										text-align: center;  padding: 4px;">
-	© Todos los derechos recervados | Stored </p>
+	© Todos los derechos recervados | Invensys </p>
                   </div>
                   `,
-                })
-                .then((res) => {
-                 let dataEmail:any = res; 
-                })
-                .catch((err) => {
-                  let dataEmailError:any = err; 
-                });
-  
+      })
+      .then((res) => {
+        let dataEmail: any = res;
+        console.log("hhhhhhhhfff45¨¨", res);
+      })
+      .catch((err) => {
+        let dataEmailError: any = err;
+      });
   }
 }
-
-
