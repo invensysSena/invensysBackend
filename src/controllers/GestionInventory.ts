@@ -15,7 +15,7 @@ class InventoryProduct {
   public async postInventory(req: Request, res: Response, next: NextFunction) {
     try {
       const { name_inventory, description } = req.body.data;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       let typeUser: any = req.headers["typeautorization"];
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
@@ -105,7 +105,7 @@ class InventoryProduct {
 
     try {
       const { _id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const { name_inventory, description } = req.body;
@@ -126,7 +126,7 @@ class InventoryProduct {
   ) {
     try {
       const { _id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
 
@@ -180,7 +180,7 @@ class InventoryProduct {
   ) {
     try {
       const { _id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const {
@@ -213,7 +213,7 @@ class InventoryProduct {
   public async GetSubProducta(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const response = await subProductSchema.find({ idInventory: id });
@@ -230,7 +230,7 @@ class InventoryProduct {
     next: NextFunction
   ) {
     try {
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const { idDestino, idOrigen, idSubProducto, cantidad, userCorreo } =
@@ -258,7 +258,7 @@ class InventoryProduct {
   ): Promise<Response | Request | any> {
     try {
       const { id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const response = await TranslateSubPSchema.find({ idDestino: id });
@@ -276,7 +276,7 @@ class InventoryProduct {
   ): Promise<Response | Request | any> {
     try {
       const { id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
       const responseDataClass = new TranslateBodega(
@@ -299,7 +299,7 @@ class InventoryProduct {
   ): Promise<Response | Request | any> {
     try {
       const { id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
 
@@ -325,7 +325,7 @@ class InventoryProduct {
   ): Promise<Response | Request | any> {
     try {
       const { id } = req.params;
-      const token: any = req.headers["authorization"];
+      const token: any = req.headers.authorization;
       const decoded: any = jwt.verify(token, SECRET);
       const tokeIdUser = decoded.id;
 

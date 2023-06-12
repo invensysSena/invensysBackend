@@ -12,7 +12,7 @@ class ManageExpiration {
     res: Response,
     next: NextFunction
   ): Promise<Request | Response | any> {
-    const Token: any = req.headers["authorization"];
+    const Token: any = req.headers.authorization;
     const veryfyToken: Array<any> | any = jwt.verify(Token, SECRET)!;
     const tokenIdUser = veryfyToken.id;
 

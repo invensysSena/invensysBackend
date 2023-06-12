@@ -10,7 +10,7 @@ abstract class MaganeIGeneral {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const idCreated: any = req.headers["authorization"];
+      const idCreated: any = req.headers.authorization;
       const typeUser: any = req.headers["typeuser"];
       const decoded: any = jwt.verify(idCreated, SECRET);
       const idTokenAdmin = decoded.id;

@@ -10,7 +10,7 @@ class ManageCompany {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["authorization"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
 
@@ -67,7 +67,7 @@ class ManageCompany {
     next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      const tokenCreated: any = req.headers["authorization"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -92,7 +92,7 @@ class ManageCompany {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -145,7 +145,7 @@ class ManageCompany {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {

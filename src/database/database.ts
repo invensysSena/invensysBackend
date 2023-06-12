@@ -28,6 +28,9 @@ export class Conexion {
         database: this.database,
         charset: this.charset,
         port: this.port,
+        multipleStatements: true,
+        connectTimeout: 10000,
+        connectionLimit: 20000,
       });
 
       await this.veryficarConexion(conenct);
@@ -50,7 +53,6 @@ export class Conexion {
       }
       if (err.code === "ECONNREFUSED") {
         console.error("Database connection was refused");
-        
       }
     });
   }

@@ -18,7 +18,7 @@ abstract class ManageProducts {
         fechaFin,
       } = req.body.data;
 
-      const tokenCreate: string = req.headers["x-id-token"] as string;
+      const tokenCreate: string = req.headers.authorization as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
 
@@ -93,7 +93,7 @@ abstract class ManageProducts {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreate: string = req.headers["id-token"] as string;
+      const tokenCreate: string = req.headers.authorization as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
 
@@ -120,7 +120,7 @@ abstract class ManageProducts {
     next: NextFunction
   ): Promise<Response | Request> {
     try {
-      const tokenCreate: string = req.headers["id-token"] as string;
+      const tokenCreate: string = req.headers.authorization as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
 
@@ -149,7 +149,7 @@ abstract class ManageProducts {
 
 
     try {
-      const tokenCreate: string = req.headers["id-token"] as string;
+      const tokenCreate: string = req.headers.authorization as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
 
@@ -185,7 +185,7 @@ abstract class ManageProducts {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreate: string = req.headers["id-token"] as string;
+      const tokenCreate: string = req.headers.authorization as string;
       const verifyToken: Array<any> | any = jwt.verify(tokenCreate, SECRET)!;
       const tokenIdUser = verifyToken.id;
 

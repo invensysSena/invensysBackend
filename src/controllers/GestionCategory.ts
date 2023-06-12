@@ -12,7 +12,7 @@ abstract class Categorys {
   ): Promise<Response | Request | any> {
     try {
       const { name_category, description, imgURL, imgId } = req.body.data;
-      const Tokenid_U: any = req.headers["x-id-token"];
+      const Tokenid_U: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
       const tokeIdUser = verifyToken.id;
       if (!tokeIdUser) {
@@ -87,7 +87,7 @@ abstract class Categorys {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      const Tokenid_U: any = req.headers["x-id-token"];
+      const Tokenid_U: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
 
       const tokeIdUser = verifyToken.id;
@@ -121,7 +121,7 @@ abstract class Categorys {
   ): Promise<Response | Request | any> {
     try {
       const { name_category, description } = req.body.data;
-      const Tokenid_U: any = req.headers["x-id-token"];
+      const Tokenid_U: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
 
       const tokeIdUser = verifyToken.id;
@@ -159,7 +159,7 @@ abstract class Categorys {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      const Tokenid_U: any = req.headers["x-id-token"];
+      const Tokenid_U: any = req.headers.authorization;
 
       const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
 

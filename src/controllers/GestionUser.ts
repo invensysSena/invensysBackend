@@ -61,6 +61,7 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
+    console.log(req.body);
     try {
       const datas: PersonRegister = {
         correo: req.body.postDataAdmin.email,
@@ -74,6 +75,7 @@ abstract class LoginRegister {
       const fecha = momet().format("YYYY-MM-DD");
       const hora = momet().format("HH:mm:ss");
       const roundNumber = 10;
+
       const encriptarPassword = await bcrypt.genSalt(roundNumber);
       const hasPassword = await bcrypt.hash(datas.password, encriptarPassword);
       let state = (datas.authCuenta = true);
@@ -147,7 +149,7 @@ abstract class LoginRegister {
         }
       );
     } catch (error: any) {
-      return res.status(500).json({ message: "ERROR_SERVER" });
+      return res.status(500).json({ message: "ERROR_SERVER", error });
     }
   }
 
@@ -461,7 +463,7 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      let tokenIdAcc: any = req.headers["acc-token-data"];
+      let tokenIdAcc: any = req.headers.authorization;
 
       const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
 
@@ -480,7 +482,7 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
     try {
-      let tokenIdAcc: any = req.headers["acc-token-data"];
+      let tokenIdAcc: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
       const data: login = {
         correo: req.body.postDataUserRegister.email,
@@ -795,7 +797,7 @@ abstract class LoginRegister {
       leer: "leer",
       state: "Inactivo",
     };
-    let tokenIdAcc: any = req.headers["acc-token-data"];
+    let tokenIdAcc: any = req.headers.authorization;
     const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
     const { id } = verifyToken;
 
@@ -924,7 +926,7 @@ abstract class LoginRegister {
     next: Partial<NextFunction>
   ): Promise<Request | Response | any> {
     try {
-      let tokenIdAcc: any = req.headers["isallowed-x-token"];
+      let tokenIdAcc: any = req.headers.authorization;
 
       const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
       const { id } = verifyToken;
@@ -1034,7 +1036,7 @@ abstract class LoginRegister {
   ): Promise<Request | Response | any> {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
-        req.headers["isallowed-x-token"],
+        req.headers.authorization,
         SECRET
       )!;
       const { id } = verifyToken;
@@ -1108,7 +1110,7 @@ abstract class LoginRegister {
 
         conn.query(
           `CALL ADMIN_UPDATE_DATA('${id}','${req.body.name}','${req.body.lastname}','${req.body.email}')`,
-          (error: QueryError, row: RowDataPacket) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res.status(200).json({ message: "UPDATE_ADMIN_USER" });
             } else {
@@ -1130,7 +1132,7 @@ abstract class LoginRegister {
   ): Promise<Request | Response | any> {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
-        req.headers["isallowed-x-token"],
+        req.headers.authorization,
         SECRET
       )!;
       const { id } = verifyToken;
@@ -1139,7 +1141,7 @@ abstract class LoginRegister {
         const conn: any = await conexion.connect();
         conn.query(
           `CALL DELETE_MODULE_USER('${req.body.id}')`,
-          (error: QueryError, row: RowDataPacket) => {
+          (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res.status(200).json({ message: "DELETE_MODULE_USER" });
             } else {
@@ -1161,7 +1163,7 @@ abstract class LoginRegister {
   ): Promise<Request | Response | any> {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
-        req.headers["isallowed-x-token"],
+        req.headers.authorization,
         SECRET
       )!;
       const { id } = verifyToken;
@@ -1322,7 +1324,7 @@ abstract class LoginRegister {
   ): Promise<Request | Response | any> {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
-        req.headers["token-x-id"],
+        req.headers.authorization,
         SECRET
       )!;
       const { id } = verifyToken;
@@ -1369,7 +1371,7 @@ abstract class LoginRegister {
   ): Promise<Request | Response | any> {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
-        req.headers["token-x-id"],
+        req.headers.authorization,
         SECRET
       )!;
       const { id } = verifyToken;

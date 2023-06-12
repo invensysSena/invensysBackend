@@ -2,7 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
-import { QueryError, RowDataPacket } from "mysql2";
+import {
+  QueryError,
+  RowDataPacket,
+  Connection,
+  Query,
+  ResultSetHeader,
+  OkPacket,
+} from "mysql2";
 import { conexion } from "../database/database";
 
 class ChangeDataController {
@@ -18,6 +25,9 @@ class ChangeDataController {
       const { password, newPassword } = req.body.data;
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(password, salt);
+
+      // dar tipado a la conexion
+
       const conn: any = await conexion.connect();
 
       conn.query(

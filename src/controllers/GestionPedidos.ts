@@ -11,7 +11,7 @@ abstract class ManagePedidos {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenAccesId: any = req.headers["authorization"];
+      const tokenAccesId: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
 
@@ -31,7 +31,7 @@ abstract class ManagePedidos {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenAccesId: any = req.headers["authorization"];
+      const tokenAccesId: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
       const idTokenAdmin = verifyToken.id;
       const pedidos = await SchemaPedidos.find({tokeIdUser:idTokenAdmin});

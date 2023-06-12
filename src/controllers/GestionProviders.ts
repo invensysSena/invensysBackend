@@ -14,7 +14,7 @@ abstract class ManageProviders {
 
     try {
 
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
   
@@ -85,7 +85,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -149,7 +149,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
@@ -181,7 +181,7 @@ abstract class ManageProviders {
     next: NextFunction
   ): Promise<Response | Request | any> {
     try {
-      const tokenCreated: any = req.headers["x-id-token"];
+      const tokenCreated: any = req.headers.authorization;
       const verifyToken: any = jwt.verify(tokenCreated, SECRET);
       const tokenIdUser = verifyToken.id;
       if (!tokenIdUser) {
