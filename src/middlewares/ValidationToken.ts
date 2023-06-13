@@ -25,6 +25,7 @@ export class ValidationTokenAndCreateToken {
       const Tokenid_U: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
       const tokeIdUser = verifyToken.id;
+      
       if (!tokeIdUser) {
         
         return res.status(400).json({

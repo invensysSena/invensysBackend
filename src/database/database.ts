@@ -29,8 +29,6 @@ export class Conexion {
         charset: this.charset,
         port: this.port,
         multipleStatements: true,
-        connectTimeout: 10000,
-        connectionLimit: 20000,
       });
 
       await this.veryficarConexion(conenct);
