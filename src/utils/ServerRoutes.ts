@@ -19,6 +19,7 @@ export class ServerRoutes {
     // Here go the Routes User
 
     AppServer.use(new RouterUser().registerAdmin());
+    AppServer.use(new RouterUser().RouterPrincipal());
     AppServer.use(new RouterUser().registerUser());
     AppServer.use(new RouterUser().Login());
     AppServer.use(new RouterUser().recoveryPass());
