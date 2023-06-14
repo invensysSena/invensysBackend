@@ -2,8 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import CategorySchema from "../models/CategoryM";
 import { category } from "../interfaces/CategoryI";
 import jwt from "jsonwebtoken";
-import Todo from "../class/Notification.Todo";
 import { SECRET } from "../config/config";
+import Todo from "../class/Notification.Todo";
 abstract class Categorys {
   public async createCategory(
     req: Request,

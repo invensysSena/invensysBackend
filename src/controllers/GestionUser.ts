@@ -158,6 +158,8 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
+    console.log(req.body);
+    
     try {
       const data: login = {
         correo: req.body.postDataUser.email,

@@ -7,6 +7,7 @@ import { connect } from "../database/mongodb";
 import { ServerRoutes } from "../utils/ServerRoutes";
 mongoose.set("strictQuery", true);
 const AppServer: express.Application = express();
+
 import { conexion } from "../database/database";
 class App {
   public startServer = async () => {
@@ -30,8 +31,7 @@ class App {
     this.startServer();
     conexion.connect();
     const port: Number = 8080;
-    AppServer.listen(PORT || port, () => {
-    });
+    AppServer.listen(PORT || port, () => {});
   }
 }
 

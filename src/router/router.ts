@@ -20,6 +20,13 @@ class RouterUser extends LoginRegister {
     return router;
   }
 
+  public RouterPrincipal() {
+    router.get("/", (req, res) => {
+      res.send("Hello World");
+    });
+    return router;
+  }
+
   public updatePassUser() {
     router.put(
       "/updatePassUser/:id",
@@ -58,6 +65,7 @@ class RouterUser extends LoginRegister {
 
   public Login() {
     router.post("/login", this.LoginAuth);
+
     return router;
   }
 

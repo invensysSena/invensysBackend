@@ -21,13 +21,14 @@ export class ValidationTokenAndCreateToken {
     res: Response,
     next: NextFunction
   ) {
+    console.log("verifyTokenAndAdmin", req.headers);
+
     try {
       const Tokenid_U: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
       const tokeIdUser = verifyToken.id;
-      
+
       if (!tokeIdUser) {
-        
         return res.status(400).json({
           ok: false,
           message: "NOT TOKEN ACCESS DENIED",
