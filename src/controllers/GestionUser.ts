@@ -61,7 +61,6 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
-    console.log(req.body);
     try {
       const datas: PersonRegister = {
         correo: req.body.postDataAdmin.email,
@@ -113,6 +112,7 @@ abstract class LoginRegister {
           let authCount = "OK";
           let rol = "superAdmin";
           //cuent,ipA,paisA,ciudadA,country_calling,idiomaA,longA,lagA
+
           conn.query(
             `CALL ADMIN_INSERT_LOGIN('${datas.correo}','${fecha}','${hora}',
         '${rol}','${cuenta}','${ip}','${country_name}','${city}','${country_calling_code}',
@@ -158,8 +158,6 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
-    console.log(req.body);
-    
     try {
       const data: login = {
         correo: req.body.postDataUser.email,
@@ -203,6 +201,9 @@ abstract class LoginRegister {
             conn.query(
               `CALL USER_LOGIN('${data.correo}')`,
               async (error: QueryError, rows: RowDataPacket) => {
+                console.log(rows[0][0].password, "Corrrreo del usuario");
+                console.log("id", rows[0][0].idAccount);
+
                 if (error)
                   return res
                     .status(400)
@@ -229,21 +230,6 @@ abstract class LoginRegister {
                           { expiresIn: 60 * 60 * 24 }
                         );
 
-                        const url = "https://ipapi.co/json/";
-                        const response = await fetch(url);
-                        const data = await response.json();
-                        const {
-                          country_name,
-                          city,
-                          longitude,
-                          region,
-                          latitude,
-                          country_calling_code,
-                          languages,
-                          ip,
-                          network,
-                          version,
-                        } = data;
                         const token1: any = jwt.sign(
                           { id1: rows[0][0].idAccount },
                           SECRET || "authToken",
@@ -263,32 +249,32 @@ abstract class LoginRegister {
                               conn.query(
                                 `CALL UPDATE_SESION_USER('${
                                   dataDevice.device
-                                }', '${ip}','${token1}','${momet().format(
+                                }', '198.168.1.46','${token1}','${momet().format(
                                   "LLLL"
-                                )}','${city}','${languages}','${
+                                )}','Colombia','Español','${
                                   dataDevice.navegador
                                 }','${dataDevice.infoNavegIp}',
-                          '${city}','${country_name}','${region}','${
-                                  rows[0][0].idAccount
-                                }')`,
+                          'Armenia'}','Colombia','Quindío','${
+                            rows[0][0].idAccount
+                          }')`,
                                 (error: QueryError, rows: RowDataPacket) => {}
                               );
                             } else {
                               conn.execute(
                                 `INSERT INTO services(idAccountUsers) VALUES(?)`,
                                 [rows[0][0].idAccount],
-                                (error: QueryError, rows: RowDataPacket) => {
+                                (error: QueryError, rowsp: RowDataPacket) => {
                                   conn.query(
                                     `CALL UPDATE_SESION_USER('${
                                       dataDevice.device
-                                    }', '${ip}','${token1}','${momet().format(
+                                    }', '198.168.1.46','${token1}','${momet().format(
                                       "LLLL"
-                                    )}','${city}','${languages}','${
+                                    )}','Armenia','Español','${
                                       dataDevice.navegador
                                     }','${dataDevice.infoNavegIp}',
-                                  '${city}','${country_name}','${region}','${
-                                      rows[0][0].idAccount
-                                    }')`,
+                                  'Armenia','Colombia','Quindio','${
+                                    rows[0][0].idAccount
+                                  }')`,
                                     (
                                       error: QueryError,
                                       self: RowDataPacket
@@ -347,8 +333,6 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
-    console.log("ffffffff", "this.passpAuthGoogle");
-
     try {
       const conn: any = await conexion.connect();
       const { email, name, picture } = req.body.data;
@@ -436,7 +420,6 @@ abstract class LoginRegister {
                         );
                         const resultEmail =
                           await new sendMailAdmin().sendMailer(email);
-                        console.log("resultEmail", resultEmail);
 
                         return res.status(200).json({
                           message: "ADMIN_AUTH_SUCCESFULL_GOOGLE",
@@ -512,11 +495,12 @@ abstract class LoginRegister {
           async (error: QueryError, rows: RowDataPacket) => {
             if (rows.length > 0) {
               for (let i = 0; i < rows.length; i++) {
-                if (rows[i].correo == data.correo)
+                if (rows[i].correo === data.correo) {
                   return res.json({
                     message: "ERR_MAIL_EXIST_USER",
-                    status: 302,
+                    status: 404,
                   });
+                }
               }
             }
             conn.query(
@@ -530,6 +514,12 @@ abstract class LoginRegister {
                         conn.query(
                           `CALL INSERT_MODULE_USER('${req.body.postDataUserRegister.modulo}','${req.body.postDataUserRegister.modulo}','${rows[0][0].idAccount}')`,
                           (error: any, rowsid: any) => {
+                            console.log(
+                              "insert module",
+                              rowsid,
+                              "error",
+                              error
+                            );
                             if (rowsid) {
                               conn.query(
                                 `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
@@ -538,6 +528,8 @@ abstract class LoginRegister {
                                     conn.query(
                                       `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
                                       async (error: any, rowsData: any) => {
+                                        console.log(error);
+
                                         if (rowsData) {
                                           conn.query(
                                             `CALL GET_USER_CREATE('${data.correo}')`,
@@ -563,6 +555,7 @@ abstract class LoginRegister {
                                           return res.status(400).json({
                                             message: "USER_REGISTER_ERROR",
                                             status: 400,
+                                            error,
                                           });
                                         }
                                       }
@@ -788,8 +781,6 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
-    console.log(req.body, req.files);
-
     const fecha = momet().format("MMMM Do YYYY");
     const hora = momet().format("h:mm:ss a");
     const permisions = {
@@ -940,7 +931,6 @@ abstract class LoginRegister {
         conn.query(
           `CALL SELECT_ALL_MODULE_USERS('${req.body.deleteData}')`,
           (error: QueryError, rows: RowDataPacket) => {
-            console.log("datos", rows[0].length > 0);
             if (rows[0].length > 0) {
               conn.query(
                 `CALL DELETE_ALL_USERS('${req.body.deleteData}','${rows[0][0].IDmodulo}')`,
@@ -953,7 +943,7 @@ abstract class LoginRegister {
                         "users",
                         id
                       );
-                      console.log("error con exito");
+
                       return res
                         .status(200)
                         .json({ message: "DELETE_ALL_USERS" });
@@ -1298,16 +1288,18 @@ abstract class LoginRegister {
   ): Promise<Request | Response | any> {
     try {
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
+
       const { id } = verifyToken;
       if (id) {
         const conn: any = await conexion.connect();
         conn.query(
-          `CALL ADMIN_SELECT('${id}')`,
+          "select * from admin where idUsers = ?",
+          [id],
           (error: QueryError, rows: RowDataPacket) => {
             if (rows) {
               return res
                 .status(200)
-                .json({ message: "GET_ADMIN_ALL", data: rows[0] });
+                .json({ message: "GET_ADMIN_ALL", data: rows });
             } else {
               return res.status(400).json({ message: "ERROR_GET_ADMIN_ALL" });
             }
@@ -1376,12 +1368,22 @@ abstract class LoginRegister {
         req.headers.authorization,
         SECRET
       )!;
+      console.log(verifyToken);
+
       const { id } = verifyToken;
+      console.log(id);
+
       if (id) {
         const conn: any = await conexion.connect();
-        conn.execute(
-          `CALL ADMIN_UPDATE_DATA('${id}','${req.body.data.name}','${req.body.data.document}','${req.body.data.telefono}','${req.body.data.empresa}')`,
+        conn.query(
+          `CALL ADMIN_UPDATE_DATA('${id}','${req.body.data.name}','${parseInt(
+            req.body.data.document
+          )}','${parseInt(req.body.data.telefono)}','${
+            req.body.data.empresa
+          }')`,
           async (error: QueryError, rows: RowDataPacket) => {
+            console.log(rows, error);
+
             if (rows) {
               conn.query(
                 `CALL ADMIN_SELECT('${id}')`,

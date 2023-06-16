@@ -21,8 +21,6 @@ export class ValidationTokenAndCreateToken {
     res: Response,
     next: NextFunction
   ) {
-    console.log("verifyTokenAndAdmin", req.headers);
-
     try {
       const Tokenid_U: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;

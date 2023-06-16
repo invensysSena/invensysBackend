@@ -4,6 +4,7 @@ import LicenceSofteareInvensys from "../controllers/GestionLicence";
 import fileUpload from "express-fileupload";
 const router: Router = Router();
 import path from "path";
+import { conexion } from "../database/database";
 import ChangeDataController from "../controllers/ChangeData";
 import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
 const valid = new ValidationTokenAndCreateToken();
@@ -21,8 +22,12 @@ class RouterUser extends LoginRegister {
   }
 
   public RouterPrincipal() {
-    router.get("/", (req, res) => {
-      res.send("Hello World");
+    router.get("/", async (req, res) => {
+      const conn: any = await conexion.connect();
+      conn.query("SELECT * FROM licence", (err: any, rows: any) => {
+        if (err) throw err;
+        res.json(rows);
+      });
     });
     return router;
   }

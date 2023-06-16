@@ -12,12 +12,12 @@ export class Conexion {
   getRepository(Admin: any) {
     throw new Error("Method not implemented.");
   }
-  public readonly host?: string | any = "localhost";
+  public readonly host?: string | any = "containers-us-west-68.railway.app";
   private readonly user?: string | any = "root";
-  private readonly password?: string | any = "";
+  private readonly password?: string | any = "WWpyn44FQjjsVWr5xj8D";
   protected readonly database: string | any = "invensys";
   private readonly charset: string | any = "utf8";
-  private readonly port: Number | any = 3306;
+  private readonly port: Number | any = 6409;
 
   public async connect() {
     try {

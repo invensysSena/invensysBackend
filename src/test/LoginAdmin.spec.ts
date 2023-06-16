@@ -4,7 +4,6 @@ import jwt, { sign } from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import {expect, jest} from '@jest/globals';
 import LoginRegister from "../controllers/GestionUser";
-import fetchMock from "fetch-mock";
 export const urlServerConfigPort: string = "http://localhost:5454";
 interface data  {
   correo:string,
