@@ -201,9 +201,6 @@ abstract class LoginRegister {
             conn.query(
               `CALL USER_LOGIN('${data.correo}')`,
               async (error: QueryError, rows: RowDataPacket) => {
-                console.log(rows[0][0].password, "Corrrreo del usuario");
-                console.log("id", rows[0][0].idAccount);
-
                 if (error)
                   return res
                     .status(400)
@@ -827,8 +824,6 @@ abstract class LoginRegister {
                         conn.query(
                           `CALL GET_USER_SECOND_USER('${correo}')`,
                           (error: QueryError, rows: RowDataPacket) => {
-                            
-
                             if (rows) {
                               conn.query(
                                 `CALL INSERT_MODULE_USER('${req.body["formDataCsv[modulo]"]}','${req.body["formDataCsv[modulo]"]}','${rows[0][0].idAccount}')`,
