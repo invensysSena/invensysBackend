@@ -826,7 +826,9 @@ abstract class LoginRegister {
                       if (rows) {
                         conn.query(
                           `CALL GET_USER_SECOND_USER('${correo}')`,
-                          (error: QueryError, row: RowDataPacket) => {
+                          (error: QueryError, rows: RowDataPacket) => {
+                            
+
                             if (rows) {
                               conn.query(
                                 `CALL INSERT_MODULE_USER('${req.body["formDataCsv[modulo]"]}','${req.body["formDataCsv[modulo]"]}','${rows[0][0].idAccount}')`,

@@ -15,9 +15,7 @@ class App {
       const urlConnectionAcceso: string = "http://localhost:3000/*";
       const statusCors: number = 200;
       const port: Number = 8080;
-      AppServer.use(
-        cors({origin:"*"})
-      );
+      AppServer.use(cors({ origin: "*" }));
       AppServer.use(express.static(path.join(__dirname, "public")));
       AppServer.use(express.json());
       AppServer.use(express.urlencoded({ extended: true }));
