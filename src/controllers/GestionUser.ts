@@ -692,7 +692,7 @@ abstract class LoginRegister {
 
                     if (rows.length) {
                       const resultCode = new recoveryAdminPass().sendCode(
-                        rows[0][0].codigo,
+                        codeAcceso,
                         mail.correo
                       );
                       return res
