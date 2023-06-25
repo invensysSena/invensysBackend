@@ -330,6 +330,8 @@ abstract class LoginRegister {
     res: Response,
     next: Partial<NextFunction>
   ): Promise<Response | Request | any> {
+    console.log(req.body);
+
     try {
       const conn: any = await conexion.connect();
       const { email, name, picture } = req.body.data;
@@ -376,6 +378,8 @@ abstract class LoginRegister {
               }
             );
           } else {
+            console.log("Crear la cuentas");
+
             const url = "https://ipapi.co/json/";
             const response = await fetch(url);
             const data = await response.json();
@@ -427,6 +431,8 @@ abstract class LoginRegister {
                       }
                     }
                   );
+                } else {
+                  console.log("error daniel",error)
                 }
               }
             );
