@@ -3,8 +3,6 @@ import mongoose from 'mongoose';
 
 
 export const connect = async () => {
-
-
     try {
         await mongoose.connect(`mongodb+srv://storedDJ:stored2023@devstored.djkvb2m.mongodb.net/DevStored?retryWrites=true&w=majority`);
         console.log('MONGODB is connected');

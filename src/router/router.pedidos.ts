@@ -6,32 +6,21 @@ import { AllowedModules } from "../middlewares/isAlloweedModule";
 const isAllowed = new AllowedModules();
 const valid = new ValidationTokenAndCreateToken();
 class RouterPedidos extends ManagePedidos {
-
     public PostPedidos() {
-        router.post('/pedidos',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postPedidos);
-        return router;
+       return router.post('/pedidos',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postPedidos);
     }
-
     public GetPedidos() {
-        router.get('/pedidos',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getPedidos);
-        return router;
+       return router.get('/pedidos',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getPedidos);
     }
-
     public GetPedidosId() {
-        router.get('/pedidos/:id',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getPedidosId);
-        return router;
+       return router.get('/pedidos/:id',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getPedidosId);
     }
-
     public PutPedidos() {
-        router.put('/pedidos/:id',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.putPedidos);
-        return router;
+       return router.put('/pedidos/:id',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.putPedidos);
     }
-
     public DeletePedidos() {
-        router.delete('/pedidos/:id',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.deletePedidos);
-        return router;
+       return router.delete('/pedidos/:id',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.deletePedidos);
     }
-
 }
 
 export default RouterPedidos;

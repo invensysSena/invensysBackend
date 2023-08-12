@@ -5,22 +5,10 @@ import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import Todo from "../class/Notification.Todo";
 abstract class Categorys {
-  public async createCategory(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async createCategory(req: Partial<Request|any>,res: Response,_next: Partial<NextFunction>){
     try {
       const { name_category, description, imgURL, imgId } = req.body.data;
-      const Tokenid_U: any = req.headers.authorization;
-      const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
-      const tokeIdUser = verifyToken.id;
-      if (!tokeIdUser) {
-        return res.status(400).json({
-          ok: false,
-          message: "No existe el token",
-        });
-      } else {
+      let tokeIdUser = req.users.id;
         const data: category = new CategorySchema({
           tokeIdUser,
           name_category,
@@ -29,44 +17,18 @@ abstract class Categorys {
           imgId,
         });
         const dataCategory = await data.save();
-        await new Todo().createNotificationClass(
-          "Se creo una nueva categoria",
-          name_category,
-          "category",
-          tokeIdUser
-        );
-        return res.status(201).json({
-          status: 201,
-          message: "Categoria creada",
-          data: dataCategory,
-        });
-      }
+
+        await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,"category",tokeIdUser);
+        
+        return res.status(201).json({status: 201,message: "Categoria creada",data: dataCategory,});
     } catch (error) {
-      return res.status(500).json({
-        ok: false,
-        message: "Error al crear la categoria",
-        error,
-      });
+
+      return res.status(500).json({ok: false,message: "Error al crear la categoria",error});
     }
   }
-
-  public async getCategory(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
-    const Tokenid_U: any = req.params.id;
-
-    const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
-    const tokeIdUser = verifyToken.id;
+  public async getCategory(req: Request|any,res: Response,_next: Partial<NextFunction>) {
+    let tokeIdUser = req.users.id;
     try {
-      if (!tokeIdUser) {
-        return res.status(400).json({
-          ok: false,
-          message: "No existe el token",
-        });
-      }
-
       const dataCategory = await CategorySchema.find({ tokeIdUser });
       return res.status(200).json({
         ok: true,
@@ -74,31 +36,11 @@ abstract class Categorys {
         data: dataCategory,
       });
     } catch (error) {
-      return res.status(500).json({
-        ok: false,
-        message: "Error al obtener las categorias",
-        error,
-      });
+      return res.status(500).json({ok: false,message: "Error al obtener las categorias",error,});
     }
   }
-  public async getCategoryId(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async getCategoryId(req: Request,res: Response,_next: Partial<NextFunction>){
     try {
-      const Tokenid_U: any = req.headers.authorization;
-      const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
-
-      const tokeIdUser = verifyToken.id;
-
-      if (!tokeIdUser) {
-        return res.status(400).json({
-          ok: false,
-          message: "No existe el token",
-        });
-      }
-
       const dataCategory = await CategorySchema.findById(req.params._id);
       return res.status(200).json({
         ok: true,
@@ -106,72 +48,26 @@ abstract class Categorys {
         data: dataCategory,
       });
     } catch (error) {
-      return res.status(500).json({
-        ok: false,
-        message: "Error al obtener las categorias",
-        error,
+      return res.status(500).json({ok: false,message: "Error al obtener las categorias",error,
       });
     }
   }
-
-  public async putCategory(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async putCategory(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
-      const { name_category, description } = req.body.data;
-      const Tokenid_U: any = req.headers.authorization;
-      const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
-
-      const tokeIdUser = verifyToken.id;
-      if (!tokeIdUser) {
-        return res.status(400).json({
-          ok: false,
-          message: "No existe el token",
-        });
-      } else {
-        const ipdateCategory = await CategorySchema.findByIdAndUpdate(
-          req.params._id,
-          req.body.data,
-          {
-            new: true,
-          }
-        );
+        const ipdateCategory = await CategorySchema.findByIdAndUpdate(req.params._id,req.body.data,{new: true,});
         return res.status(200).json({
           ok: true,
           message: "update_category",
           data: ipdateCategory,
         });
-      }
+      
     } catch (error) {
-      return res.status(500).json({
-        ok: false,
-        message: "Error_category",
-        error,
-      });
+      return res.status(500).json({ok: false,message: "Error_category",error,});
     }
   }
-
-  public async deleteCategory(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async deleteCategory(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
-      const Tokenid_U: any = req.headers.authorization;
-
-      const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
-
-      const tokeIdUser = verifyToken.id;
-
-      if (!tokeIdUser) {
-        return res.status(400).json({
-          ok: false,
-          message: "No existe el token",
-        });
-      }
-
+      let tokeIdUser = req.users.id;
       const dataCategory = await CategorySchema.findByIdAndDelete(
         req.params._id
       );
@@ -187,19 +83,9 @@ abstract class Categorys {
         data: dataCategory,
       });
     } catch (error) {
-      return res.status(500).json({
-        ok: false,
-        message: "Error al eliminar  las categorias",
-        error,
-      });
+      return res.status(500).json({ok: false,message: "Error al eliminar  las categorias",error});
     }
   }
-
-  public async getCategoryProducts(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {}
 }
 
 export default Categorys;

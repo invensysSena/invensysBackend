@@ -1,35 +1,24 @@
 import {Router} from 'express';
 import ManageCompany from '../controllers/GestionCompany';
-
-const router: Router = Router();
 import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
 import { AllowedModules } from "../middlewares/isAlloweedModule";
+
+const router: Router = Router();
 const valid = new ValidationTokenAndCreateToken();
 const isAllowed = new AllowedModules();
+
 class RouterCompany extends ManageCompany {
     public PostCompany(){
-        router.post('/company',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postCompany)
-        return router;
+        return router.post('/company',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postCompany)
     }
-
     public GetCompany(){
-        router.get('/company',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getCompany)
-        return router;
+        return router.get('/company',valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getCompany)
     }
-
     public UpdateCompany(){
-        router.put('/company/:id',valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions, this.updateCompany)
-        return router;
+        return router.put('/company/:id',valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions, this.updateCompany)
     }
-
     public DeleteCompany(){
-        router.delete(
-          "/company/:id",
-          valid.verifyTokenAndAdmin,
-          isAllowed.isAllowedPermissions,
-          this.deleteCompany
-        );
-        return router;
+        return router.delete("/company/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.deleteCompany);
     }
 }
 

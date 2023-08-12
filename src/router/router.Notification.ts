@@ -9,26 +9,19 @@ const isAllowed = new AllowedModules();
 
 class RouterNotification extends Notification {
   public GetNotification() {
-    router.get("/notification/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getNotification);
-    return router;
+    return router.get("/notification/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getNotification);
   }
-
   public GetNotificationId() {
-    router.get("/notificationId/:_id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getNotificationId);
-    return router;
+    return router.get("/notificationId/:_id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getNotificationId);
   }
-
   public DeleteNotificationId() {
-    router.delete("/notification/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.deleteNotification);
-    return router;
+    return router.delete("/notification/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.deleteNotification);
   }
   public PostcreateNotification() {
-    router.post("/notification", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.createNotification);
-    return router;
+    return router.post("/notification", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.createNotification);
   }
   public DeleteNotificationEstado() {
-    router.delete("/notificationTodoEstado", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.estadoDeleteNotification);
-    return router;
+    return router.delete("/notificationTodoEstado", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.estadoDeleteNotification);
   }
 }
 

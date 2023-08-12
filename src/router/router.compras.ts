@@ -1,23 +1,20 @@
 import { Router } from "express";
 import ComprasClass from "../controllers/GestionCompras";
-
-const router: Router = Router();
 import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
 import { AllowedModules } from "../middlewares/isAlloweedModule";
+
 const valid = new ValidationTokenAndCreateToken();
 const isAllowed = new AllowedModules();
+const router: Router = Router();
 class RouterCompras extends ComprasClass {
   public PostComprasRouter() {
-    router.post("/compras", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postCompras);
-    return router;
+   return router.post("/compras", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postCompras);
   }
   public GetComprasRouter() {
-    router.get("/compras/:id", valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions, this.getCompras);
-    return router;
+   return router.get("/compras/:id", valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions, this.getCompras);
   }
   public GetComprasFvRouter() {
-    router.get("/comprasfv", valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions, this.getComprasFv);
-    return router;
+   return router.get("/comprasfv", valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions, this.getComprasFv);
   }
 }
 

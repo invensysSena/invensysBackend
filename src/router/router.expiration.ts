@@ -8,12 +8,10 @@ const valid = new ValidationTokenAndCreateToken();
 const isAllowed = new AllowedModules();
 class ExpirationRouter extends ManageExpiration {
   public PostCaducidad() {
-    router.post("/caducidad", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.CreateExpiration);
-    return router;
+   return router.post("/caducidad", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.CreateExpiration);
   }
   public GetCaducidad() {
-    router.get("/caducidad", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.GetExpiration);
-    return router;
+   return router.get("/caducidad", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.GetExpiration);
   }
 }
 

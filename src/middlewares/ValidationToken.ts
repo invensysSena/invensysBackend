@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, request } from "express";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 
@@ -16,14 +16,11 @@ export class ValidationTokenAndCreateToken {
     }
   }
 
-  public async verifyTokenAndAdmin(
-    req: Request,
-    res: Response,
-    next: NextFunction
+  public async verifyTokenAndAdmin(req: Request | any,res: Response,next: NextFunction
   ) {
     try {
-      const Tokenid_U: any = req.headers.authorization;
-      const verifyToken: Array<any> | any = jwt.verify(Tokenid_U, SECRET)!;
+      const Tokenid_U: string   = req.headers.authorization;
+      const verifyToken:any = jwt.verify(Tokenid_U, SECRET)!;
       const tokeIdUser = verifyToken.id;
 
       if (!tokeIdUser) {
@@ -32,6 +29,7 @@ export class ValidationTokenAndCreateToken {
           message: "NOT TOKEN ACCESS DENIED",
         });
       } else {
+        req.users = verifyToken;
         next();
       }
     } catch (error) {
@@ -42,4 +40,33 @@ export class ValidationTokenAndCreateToken {
       });
     }
   }
+
+
+  public async createTokenAdmin(req:Request|any,id: string, email: string) {
+    try {
+      const token = jwt.sign({ id, email }, SECRET, {
+        expiresIn: 60 * 60 * 24,
+      });
+
+      req.users = token;
+      return token;
+    } catch (error) {
+      
+      return error;
+    }
+  }
+
+  public async createTokenUser(req:Request|any,id1: string, email: string) {
+    try {
+      const token = jwt.sign({ id1, email }, SECRET, {
+        expiresIn: 60 * 60 * 24,
+      });
+      return token;
+    } catch (error) {
+      
+      return error;
+    }
+  }
 }
+
+

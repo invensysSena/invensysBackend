@@ -13,9 +13,9 @@ moment.locale("es");
 
 class comprasModelClass {
   private idTokenAdmin: string = "";
-  data: any;
+  data: Array<any> = [];
 
-  public async setProperties(data: any, idTokenAdmin: string) {
+  public async setProperties(data: Array<any>,idTokenAdmin: string) {
     this.data = data;
     this.idTokenAdmin = idTokenAdmin;
 

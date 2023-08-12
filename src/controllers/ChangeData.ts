@@ -2,22 +2,12 @@ import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
-import {
-  QueryError,
-  RowDataPacket,
-  Connection,
-  Query,
-  ResultSetHeader,
-  OkPacket,
-} from "mysql2";
+import {QueryError,RowDataPacket,} from "mysql2";
 import { conexion } from "../database/database";
 
 class ChangeDataController {
-  public async UpdatePassAdmin(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Request | Response | any> {
+  public async UpdatePassAdmin(req: Request,res: Response,next: NextFunction
+  ) {
     try {
       const token: any = req.headers.authorization!;
       const decoded: any = jwt.verify(token, SECRET);
@@ -30,9 +20,7 @@ class ChangeDataController {
 
       const conn: any = await conexion.connect();
 
-      conn.query(
-        "select password from admin where idUsers = ?",
-        [validateToken],
+      conn.query("select password from admin where idUsers = ?",[validateToken],
         async (err: QueryError, result: RowDataPacket) => {
           if (err) {
             return res.status(400).json({

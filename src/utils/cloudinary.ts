@@ -4,8 +4,6 @@ import { claudinar_Name,
         cludinaryKey 
        
 } from "../config/config"
-
-
 cloudinary.config({ 
   cloud_name: claudinar_Name,
   api_key: cludinaryKey, 
@@ -21,18 +19,10 @@ return  await cloudinary.uploader.upload(filePath,{
       {gravity: "face", height: 400, width: 400, crop: "crop"},
       {radius: "max"},
       {width: 200, crop: "scale"}
-      ]
-  
-}
+      ]})}
 
+export async function deleteImage(publicId:any ){
 
-
-)
-  
-}
-
-export async function deleteImage(publicId:any){
-
- return  await cloudinary.uploader.destroy(publicId)
+ return  await cloudinary.uploader?.destroy(publicId)!
   
 }

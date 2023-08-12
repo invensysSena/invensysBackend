@@ -2,23 +2,13 @@ import { conexion } from "../database/database";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import bcrypt from "bcrypt";
-export const authAdmin = async (
-  correo: any,
-  password: any,
-  authCuenta: any,
-  token: any
-): Promise<any> => {
+export const authAdmin = async (correo: any,password: any,_authCuenta: any,_token: any) => {
   try {
     const conn: any = await conexion.connect();
     const expresiones = {
       password: /^.{4,20}$/,
       correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     };
-
-    // if (req.headers["authorization-google"]) {
-
-    //   conn.query("")
-    // }
 
     if (
       expresiones.correo.test(correo) &&

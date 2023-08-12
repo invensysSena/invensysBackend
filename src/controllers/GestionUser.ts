@@ -1,40 +1,28 @@
-import bcrypt from "bcrypt";
+import { encripte } from "../utils/encriptePassword";
 import { Request, Response, NextFunction } from "express";
-import {
-  login,
-  PersonRegister,
-  UserRegister,
-  forgotPassword,
-  newPasswordAdmin,
-} from "../interfaces/users";
-//import DeviceDetector from "device-detector-js";
+import {login,PersonRegister,forgotPassword,newPasswordAdmin} from "../interfaces/users";
 import fs from "fs-extra";
 import csvtojson from "csvtojson";
 import { conexion } from "../database/database";
 import jwt from "jsonwebtoken";
-import { SECRET } from "../config/config"; // <--- this is the problem
+import { SECRET } from "../config/config"; // 
 import { sendMailAdmin } from "../libs/libs";
 import { recoveryAdminPass } from "../libs/forGotPassword";
 import { ConfirmPasswordExito } from "../libs/confirmPasswordExito";
 import moment from "moment-with-locales-es6";
-// import { newPasswordUser } from "../interfaces/users";
 import Todo from "../class/Notification.Todo";
-import { uploadImage, deleteImage } from "../utils/cloudinary";
+import { uploadImage } from "../utils/cloudinary";
 import { QueryError, RowDataPacket } from "mysql2";
-import { AnyArray } from "mongoose";
-let momet: any = moment;
+import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
+let moments: moment = moment;
 moment.locale("es");
 abstract class LoginRegister {
-  public async veryfidCode(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async veryfidCode(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const conn: any = await conexion.connect();
       conn.query(
         `CALL ADMIN_SELECT_CODE('${req.body.data.email}')`,
-        async (error: QueryError, rows: RowDataPacket) => {
+        async (_error: QueryError, rows: RowDataPacket) => {
           for (let i = 0; i < rows.length; i++) {
             if (rows[i][0].codigo == parseInt(req.body.data.codigo)) {
               return res
@@ -51,16 +39,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async getAdminData(
-    req: any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {}
-  public async AdminRegister(
-    req: any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
       const datas: PersonRegister = {
         correo: req.body.postDataAdmin.email,
@@ -70,15 +49,10 @@ abstract class LoginRegister {
         refreshToken: req.body.refreshToken,
         nameRol: "superAdmin",
       };
+      const fecha = moments().format("YYYY-MM-DD");
+      const hora = moments().format("HH:mm:ss");
 
-      const fecha = momet().format("YYYY-MM-DD");
-      const hora = momet().format("HH:mm:ss");
-      const roundNumber = 10;
-
-      const encriptarPassword = await bcrypt.genSalt(roundNumber);
-      const hasPassword = await bcrypt.hash(datas.password, encriptarPassword);
-      let state = (datas.authCuenta = true);
-      let estado = "activo";
+      const hasPassword = await encripte.encriptePassword(datas.password);
       const conn: any = await conexion.connect();
       conn.query(
         "SELECT * FROM admin",
@@ -111,7 +85,6 @@ abstract class LoginRegister {
           let tc = "si";
           let authCount = "OK";
           let rol = "superAdmin";
-          //cuent,ipA,paisA,ciudadA,country_calling,idiomaA,longA,lagA
 
           conn.query(
             `CALL ADMIN_INSERT_LOGIN('${datas.correo}','${fecha}','${hora}',
@@ -153,11 +126,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async LoginAuth(
-    req: Partial<any>,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async LoginAuth(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const data: login = {
         correo: req.body.postDataUser.email,
@@ -172,19 +141,11 @@ abstract class LoginRegister {
         async (error: QueryError, rows: RowDataPacket) => {
           if (error)
             return res.status(400).json({ message: "ERROR_DB", error: error });
-
           if (rows[0].length > 0) {
             const user = rows[0][0];
-            const validPassword = await bcrypt.compare(
-              data.password,
-              user.password
-            );
+            const validPassword = await encripte.comparePassword(data.password,user.password);
             if (validPassword) {
-              const token: any = jwt.sign(
-                { id: rows[0][0].idUsers, email: data.correo },
-                SECRET || "authToken",
-                { expiresIn: 60 * 60 * 24 }
-              );
+            const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,rows[0][0].idUsers,data.correo);
               return res.status(200).json({
                 message: "LOGIN_SUCCESSFULL",
                 token,
@@ -207,7 +168,7 @@ abstract class LoginRegister {
                     .json({ message: "ERROR_DB", error: error });
 
                 if (rows[0].length > 0) {
-                  const validPassword = await bcrypt.compare(
+                  const validPassword = await encripte.comparePassword(
                     data.password,
                     rows[0][0].password
                   );
@@ -220,18 +181,9 @@ abstract class LoginRegister {
                             .status(400)
                             .json({ message: "ERROR_DB", error: error });
                         let modulo: any = rowsP[0];
-
-                        const token: any = jwt.sign(
-                          { id: rows[0][0].idUsers1 },
-                          SECRET || "authToken",
-                          { expiresIn: 60 * 60 * 24 }
-                        );
-
-                        const token1: any = jwt.sign(
-                          { id1: rows[0][0].idAccount },
-                          SECRET || "authToken",
-                          { expiresIn: 60 * 60 * 24 }
-                        );
+                        const token =  new ValidationTokenAndCreateToken().createTokenAdmin(req,rows[0][0].idUsers,data.correo);
+                        const token1 =  new ValidationTokenAndCreateToken().createTokenUser(req,rows[0][0].idAccount,data.correo);
+                       
                         let dataDevice = {
                           device: "desktop",
                           navegador: "chrome",
@@ -246,7 +198,7 @@ abstract class LoginRegister {
                               conn.query(
                                 `CALL UPDATE_SESION_USER('${
                                   dataDevice.device
-                                }', '198.168.1.46','${token1}','${momet().format(
+                                }', '198.168.1.46','${token1}','${moments().format(
                                   "LLLL"
                                 )}','Colombia','Español','${
                                   dataDevice.navegador
@@ -264,7 +216,7 @@ abstract class LoginRegister {
                                   conn.query(
                                     `CALL UPDATE_SESION_USER('${
                                       dataDevice.device
-                                    }', '198.168.1.46','${token1}','${momet().format(
+                                    }', '198.168.1.46','${token1}','${moments().format(
                                       "LLLL"
                                     )}','Armenia','Español','${
                                       dataDevice.navegador
@@ -325,19 +277,13 @@ abstract class LoginRegister {
     }
   }
 
-  public async passpAuthGoogle(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
-    console.log(req.body);
-
+  public async passpAuthGoogle(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const conn: any = await conexion.connect();
       const { email, name, picture } = req.body.data;
 
-      const fecha = momet().format("Do MMMM  YYYY");
-      const hora = momet().format("h:mm:ss a");
+      const fecha = moments().format("Do MMMM  YYYY");
+      const hora = moments().format("h:mm:ss a");
       conn.query(
         "SELECT * FROM admin  Where correo = ?",
         [email],
@@ -445,11 +391,7 @@ abstract class LoginRegister {
         .json({ message: "ERROR_AUTH_ADMIN", error: error });
     }
   }
-  public async userRegister(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async userRegister(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       let tokenIdAcc: any = req.headers.authorization;
 
@@ -464,11 +406,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async RegisterUsuario(
-    req: Partial<any>,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async RegisterUsuario(req: Request,res: Response,_next: Partial<NextFunction>){
     try {
       let tokenIdAcc: any = req.headers.authorization;
       const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
@@ -487,11 +425,9 @@ abstract class LoginRegister {
         state: "Inactivo",
       };
       if (verifyToken?.id) {
-        const fecha = momet().format("MMMM Do YYYY");
-        const hora = momet().format("h:mm:ss a");
-        const roundNumber = 10;
-        const encriptarPassword = await bcrypt.genSalt(roundNumber);
-        const hasPassword = await bcrypt.hash(data.password, encriptarPassword);
+        const fecha = moments().format("MMMM Do YYYY");
+        const hora = moments().format("h:mm:ss a");
+        const hasPassword = await encripte.encriptePassword(data.password);
         const conn: any = await conexion.connect();
         conn.query(
           "SELECT * FROM account",
@@ -599,11 +535,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async newPassUser(
-    req: any,
-    res: any,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async newPassUser(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const conn: any = await conexion.connect();
       const { codigo, correo, newPassword } = req.body;
@@ -615,7 +547,6 @@ abstract class LoginRegister {
       const expresiones = {
         password: /^.{4,20}$/,
       };
-
       if (expresiones.password.test(validate.newPassword)) {
         conn.query(
           "SELECT * FROM usuario WHERE correo = ? AND codigo = ?",
@@ -625,7 +556,7 @@ abstract class LoginRegister {
               return res.json({ message: "ERROR_NEW_PASS", error: error });
             }
             if (rows.length) {
-              const password = await bcrypt.hashSync(validate.newPassword, 10);
+              const password = await encripte.encriptePassword(validate.newPassword);
               conn.query(
                 "UPDATE usuario SET password = ? WHERE correo = ?",
                 [password, validate.correo],
@@ -659,11 +590,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async recoveryPassword(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async recoveryPassword(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const conn: any = await conexion.connect();
       const { email } = req.body;
@@ -723,11 +650,7 @@ abstract class LoginRegister {
       return res.status(400).json({ error });
     }
   }
-  public async newPassAdmin(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async newPassAdmin(req: Request,res: Response,_next: Partial<NextFunction>){
     try {
       const conn: any = await conexion.connect();
       const { codigo, correo, newPassword } = req.body.data;
@@ -736,12 +659,7 @@ abstract class LoginRegister {
         codePass: codigo,
         newPassword: newPassword,
       };
-      const roundNumber = 10;
-      const encriptarPassword = await bcrypt.genSalt(roundNumber);
-      const hasPassword = await bcrypt.hash(
-        validate.newPassword,
-        encriptarPassword
-      );
+      const hasPassword = await encripte.encriptePassword(validate.newPassword,);
       conn.query(
         `CALL ADMIN_SELECT_EMAIL('${validate.correo}')`,
         (error: QueryError, rows: RowDataPacket) => {
@@ -779,13 +697,9 @@ abstract class LoginRegister {
       return res.status(400).json({ error });
     }
   }
-  public async uploadusersCsv(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
-    const fecha = momet().format("MMMM Do YYYY");
-    const hora = momet().format("h:mm:ss a");
+  public async uploadusersCsv(req: any,res: Response,_next: Partial<NextFunction>) {
+    const fecha = moments().format("MMMM Do YYYY");
+    const hora = moments().format("h:mm:ss a");
     const permisions = {
       delete: "eliminar",
       editar: "editar",
@@ -796,12 +710,8 @@ abstract class LoginRegister {
     let tokenIdAcc: any = req.headers.authorization;
     const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
     const { id } = verifyToken;
-
     if (id) {
-      const roundNumber = 10;
-      const encriptarPassword = await bcrypt.genSalt(roundNumber);
-      const conn: any = await conexion.connect();
-
+    const conn: any = await conexion.connect();
       if (req.files?.archivousuariocsv) {
         let fileName = req.files?.archivousuariocsv?.tempFilePath!;
 
@@ -812,10 +722,7 @@ abstract class LoginRegister {
             for (let i = 0; i < source.length; i++) {
               let correo = source[i]["correo"],
                 password = source[i]["password"];
-              const hasPassword = await bcrypt.hash(
-                password,
-                encriptarPassword
-              );
+              const hasPassword = await encripte.encriptePassword(password,);
               conn.query(
                 "SELECT * FROM account",
                 async (error: QueryError, rows: RowDataPacket) => {
@@ -881,11 +788,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async getUsersAdminData(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async getUsersAdminData(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.params.idToken,
@@ -916,11 +819,7 @@ abstract class LoginRegister {
       return res.status(400).json({ error });
     }
   }
-  public async deleteAllUsers(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async deleteAllUsers(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       let tokenIdAcc: any = req.headers.authorization;
 
@@ -977,11 +876,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async CountUsersAll(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async CountUsersAll(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.params.idToken,
@@ -1024,11 +919,7 @@ abstract class LoginRegister {
     }
   }
   // Here go the part of module,permisions
-  public async getModuleUsers(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async getModuleUsers(req: any,res: Response,_next: Partial<NextFunction>){
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.headers.authorization,
@@ -1057,11 +948,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async getPermisions(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async getPermisions(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.params.idModule,
@@ -1089,11 +976,7 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async updateAdmin(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async updateAdmin(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.params.idToken,
@@ -1120,11 +1003,7 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async deleteModule(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async deleteModule(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.headers.authorization,
@@ -1151,14 +1030,10 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async setModule(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async setModule(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
-        req.headers.authorization,
+        req.headers?.authorization,
         SECRET
       )!;
       const { id } = verifyToken;
@@ -1189,11 +1064,7 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async setPermisionModule(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async setPermisionModule(req: Request | any,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.params.idToken,
@@ -1221,11 +1092,7 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async deletePermisionModule(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async deletePermisionModule(req: Request | any,res: Response,_next: Partial<NextFunction>){
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.params.idToken,
@@ -1253,12 +1120,7 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-
-  public async getMod(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async getMod(req: Request | any,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
       const { id1 } = verifyToken;
@@ -1284,11 +1146,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async getAdminAll(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async getAdminAll(req: Request | any,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
 
@@ -1314,11 +1172,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async uploadImageA(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async uploadImageA(req: Request | any,res: Response,_next: Partial<NextFunction>) {
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.headers.authorization,
@@ -1361,11 +1215,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async UpdateAdminAll(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async UpdateAdminAll(req: Request | any,res: Response,next: Partial<NextFunction>){
     try {
       const verifyToken: Array<any> | any = jwt.verify(
         req.headers.authorization,
@@ -1415,11 +1265,7 @@ abstract class LoginRegister {
     }
   }
 
-  public async GetServiceUser(
-    req: Request | any,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Request | Response | any> {
+  public async GetServiceUser(req: Request | any,res: Response,_next: Partial<NextFunction>) {
     try {
       if (req.params.id === "undefined") {
         return res.send({ message: "ERROR_ID" });

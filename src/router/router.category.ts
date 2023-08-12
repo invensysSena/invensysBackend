@@ -1,73 +1,27 @@
 import { Router } from "express";
-const router: Router = Router();
 import Categorys from "../controllers/GestionCategory";
-
 import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
-
 import { AllowedModules } from "../middlewares/isAlloweedModule";
 
+const router: Router = Router();
 const isAllowed = new AllowedModules();
-
 const valid = new ValidationTokenAndCreateToken();
+
 class RouterCategory extends Categorys {
   public CreateCategory() {
-    router.post(
-      "/category",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.createCategory
-    );
-    return router;
+    return router.post("/category",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.createCategory);
   }
-
   public GetCategory() {
-    router.get(
-      "/category/:id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.getCategory
-    );
-    return router;
+    return router.get("/category/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.getCategory);
   }
-
   public GetCategoryId() {
-    router.get(
-      "/category/:_id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.getCategoryId
-    );
-    return router;
+    return router.get("/category/:_id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.getCategoryId);
   }
-
   public PutCategory() {
-    router.put(
-      "/category/:_id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.putCategory
-    );
-    return router;
+    return router.put("/category/:_id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.putCategory);
   }
-
   public DeleteCategory() {
-    router.delete(
-      "/category/:_id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.deleteCategory
-    );
-    return router;
-  }
-
-  public GetCategoryProducts() {
-    router.get(
-      "/category/products/:id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.getCategoryProducts
-    );
-    return router;
+    return router.delete("/category/:_id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.deleteCategory);
   }
 }
 

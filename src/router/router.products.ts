@@ -8,62 +8,25 @@ const valid = new ValidationTokenAndCreateToken();
 
 class RouterProducts extends ManageProducts {
   public Getproducts() {
-    router.get(
-      "/getProducts/:_id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.getProducts
-    );
-    return router;
+   return router.get("/getProducts/:_id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.getProducts);
   }
-
   public GetproductsId() {
-    router.get(
-      "/getProductsId/:id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.getProductsId
-    );
-    return router;
+    return router.get("/getProductsId/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,
+    this.getProductsId);
   }
   public GetproductsIdCategory() {
-    router.get(
-      "/productsCategory/:idCategory",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.getProductsIdCategory
-    );
-    return router;
+    return router.get("/productsCategory/:idCategory",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,
+    this.getProductsIdCategory);
   }
-
   public PostProduct() {
-    router.post(
-      "/createProducts",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.postProducts
-    );
-    return router;
+    return router.post("/createProducts",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.postProducts);
   }
-
   public PutProducts() {
-    router.put(
-      "/updateProducts/:id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.putProducts
-    );
-    return router;
+    return router.put("/updateProducts/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.putProducts);
   }
-
   public DeleteProduct() {
-    router.delete(
-      "/deleteProducts/:id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.deleteProducts
-    );
-    return router;
+    return router.delete("/deleteProducts/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,
+    this.deleteProducts);
   }
 }
 

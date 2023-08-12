@@ -8,72 +8,42 @@ const valid = new ValidationTokenAndCreateToken();
 const isAllowed = new AllowedModules();
 class RouterInventory extends InventoryProduct {
   public PostInventory() {
-    router.post(
-      "/inventory",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.postInventory
-    );
-    return router;
+   return router.post("/inventory",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.postInventory);
   }
-
   public GetInventory() {
-    router.get(
-      "/inventory/:id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.getInventory
-    );
-    return router;
+   return router.get("/inventory/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.getInventory);
   }
-
   public PutInventoryId() {
-    router.put(
-      "/inventory/:_id",
-      valid.verifyTokenAndAdmin,
-      isAllowed.isAllowedPermissions,
-      this.putInventoryId
-    );
-    return router;
+   return router.put("/inventory/:_id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.putInventoryId);
   }
   
   public DeleteInventoryId() {
-    router.delete("/inventory/:_id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.deleteInventoryId);
-    return router;
+   return router.delete("/inventory/:_id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.deleteInventoryId);
   }
   public UploadInsertProduct() {
-    router.post("/subProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.UploadInsertProducts);
-    return router;
+   return router.post("/subProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.UploadInsertProducts);
   }
   public getSubProducts() {
-    router.get("/subProducts/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.GetSubProducta);
-    return router;
+   return router.get("/subProducts/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.GetSubProducta);
   }
-
   public postTranslateProducts() {
-    router.post("/translateProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.TranslateProducts);
-    return router;
+   return router.post("/translateProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.TranslateProducts);
   }
   public getTranslateProducts() {
-    router.get("/translateProducts/:id",  valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions,this.GetTranslateProducts);
-    return router;
+   return router.get("/translateProducts/:id",  valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions,this.GetTranslateProducts);
   }
   public UpdateSubProducts() {
-    router.put("/translateSubProducts/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postTranslateProductsOrigen);
-    return router;
+   return router.put("/translateSubProducts/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postTranslateProductsOrigen);
   }
   public UpdateEmailBodega() {
-    router.put("/updateEmailBodega/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.UpdateCorreoBodega);
-    return router;
+   return router.put("/updateEmailBodega/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.UpdateCorreoBodega);
   }
 
   public GetAllSubProducts() {
-    router.get("/subProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.SubProductsIdAll);
-    return router;
+   return router.get("/subProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.SubProductsIdAll);
   }
   public DisminucionUnidades() {
-    router.get("/disminucionUnidades", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.searchProductUnidadesDisminucon);
-    return router;
+   return router.get("/disminucionUnidades", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.searchProductUnidadesDisminucon);
   }
 }
 

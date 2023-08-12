@@ -11,22 +11,21 @@ import RouterCompras from "../router/router.compras";
 import RouterCompany from "../router/router.company";
 import RouterInventaryGeneral from "../router/router.InventaryGeneral";
 import ExpirationRouter from "../router/router.expiration";
+import { Server } from "../types/typesInvensys";
 const AppServer: express.Application = express();
 export class ServerRoutes {
-  public async Inicio(): Promise<any> {
+  public async Inicio(): Promise<Server> {
     AppServer.use(new RouterInicio().GetModules());
-
     // Here go the Routes User
 
     AppServer.use(new RouterUser().registerAdmin());
-    AppServer.use(new RouterUser().RouterPrincipal());
     AppServer.use(new RouterUser().registerUser());
     AppServer.use(new RouterUser().Login());
     AppServer.use(new RouterUser().recoveryPass());
     AppServer.use(new RouterUser().newPassword());
     AppServer.use(new RouterUser().veryfiCod());
     AppServer.use(new RouterUser().authGoogle());
-    AppServer.use(new RouterUser().getDataAdmin());
+    // AppServer.use(new RouterUser().getDataAdmin());
     AppServer.use(new RouterUser().uploadCsvUsers());
     AppServer.use(new RouterUser().getUsersAdmin());
     AppServer.use(new RouterUser().UsersDelete());
@@ -132,6 +131,6 @@ export class ServerRoutes {
     AppServer.use(new ExpirationRouter().PostCaducidad());
     AppServer.use(new ExpirationRouter().GetCaducidad());
 
-    return AppServer;
+    return <Server>AppServer;
   }
 }

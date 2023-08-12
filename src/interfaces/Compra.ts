@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
-
 export interface CompraInterface extends mongoose.Document {
-
     tokeIdUser: string,
     name: string,
     description: string,

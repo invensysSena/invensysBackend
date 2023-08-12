@@ -1,24 +1,13 @@
 import mysql from "mysql2";
-import {
-  HOST,
-  DBNAME,
-  PASSWORD,
-  USER,
-  PORTDB,
-  LIMIT_CONNECION,
-} from "../config/config";
 import { MysqlError } from "mysql";
 export class Conexion {
-  getRepository(Admin: any) {
-    throw new Error("Method not implemented.");
-  }
-  public readonly host?: string | any = "containers-us-west-68.railway.app";
-  private readonly user?: string | any = "root";
-  private readonly password?: string | any = "WWpyn44FQjjsVWr5xj8D";
-  protected readonly database: string | any = "invensys";
-  private readonly charset: string | any = "utf8";
-  private readonly port: Number | any = 6409;
-
+  
+  public readonly host?: string | any = process.env.DB_HOST || "localhost";
+  private readonly user?: string | any = process.env.DB_USER || "root";
+  private readonly password?: string | any = process.env.DB_PASSWORD || "";
+  protected readonly database: string | any = process.env.DB_NAME || "invensys";
+  private readonly charset: string | any = process.env.DB_CHARSET || "utf8";
+  private readonly port: Number | any = process.env.DB_PORT || 3306;
   public async connect() {
     try {
       const conenct = await mysql.createConnection({
@@ -50,9 +39,10 @@ export class Conexion {
         this.connect();
       }
       if (err.code === "ECONNREFUSED") {
-        console.error("Database connection was refused");
+        console.error("Database connection was refused",err);
       }
     });
   }
 }
+
 export const conexion = new Conexion();
