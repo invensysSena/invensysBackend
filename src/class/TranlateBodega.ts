@@ -1,4 +1,3 @@
-import { subProducts } from "../interfaces/SubProducts";
 import TranslateSubPSchema from "../interfaces/TranslateSubP.Model";
 import subProductSchema from "../models/SubProductos.model";
 import InventorySchema from "../models/modelInventario";
@@ -71,9 +70,7 @@ class TranslateBodega {
     }
   }
 
-  protected async InserTranslateSubP(
-    searchInventory: any,
-    searchSubProducts: any,
+  protected async InserTranslateSubP(searchInventory: any,_searchSubProducts: any,
     responseX: any
   ) {
     try {

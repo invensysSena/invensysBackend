@@ -1,21 +1,12 @@
 import { conexion } from "../database/database";
-import jwt from "jsonwebtoken";
-import { SECRET } from "../config/config";
 import { Request, Response, NextFunction } from "express";
 import { QueryError, RowDataPacket, OkPacket } from 'mysql2';
 
 import Stripe from "stripe";
 class LicenceSofteareInvensys {
-  public async getLicence(
-    req: Request | any,
-    res: Response | any,
-    next: NextFunction
-  ) {
-
+  public async getLicence(req: Request | any,res: Response | any,_next: NextFunction) {
     try {
-      const Token: string = req.params?.id!;
-      const veryfyToken: any  = jwt.verify(Token, SECRET)!;
-      const tokenIdUser = veryfyToken.id;
+      let tokenIdUser = req.users.id;
       const conn: any = await conexion.connect();
       conn.query(
         "SELECT * FROM licence WHERE idAdmin = ?",
@@ -67,48 +58,27 @@ class LicenceSofteareInvensys {
         receipt_email: "ospinaortizjuandaniel351@gmail.com",
       });
 
-      const Token: string = req.params?.id!;
-      const veryfyToken: Array<any> | any = jwt.verify(Token, SECRET)!;
-      const tokenIdUser = veryfyToken.id;
+      let tokenIdUser = req.users.id;
       const { licence } = req.body;
       const conn: any = await conexion.connect();
       const estado = "Activo";
       const verificado = "verificado";
       conn.query(
         `INSERT INTO licence (
-          idAdmin,
-          	name_Card,
-            	licence,
-              	pago,
-                	exp_month,
-                  	exp_year,
-                    	idKey_cliente,
-                      	client_secret,	
-                        object,
-                        estado,
-                        verificado
-        ) VALUES
+          idAdmin,name_Card,licence,pago,exp_month,
+          exp_year,idKey_cliente,client_secret,	object,
+           estado,verificado) VALUES
          (?,?,?,?,?,?,?,?,?,?,?)`,
         [
-          tokenIdUser,
-          data.card.brand,
-          id,
-          req.body.moneyPrice,
-          data.card.exp_month,
-          data.card.exp_year,
-          payment.id,
-          payment.client_secret,
-          payment.object,
-          estado,
-          verificado,
+          tokenIdUser,data.card.brand,id,
+          req.body.moneyPrice,data.card.exp_month,data.card.exp_year,
+          payment.id,payment.client_secret,payment.object,
+          estado,verificado,
         ],
         (err: QueryError, result: RowDataPacket) => {
           if (err) {
             return res.status(400).json({
-              ok: false,
-              message: "Error al crear la licencia",
-              err,
-            });
+              ok: false,message: "Error al crear la licencia",err,});
           }
           return res.status(200).json({
             ok: true,

@@ -1,24 +1,17 @@
 import subProductSchema from "../models/SubProductos.model";
-import PedidosPendientesSchema from "../models/modelPedidosPendientes";
-import PedidosSchema from "../models/modelPedidos";
 import ComprasSchema from "../models/Compras";
 import { v4 as uuidv4 } from "uuid";
-// ? new comprasSchema
 import ComprasFvModule from "../interfaces/Compras.Salidas";
 import Todo from "../class/Notification.Todo";
-
 import moment from "moment-with-locales-es6";
-
 moment.locale("es");
 
 class comprasModelClass {
   private idTokenAdmin: string = "";
   data: Array<any> = [];
-
   public async setProperties(data: Array<any>,idTokenAdmin: string) {
     this.data = data;
     this.idTokenAdmin = idTokenAdmin;
-
     return await this.validateData(data);
   }
   public async validateData(data: any) {
@@ -42,16 +35,12 @@ class comprasModelClass {
     await new Todo().createNotificationClass(
       "Se creo una nueva compra",
       `Total de la compra: ${TotalCompra} Cantidad de productos: ${data.length}`,
-      "venta",
-      this.idTokenAdmin
+      "example@gmail.com","venta",this.idTokenAdmin
     );
-
     const response = await newCompraModel.save();
     const { _id } = response;
-
     return await this.postCompra(data, _id);
   }
-
   protected async postCompra(data: any, id: number) {
     if (data.length > 1) {
       for (let i = 0; i < data.length; i++) {
@@ -66,7 +55,6 @@ class comprasModelClass {
           fecha: moment().format("l"),
         });
         await pedidosCreate.save();
-
         const exitsSubProduct: any = await subProductSchema.findById(
           data[i].idSubproducto
         );
@@ -75,11 +63,7 @@ class comprasModelClass {
           throw new Error("SUBPRODUCT_NOT_FOUND");
         } else {
           const updateUnidades = await subProductSchema.findByIdAndUpdate(
-            { _id: data[i].idSubproducto },
-            {
-              unidad: newUnidades,
-            },
-            { new: true }
+            { _id: data[i].idSubproducto },{ unidad: newUnidades,},{ new: true }
           );
         }
       }
@@ -95,8 +79,7 @@ class comprasModelClass {
         total: totalCompra,
         fecha: moment().format("l"),
       });
-      const res = await comprasCreate.save();
-
+     await comprasCreate.save();
       const exitsSubProduct: any = await subProductSchema.findById(
         idSubproducto
       );
@@ -105,15 +88,10 @@ class comprasModelClass {
         throw new Error("SUBPRODUCT_NOT_FOUND");
       } else {
         const updateUnidades = await subProductSchema.findByIdAndUpdate(
-          { _id: idSubproducto },
-          {
-            unidad: newUnidades,
-          },
-          { new: true }
+          { _id: idSubproducto },{unidad: newUnidades,},{ new: true }
         );
       }
     }
   }
 }
-
 export default comprasModelClass;

@@ -1,5 +1,4 @@
 import subProductSchema from "../models/SubProductos.model";
-import PedidosPendientesSchema from "../models/modelPedidosPendientes";
 import PedidosSchema from "../models/modelPedidos";
 import PedidoProvider from "../models/PedidosProvedor";
 import { v4 as uuidv4 } from "uuid";
@@ -34,17 +33,14 @@ class PedidosValiadation {
       cantidadProductos: data.length,
       totalComprap: TotalComprap,
     });
-    const response1 = await new Todo().createNotificationClass(
-      "Se creo un nuevo pedido",
+   await new Todo().createNotificationClass(
+      "Se creo un nuevo pedido","example@gmail.com",
       `Total del pedido: ${TotalComprap} Cantidad de productos: ${data.length}`,
-      "pedido",
-      this.idTokenAdmin
+      "pedido",this.idTokenAdmin
     );
-
     const response = await newPedidoProvider.save();
     const { _id } = response;
     let id: number = _id;
-
     if (data.length > 1) {
       for (let i = 0; i < data.length; i++) {
         const pedidosCreate = new PedidosSchema({
@@ -60,7 +56,6 @@ class PedidosValiadation {
           idPedidoProvider: id,
         });
         await pedidosCreate.save();
-
         const exitsSubProduct: any = await subProductSchema.findById(
           data[i].idSubproducto
         );
@@ -68,27 +63,14 @@ class PedidosValiadation {
         if (!exitsSubProduct) {
           throw new Error("SUBPRODUCT_NOT_FOUND");
         } else {
-          const updateUnidades = await subProductSchema.findByIdAndUpdate(
-            { _id: data[i].idSubproducto },
-            {
-              unidad: newUnidades,
-            },
-            { new: true }
+           await subProductSchema.findByIdAndUpdate(
+            { _id: data[i].idSubproducto },{unidad: newUnidades,},{ new: true }
           );
         }
       }
     } else {
       const [
-        {
-          idSubproducto,
-          unidades,
-          idProvedor,
-          idBodega,
-          company,
-          tipo,
-          fecha,
-          totalCompra,
-        },
+        {idSubproducto,unidades,idProvedor,idBodega,company,tipo,fecha,totalCompra,},
       ] = data;
       const pedidosCreate = new PedidosSchema({
         tokeIdUser: this.idTokenAdmin,
@@ -110,12 +92,8 @@ class PedidosValiadation {
       if (!exitsSubProduct) {
         throw new Error("SUBPRODUCT_NOT_FOUND");
       } else {
-        const updateUnidades = await subProductSchema.findByIdAndUpdate(
-          { _id: idSubproducto },
-          {
-            unidad: newUnidades,
-          },
-          { new: true }
+        await subProductSchema.findByIdAndUpdate(
+          { _id: idSubproducto },{unidad: newUnidades,},{ new: true }
         );
       }
     }

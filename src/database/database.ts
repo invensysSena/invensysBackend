@@ -42,6 +42,10 @@ export class Conexion {
         console.error("Database connection was refused",err);
       }
     });
+    // sucesfull 
+    conenct.on("connect", () => {
+      console.log("Database connection was successful");
+    });
   }
 }
 

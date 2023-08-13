@@ -1,7 +1,5 @@
 import { Schema, model } from "mongoose";
-
 import {category} from "../interfaces/CategoryI";
-
 
 const CategorySchema = new Schema({
     tokeIdUser: { type: String, require: true },

@@ -16,10 +16,7 @@ class GerneralInventary {
     this.data = data;
     return await this.createInventaryGeneral(data);
   }
-
   protected async createInventaryGeneral(data: any) {
-
-    
     const conn:any = await conexion.connect();
     const { name_inventory, description, idBodega } = data;
 
@@ -27,7 +24,7 @@ class GerneralInventary {
       conn.query(
         "SELECT correo FROM admin WHERE idUsers = ? ",
         [this.idTokenAdmin],
-        async (err:any, rows: any, fields:any) => {
+        async (_err:any, rows: any, _fields:any) => {
           if (rows) {
             const inventory: IinventoryG = new InventaryGeneral({
               tokenIdUser: this.idTokenAdmin,
@@ -41,6 +38,7 @@ class GerneralInventary {
             const response = await inventory.save();
             await new Todo().createNotificationClass(
               "Se creo un nuevo inventario",
+              "example@gmail.com",
               name_inventory,
               "inventory",
               this.idTokenAdmin

@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import {QueryError,RowDataPacket,} from "mysql2";
 import { conexion } from "../database/database";
-
 class ChangeDataController {
   public async UpdatePassAdmin(req: Request,res: Response,next: NextFunction
   ) {

@@ -9,6 +9,7 @@ abstract class Categorys {
     try {
       const { name_category, description, imgURL, imgId } = req.body.data;
       let tokeIdUser = req.users.id;
+      let responsable = req.users.email;
         const data: category = new CategorySchema({
           tokeIdUser,
           name_category,
@@ -17,8 +18,7 @@ abstract class Categorys {
           imgId,
         });
         const dataCategory = await data.save();
-
-        await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,"category",tokeIdUser);
+        await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,responsable,"category",tokeIdUser);
         
         return res.status(201).json({status: 201,message: "Categoria creada",data: dataCategory,});
     } catch (error) {
@@ -68,12 +68,13 @@ abstract class Categorys {
   public async deleteCategory(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
       let tokeIdUser = req.users.id;
+      let responsable = req.users.email;
       const dataCategory = await CategorySchema.findByIdAndDelete(
         req.params._id
       );
       await new Todo().createNotificationClass(
         "Eliminaste una categoria",
-        "Se borro con exito",
+        "Se borro con exito",responsable,
         "category",
         tokeIdUser
       );

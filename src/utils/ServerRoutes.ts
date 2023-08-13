@@ -14,7 +14,7 @@ import ExpirationRouter from "../router/router.expiration";
 import { Server } from "../types/typesInvensys";
 const AppServer: express.Application = express();
 export class ServerRoutes {
-  public async Inicio(): Promise<Server> {
+  public async Inicio<Server>(): Promise<Server> {
     AppServer.use(new RouterInicio().GetModules());
     // Here go the Routes User
 
@@ -63,7 +63,7 @@ export class ServerRoutes {
     AppServer.use(new RouterCategory().CreateCategory());
     AppServer.use(new RouterCategory().PutCategory());
     AppServer.use(new RouterCategory().DeleteCategory());
-    AppServer.use(new RouterCategory().GetCategoryProducts());
+    // AppServer.use(new RouterCategory().GetCategoryProducts());
 
     // Here there are routes Providers
     AppServer.use(new RouterProviders().GetProviders());

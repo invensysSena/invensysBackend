@@ -1,6 +1,5 @@
-import mongoose, { Schema, model } from "mongoose";
-import { ComprasInterface, ComprasNF } from "../interfaces/Compras.Salidas";
-
+import mongoose, { Schema} from "mongoose";
+import { ComprasInterface } from "../interfaces/Compras.Salidas";
 const ComprasSchema = new Schema(
   {
     tokeIdUser: { type: String, require: true },

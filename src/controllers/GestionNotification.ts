@@ -1,23 +1,14 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
-import { SECRET } from "../config/config";
-import { AnyArray } from "mongoose";
 import Todo from "../class/Notification.Todo";
 abstract class Notification {
-  public async createNotification(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async createNotification(req: Request|any,res: Response,_next: Partial<NextFunction>
+  ){
     try {
-      let idToken: any = req.headers.authorization;
-      const verifyToken: any = jwt.verify(idToken, SECRET);
+      let verifyToken = req.users.id;
+      let responsable = req.users.email;
       const { title, description, type } = req.body;
       let responseNotification = await new Todo().createNotificationClass(
-        title,
-        description,
-        type,
-        verifyToken.id
+        title,description,responsable, type,verifyToken
       );
       res.status(200).json({ message: "ok", responseNotification });
     } catch (error) {
@@ -27,73 +18,41 @@ abstract class Notification {
     }
   }
 
-  public async getNotification(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async getNotification(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
-      let idToken: any = req.params.id;
-
-      const verifyToken: any = jwt.verify(idToken, SECRET);
-      if (verifyToken.id) {
+      let verifyToken = req.users.id;
         let responseNotification = await new Todo().getNotificationClass(
-          verifyToken.id
+          verifyToken
         );
-
         res.status(200).json({ message: "ok", responseNotification });
-      } else {
-        return res.status(401).json({ message: "NO_PERMISION" });
-      }
+     
     } catch (error) {
       return res
         .status(500)
         .json({ message: "Error en el servidor ok", error });
     }
   }
-  public async getNotificationId(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async getNotificationId(_req: Request,res: Response,_next: Partial<NextFunction>
+  ) {
     res.send("get id");
   }
-
-  public async deleteNotification(
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> {
+  public async deleteNotification(req: Request,res: Response,_next: Partial<NextFunction>) {
     if (req.params.id) {
       let responseNotification = await new Todo().deleteNotificationClass(
         req.params.id
       );
-
       res.status(200).json({ message: "ok", responseNotification });
     } else {
       return res.status(401).json({ message: "NO_PERMISION" });
     }
   }
-
-  public estadoDeleteNotification = async (
-    req: Request,
-    res: Response,
-    next: Partial<NextFunction>
-  ): Promise<Response | Request | any> => {
+  public estadoDeleteNotification = async (req: Request|any,res: Response,_next: Partial<NextFunction>
+  ) => {
     try {
-      let idToken: any = req.headers.authorization;
-  
-
-      const verifyToken: any = jwt.verify(idToken, SECRET);
-      if (verifyToken.id) {
+      let verifyToken = req.users.id;
         let responseNotification = await new Todo().deleteEstado(
-          verifyToken.id
-        );
-
+          verifyToken)
         res.status(200).json({ message: "ok", responseNotification });
-      } else {
-        return res.status(401).json({ message: "NO_PERMISION" });
-      }
     } catch (error) {
       return res
         .status(500)

@@ -5,6 +5,7 @@ class Todo extends NotificationSchema {
   public async createNotificationClass(
     title: string,
     description: string,
+    responsable: string,
     type: string,
     token: string
   ) {
@@ -13,6 +14,7 @@ class Todo extends NotificationSchema {
         await new NotificationSchema({
           tokeIdUser: token,
           title,
+          responsable,
           description,
           type,
         });

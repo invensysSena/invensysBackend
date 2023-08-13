@@ -6,7 +6,7 @@ class modelInventoryData {
       conn.query(
         "SELECT correo FROM admin WHERE idUsers = ? ",
         [tokeIdUser],
-        async (err: any, rows: any, fields: any) => {
+        async (_err: any, rows: any, _fields: any) => {
           if (rows) {
             return await rows[0].correo;
           }

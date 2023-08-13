@@ -1,44 +1,34 @@
 import { Request, Response, NextFunction } from "express";
 import InventorySchema from "../models/modelInventario";
 import TranslateSubPSchema from "../interfaces/TranslateSubP.Model";
-import { category } from "../interfaces/CategoryI";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
 import Todo from "../class/Notification.Todo";
 import subProductSchema from "../models/SubProductos.model";
 import { conexion } from "../database/database";
-import modelInventoryData from "../class/Inventory.model";
 import TranslateBodega from "../class/TranlateBodega";
 import SubProductosModel from "../models/SubProductos.model";
 import NotificationSchema from "../models/modelNotfication";
 class InventoryProduct {
-  public async postInventory(req: Request, res: Response, next: NextFunction) {
+  public async postInventory(req: Request|any, res: Response, _next: NextFunction) {
     try {
       const { name_inventory, description } = req.body.data;
-      const token: any = req.headers.authorization;
       let typeUser: any = req.headers["typeautorization"];
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
+      let tokeIdUser = req.users.id;
+      let responsable = req.users.email;
       const conn: any = await conexion.connect();
-
       if (typeUser === "superAdmin") {
-        conn.query(
-          "SELECT correo FROM admin WHERE idUsers = ? ",
-          [tokeIdUser],
-          async (err: any, rows: any, fields: any) => {
+        conn.query("SELECT correo FROM admin WHERE idUsers = ? ",[tokeIdUser],
+          async (_err: any, rows: any, _fields: any) => {
             if (rows) {
               const inventory = new InventorySchema({
-                tokeIdUser,
-                name_inventory,
-                description,
-                estadoInventory: "activo",
-                responsableInventory: rows[0].correo,
-                type: "Administrador",
-              });
+                tokeIdUser,name_inventory,description,estadoInventory: "activo",
+                responsableInventory: rows[0].correo,type: "Administrador",});
               const response = await inventory.save();
               await new Todo().createNotificationClass(
                 "Se creo una nueva bodega",
                 name_inventory,
+                responsable,
                 "inventory",
                 tokeIdUser
               );
@@ -48,27 +38,24 @@ class InventoryProduct {
         );
       } else if (typeUser === "user") {
         const token: any = req.headers["authorization1"];
-
         const decoded: any = jwt.verify(token, SECRET);
         const tokeIdUser1 = decoded.id1;
-
+        let responsable = req.users.email;
         conn.query(
           "SELECT correo FROM account WHERE idAccount    = ? ",
           [tokeIdUser1],
-          async (err: any, rows: any, fields: any) => {
+          async (_err: any, rows: any, _fields: any) => {
             if (rows) {
               const inventory = new InventorySchema({
-                tokeIdUser,
-                name_inventory,
-                description,
-                estadoInventory: "Activo",
-                responsableInventory: rows[0].correo,
+                tokeIdUser,name_inventory,
+                description,estadoInventory: "Activo",responsableInventory: rows[0].correo,
                 type: "Usuario",
               });
               const response = await inventory.save();
               await new Todo().createNotificationClass(
                 "Se creo un nuevo inventario",
                 name_inventory,
+                responsable,
                 "inventory",
                 tokeIdUser
               );
@@ -82,63 +69,41 @@ class InventoryProduct {
     }
   }
 
-  public async getInventory(req: Request, res: Response, next: NextFunction) {
+  public async getInventory(req: Request|any, res: Response, _next: NextFunction) {
     try {
-      const { id } = req.params;
-      const decoded: any = jwt.verify(id, SECRET);
-      const tokeIdUser = decoded.id;
-      const response = await InventorySchema.find({
-        tokeIdUser: tokeIdUser,
-      });
+      let tokeIdUser = req.users.id;
+      const response = await InventorySchema.find({tokeIdUser: tokeIdUser,});
       res.status(200).json({ message: "Inventory", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
 
-  public async putInventoryId(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async putInventoryId(req: Request,res: Response,_next: NextFunction) {
     //actualizar inventario
 
     try {
       const { _id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
-      const { name_inventory, description } = req.body;
-      const response = await InventorySchema.findByIdAndUpdate(
-        { _id },
-        req.body.data,
-        { new: true }
-      );
+      const response = await InventorySchema.findByIdAndUpdate({ _id },
+        req.body.data,{ new: true });
       res.status(200).json({ message: "Inventory updated", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
-  public async deleteInventoryId(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  public async deleteInventoryId(req: Request|any,res: Response,_next: NextFunction) {
     try {
       const { _id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
-
+      let tokeIdUser = req.users.id;
+      let responsable = req.users.email;
       const searchSubProduct = await subProductSchema.find({
         idInventory: _id,
       });
-
       if (searchSubProduct.length > 0) {
         await new Todo().createNotificationClass(
           "No se puede eliminar el inventario",
           "Error",
-          "inventory",
+          "inventory",responsable,
           tokeIdUser
         );
         return res.status(400).json({
@@ -146,15 +111,12 @@ class InventoryProduct {
         });
       } else {
         const response = await InventorySchema.deleteOne({ _id });
-
-        const response2 = await subProductSchema.deleteMany({
-          idInventory: _id,
-        });
-
+        const response2 = await subProductSchema.deleteMany({idInventory: _id,});
         if (response2) {
           await new Todo().createNotificationClass(
             "se elimino los subproductos con exito",
             "Sucessfull",
+            responsable,
             "inventory",
             tokeIdUser
           );
@@ -162,7 +124,7 @@ class InventoryProduct {
 
         await new Todo().createNotificationClass(
           "se elimino el inventario con exito",
-          "Sucessfull",
+          "Sucessfull",responsable,
           "inventory",
           tokeIdUser
         );
@@ -172,38 +134,15 @@ class InventoryProduct {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
-
-  public async UploadInsertProducts(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  public async UploadInsertProducts(req: Request|any,res: Response,next: NextFunction) {
     try {
-      const { _id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
+      let tokeIdUser = req.users.id;
       const {
-        name,
-        priceCompra,
-        priceVenta,
-        stockMinimo,
-        stockMaximo,
-        unidad,
-        caducidad,
-        idInventory,
-      } = req.body.data;
+        name,priceCompra,priceVenta,stockMinimo,stockMaximo,unidad,
+        caducidad,idInventory,} = req.body.data;
       const subProduct = new subProductSchema({
-        tokenIdUser: tokeIdUser,
-        name,
-        priceCompra,
-        priceVenta,
-        stockMinimo,
-        stockMaximo,
-        unidad,
-        caducidad,
-        idInventory,
-      });
+        tokenIdUser: tokeIdUser,name,priceCompra,
+        priceVenta,stockMinimo,stockMaximo,unidad,caducidad,idInventory,});
       const response = await subProduct.save();
       res.status(200).json({ message: "SubProduct created", response });
     } catch (error) {
@@ -213,9 +152,6 @@ class InventoryProduct {
   public async GetSubProducta(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
       const response = await subProductSchema.find({ idInventory: id });
 
       res.status(200).json({ message: "get products", response });
@@ -224,26 +160,14 @@ class InventoryProduct {
     }
   }
 
-  public async TranslateProducts(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  public async TranslateProducts(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
+      let tokeIdUser = req.users.id;
       const { idDestino, idOrigen, idSubProducto, cantidad, userCorreo } =
         req.body.data;
 
       const responseClass = await new TranslateBodega(
-        tokeIdUser,
-        idDestino,
-        idOrigen,
-        idSubProducto,
-        cantidad,
-        userCorreo
-      ).Initial();
+        tokeIdUser,idDestino,idOrigen,idSubProducto,cantidad,userCorreo).Initial();
 
       return res.status(200).json({ message: "get products", responseClass });
     } catch (error) {
@@ -251,103 +175,57 @@ class InventoryProduct {
     }
   }
 
-  public async GetTranslateProducts(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async GetTranslateProducts(req: Request,res: Response,_next: NextFunction) {
     try {
       const { id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
       const response = await TranslateSubPSchema.find({ idDestino: id });
-
       res.status(200).json({ message: "get products", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
 
-  public async postTranslateProductsOrigen(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async postTranslateProductsOrigen(req: Request,res: Response,_next: NextFunction
+  ) {
     try {
       const { id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
+
       const responseDataClass = new TranslateBodega(
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "","","","","",""
       ).TranslateProduct(id, req.body.data);
       res.status(200).json({ message: "get products", responseDataClass });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
-  public async UpdateCorreoBodega(
-    req: Request,
-    res: Response,
-    next: NextFunction
+  public async UpdateCorreoBodega(req: Request,res: Response,_next: NextFunction
   ): Promise<Response | Request | any> {
     try {
       const { id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
-
       const responseEmailUpdate = await InventorySchema.findByIdAndUpdate(
         { _id: id },
-        {
-          responsableInventory: req.body.data,
-          type: "Usuario",
-        },
-        { new: true }
+        {responsableInventory: req.body.data,type: "Usuario",
+        },{ new: true }
       );
-
       res.status(200).json({ message: "updateEmail", responseEmailUpdate });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
-
-  public async SubProductsIdAll(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async SubProductsIdAll(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      const { id } = req.params;
-      const token: any = req.headers.authorization;
-      const decoded: any = jwt.verify(token, SECRET);
-      const tokeIdUser = decoded.id;
-
+      let tokeIdUser = req.users.id;
       const response = await subProductSchema.find({ idUser: tokeIdUser });
       res.status(200).json({ message: "get products", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
-  public async searchProductUnidadesDisminucon(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async searchProductUnidadesDisminucon(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      const idTokenAdmin: any = req.headers.authorization;
-      const verifycationToken: any = jwt.verify(idTokenAdmin, SECRET);
-      const id = verifycationToken.id;
-
-      const dataSubProduct: any = await SubProductosModel.find({
-        idInventario: id,
-      });
+      let id = req.users.id;
+      const dataSubProduct: any = await SubProductosModel.find({idInventario: id,});
+      let responsable = req.users.email;
       const SerachProductWithUnidades: any = dataSubProduct.filter(
         async (element: any) => {
           if (element.unidad <= 10) {
@@ -365,21 +243,20 @@ class InventoryProduct {
                     type: "unidadBaja",
                   }
                 );
-            
 
               if (searchNotificationDuplicate.length > 0) {
               } else {
-                const response = await new Todo().createNotificationClass(
+                 await new Todo().createNotificationClass(
                   "Este producto esta por agotarse",
-                  `${element.name} tiene ${element.unidad} unidades bajas con un precio de ${element.priceVenta}`,
+                  `${element.name} tiene ${element.unidad} unidades bajas con un precio de ${element.priceVenta}`,responsable,
                   "unidadBaja",
                   id
                 );
               }
             } else {
-              const response = await new Todo().createNotificationClass(
+               await new Todo().createNotificationClass(
                 "Este producto esta por agotarse",
-                `${element.name} tiene ${element.unidad} unidades bajas con un precio de ${element.priceVenta}`,
+                `${element.name} tiene ${element.unidad} unidades bajas con un precio de ${element.priceVenta}`,responsable,
                 "unidadBaja",
                 id
               );

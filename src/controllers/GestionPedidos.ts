@@ -1,39 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 import SchemaPedidos from "../models/modelPedidos";
 import PedidoProvider from "../models/PedidosProvedor";
-import jwt from "jsonwebtoken";
-import { SECRET } from "../config/config";
 import PedidosValiadation from "../class/Pedidos.model";
 abstract class ManagePedidos {
-  public async postPedidos(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async postPedidos(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      const tokenAccesId: any = req.headers.authorization;
-      const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
-      const idTokenAdmin = verifyToken.id;
-
-
+      let idTokenAdmin = req.users.id;
       await new PedidosValiadation().setProperties(req.body.data , idTokenAdmin);
       const responseClass = null 
      res.status(200).json({message:"sucess", responseClass})
-
     } catch (error) {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
-
-  public async getPedidos(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async getPedidos(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      const tokenAccesId: any = req.headers.authorization;
-      const verifyToken: any = jwt.verify(tokenAccesId, SECRET);
-      const idTokenAdmin = verifyToken.id;
+      let idTokenAdmin = req.users.id;
       const pedidos = await SchemaPedidos.find({tokeIdUser:idTokenAdmin});
       const pedidosproveedor = await PedidoProvider.find({tokeIdUser:idTokenAdmin});
       return res.status(200).json({ message: "PEDIDOS_FOUND", pedidos,pedidosproveedor });
@@ -41,12 +23,7 @@ abstract class ManagePedidos {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
-
-  public async getPedidosId(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async getPedidosId(req: Request,res: Response,_next: NextFunction) {
     try {
       const { id } = req.params;
       const pedidos = await SchemaPedidos.findById(id);
@@ -55,31 +32,17 @@ abstract class ManagePedidos {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
-
-  public async putPedidos(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async putPedidos(req: Request,res: Response,_next: NextFunction) {
     try {
       const { id } = req.params;
       const {
-        id_producto,
-        id_provedor,
-        id_inventario,
-        company,
-        cantidad,
-        fecha,
+        id_producto,id_provedor,
+        id_inventario,company,cantidad,fecha,
       } = req.body;
-      const pedidos = await SchemaPedidos.findByIdAndUpdate(
-        id,
+      const pedidos = await SchemaPedidos.findByIdAndUpdate(id,
         {
-          id_producto,
-          id_provedor,
-          id_inventario,
-          company,
-          cantidad,
-          fecha,
+          id_producto,id_provedor,id_inventario,company,
+          cantidad,fecha,
         },
         { new: true }
       );
@@ -88,12 +51,7 @@ abstract class ManagePedidos {
       return res.status(500).json({ message: "INTERNAL_SERVER_ERROR", error });
     }
   }
-
-  public async deletePedidos(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | Request | any> {
+  public async deletePedidos(req: Request,res: Response,_next: NextFunction) {
     try {
       const { id } = req.params;
       const pedidos = await SchemaPedidos.findByIdAndDelete(id);

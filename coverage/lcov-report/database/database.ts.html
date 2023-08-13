@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.5% </span>
+                <span class="strong">39.13% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/24</span>
+                <span class='fraction'>9/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>12/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.5% </span>
+                <span class="strong">39.13% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/24</span>
+                <span class='fraction'>9/23</span>
             </div>
         
             
@@ -111,29 +111,9 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -142,7 +122,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,32 +153,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import mysql from "mysql2";
-import {
-  HOST,
-  DBNAME,
-  PASSWORD,
-  USER,
-  PORTDB,
-  LIMIT_CONNECION,
-} from "../config/config";
 import { MysqlError } from "mysql";
 export class Conexion {
-<span class="fstat-no" title="function not covered" >  getRepository(</span>Admin: any) {
-<span class="cstat-no" title="statement not covered" >    throw new Error("Method not implemented.");</span>
-  }
-  public readonly host?: string | any = "localhost";
-  private readonly user?: string | any = "root";
-  private readonly password?: string | any = "";
-  protected readonly database: string | any = "invensys";
-  private readonly charset: string | any = "utf8";
-  private readonly port: Number | any = 3306;
-&nbsp;
+  
+  public readonly host?: string | any = process.env.DB_HOST || "localhost";
+  private readonly user?: string | any = process.env.DB_USER || "root";
+  private readonly password?: string | any = process.env.DB_PASSWORD || "";
+  protected readonly database: string | any = process.env.DB_NAME || "invensys";
+  private readonly charset: string | any = process.env.DB_CHARSET || "utf8";
+  private readonly port: Number | any = process.env.DB_PORT || 3306;
   public async <span class="fstat-no" title="function not covered" >connect(</span>) {
 <span class="cstat-no" title="statement not covered" >    try {</span>
       const conenct = <span class="cstat-no" title="statement not covered" >await mysql.createConnection({</span>
@@ -231,11 +200,12 @@ export class Conexion {
 <span class="cstat-no" title="statement not covered" >        this.connect();</span>
       }
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (err.code === "ECONNREFUSED") {</span>
-<span class="cstat-no" title="statement not covered" >        console.error("Database connection was refused");</span>
+<span class="cstat-no" title="statement not covered" >        console.error("Database connection was refused",err);</span>
       }
     });
   }
 }
+&nbsp;
 export const conexion = new Conexion();
 &nbsp;</pre></td></tr></table></pre>
 
@@ -244,7 +214,7 @@ export const conexion = new Conexion();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-14T14:57:51.997Z
+                at 2023-08-12T22:18:31.779Z
             </div>
         <script src="../prettify.js"></script>
         <script>

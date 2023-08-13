@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-
 import { inventory } from "../interfaces/inventoryInterface";
 
 const InventorySchema = new Schema(
