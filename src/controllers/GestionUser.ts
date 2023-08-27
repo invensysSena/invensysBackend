@@ -147,42 +147,42 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async setPermisionModule(req: Request | any,res: Response,_next: Partial<NextFunction>) {
+  public async setPermisionModule(req: Request ,res: Response,_next: Partial<NextFunction>) {
     try {
       return await resourceSetPermisionModule.setPermisionModule(req,res,_next);
     } catch (error) {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async deletePermisionModule(req: Request | any,res: Response,_next: Partial<NextFunction>){
+  public async deletePermisionModule(req: Request ,res: Response,_next: Partial<NextFunction>){
     try {
       return await resourceDeletePermisionModule.deletePermisionModule(req,res,_next);
     } catch (error) {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
-  public async getMod(req: Request | any,res: Response,_next: Partial<NextFunction>) {
+  public async getMod(req: Request ,res: Response,_next: Partial<NextFunction>) {
     try {
       return await resourceGetMod.getMod(req,res,_next);
     } catch (error) {
       return res.status(400).json({ message: "ERROR_GET_MODULES_USER" });
     }
   }
-  public async getAdminAll(req: Request | any,res: Response,_next: Partial<NextFunction>) {
+  public async getAdminAll(req: Request ,res: Response,_next: Partial<NextFunction>) {
     try {
       return await resourceGetAdminAll.getAdminAll(req,res,_next);
     } catch (error) {
       return res.status(400).json({ message: "ERROR_TOKEN" });
     }
   }
-  public async uploadImageA(req: Request | any,res: Response,_next: Partial<NextFunction>) {
+  public async uploadImageA(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
      return await resourceUploadImageA.uploadImageA(req,res,_next);
     } catch (error) {
       return res.status(400).json({ message: "ERROR_TOKEN", error });
     }
   }
-  public async UpdateAdminAll(req: Request | any,res: Response,next: Partial<NextFunction>){
+  public async UpdateAdminAll(req: Request ,res: Response,next: Partial<NextFunction>){
     try {
       
       return await resourceUpdateAdminAll.UpdateAdminAll(req,res,next);
@@ -190,7 +190,7 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_TOKEN" });
     }
   }
-  public async GetServiceUser(req: Request | any,res: Response,_next: Partial<NextFunction>) {
+  public async GetServiceUser(req: Request ,res: Response,_next: Partial<NextFunction>) {
     try {
       return await resourceGetServiceUser.GetServiceUser(req,res,_next);
     } catch (error) {

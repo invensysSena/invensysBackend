@@ -25,7 +25,7 @@ class ManageCompany {
       });
     }
   }
-  public async getCompany(req: Request|any,res: Response,next: NextFunction) {
+  public async getCompany(req: Request|any,res: Response,_next: NextFunction) {
     try {
       let tokenIdUser = req.users.id;
       if (!tokenIdUser) {

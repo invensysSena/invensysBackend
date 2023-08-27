@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import CategorySchema from "../models/CategoryM";
 import { category } from "../interfaces/CategoryI";
-import jwt from "jsonwebtoken";
-import { SECRET } from "../config/config";
 import Todo from "../class/Notification.Todo";
 abstract class Categorys {
   public async createCategory(req: Partial<Request|any>,res: Response,_next: Partial<NextFunction>){
@@ -10,13 +8,7 @@ abstract class Categorys {
       const { name_category, description, imgURL, imgId } = req.body.data;
       let tokeIdUser = req.users.id;
       let responsable = req.users.email;
-        const data: category = new CategorySchema({
-          tokeIdUser,
-          name_category,
-          description,
-          imgURL,
-          imgId,
-        });
+        const data: category = new CategorySchema({tokeIdUser,name_category,description,imgURL,imgId,});
         const dataCategory = await data.save();
         await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,responsable,"category",tokeIdUser);
         

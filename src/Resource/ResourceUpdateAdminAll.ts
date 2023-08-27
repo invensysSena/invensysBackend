@@ -5,56 +5,35 @@ import { SECRET } from "../config/config"; //
 import moment from "moment-with-locales-es6";
 import Todo from "../class/Notification.Todo";
 import { QueryError, RowDataPacket } from "mysql2";
+import { queryData } from "../secure/DbQuery";
+import settings from "../data/settings.json";
+
+let app_settings = settings[0]
 class ResourceUpdateAdminAll 
 {
     public async UpdateAdminAll(req: Request | any,res: Response,next: Partial<NextFunction>){
         try {
-          let responsable = req.users.email;
-          const verifyToken: Array<any> | any = jwt.verify(
-            req.headers.authorization,
-            SECRET
-          )!;
-          console.log(verifyToken);
-    
-          const { id } = verifyToken;
-          console.log(id);
-    
-          if (id) {
-            const conn: any = await conexion.connect();
-            conn.query(
-              `CALL ADMIN_UPDATE_DATA('${id}','${req.body.data.name}','${parseInt(
-                req.body.data.document
-              )}','${parseInt(req.body.data.telefono)}','${
-                req.body.data.empresa
-              }')`,
-              async (error: QueryError, rows: RowDataPacket) => {
-                console.log(rows, error);
-    
-                if (rows) {
-                  conn.query(
-                    `CALL ADMIN_SELECT('${id}')`,
-                    async (error: QueryError, rows: RowDataPacket) => {
-                      await new Todo().createNotificationClass(
-                        `Tus datos se actualizaron correctamente`,
-                        "se mantendra la misma contraseña",responsable,
-                        "users",
-                        `${id}`
-                      );
-                      return res
-                        .status(200)
-                        .json({ message: "UPDATE_ADMIN_ALL", data: rows[0] });
-                    }
-                  );
-                } else {
-                  return res.status(400).json({ message: "ERROR_DATA" });
-                }
-              }
-            );
-          } else {
-            return res.status(400).json({ message: "ERROR_TOKEN" });
-          }
+         
+          let condition = Object.keys({idadmin:req.users.id,})
+           await queryData.QueryUpdate(app_settings.METHOD.PUT,app_settings.schema,app_settings.TABLES.ADMIN,
+          Object.keys({
+            nameadmin:req.body.data.name,
+            nombrenegocio:req.body.data.empresa,
+            telefono:req.body.data.telefono,
+            document:req.body.data.document,
+          }),Object.values({
+            nameadmin:req.body.data.name,
+            nombrenegocio:req.body.data.empresa,
+            telefono:parseInt(req.body.data.telefono),
+            document:parseInt(req.body.data.document),
+            idadmin:req.users.id,
+
+          }),["WHERE"],condition,req.users.id)
+
+          return res.status(200).json({ message: "UPDATE_DATA" });
+         
         } catch (error) {
-          return res.status(400).json({ message: "ERROR_TOKEN" });
+          return res.status(400).json({ message: "ERROR_DATA",error });
         }
       }
 }
