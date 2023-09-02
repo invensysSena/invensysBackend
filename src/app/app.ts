@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import { logger } from "../utils/Logger"; 
+import { logger } from "nodemailer/lib/shared";
 import path from "path";
 import { PORT } from "../config/config";
 import { ServerRoutes } from "../utils/ServerRoutes";
@@ -32,7 +32,7 @@ class App {
     this.startServer();
     const port: Number = 8080;
     AppServer.listen(PORT || port, () => {
-      logger.info(`Server on port ${CONFIG_APP[0].PORT.PORT} URL ${CONFIG_APP[0].PORT.URL} APP ${CONFIG_APP[0].PATH.APP} `);
+      console.log(`Server on port ${CONFIG_APP[0].PORT.PORT} URL ${CONFIG_APP[0].PORT.URL} APP ${CONFIG_APP[0].PATH.APP} `);
     });
   }
 }
