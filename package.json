@@ -81,7 +81,8 @@
     "pg-promise": "^11.5.4",
     "react-pdf": "^6.2.2",
     "stripe": "^12.8.0",
-    "tedious": "^15.1.0"
+    "tedious": "^15.1.0",
+    "winston": "^3.10.0"
   },
   "jest": {
     "preset": "ts-jest",
