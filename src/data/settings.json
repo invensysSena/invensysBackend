@@ -16,6 +16,13 @@
       "SERVICES": "SERVICES",
       "PROCESSES": "PROCESSES"
     },
+    "CONECTION_PG":{
+      "user": "postgres",
+      "host": "localhost",
+      "database": "postgres",
+      "password": "Daniel1008",
+      "port": 5432
+    },
     "type": "object",
     "schema_Url_users_databases": {
       "server_users_post_login": "http://localhost:4002/users/databases",

@@ -1,14 +1,16 @@
 import { Client,DatabaseError } from 'pg';
+import settings from "../data/settings.json";
+let app_settings = settings[0].CONECTION_PG
 class PostgresConnection {
     private client: Client; 
 
     constructor(){
         this.client = new Client({
-            user: 'postgres',
-            host: 'localhost',
-            database: 'postgres',
-            password: 'Daniel1008',
-            port: 5432, // Puerto por defecto de PostgreSQL
+            user: app_settings.user,
+            host: app_settings.host,
+            database: app_settings.database,
+            password: app_settings.password,
+            port: app_settings.port, // Puerto por defecto de PostgreSQL
         
         })
     }
