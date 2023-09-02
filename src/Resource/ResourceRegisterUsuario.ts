@@ -1,146 +1,78 @@
 import { encripte } from "../utils/encriptePassword";
 import { Request, Response, NextFunction } from "express";
-import {login} from "../interfaces/users";
-import { conexion } from "../database/database";
-import jwt from "jsonwebtoken";
-import { SECRET } from "../config/config"; // 
+import { login } from "../interfaces/users";
 import moment from "moment-with-locales-es6";
-import Todo from "../class/Notification.Todo";
-import { QueryError, RowDataPacket } from "mysql2";
+import settings from "../data/settings.json";
+import permissions from "../data/permissions_settings.json";
+import { queryData } from "../secure/DbQuery";
+let app_settings = settings[0]
+let permissions_settings = permissions[0]
 let moments: moment = moment;
 moment.locale("es");
 
-class ResourceRegisterUsuario 
-{
-    public async RegisterUsuario(req: Request|any,res: Response,_next: Partial<NextFunction>){
-        try {
-          let tokenIdAcc: any = req.headers.authorization;
-          let responsable = req.users.email;
-          const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
-          const data: login = {
-            correo: req.body.postDataUserRegister.email,
-            password: req.body.postDataUserRegister.password,
-            authCuenta: true,
-            token: req.body.token,
-            refreshToken: req.body.refreshToken,
-          };
-          const permisions = {
-            delete: "eliminar",
-            editar: "editar",
-            crear: "crear",
-            leer: "leer",
-            state: "Inactivo",
-          };
-          if (verifyToken?.id) {
-            const fecha = moments().format("MMMM Do YYYY");
-            const hora = moments().format("h:mm:ss a");
-            const hasPassword = await encripte.encriptePassword(data.password);
-            const conn: any = await conexion.connect();
-            conn.query(
-              "SELECT * FROM account",
-              async (error: QueryError, rows: RowDataPacket) => {
-                if (rows.length > 0) {
-                  for (let i = 0; i < rows.length; i++) {
-                    if (rows[i].correo === data.correo) {
-                      return res.json({
-                        message: "ERR_MAIL_EXIST_USER",
-                        status: 404,
-                      });
-                    }
-                  }
-                }
-                conn.query(
-                  `CALL CREATE_USER('${data.correo}','${hasPassword}','${fecha}','${verifyToken.id}','${hora}','${req.body.postDataUserRegister.estado}')`,
-                  (error: QueryError, rows: RowDataPacket) => {
-                    if (rows) {
-                      conn.query(
-                        `CALL GET_USER_SECOND_USER('${data.correo}')`,
-                        (error: QueryError, rows: RowDataPacket) => {
-                          if (rows) {
-                            conn.query(
-                              `CALL INSERT_MODULE_USER('${req.body.postDataUserRegister.modulo}','${req.body.postDataUserRegister.modulo}','${rows[0][0].idAccount}')`,
-                              (error: any, rowsid: any) => {
-                                console.log(
-                                  "insert module",
-                                  rowsid,
-                                  "error",
-                                  error
-                                );
-                                if (rowsid) {
-                                  conn.query(
-                                    `CALL GET_MODULE_ACCOUNT_USER('${rows[0][0].idAccount}')`,
-                                    (error: any, rowsData: any) => {
-                                      if (rowsData) {
-                                        conn.query(
-                                          `CALL ASIGNED_PERMISION_USER_ACCOUNT('${rowsData[0][0].IDmodulo}','${permisions.editar}','${permisions.editar}','${permisions.state}')`,
-                                          async (error: any, rowsData: any) => {
-                                            console.log(error);
-    
-                                            if (rowsData) {
-                                              conn.query(
-                                                `CALL GET_USER_CREATE('${data.correo}')`,
-                                                async (
-                                                  error: QueryError,
-                                                  rows: RowDataPacket
-                                                ) => {
-                                                  await new Todo().createNotificationClass(
-                                                    `Creaste un nuevo usuario`,
-                                                    data.correo, responsable,
-                                                    "users",
-                                                    `${verifyToken.id}`
-                                                  );
-                                                  return res.status(201).json({
-                                                    message:
-                                                      "USER_REGISTER_SUCCESFULL",
-                                                    status: 201,
-                                                    data: rows,
-                                                  });
-                                                }
-                                              );
-                                            } else {
-                                              return res.status(400).json({
-                                                message: "USER_REGISTER_ERROR",
-                                                status: 400,
-                                                error,
-                                              });
-                                            }
-                                          }
-                                        );
-                                      } else {
-                                        return res.status(400).json({
-                                          message: "USER_REGISTER_ERROR",
-                                          status: 400,
-                                        });
-                                      }
-                                    }
-                                  );
-                                } else {
-                                  return res.status(400).json({
-                                    message: "USER_REGISTER_ERROR",
-                                    status: 400,
-                                  });
-                                }
-                              }
-                            );
-                          }
-                        }
-                      );
-                    } else {
-                      return res
-                        .status(400)
-                        .json({ message: "USER_REGISTER_ERROR", status: 400 });
-                    }
-                  }
-                );
-              }
-            );
-          } else {
-            return res.status(401).json({ message: "N0T_ALLOWED" });
-          }
-        } catch (error) {
-          res.status(400).send({ message: "NOT_AUTORIZED" });
-        }
+class ResourceRegisterUsuario {
+  public async RegisterUsuario(req: Request | any, res: Response, _next: Partial<NextFunction>) {
+    // try {
+    const data: login = {
+      correo: req.body.postDataUserRegister.email,
+      password: req.body.postDataUserRegister.password,
+      authCuenta: true,
+      token: '',
+      refreshToken: '',
+    };
+
+    const fecha = moments()
+    const hasPassword = await encripte.encriptePassword(data.password);
+    let method = app_settings.METHOD.GET
+    let schema = app_settings.schema
+    let table = app_settings.TABLES.USERS
+    let columnsValidate = Object.keys({ email: data.correo, iduser: "" })
+    let condition = ["WHERE"]
+    let values = Object.values({ email: data.correo })
+    let dataConsult = Object.keys({ email: data.correo })
+    let path = { pathrouter: "", code: 0, description: "", estado: "activo", createdate: fecha }
+
+    permissions_settings.PERMISSIONS_USER_PATH.forEach((item: any) => {
+      if (item.url === req.body.postDataUserRegister.modulo) {
+        path.pathrouter = "users" + item.url
+        path.code = item.id_modulo,
+          path.description = item.nombre
       }
+    })
+
+    let dataBodyUser = { email: data.correo, password: hasPassword, datecreate: fecha,
+       estado: "activo", imgurl: "url", imgid: "id", idadmin: req.users.id, dateuptate: fecha }
+
+     await queryData.QueryPost(app_settings.METHOD.POST, schema, table, Object.keys(dataBodyUser),
+            Object.values(dataBodyUser)).then(async (result: any) => {
+
+              if (result.severity !== 'ERROR') {
+                  await queryData.queryGet(method, schema, table, dataConsult, values, condition, columnsValidate)
+                  .then(async (result: any) => {
+                    // datos para insertar modulo
+                     let inserModule = { ...path, iduser: result.resultGet.rows[0].iduser }
+
+                      await queryData.QueryPost(app_settings.METHOD.POST, schema, app_settings.TABLES.MODULE,
+                       Object.keys(inserModule), Object.values(inserModule)).then(async (result: any) => {
+                        if (result.severity !== 'ERROR') {
+                           return res.status(201).json({ message: "USER_REGISTER_SUCCESFULL", status: 201 })
+
+                 }
+                }
+                  ).catch((error: any) => {
+                    return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })
+               })
+
+        }).catch((error: any) => {
+          return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })
+        }
+        );
+      }
+    }).catch((error: any) => {
+      return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })
+    });
+   
+  }
 }
 
 export const resourceRegisterUsuario = new ResourceRegisterUsuario();

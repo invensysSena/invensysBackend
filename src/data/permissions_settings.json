@@ -1,0 +1,645 @@
+[
+    {
+        "PERMISSIONS_USER_PATH": [
+            {
+              "id_modulo": 1,
+              "nombre": "superAdmin",
+              "icono": "fa fa-users",
+              "url": "/perfil",
+              "permisos": [
+                {
+                  "id_permiso": 1,
+                  "nombre": "GET",
+                  "id_modulo": 1,
+                  "description": "permiso para consulta administrador"
+                },
+                {
+                  "id_permiso": 2,
+                  "nombre": "PUT",
+                  "id_modulo": 1,
+                  "description": "permiso para actualizar administrador"
+                },
+                {
+                  "id_permiso": 3,
+                  "nombre": "DELETE",
+                  "id_modulo": 1,
+                  "description": "permiso para eliminar administrador"
+      
+                },
+                {
+                  "id_permiso": 4,
+                  "nombre": "POST",
+                  "id_modulo": 1,
+                  "description": "permiso para crear administrador"
+                }
+      
+              ]
+          },
+            
+            {
+              "id_modulo": 2,
+              "nombre": "bodega",
+              "icono": "fa fa-users",
+              "url": "/bodega",
+              "permisos": [{
+                  "id_permiso": 1,
+                  "nombre": "GET",
+                  "id_modulo": 2,
+                  "description": "permiso para consulta bodega"
+                },
+                {
+                  "id_permiso": 2,
+                  "nombre": "PUT",
+                  "id_modulo": 2,
+                  "description": "permiso para actualizar bodega"
+                },
+                {
+                  "id_permiso": 3,
+                  "nombre": "DELETE",
+                  "id_modulo": 2,
+                  "description": "permiso para eliminar bodega"
+      
+                },
+                {
+                  "id_permiso": 4,
+                  "nombre": "POST",
+                  "id_modulo": 2,
+                  "description": "permiso para crear bodega"
+                }
+      
+              ]
+            },
+            {
+              "id_modulo": 3,
+              "nombre": "usuarios",
+              "icono": "fa fa-users",
+              "url": "/usuarios",
+              "permisos": [{
+                  "id_permiso": 1,
+                  "nombre": "GET",
+                  "id_modulo": 3,
+                  "description": "permiso para consulta usuarios"
+                },
+                {
+                  "id_permiso": 2,
+                  "nombre": "PUT",
+                  "id_modulo": 3,
+                  "description": "permiso para actualizar usuarios"
+                },
+                {
+                  "id_permiso": 3,
+                  "nombre": "DELETE",
+                  "id_modulo": 3,
+                  "description": "permiso para eliminar usuarios"
+      
+                },
+                {
+                  "id_permiso": 4,
+                  "nombre": "POST",
+                  "id_modulo": 3,
+                  "description": "permiso para crear usuarios"
+      
+      
+                }
+              ]
+            },
+            {
+              "id_modulo": 4,
+              "nombre": "categorias",
+              "icono": "fa fa-users",
+              "url": "/categorias",
+              "permisos": [{
+                  "id_permiso": 1,
+                  "nombre": "GET",
+                  "id_modulo": 4,
+                  "description": "permiso para consulta categorias"
+                },
+                {
+                  "id_permiso": 2,
+                  "nombre": "PUT",
+                  "id_modulo": 4,
+                  "description": "permiso para actualizar categorias"
+                },
+                {
+                  "id_permiso": 3,
+                  "nombre": "DELETE",
+                  "id_modulo": 4,
+                  "description": "permiso para eliminar categorias"
+      
+                },
+                {
+                  "id_permiso": 4,
+                  "nombre": "POST",
+                  "id_modulo": 4,
+                  "description": "permiso para crear categorias"
+                }
+              ]
+            },
+            {
+              "id_modulo": 5,
+              "nombre": "notificaciones",
+              "icono": "fa fa-users",
+              "url": "/notificaciones",
+              "permisos": [{
+                  "id_permiso": 1,
+                  "nombre": "GET",
+                  "id_modulo": 5,
+                  "description": "permiso para consulta notificaciones"
+                },
+                {
+                  "id_permiso": 2,
+                  "nombre": "PUT",
+                  "id_modulo": 5,
+                  "description": "permiso para actualizar notificaciones"
+                },
+                {
+                  "id_permiso": 3,
+                  "nombre": "DELETE",
+                  "id_modulo": 5,
+                  "description": "permiso para eliminar notificaciones"
+      
+                },
+                {
+                  "id_permiso": 4,
+                  "nombre": "POST",
+                  "id_modulo": 5,
+                  "description": "permiso para crear notificaciones"
+      
+      
+                }
+              ]
+            },
+            {
+              "id_modulo": 6,
+              "nombre": "producto",
+              "icono": "fa fa-users",
+              "url": "/producto",
+              "permisos": [{
+                  "id_permiso": 1,
+                  "nombre": "GET",
+                  "id_modulo": 6,
+                  "description": "permiso para consulta producto"
+                },
+                {
+                  "id_permiso": 2,
+                  "nombre": "PUT",
+                  "id_modulo": 6,
+                  "description": "permiso para actualizar producto"
+                },
+                {
+                  "id_permiso": 3,
+                  "nombre": "DELETE",
+                  "id_modulo": 6,
+                  "description": "permiso para eliminar producto"
+      
+                },
+                {
+                  "id_permiso": 4,
+                  "nombre": "POST",
+                  "id_modulo": 6,
+                  "description": "permiso para crear producto"
+      
+      
+                }
+      
+      
+              ]
+            },
+            {
+              "id_modulo": 7,
+              "nombre": "proveedor",
+              "icono": "fa fa-users",
+              "url": "/proveedor",
+              "permisos": [{
+                  "id_permiso": 1,
+                  "nombre": "GET",
+                  "id_modulo": 7,
+                  "description": "permiso para consulta proveedor"
+                },
+                {
+                  "id_permiso": 2,
+                  "nombre": "PUT",
+                  "id_modulo": 7,
+                  "description": "permiso para actualizar proveedor"
+                },
+                {
+                  "id_permiso": 3,
+                  "nombre": "DELETE",
+                  "id_modulo": 7,
+                  "description": "permiso para eliminar proveedor"
+      
+                },
+                {
+                  "id_permiso": 4,
+                  "nombre": "POST",
+                  "id_modulo": 7,
+                  "description": "permiso para crear proveedor"
+                }]
+              },
+              {
+                "id_modulo": 8,
+                "nombre": "pedidos",
+                "icono": "fa fa-users",
+                "url": "/pedidos",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 8,
+                    "description": "permiso para consulta pedidos"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 8,
+                    "description": "permiso para actualizar pedidos"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 8,
+                    "description": "permiso para eliminar pedidos"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 8,
+                    "description": "permiso para crear pedidos"
+                  }]
+                },
+                {
+                  "id_modulo": 9,
+                  "nombre": "analityc",
+                  "icono": "fa fa-users",
+                  "url": "/analityc",
+                  "permisos": [{
+                      "id_permiso": 1,
+                      "nombre": "GET",
+                      "id_modulo": 9,
+                      "description": "permiso para consulta analityc"
+                    },
+                    {
+                      "id_permiso": 2,
+                      "nombre": "PUT",
+                      "id_modulo": 9,
+                      "description": "permiso para actualizar analityc"
+                    },
+                    {
+                      "id_permiso": 3,
+                      "nombre": "DELETE",
+                      "id_modulo": 9,
+                      "description": "permiso para eliminar analityc"
+      
+                    },
+                    {
+                      "id_permiso": 4,
+                      "nombre": "POST",
+                      "id_modulo": 9,
+                      "description": "permiso para crear analityc"
+                    }]
+                  },
+                  {
+                    "id_modulo": 10,
+                    "nombre": "perfil",
+                    "icono": "fa fa-users",
+                    "url": "/perfil",
+                    "permisos": [{
+                        "id_permiso": 1,
+                        "nombre": "GET",
+                        "id_modulo": 10,
+                        "description": "permiso para consulta perfil"
+                      },
+                      {
+                        "id_permiso": 2,
+                        "nombre": "PUT",
+                        "id_modulo": 10,
+                        "description": "permiso para actualizar perfil"
+                      },
+                      {
+                        "id_permiso": 3,
+                        "nombre": "DELETE",
+                        "id_modulo": 10,
+                        "description": "permiso para eliminar perfil"
+      
+                      },
+                      {
+                        "id_permiso": 4,
+                        "nombre": "POST",
+                        "id_modulo": 10,
+                        "description": "permiso para crear perfil"
+                      }]
+              },{
+                "id_modulo": 11,
+                "nombre": "dasboard",
+                "icono": "fa fa-users",
+                "url": "/dasboard",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 11,
+                    "description": "permiso para consulta dasboard"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 11,
+                    "description": "permiso para actualizar dasboard"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 11,
+                    "description": "permiso para eliminar dasboard"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 11,
+                    "description": "permiso para crear dasboard"
+                  }]
+              },
+              {
+                "id_modulo": 12,
+                "nombre": "shope",
+                "icono": "fa fa-users",
+                "url": "/shope",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 12,
+                    "description": "permiso para consulta shope"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 12,
+                    "description": "permiso para actualizar shope"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 12,
+                    "description": "permiso para eliminar shope"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 12,
+                    "description": "permiso para crear shope"
+                  }]
+              },
+              {
+                "id_modulo": 13,
+                "nombre": "config",
+                "icono": "fa fa-users",
+                "url": "/config",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 13,
+                    "description": "permiso para consulta config"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 13,
+                    "description": "permiso para actualizar config"
+              },
+              {
+                "id_permiso": 3,
+                "nombre": "DELETE",
+                "id_modulo": 13,
+                "description": "permiso para eliminar config"
+      
+              },
+              {
+                "id_permiso": 4,
+                "nombre": "POST",
+                "id_modulo": 13,
+                "description": "permiso para crear config"
+              }]
+              },
+              {
+                "id_modulo": 14,
+                "nombre": "ayudaAdmin",
+                "icono": "fa fa-users",
+                "url": "/ayudaAdmin",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 14,
+                    "description": "permiso para consulta ayudaAdmin"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 14,
+                    "description": "permiso para actualizar ayudaAdmin"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 14,
+                    "description": "permiso para eliminar ayudaAdmin"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 14,
+                    "description": "permiso para crear ayudaAdmin"
+                  }]
+              },
+              {
+                "id_modulo": 15,
+                "nombre": "reportes",
+                "icono": "fa fa-users",
+                "url": "/reportes",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 15,
+                    "description": "permiso para consulta reportes"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 15,
+                    "description": "permiso para actualizar reportes"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 15,
+                    "description": "permiso para eliminar reportes"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 15,
+                    "description": "permiso para crear reportes"
+                  }]
+              },
+              {
+                "id_modulo": 16,
+                "nombre": "start",
+                "icono": "fa fa-users",
+                "url": "/startAdmin",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 16,
+                    "description": "permiso para consulta start"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 16,
+                    "description": "permiso para actualizar start"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 16,
+                    "description": "permiso para eliminar start"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 16,
+                    "description": "permiso para crear start"
+                  }]
+              },
+              {
+                "id_modulo": 17,
+                "nombre": "venta",
+                "icono": "fa fa-users",
+                "url": "/venta",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 17,
+                    "description": "permiso para consulta venta"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 17,
+                    "description": "permiso para actualizar venta"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 17,
+                    "description": "permiso para eliminar venta"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 17,
+                    "description": "permiso para crear venta"
+                  }]
+              },
+              {
+                "id_modulo": 18,
+                "nombre": "inventoryGeneral",
+                "icono": "fa fa-users",
+                "url": "/inventoryGeneral",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 18,
+                    "description": "permiso para consulta inventoryGeneral"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 18,
+                    "description": "permiso para actualizar inventoryGeneral"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 18,
+                    "description": "permiso para eliminar inventoryGeneral"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 18,
+                    "description": "permiso para crear inventoryGeneral"
+                  }]
+              },
+              {
+                "id_modulo": 19,
+                "nombre": "trae",
+                "icono": "fa fa-users",
+                "url": "/trae",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 19,
+                    "description": "permiso para consulta trae"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 19,
+                    "description": "permiso para actualizar trae"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 19,
+                    "description": "permiso para eliminar trae"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 19,
+                    "description": "permiso para crear trae"
+                  }]
+              },
+              {
+                "id_modulo": 20,
+                "nombre": "LicenceSoftware/state",
+                "icono": "fa fa-users",
+                "url": "/LicenceSoftware/state",
+                "permisos": [{
+                    "id_permiso": 1,
+                    "nombre": "GET",
+                    "id_modulo": 20,
+                    "description": "permiso para consulta LicenceSoftware/state"
+                  },
+                  {
+                    "id_permiso": 2,
+                    "nombre": "PUT",
+                    "id_modulo": 20,
+                    "description": "permiso para actualizar LicenceSoftware/state"
+                  },
+                  {
+                    "id_permiso": 3,
+                    "nombre": "DELETE",
+                    "id_modulo": 20,
+                    "description": "permiso para eliminar LicenceSoftware/state"
+      
+                  },
+                  {
+                    "id_permiso": 4,
+                    "nombre": "POST",
+                    "id_modulo": 20,
+                    "description": "permiso para crear LicenceSoftware/state"
+                  }]
+      
+              }
+      
+              ]
+    }
+]

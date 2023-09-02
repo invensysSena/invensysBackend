@@ -4,12 +4,12 @@ import path from "path";
 import { PORT } from "../config/config";
 import { ServerRoutes } from "../utils/ServerRoutes";
 import cors from "cors"; 
-const CONFIG_APP = require('../data/settings.json');
-mongoose.set("strictQuery", true);
 import dbPg from "../database/postgrestDB";
 const AppServer: express.Application = express();
-
+import {connect} from '../database/mongodb'
 import { conexion } from "../database/database";
+const CONFIG_APP = require('../data/settings.json');
+mongoose.set("strictQuery", true);
 class App {
   public startServer = async () => {
     try {
@@ -22,6 +22,7 @@ class App {
       AppServer.use(express.urlencoded({ extended: true }));
       AppServer.use(await new ServerRoutes().Inicio());
       await dbPg.connect()
+      await connect()
     } catch (error) {
       return error;
     }

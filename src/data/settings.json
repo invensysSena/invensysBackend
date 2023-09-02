@@ -1,5 +1,4 @@
-[
-  {
+[{
     "schema": "invensys",
     "METHOD": {
       "GET": "GET",
@@ -51,5 +50,7 @@
       "URL": "http://localhost:5454",
       "PORT": 5454
     }
-  }
-]
+        
+}]
+
+  

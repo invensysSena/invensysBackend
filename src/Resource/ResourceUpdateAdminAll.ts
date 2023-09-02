@@ -28,7 +28,7 @@ class ResourceUpdateAdminAll
             document:parseInt(req.body.data.document),
             idadmin:req.users.id,
 
-          }),["WHERE"],condition,req.users.id)
+          }),["WHERE"],condition)
 
           return res.status(200).json({ message: "UPDATE_DATA" });
          

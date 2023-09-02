@@ -62,7 +62,7 @@ class RouterUser extends LoginRegister {
     );
   }
   public getUsersAdmin() {
-    return router.get("/getUsersData/:idToken",valid.verifyTokenAndAdmin,this.getUsersAdminData);
+    return router.get("/getUsersData",valid.verifyTokenAndAdmin,this.getUsersAdminData);
   }
   public UsersDelete() {
     return router.post("/deleteUser",valid.verifyTokenAndAdmin,this.deleteAllUsers);

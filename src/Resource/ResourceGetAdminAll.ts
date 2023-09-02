@@ -17,7 +17,7 @@ class ResourceGetAdminAll
                   return res.status(400).json({ message: "ERROR_GET_ADMIN_ALL" });
                 }
         } catch (error) {
-          return res.status(400).json({ message: "ERROR_TOKEN" });
+          return res.status(400).json({ message: "ERR_DATA",error });
         }
       }
 }

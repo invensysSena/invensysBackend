@@ -8,7 +8,7 @@ class ManageCompany {
           departamento,ciudad,direccion,} = req.body.data;
 
         const company = new CompanySchema({
-          tokenIdUser,tipoPersona,nit,tipoIdentificacion,numero,correo,
+          tokenIdUser,tipoPersona,nit,tipoIdentificacion,numero,nombre,correo,
           telefono,pais,departamento,ciudad,direccion,});
 
         const CompanyCreated = await company.save();
@@ -28,15 +28,13 @@ class ManageCompany {
   public async getCompany(req: Request|any,res: Response,_next: NextFunction) {
     try {
       let tokenIdUser = req.users.id;
-      if (!tokenIdUser) {
-        return res.status(400).json({message: "No existe el token",});
-      } else {
+      console.log(req.body)
+      
         const company = await CompanySchema.find({ tokenIdUser });
-        return res.status(200).json({
-          message: "Company created successfully",
+        console.log(company)
+        return res.status(200).json({message: "Company created successfully",
           company,
         });
-      }
     } catch (error: any) {
       return new Error(error);
     }
