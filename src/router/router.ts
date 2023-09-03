@@ -53,6 +53,12 @@ class RouterUser extends LoginRegister {
   public authGoogle() {
     return router.post("/authgoogleAccount", this.passpAuthGoogle);
   }
+  public prueba() {
+    return router.post("/prueba",(req,res)=>{
+      console.log(req.query)
+      res.send("hola")
+    });
+  }
   public uploadCsvUsers() {
     return router.post("/uploadcsvUsers",fileUpload({
         useTempFiles: true,
@@ -67,6 +73,9 @@ class RouterUser extends LoginRegister {
   public UsersDelete() {
     return router.post("/deleteUser",valid.verifyTokenAndAdmin,this.deleteAllUsers);
   }
+  public typePermissionsModule() {
+    return router.post("/typePermissionsModulesUser",valid.verifyTokenAndAdmin,this.modulePermissions);
+  }
   public GetCountUsers() {
     return router.get("/countUsers/:idToken",valid.verifyTokenAndAdmin,this.CountUsersAll);
   }
@@ -74,7 +83,7 @@ class RouterUser extends LoginRegister {
     return router.get("/getModuleUsers/:id",valid.verifyTokenAndAdmin,this.getModuleUsers);
   }
   public GetPermisions() {
-    return router.get("/getPermisions/:idModule",valid.verifyTokenAndAdmin,this.getPermisions);
+    return router.get("/getPermisions",valid.verifyTokenAndAdmin,this.getPermisions);
   }
   public UpdateAdmin() {
     return router.post("/updateAdmin",valid.verifyTokenAndAdmin,this.updateAdmin);
