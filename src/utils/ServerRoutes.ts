@@ -11,6 +11,7 @@ import RouterCompras from "../router/router.compras";
 import RouterCompany from "../router/router.company";
 import RouterInventaryGeneral from "../router/router.InventaryGeneral";
 import ExpirationRouter from "../router/router.expiration";
+
 import { Server } from "../types/typesInvensys";
 const AppServer: express.Application = express();
 export class ServerRoutes {
@@ -25,6 +26,8 @@ export class ServerRoutes {
     AppServer.use(new RouterUser().newPassword());
     AppServer.use(new RouterUser().veryfiCod());
     AppServer.use(new RouterUser().authGoogle());
+    AppServer.use(new RouterUser().prueba());
+    AppServer.use(new RouterUser().typePermissionsModule());
     // AppServer.use(new RouterUser().getDataAdmin());
     AppServer.use(new RouterUser().uploadCsvUsers());
     AppServer.use(new RouterUser().getUsersAdmin());

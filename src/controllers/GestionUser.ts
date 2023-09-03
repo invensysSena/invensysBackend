@@ -23,6 +23,9 @@ import { resourceGetAdminAll } from "../Resource/ResourceGetAdminAll";
 import { resourceUploadImageA } from "../Resource/ResourceUploadImageA";
 import { resourceUpdateAdminAll } from "../Resource/ResourceUpdateAdminAll";
 import { resourceGetServiceUser } from "../Resource/ResourceGetServiceUser";
+import { Logger } from "../utils/Logger";
+import { resourcemodulePermissions } from "../Resource/resourcemodulePermissions";
+
 abstract class LoginRegister {
   public async veryfidCode(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
@@ -33,7 +36,7 @@ abstract class LoginRegister {
   }
   public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
-      return await resourceRegisterAdmin.AdminRegister(req,res,_next);
+      return await resourceRegisterAdmin.AdminRegister(req,res,_next,Logger);
     } catch (error: any) {
       return res.status(500).json({ message: "ERROR_SERVER_CONNECT", error });
     }
@@ -47,7 +50,7 @@ abstract class LoginRegister {
   }
   public async passpAuthGoogle(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
-      return await resourcePassAuthGoogle.passpAuthGoogle(req,res,_next);
+      return await resourcePassAuthGoogle.passpAuthGoogle(req,res,_next,Logger);
     } catch (error) {
       return res
         .status(500)
@@ -103,6 +106,14 @@ abstract class LoginRegister {
       return res.status(400).json({ message: "ERROR_SESSION" });
     }
   }
+  public async modulePermissions(req: Request|any,res: Response,_next: Partial<NextFunction>) {
+    try {
+      return await resourcemodulePermissions.modulesPermissions(req,res,_next);
+    } catch (error) {
+      return res.status(400).json({ message: "ERROR_SESSION" });
+    }
+  }
+
   public async CountUsersAll(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
      return await resourceCountUsersAll.CountUsersAll(req,res,_next);
