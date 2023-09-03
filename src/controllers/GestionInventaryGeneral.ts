@@ -5,7 +5,7 @@ abstract class MaganeIGeneral {
   public async postInventaryGeneral(req: Request|any,res: Response,_next: NextFunction) {
     try {
       const typeUser: any = req.headers["typeuser"];
-      let idTokenAdmin = req.users.id;
+      let idTokenAdmin = req.user.id;
       await new GerneralInventary().setProperties(idTokenAdmin,typeUser,req.body);
       return res.status(200).json({ message: "sucess" });
     } catch (error) {

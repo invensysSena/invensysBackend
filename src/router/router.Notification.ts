@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { Request, Response, NextFunction } from "express";
 import Notification from "../controllers/GestionNotification";
 const router: Router = Router();
 import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
 import { AllowedModules } from "../middlewares/isAlloweedModule";
+import passport from "passport";
 const valid = new ValidationTokenAndCreateToken();
 const isAllowed = new AllowedModules();
-
+let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterNotification extends Notification {
   public GetNotification() {
     return router.get("/notification/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.getNotification);

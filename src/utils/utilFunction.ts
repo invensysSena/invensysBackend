@@ -1,7 +1,7 @@
 import momentZone from "moment-timezone";
-let moment:any = momentZone;
 
-  
+let moment = momentZone;
+
   export async function globalData(){
 
   let DataGlobalZone =  fetch('https://ipinfo.io/json')

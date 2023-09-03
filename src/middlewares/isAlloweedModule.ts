@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 export class AllowedModules {
   public isAllowedPermissions(req: Request, res: Response, next: NextFunction) {
     let isArrayListModules = [
-      "superAdmin",
+      "administrador",
       "bodega",
       "categorias",
       "usuario",
@@ -24,7 +24,7 @@ export class AllowedModules {
       "trae",
       "licenceSoftware",
     ];
-    if (isArrayListModules.includes(req.headers["isallowedaccess"] as string)) {
+    if (isArrayListModules.includes(req.headers["role"] as string)) {
       next();
     } else {
       res.status(401).json({ message: "NO AUTHORIZATION OF MODULES" });

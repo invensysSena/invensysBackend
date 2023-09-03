@@ -1,15 +1,13 @@
 import {Router} from 'express';
 import AllModules from '../controllers/GestionInicio';
 import { AllowedModules } from "../middlewares/isAlloweedModule";
-import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
-
-const valid = new ValidationTokenAndCreateToken();
+import passport from 'passport';
 const isAllowed = new AllowedModules();
 const router:Router = Router()
-
+let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterInicio extends AllModules{
     public GetModules (){
-       return router.get("/modules/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.getModules);
+       return router.get("/modules/:id",AuthPassport,isAllowed.isAllowedPermissions,this.getModules);
     }
 }
 

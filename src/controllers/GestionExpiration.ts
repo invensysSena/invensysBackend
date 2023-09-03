@@ -4,7 +4,7 @@ import SubProductosModel from "../models/SubProductos.model";
 import Todo from "../class/Notification.Todo";
 class ManageExpiration {
   public async CreateExpiration(req: Request|any,_res: Response,_next: NextFunction) {
-    let tokenIdUser = req.users.id; let responsable = req.users.email;
+    let tokenIdUser = req.user.id; let responsable = req.user.email;
     const dataSubProduct = await SubProductosModel.find(
         {tokenIdUser: tokenIdUser,},{ createdAt: 1, _id: 0 });
     dataSubProduct.forEach((element:any) => {

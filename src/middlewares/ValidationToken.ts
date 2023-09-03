@@ -1,8 +1,11 @@
 import { Request, Response, NextFunction, request } from "express";
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config/config";
+import { Logger } from "../utils/Logger";
 export class ValidationTokenAndCreateToken {
+
   public verifyToken(req: any, res: Response, next: NextFunction) {
+    
     const token = req.headers["authorization"];
     if (!token) return res.status(401).json({ error: "Access Denied" });
     try {
@@ -16,10 +19,15 @@ export class ValidationTokenAndCreateToken {
 
   public async verifyTokenAndAdmin(req: Request | any,res: Response,next: NextFunction
   ) {
+
+    
+    Logger.info({message:JSON.stringify(req.headers)});
+    console.log(req.headers)
     try {
       const Tokenid_U: string   = req.headers.authorization;
       const verifyToken:any = jwt.verify(Tokenid_U, SECRET)!;
       const tokeIdUser = verifyToken.id;
+      console.log(tokeIdUser)
 
       if (!tokeIdUser) {
         return res.status(400).json({
@@ -27,10 +35,11 @@ export class ValidationTokenAndCreateToken {
           message: "NOT TOKEN ACCESS DENIED",
         });
       } else {
-        req.users = verifyToken;
+        req.user = verifyToken;
         next();
       }
     } catch (error) {
+      Logger.error({message:error});
       return res.status(500).json({
         ok: false,
         message: "ERROR TOKEN ACCESS DENIED",
@@ -43,9 +52,9 @@ export class ValidationTokenAndCreateToken {
   public async createTokenAdmin(req:Request|any,id: string, email: string) {
     try {
       const token = jwt.sign({ id, email }, SECRET, {
-        expiresIn: 60 * 60 * 24,
+        expiresIn: "24h"
       });
-      req.users = token;
+      req.user = token;
       return token;
     } catch (error) {
       

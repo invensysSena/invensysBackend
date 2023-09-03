@@ -98,6 +98,24 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+    
+    /* navegar por rutas @types @controllers y otros componentes */
+    "baseUrl": "./src",
+    "paths": {
+      "@controllers/*": ["controllers/*"],
+      "@models/*": ["models/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@errors/*": ["errors/*"],
+      "@config/*": ["config/*"],
+      "@typesCommon/*": ["types/*"],
+      "@database/*": ["database/*"],
+      "@classCommonjs/*": ["class/*"],
+      "@appserverCommonjs/*": ["app/*"],
   }
+  },
 }

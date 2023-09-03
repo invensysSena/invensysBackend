@@ -5,7 +5,7 @@ import PedidosValiadation from "../class/Pedidos.model";
 abstract class ManagePedidos {
   public async postPedidos(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let idTokenAdmin = req.users.id;
+      let idTokenAdmin = req.user.id;
       await new PedidosValiadation().setProperties(req.body.data , idTokenAdmin);
       const responseClass = null 
      res.status(200).json({message:"sucess", responseClass})
@@ -15,7 +15,7 @@ abstract class ManagePedidos {
   }
   public async getPedidos(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let idTokenAdmin = req.users.id;
+      let idTokenAdmin = req.user.id;
       const pedidos = await SchemaPedidos.find({tokeIdUser:idTokenAdmin});
       const pedidosproveedor = await PedidoProvider.find({tokeIdUser:idTokenAdmin});
       return res.status(200).json({ message: "PEDIDOS_FOUND", pedidos,pedidosproveedor });

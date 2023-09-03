@@ -41,19 +41,19 @@ class ResourceRegisterUsuario {
     })
 
     let dataBodyUser = { email: data.correo, password: hasPassword, datecreate: fecha,
-       estado: "activo", imgurl: "url", imgid: "id", idadmin: req.users.id, dateuptate: fecha }
+       estado: "activo", imgurl: "url", imgid: "id", idadmin: req.user.id, dateuptate: fecha }
 
      await queryData.QueryPost(app_settings.METHOD.POST, schema, table, Object.keys(dataBodyUser),
-            Object.values(dataBodyUser)).then(async (result: any) => {
+            Object.values(dataBodyUser),req).then(async (result: any) => {
 
               if (result.severity !== 'ERROR') {
-                  await queryData.queryGet(method, schema, table, dataConsult, values, condition, columnsValidate)
+                  await queryData.queryGet(method, schema, table, dataConsult, values, condition, columnsValidate,req)
                   .then(async (result: any) => {
                     // datos para insertar modulo
                      let inserModule = { ...path, iduser: result.resultGet.rows[0].iduser }
 
                       await queryData.QueryPost(app_settings.METHOD.POST, schema, app_settings.TABLES.MODULE,
-                       Object.keys(inserModule), Object.values(inserModule)).then(async (result: any) => {
+                       Object.keys(inserModule), Object.values(inserModule),req).then(async (result: any) => {
                         if (result.severity !== 'ERROR') {
                            return res.status(201).json({ message: "USER_REGISTER_SUCCESFULL", status: 201 })
 

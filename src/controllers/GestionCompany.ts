@@ -3,7 +3,7 @@ import CompanySchema from "../models/modelCompany";
 class ManageCompany {
   public async postCompany(req: Request|any,res: Response,next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
         const {tipoPersona,nit,tipoIdentificacion,numero,nombre,correo,telefono,pais,
           departamento,ciudad,direccion,} = req.body.data;
 
@@ -27,7 +27,7 @@ class ManageCompany {
   }
   public async getCompany(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
       console.log(req.body)
       
         const company = await CompanySchema.find({ tokenIdUser });
