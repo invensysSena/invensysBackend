@@ -13,7 +13,7 @@ class ResourceGetPermisions
       try {
 
       
-        let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.PERMISIONS,[],[],[],[])
+        let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.PERMISIONS,[],[],[],[],req)
         console.log(response.statusText)
         if (response.statusText === 200) {  
           console.log("entroooooooooooooooooooooooooo")       

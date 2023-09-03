@@ -15,7 +15,7 @@ class ComprasClass {
   }
   public async getComprasFv(req: Request|any, res: Response): Promise<any> {
     try {
-      let idToken = req.users.id;
+      let idToken = req.user.id;
       const responseFv: any = await ComprasFvModule.find({tokeIdUser: idToken});
       return res
         .status(200)
@@ -28,7 +28,7 @@ class ComprasClass {
   }
   public async postCompras(req: Request|any, res: Response): Promise<any> {
     try {
-      let idToken = req.users.id;
+      let idToken = req.user.id;
       const response = new comprasModelClass().setProperties(req.body.data,idToken);
       return res.status(200).json({ message: "OK_SUCESSFUL_COMPRA", response });
     } catch (error) {

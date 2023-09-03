@@ -8,6 +8,8 @@ import cors from "cors";
 import dbPg from "../database/postgrestDB";
 const AppServer: express.Application = express();
 import {connect} from '../database/mongodb'
+import passportmeddleware from "../middlewares/passport";
+import passport from "passport";
 const CONFIG_APP = require('../data/settings.json');
 mongoose.set("strictQuery", true);
 class App {
@@ -19,8 +21,10 @@ class App {
       AppServer.use(cors());
       AppServer.use(express.static(path.join(__dirname, "public")));
       AppServer.use(express.json());
-      AppServer.use(express.urlencoded({ extended: true }));
+      AppServer.use(express.urlencoded({ extended: true, limit: "50mb", parameterLimit: 50000 }));
       AppServer.use(await new ServerRoutes().Inicio());
+      AppServer.use(passport.initialize());
+      passport.use(passportmeddleware);
       await dbPg.connect()
       
       await connect()

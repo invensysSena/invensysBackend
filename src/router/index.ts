@@ -6,7 +6,7 @@ const router: Router = Router();
 
 const PATH_ROUTES = __dirname;
 
-const removeExtension = (fileName: any) => {
+const removeExtension = (fileName: string) => {
   return fileName.split(".").shift();
 };
 const a = fs.readdirSync(PATH_ROUTES).filter(async (file) => {

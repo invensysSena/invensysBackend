@@ -14,10 +14,10 @@ class InventoryProduct {
     try {
       const { name_inventory, description } = req.body.data;
       let typeUser: any = req.headers["typeautorization"];
-      let tokeIdUser = req.users.id;
-      let responsable = req.users.email;
+      let tokeIdUser = req.user.id;
+      let responsable = req.user.email;
       const conn: any = await conexion.connect();
-      if (typeUser === "superAdmin") {
+      if (typeUser === "administrador") {
         conn.query("SELECT correo FROM admin WHERE idUsers = ? ",[tokeIdUser],
           async (_err: any, rows: any, _fields: any) => {
             if (rows) {
@@ -40,7 +40,7 @@ class InventoryProduct {
         const token: any = req.headers["authorization1"];
         const decoded: any = jwt.verify(token, SECRET);
         const tokeIdUser1 = decoded.id1;
-        let responsable = req.users.email;
+        let responsable = req.user.email;
         conn.query(
           "SELECT correo FROM account WHERE idAccount    = ? ",
           [tokeIdUser1],
@@ -71,7 +71,7 @@ class InventoryProduct {
 
   public async getInventory(req: Request|any, res: Response, _next: NextFunction) {
     try {
-      let tokeIdUser = req.users.id;
+      let tokeIdUser = req.user.id;
       const response = await InventorySchema.find({tokeIdUser: tokeIdUser,});
       res.status(200).json({ message: "Inventory", response });
     } catch (error) {
@@ -94,8 +94,8 @@ class InventoryProduct {
   public async deleteInventoryId(req: Request|any,res: Response,_next: NextFunction) {
     try {
       const { _id } = req.params;
-      let tokeIdUser = req.users.id;
-      let responsable = req.users.email;
+      let tokeIdUser = req.user.id;
+      let responsable = req.user.email;
       const searchSubProduct = await subProductSchema.find({
         idInventory: _id,
       });
@@ -136,7 +136,7 @@ class InventoryProduct {
   }
   public async UploadInsertProducts(req: Request|any,res: Response,next: NextFunction) {
     try {
-      let tokeIdUser = req.users.id;
+      let tokeIdUser = req.user.id;
       const {
         name,priceCompra,priceVenta,stockMinimo,stockMaximo,unidad,
         caducidad,idInventory,} = req.body.data;
@@ -162,7 +162,7 @@ class InventoryProduct {
 
   public async TranslateProducts(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokeIdUser = req.users.id;
+      let tokeIdUser = req.user.id;
       const { idDestino, idOrigen, idSubProducto, cantidad, userCorreo } =
         req.body.data;
 
@@ -214,7 +214,7 @@ class InventoryProduct {
   }
   public async SubProductsIdAll(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokeIdUser = req.users.id;
+      let tokeIdUser = req.user.id;
       const response = await subProductSchema.find({ idUser: tokeIdUser });
       res.status(200).json({ message: "get products", response });
     } catch (error) {
@@ -223,9 +223,9 @@ class InventoryProduct {
   }
   public async searchProductUnidadesDisminucon(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let id = req.users.id;
+      let id = req.user.id;
       const dataSubProduct: any = await SubProductosModel.find({idInventario: id,});
-      let responsable = req.users.email;
+      let responsable = req.user.email;
       const SerachProductWithUnidades: any = dataSubProduct.filter(
         async (element: any) => {
           if (element.unidad <= 10) {

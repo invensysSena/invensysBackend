@@ -9,7 +9,7 @@ class ResourceGetModuleUsers
         try {
           let query = {iduser:req.params.id}
           console.log(req.params,"wwww")
-          let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.MODULE,Object.keys(query),Object.values(query),["WHERE"],[])
+          let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.MODULE,Object.keys(query),Object.values(query),["WHERE"],[],req)
           console.log(response.statusText)
           if (response.statusText === 200) {  
             console.log("entroooooooooooooooooooooooooo")       

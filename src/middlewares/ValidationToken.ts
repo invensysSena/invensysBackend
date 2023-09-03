@@ -22,6 +22,7 @@ export class ValidationTokenAndCreateToken {
 
     
     Logger.info({message:JSON.stringify(req.headers)});
+    console.log(req.headers)
     try {
       const Tokenid_U: string   = req.headers.authorization;
       const verifyToken:any = jwt.verify(Tokenid_U, SECRET)!;
@@ -34,7 +35,7 @@ export class ValidationTokenAndCreateToken {
           message: "NOT TOKEN ACCESS DENIED",
         });
       } else {
-        req.users = verifyToken;
+        req.user = verifyToken;
         next();
       }
     } catch (error) {
@@ -51,9 +52,9 @@ export class ValidationTokenAndCreateToken {
   public async createTokenAdmin(req:Request|any,id: string, email: string) {
     try {
       const token = jwt.sign({ id, email }, SECRET, {
-        expiresIn: 60 * 60 * 24,
+        expiresIn: "24h"
       });
-      req.users = token;
+      req.user = token;
       return token;
     } catch (error) {
       

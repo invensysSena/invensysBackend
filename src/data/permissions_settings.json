@@ -3,7 +3,7 @@
         "PERMISSIONS_USER_PATH": [
             {
               "id_modulo": 1,
-              "nombre": "superAdmin",
+              "nombre": "administrador",
               "icono": "fa fa-users",
               "url": "/perfil",
               "permisos": [

@@ -5,21 +5,24 @@ import Todo from "../class/Notification.Todo";
 abstract class Categorys {
   public async createCategory(req: Partial<Request|any>,res: Response,_next: Partial<NextFunction>){
     try {
+      console.log(req.user,"sssssssss")
+      
       const { name_category, description, imgURL, imgId } = req.body.data;
-      let tokeIdUser = req.users.id;
-      let responsable = req.users.email;
-        const data: category = new CategorySchema({tokeIdUser,name_category,description,imgURL,imgId,});
-        const dataCategory = await data.save();
-        await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,responsable,"category",tokeIdUser);
-        
-        return res.status(201).json({status: 201,message: "Categoria creada",data: dataCategory,});
+      let tokeIdUser = req.user.id;
+      let responsable = req.user.email;
+      const data: category = new CategorySchema({tokeIdUser,name_category,description,imgURL,imgId,});
+      const dataCategory = await data.save();
+      await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,responsable,"category",tokeIdUser);
+      
+      return res.status(201).json({status: 201,message: "Categoria creada",data: dataCategory,});
     } catch (error) {
-
+      console.log(req.user)
+      console.log(error)
       return res.status(500).json({ok: false,message: "Error al crear la categoria",error});
     }
   }
   public async getCategory(req: Request|any,res: Response,_next: Partial<NextFunction>) {
-    let tokeIdUser = req.users.id;
+    let tokeIdUser = req.user.id;
     try {
       const dataCategory = await CategorySchema.find({ tokeIdUser });
       return res.status(200).json({
@@ -59,8 +62,8 @@ abstract class Categorys {
   }
   public async deleteCategory(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
-      let tokeIdUser = req.users.id;
-      let responsable = req.users.email;
+      let tokeIdUser = req.user.id;
+      let responsable = req.user.email;
       const dataCategory = await CategorySchema.findByIdAndDelete(
         req.params._id
       );

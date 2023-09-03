@@ -6,8 +6,8 @@ abstract class ManageProducts {
   public async postProducts(req: Request|any, res: Response) {
     try {
       const {iva,name,category,price,priceBuy,fechaInicio,description,fechaFin,} = req.body.data;
-      let responsable = req.users.email;
-      let tokenIdUser = req.users.id;
+      let responsable = req.user.email;
+      let tokenIdUser = req.user.id;
         const product: Product = new ProductSchema({
           iva,name,tokenIdUser,category,price,priceBuy,fechaInicio,description,fechaFin,
         });
@@ -29,7 +29,7 @@ abstract class ManageProducts {
 
   public async getProducts(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
       const products: Product[] = await ProductSchema.find({
         tokenIdUser,
       });
@@ -51,7 +51,7 @@ abstract class ManageProducts {
 
   public async getProductsIdCategory(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
       const idCategory = req.params.idCategory;
       const product = await ProductSchema.find({ idCategory }, { tokenIdUser });
       return res.status(200).json({ ok: true, product });
@@ -73,8 +73,8 @@ abstract class ManageProducts {
 
   public async deleteProducts(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
-      let responsable = req.users.email;
+      let tokenIdUser = req.user.id;
+      let responsable = req.user.email;
       const product = await ProductSchema.findByIdAndDelete(req.params.id, {
         tokenIdUser,
       });

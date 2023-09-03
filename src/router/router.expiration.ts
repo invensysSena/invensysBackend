@@ -2,16 +2,18 @@ import  { Router } from "express";
 import ManageExpiration from "../controllers/GestionExpiration";
 
 const router: Router = Router();
-import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
+
 import { AllowedModules } from "../middlewares/isAlloweedModule";
-const valid = new ValidationTokenAndCreateToken();
+import passport from "passport";
+let AuthPassport = passport.authenticate("jwt",{session: false,});
+
 const isAllowed = new AllowedModules();
 class ExpirationRouter extends ManageExpiration {
   public PostCaducidad() {
-   return router.post("/caducidad", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.CreateExpiration);
+   return router.post("/caducidad", AuthPassport, isAllowed.isAllowedPermissions, this.CreateExpiration);
   }
   public GetCaducidad() {
-   return router.get("/caducidad", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.GetExpiration);
+   return router.get("/caducidad", AuthPassport, isAllowed.isAllowedPermissions, this.GetExpiration);
   }
 }
 

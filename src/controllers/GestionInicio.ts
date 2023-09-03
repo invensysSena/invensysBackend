@@ -15,7 +15,7 @@ class AllModules {
   public async getModules(req: Request | any,res: Response,_next: NextFunction
   ): Promise<Request | Response | any> {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
         const dataProduct = await ProductSchema.find({tokenIdUser: tokenIdUser,});
         const dataCategory = await CategorySchema.find({tokeIdUser: tokenIdUser,});
         const dataProvider = await ProviderSchema.find({tokenIdUser: tokenIdUser,});

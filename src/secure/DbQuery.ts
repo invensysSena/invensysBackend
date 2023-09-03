@@ -1,6 +1,14 @@
 import dbPg from "../database/postgrestDB";
-import Todo from "../class/Notification.Todo";
+import Todo from "@classCommonjs/Notification.Todo";
 import { Logger } from "../utils/Logger";
+import { QueryResult} from "pg";
+import { dataQuery } from "@typesCommon/typesInvensys";
+import { Request } from "express";
+
+let req:any = {} as Request
+
+// console.log('aaaaaaaaaa',req.headers["role"])
+
 class QueryData 
 {
 
@@ -13,32 +21,77 @@ class QueryData
  * @param dataValues - Un array de valores que se insertarán en las columnas.
  * @returns Un objeto que contiene el resultado de la consulta.
  */
- public async QueryPost(METHOD: string, schema: string, table: string, dataColumns: string[], dataValues: any[]) {
-    try {
+
+    public async ProccessQuery(METHOD: string, schema: string, table: string, dataValues: any,req:Request|any) {
+
+      let authorization ={
+        role:req.headers["role"] ? req.headers["role"] : "admin",
+        authorization:req.headers["authorization"] ? req.headers["authorization"] : "",
+        email:req?.user.email ? req.user.email : ""
+
+      }
+
+     
+        try {
+           
+            let columns = ["content","tables","createdate","tipomethod","action","execution"]
+            // Crear la consulta INSERT INTO
+            const queryInsert = `INSERT INTO ${schema}.${table} (conten,tables,createdate,tipomethod,action,execution) VALUES (${
+              columns.map((_:string, index:number) => `$${index + 1}`).join(', ') // Crear marcadores de posición ($1, $2, etc.) para los valores
+            })`;
+
+            Logger.info({ message: queryInsert });
+            // Ejecutar la consulta y obtener el resultado
+            const resultInsert = await dbPg.getClient().query(queryInsert, Object.values(dataValues[0]));
+            console.log(resultInsert,'kkkkkkkkkk')
+            console.log(Object.values(dataValues[0]),'kkoooook')
+            Logger.info({ message: JSON.stringify(resultInsert.oid) });
+            return resultInsert;
+
+        } catch (error) {
+            Logger.error({ message: error }); // Registrar errores en el registro
+            return error // Relanzar el error para que pueda ser manejado en el nivel superior
+        }
+      
+    }
+
+
+ public async QueryPost(METHOD: string, schema: string, table: string, dataColumns: string[], dataValues: any[],req:Request|any) {
+   
+  try {
+    let authorization ={
+      role:req.headers["role"] ? req.headers["role"] : "admin",
+      authorization:req.headers["authorization"] ? req.headers["authorization"] : "",
+      email:req?.user.email ? req.user.email : ""
+
+    }
       // Verificar si el método es "POST" para INSERT INTO
       if (METHOD !== "POST") {
-        throw new Error("Método no válido. Debe ser 'POST' para INSERT INTO.");
+        return new Error("Método no válido. Debe ser 'POST' para INSERT INTO.");
       }
   
       // Crear la consulta INSERT INTO
-        const queryInsert = `INSERT INTO ${schema}.${table} (${dataColumns.join(', ')}) VALUES (${
-             dataValues.map((_, index) => `$${index + 1}`).join(', ') // Crear marcadores de posición ($1, $2, etc.) para los valores
+        const queryInsert = `INSERT INTO
+         ${schema}.${table} (${dataColumns.join(', ')}) VALUES (${dataValues.map((_, index) => `$${index + 1}`).join(', ') // Crear marcadores de posición ($1, $2, etc.) para los valores
             })`;
-        Logger.info({ message: queryInsert });
+          Logger.info({ message: queryInsert });
   
         // Ejecutar la consulta y obtener el resultado
         const resultInsert = await dbPg.getClient().query(queryInsert, dataValues);
-  
+
+        let data =[{content:resultInsert,table,createdate:new Date(),tipomethod:METHOD,action:resultInsert.command,execute:authorization}]
+        await this.ProccessQuery(METHOD,schema,"processes",Object.values(data),req)
+
         Logger.info({ message: JSON.stringify(resultInsert.oid) });
-  
-            return resultInsert;
+        return resultInsert;
     } catch (error) {
       Logger.error({ message: error}); // Registrar errores en el registro
-      throw error; // Relanzar el error para que pueda ser manejado en el nivel superior
+      return error // Relanzar el error para que pueda ser manejado en el nivel superior
     }
   }
 
-    public async queryGet(METHOD: string, shema: string, vistaOrTable: string, datakeys: any, datavalues: any, consulta_sql: any, columns: any) {
+    public async queryGet(METHOD: string, shema: string, vistaOrTable: string, datakeys:Array<string|object> ,
+       datavalues: dataQuery ,consulta_sql: Array<string>, columns: string[],req:Request) {
         try {
             // Determina el tipo de método (GET o error)
             let METHOD_TYPE = METHOD === "GET" ? "SELECT" : "ERROR";
@@ -103,8 +156,17 @@ class QueryData
  * @param {Array} condition - Arreglo de condiciones para la cláusula WHERE.
  * @returns {Promise} - Una promesa que resuelve con los resultados de la actualización.
  */
-public async QueryUpdate(METHOD: string, shema: string, vistaOrTable: string, datakeys: any[], datavalues: any[], consulta_sql: string[], condition: string[]): Promise<any> {
-    // Verifica si el método es válido (solo "PUT" se permite, de lo contrario, retorna un error)
+public async QueryUpdate(METHOD: string, schema: string, vistaOrTable: string, datakeys: string[], datavalues: string[], consulta_sql: string[], condition: string[],req:Request|any): Promise<any> {
+  
+  let authorization ={
+    role:req.headers["role"] ? req.headers["role"] : "admin",
+    authorization:req.headers["authorization"] ? req.headers["authorization"] : "",
+    email:req?.user.email ? req.user.email : ""
+
+  }
+  
+  
+  // Verifica si el método es válido (solo "PUT" se permite, de lo contrario, retorna un error)
     let METHOD_TYPE = METHOD === "PUT" ? "UPDATE" : "ERROR";
   
     // Construye la parte SET de la consulta UPDATE
@@ -118,12 +180,12 @@ public async QueryUpdate(METHOD: string, shema: string, vistaOrTable: string, da
     }) : [];
   
     // Construye la consulta UPDATE completa
-    let queryUpdate = `${METHOD_TYPE} ${shema}.${vistaOrTable} SET ${
+    let queryUpdate = `${METHOD_TYPE} ${schema}.${vistaOrTable} SET ${
       dataKeysAnd.length > 0 ? dataKeysAnd.join(', ') : ""
     } ${
       consulta_sql.length > 0 ? consulta_sql.join(' ') : ""
     } ${
-      condition.length > 0 ? `WHERE ${conditionAnd.join(' AND ')}` : ""
+      condition.length > 0 ? ` ${conditionAnd.join(' AND ')}` : ""
     }`;
   
     // Registra la consulta en el registro de eventos
@@ -133,11 +195,13 @@ public async QueryUpdate(METHOD: string, shema: string, vistaOrTable: string, da
       // Ejecuta la consulta UPDATE y devuelve los resultados
       let updateData = await dbPg.getClient().query(queryUpdate, datavalues);
       Logger.info({ message: JSON.stringify(updateData) });
-      return updateData;
+      let data =[{content:updateData,vistaOrTable,createdate:new Date(),tipomethod:METHOD,action:updateData.command,execute:authorization}]
+      await this.ProccessQuery(METHOD,schema,"processes",Object.values(data),req)
+      return <QueryResult>updateData;
     } catch (error) {
-      // Maneja cualquier error que ocurra durante la ejecución de la consulta
+      // Registra errores en el registro de eventos
       Logger.error({ message: error });
-      throw error;
+      return error;
     }
   }
 /**
@@ -150,8 +214,15 @@ public async QueryUpdate(METHOD: string, shema: string, vistaOrTable: string, da
  * @param {any[]} dataValues - Un array de valores para los parámetros de la cláusula WHERE.
  * @returns {Promise<object>} - Una promesa que resuelve en el resultado de la eliminación.
  */
-public async QueryDelete(METHOD: string, schema: string, tableOrView: string, dataKeys: string[], dataValues: any[]): Promise<object> {
+public async QueryDelete(METHOD: string, schema: string, tableOrView: string, dataKeys: string[], dataValues: string[],req:Request|any): Promise<object> {
     try {
+
+      let authorization ={
+        role:req.headers["role"] ? req.headers["role"] : "admin",
+        authorization:req.headers["authorization"] ? req.headers["authorization"] : "",
+        email:req?.user.email ? req.user.email : ""
+    
+      }
         // Determinar el tipo de método (DELETE o ERROR)
         const METHOD_TYPE = METHOD === "DELETE" ? "DELETE FROM" : "ERROR";
 
@@ -169,22 +240,18 @@ public async QueryDelete(METHOD: string, schema: string, tableOrView: string, da
 
         // Ejecutar la consulta DELETE en la base de datos
          const deleteData:any = await dbPg.getClient().query(queryDelete, dataValues);
+         let data =[{content:deleteData,tableOrView,createdate:new Date(),tipomethod:METHOD,action:deleteData.command,execute:authorization}]
+         await this.ProccessQuery(METHOD,schema,"processes",Object.values(data),req)
+         console.log(deleteData,'kk')
                 Logger.info({message:JSON.stringify(deleteData.old)})
-        // Registrar la consulta en la consola (opcional)
-        // Devolver el resultado de la eliminación
+
             return deleteData;
     } catch (error:any) {
         // Manejar errores y devolverlos
         Logger.error({message:error})
         return error;
     }
-}
-
-
-
-
-
-   
+} 
 }
 
 export const  queryData = new QueryData();

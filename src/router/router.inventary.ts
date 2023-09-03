@@ -1,49 +1,50 @@
 import { Router } from "express";
-import { Request, Response, NextFunction } from "express";
 import InventoryProduct from "../controllers/GestionInventory";
-const router: Router = Router();
-import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
 import { AllowedModules } from "../middlewares/isAlloweedModule";
-const valid = new ValidationTokenAndCreateToken();
+import passport from "passport";
+
+const router: Router = Router();
 const isAllowed = new AllowedModules();
+
+let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterInventory extends InventoryProduct {
   public PostInventory() {
-   return router.post("/inventory",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.postInventory);
+   return router.post("/inventory",AuthPassport,isAllowed.isAllowedPermissions,this.postInventory);
   }
   public GetInventory() {
-   return router.get("/inventory/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.getInventory);
+   return router.get("/inventory/:id",AuthPassport,isAllowed.isAllowedPermissions,this.getInventory);
   }
   public PutInventoryId() {
-   return router.put("/inventory/:_id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.putInventoryId);
+   return router.put("/inventory/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.putInventoryId);
   }
   
   public DeleteInventoryId() {
-   return router.delete("/inventory/:_id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.deleteInventoryId);
+   return router.delete("/inventory/:_id", AuthPassport, isAllowed.isAllowedPermissions, this.deleteInventoryId);
   }
   public UploadInsertProduct() {
-   return router.post("/subProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.UploadInsertProducts);
+   return router.post("/subProducts", AuthPassport, isAllowed.isAllowedPermissions, this.UploadInsertProducts);
   }
   public getSubProducts() {
-   return router.get("/subProducts/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.GetSubProducta);
+   return router.get("/subProducts/:id", AuthPassport, isAllowed.isAllowedPermissions, this.GetSubProducta);
   }
   public postTranslateProducts() {
-   return router.post("/translateProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.TranslateProducts);
+   return router.post("/translateProducts", AuthPassport, isAllowed.isAllowedPermissions, this.TranslateProducts);
   }
   public getTranslateProducts() {
-   return router.get("/translateProducts/:id",  valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions,this.GetTranslateProducts);
+   return router.get("/translateProducts/:id",  AuthPassport, isAllowed.isAllowedPermissions,this.GetTranslateProducts);
   }
   public UpdateSubProducts() {
-   return router.put("/translateSubProducts/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.postTranslateProductsOrigen);
+   return router.put("/translateSubProducts/:id", AuthPassport, isAllowed.isAllowedPermissions, this.postTranslateProductsOrigen);
   }
   public UpdateEmailBodega() {
-   return router.put("/updateEmailBodega/:id", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.UpdateCorreoBodega);
+   return router.put("/updateEmailBodega/:id", passport.authenticate("jwt",{session: false,}), isAllowed.isAllowedPermissions, this.UpdateCorreoBodega);
   }
 
   public GetAllSubProducts() {
-   return router.get("/subProducts", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.SubProductsIdAll);
+   return router.get("/subProducts", passport.authenticate("jwt",{session: false,}), isAllowed.isAllowedPermissions, this.SubProductsIdAll);
   }
   public DisminucionUnidades() {
-   return router.get("/disminucionUnidades", valid.verifyTokenAndAdmin, isAllowed.isAllowedPermissions, this.searchProductUnidadesDisminucon);
+   return router.get("/disminucionUnidades", passport.authenticate("jwt",{session: false,}), isAllowed.isAllowedPermissions, this.searchProductUnidadesDisminucon);
   }
 }
 

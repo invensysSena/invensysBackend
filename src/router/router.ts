@@ -5,27 +5,26 @@ import fileUpload from "express-fileupload";
 const router: Router = Router();
 import path from "path";
 import ChangeDataController from "../controllers/ChangeData";
-import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
-const valid = new ValidationTokenAndCreateToken();
+import passport from "passport";
 const changeData = new ChangeDataController();
 const licence = new LicenceSofteareInvensys();
-
+let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterUser extends LoginRegister {
   public updateAdminPass() {
-    return router.put("/updateAdminPass",valid.verifyTokenAndAdmin,changeData.UpdatePassAdmin);
+    return router.put("/updateAdminPass",AuthPassport, changeData.UpdatePassAdmin);
   }
   public updatePassUser() {
-    return router.put("/updatePassUser/:id",valid.verifyTokenAndAdmin,changeData.UpdatePassUser);
+    return router.put("/updatePassUser/:id",AuthPassport,changeData.UpdatePassUser);
   }
   public updateEmailUser() {
-    return router.put("/updateEmailUser/:id",valid.verifyTokenAndAdmin,changeData.UpdateEmailUser);
+    return router.put("/updateEmailUser/:id",AuthPassport,changeData.UpdateEmailUser);
    
   }
   public licenceRouter() {
-   return router.post("/createLicence/:id",valid.verifyTokenAndAdmin,licence.createLicence);
+   return router.post("/createLicence/:id",AuthPassport,licence.createLicence);
   }
   public getLicence() {
-    return router.get("/getLicence/:id",valid.verifyTokenAndAdmin,licence.getLicence);
+    return router.get("/getLicence/:id",AuthPassport,licence.getLicence);
   }
   public Login() {
    return router.post("/login", this.LoginAuth);
@@ -34,10 +33,10 @@ class RouterUser extends LoginRegister {
     return router.post("/register", this.AdminRegister);
   }
   public registerUser() {
-   return router.post("/registerUser",valid.verifyTokenAndAdmin,this.RegisterUsuario);
+   return router.post("/registerUser",AuthPassport,this.RegisterUsuario);
   }
   // public getDataAdmin() {
-  //   router.get("/getDataAdmin", valid.verifyTokenAndAdmin, this.getAdminData);
+  //   router.get("/getDataAdmin", AuthPassport, this.getAdminData);
   //   return router;
   // }
 
@@ -68,38 +67,38 @@ class RouterUser extends LoginRegister {
     );
   }
   public getUsersAdmin() {
-    return router.get("/getUsersData",valid.verifyTokenAndAdmin,this.getUsersAdminData);
+    return router.get("/getUsersData",AuthPassport,this.getUsersAdminData);
   }
   public UsersDelete() {
-    return router.post("/deleteUser",valid.verifyTokenAndAdmin,this.deleteAllUsers);
+    return router.post("/deleteUser",AuthPassport,this.deleteAllUsers);
   }
   public typePermissionsModule() {
-    return router.post("/typePermissionsModulesUser",valid.verifyTokenAndAdmin,this.modulePermissions);
+    return router.post("/typePermissionsModulesUser",AuthPassport,this.modulePermissions);
   }
   public GetCountUsers() {
-    return router.get("/countUsers/:idToken",valid.verifyTokenAndAdmin,this.CountUsersAll);
+    return router.get("/countUsers/:idToken",AuthPassport,this.CountUsersAll);
   }
   public GetModuleUsers() {
-    return router.get("/getModuleUsers/:id",valid.verifyTokenAndAdmin,this.getModuleUsers);
+    return router.get("/getModuleUsers/:id",AuthPassport,this.getModuleUsers);
   }
   public GetPermisions() {
-    return router.get("/getPermisions",valid.verifyTokenAndAdmin,this.getPermisions);
+    return router.get("/getPermisions",AuthPassport,this.getPermisions);
   }
   public UpdateAdmin() {
-    return router.post("/updateAdmin",valid.verifyTokenAndAdmin,this.updateAdmin);
+    return router.post("/updateAdmin",AuthPassport,this.updateAdmin);
   }
   public DeleteModuleUser() {
-    return router.post("/deleteModuleUser",valid.verifyTokenAndAdmin,this.deleteModule);
+    return router.post("/deleteModuleUser",AuthPassport,this.deleteModule);
   }
   public SetModuleUsers() {
-    return router.post("/setModule", valid.verifyTokenAndAdmin, this.setModule);
+    return router.post("/setModule", AuthPassport, this.setModule);
   }
   public SetPermisionModule() {
-    return router.post("/setPermisionModule/:idModule",valid.verifyTokenAndAdmin,this.setPermisionModule);
+    return router.post("/setPermisionModule/:idModule",AuthPassport,this.setPermisionModule);
   }
 
   public DeletePermisionModule() {
-    return router.post("/deletePermisionModule/:idModule",valid.verifyTokenAndAdmin,this.deletePermisionModule);
+    return router.post("/deletePermisionModule/:idModule",AuthPassport,this.deletePermisionModule);
   }
 
   public GetMod() {
@@ -107,13 +106,13 @@ class RouterUser extends LoginRegister {
   }
 
   public getAdminDataALL() {
-    return router.get("/getAdminAll/:id",valid.verifyTokenAndAdmin,this.getAdminAll);
+    return router.get("/getAdminAll/:id",AuthPassport,this.getAdminAll);
   }
   public UpdateAdminALL() {
-    return router.put("/updateAdminALL",valid.verifyTokenAndAdmin,this.UpdateAdminAll);
+    return router.put("/updateAdminALL",AuthPassport,this.UpdateAdminAll);
   }
   public uploadImageAdmin() {
-    return router.put("/AuploadImageA",valid.verifyTokenAndAdmin,fileUpload({
+    return router.put("/AuploadImageA",AuthPassport,fileUpload({
         useTempFiles: true,
         tempFileDir: "./uploads",
       }),
@@ -121,7 +120,7 @@ class RouterUser extends LoginRegister {
     );
   }
   public ServiseUser() {
-    return router.get("/serviceId/:id",valid.verifyTokenAndAdmin,this.GetServiceUser);
+    return router.get("/serviceId/:id",AuthPassport,this.GetServiceUser);
   }
 }
 
