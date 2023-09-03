@@ -6,15 +6,18 @@ import { globalData } from "../utils/utilFunction";
 import Todo from "../class/Notification.Todo";
 import { queryData } from "../secure/DbQuery";
 import settings from "../data/settings.json";
+import { Logger } from "winston";
 
 let app_settings = settings[0]
 class ResourceRegisterAdmin {
-    public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>) {
+    public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>,log:Logger) {
         try {
           const data: PersonRegister = {
-            correo: req.body.postDataAdmin.email,
-            password: req.body.postDataAdmin.password,
-            authCuenta: false,token: req.body.token,refreshToken: req.body.refreshToken,
+            correo: req.query.email,
+            password: req.query.password,
+            authCuenta: false,
+            token: '',
+            refreshToken: '',
             nameRol: "superAdmin",
           };
           let getGlobalDataZone:any = await  globalData();
@@ -40,6 +43,8 @@ class ResourceRegisterAdmin {
                     `Creaste una cuenta de administrado: ${data.correo}`,
                     "Comienza a administrar tu negocio",data.correo,"admin",`${data.correo}`
                   );
+
+                  log.info({ message: JSON.stringify(result) })
                   return res.status(200).json({
                     message: "USER_CREATE_SUCCESFULL",
                     token,
@@ -50,8 +55,10 @@ class ResourceRegisterAdmin {
                 }
               }
               ).catch((error:any) => {
+                log.error({message:error});
                 return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })});
         } catch (error: any) {
+                log.error({message:error});
           return res.status(500).json({ message: "ERROR_SERVER_SERVICES", error });
         }
       }
