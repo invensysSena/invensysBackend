@@ -1,31 +1,30 @@
 import { Router } from "express";
 const router: Router = Router();
 import ManageProducts from "../controllers/GestionProductos";
-import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
 import { AllowedModules } from "../middlewares/isAlloweedModule";
+import passport from "passport";
 const isAllowed = new AllowedModules();
-const valid = new ValidationTokenAndCreateToken();
-
+let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterProducts extends ManageProducts {
   public Getproducts() {
-   return router.get("/getProducts/:_id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.getProducts);
+   return router.get("/getProducts/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.getProducts);
   }
   public GetproductsId() {
-    return router.get("/getProductsId/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,
+    return router.get("/getProductsId/:id",AuthPassport,isAllowed.isAllowedPermissions,
     this.getProductsId);
   }
   public GetproductsIdCategory() {
-    return router.get("/productsCategory/:idCategory",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,
+    return router.get("/productsCategory/:idCategory",AuthPassport,isAllowed.isAllowedPermissions,
     this.getProductsIdCategory);
   }
   public PostProduct() {
-    return router.post("/createProducts",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.postProducts);
+    return router.post("/createProducts",AuthPassport,isAllowed.isAllowedPermissions,this.postProducts);
   }
   public PutProducts() {
-    return router.put("/updateProducts/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,this.putProducts);
+    return router.put("/updateProducts/:id",AuthPassport,isAllowed.isAllowedPermissions,this.putProducts);
   }
   public DeleteProduct() {
-    return router.delete("/deleteProducts/:id",valid.verifyTokenAndAdmin,isAllowed.isAllowedPermissions,
+    return router.delete("/deleteProducts/:id",AuthPassport,isAllowed.isAllowedPermissions,
     this.deleteProducts);
   }
 }

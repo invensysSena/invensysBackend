@@ -47,19 +47,19 @@ class ResourcemodulePermissions {
 
             console.log(data)
   
-             queryData.queryGet(method,schema,table, Object.keys({idmodule,typeaction}), Object.values({idmodule,typeaction}), ["WHERE"], []).then(async (result: any) => {
+             queryData.queryGet(method,schema,table, Object.keys({idmodule,typeaction}), Object.values({idmodule,typeaction}), ["WHERE"], [],req).then(async (result: any) => {
             
                if ( result.statusText == 200) {
                  
                  let idpermisions =  result.resultGet.rows[0].idpermisions
-                queryData.QueryDelete(app_settings.METHOD.DELETE, schema, table, Object.keys({ idpermisions}), Object.values({ idpermisions })).then(async (result: any) => {
+                queryData.QueryDelete(app_settings.METHOD.DELETE, schema, table, Object.keys({ idpermisions}), Object.values({ idpermisions }),req).then(async (result: any) => {
                   if (result.severity !== 'ERROR') {
                     return res.status(201).json({ message: "MODULE_DELETE_SUCCESFULL", status: 201 })
                   }
                 })
               } else {
                 let inserModule = { ...data, idmodule: idmodule }
-                await queryData.QueryPost(app_settings.METHOD.POST, schema, table, Object.keys(inserModule), Object.values(inserModule)).then(async (result: any) => {
+                await queryData.QueryPost(app_settings.METHOD.POST, schema, table, Object.keys(inserModule), Object.values(inserModule),req).then(async (result: any) => {
                   if (result.severity !== 'ERROR') {
                     return res.status(201).json({ message: "MODULE_REGISTER_SUCCESFULL", status: 201 })
                   }

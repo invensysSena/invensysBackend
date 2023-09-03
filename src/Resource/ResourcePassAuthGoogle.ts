@@ -15,9 +15,9 @@ class ResourcePassAuthGoogle {
           let columns = Object.keys({idadmin:"idadmin",rol:"rol",email})
           let querys = Object.keys({email})
           let data = Object.values({email})
-          response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys({email}),Object.values({email}),["WHERE"],Object.keys({email}))
+          response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys({email}),Object.values({email}),["WHERE"],Object.keys({email}),req)
          if (response?.resultGet?.rows?.length > 0) {
-           response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns)
+           response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns,req)
            const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
           Log.info({ message: JSON.stringify(response.resultGet?.rows[0] )})
            return res.status(200).json({
@@ -32,7 +32,7 @@ class ResourcePassAuthGoogle {
           let getGlobalDataZone:any = await  globalData();
           let cuenta = "Google";
           let state = "activo";
-          let rol = "superAdmin";
+          let rol = "administrador";
           let dataAllInfo = {
             email: email,fechacreacion: getGlobalDataZone.ZONE_GLOBAL,hora: getGlobalDataZone.ZONE_TIME,
             rol: rol,cuenta: cuenta,ip: getGlobalDataZone.ip,pais: getGlobalDataZone.country,
@@ -42,9 +42,9 @@ class ResourcePassAuthGoogle {
             hostname:getGlobalDataZone.hostname,readme:getGlobalDataZone.readme,zoneglobal:getGlobalDataZone.timezone,
             nameadmin:name,imgurl:picture
           };
-          await queryData.QueryPost(app_settings.METHOD.POST,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys(dataAllInfo),Object.values(dataAllInfo)).then(async (result:any) => {
+          await queryData.QueryPost(app_settings.METHOD.POST,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys(dataAllInfo),Object.values(dataAllInfo),req).then(async (result:any) => {
           if (result.severity !== 'ERROR') {
-            response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns)
+            response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns,req)
             const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
            Log.info({ message: JSON.stringify(response.resultGet?.rows[0]) })
            

@@ -10,7 +10,7 @@ class ResourceDeleteAllUsers
     public async deleteAllUsers(req: Request|any,res: Response,_next: Partial<NextFunction>) {
         try {
           let tokenIdAcc: any = req.headers.authorization;
-          let responsable = req.users.email;
+          let responsable = req.user.email;
           const verifyToken: Array<any> | any = jwt.verify(tokenIdAcc, SECRET)!;
           const { id } = verifyToken;
           if (id) {

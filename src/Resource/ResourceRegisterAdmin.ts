@@ -18,14 +18,14 @@ class ResourceRegisterAdmin {
             authCuenta: false,
             token: '',
             refreshToken: '',
-            nameRol: "superAdmin",
+            nameRol: "administrador",
           };
           let getGlobalDataZone:any = await  globalData();
           const hasPassword = await encripte.encriptePassword(data.password);
               let cuenta = "Invensys";
               let state = "activo";
               let authCount = "OK";
-              let rol = "superAdmin";
+              let rol = "administrador";
            
               let dataAllInfo = {
                 email: data.correo,fechacreacion: getGlobalDataZone.ZONE_GLOBAL,hora: getGlobalDataZone.ZONE_TIME,
@@ -35,7 +35,7 @@ class ResourceRegisterAdmin {
                 dateupdate: getGlobalDataZone.ZONE_GLOBAL, org:getGlobalDataZone.org,postal:getGlobalDataZone.postal,
                 hostname:getGlobalDataZone.hostname,readme:getGlobalDataZone.readme,zoneglobal:getGlobalDataZone.timezone
               };
-              await queryData.QueryPost(app_settings.METHOD.POST,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys(dataAllInfo),Object.values(dataAllInfo)).then(async (result:any) => {
+              await queryData.QueryPost(app_settings.METHOD.POST,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys(dataAllInfo),Object.values(dataAllInfo),req).then(async (result:any) => {
                 if (result.severity !== 'ERROR') {
                   const token: any = encripte.encriptePassword(data.correo);
                   // new sendMailAdmin().sendMailer(data.correo);

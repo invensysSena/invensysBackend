@@ -6,7 +6,7 @@ import Stripe from "stripe";
 class LicenceSofteareInvensys {
   public async getLicence(req: Request | any,res: Response | any,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
       const conn: any = await conexion.connect();
       conn.query(
         "SELECT * FROM licence WHERE idAdmin = ?",
@@ -58,7 +58,7 @@ class LicenceSofteareInvensys {
         receipt_email: "ospinaortizjuandaniel351@gmail.com",
       });
 
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
       const { licence } = req.body;
       const conn: any = await conexion.connect();
       const estado = "Activo";

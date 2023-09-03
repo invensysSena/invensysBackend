@@ -20,7 +20,7 @@ class GerneralInventary {
     const conn:any = await conexion.connect();
     const { name_inventory, description, idBodega } = data;
 
-    if (this.typeUser === "superAdmin") {
+    if (this.typeUser === "administrador") {
       conn.query(
         "SELECT correo FROM admin WHERE idUsers = ? ",
         [this.idTokenAdmin],

@@ -32,11 +32,11 @@ class ResourceSetModule
             }
           })
 
-           queryData.queryGet(method,schema,table, Object.keys({idmodule}), Object.values({idmodule}), ["WHERE"], []).then(async (result: any) => {
+           queryData.queryGet(method,schema,table, Object.keys({idmodule}), Object.values({idmodule}), ["WHERE"], [],req).then(async (result: any) => {
           
             if ( result.statusText == 200) {
               
-              queryData.QueryDelete(app_settings.METHOD.DELETE, schema, table, Object.keys({ idmodule }), Object.values({ idmodule })).then(async (result: any) => {
+              queryData.QueryDelete(app_settings.METHOD.DELETE, schema, table, Object.keys({ idmodule }), Object.values({ idmodule }),req).then(async (result: any) => {
                 if (result.severity !== 'ERROR') {
                   return res.status(201).json({ message: "MODULE_DELETE_SUCCESFULL", status: 201 })
                 }else {
@@ -45,7 +45,7 @@ class ResourceSetModule
               })
             } else {
               let inserModule = { ...path, iduser: req.body.iduser }
-              await queryData.QueryPost(app_settings.METHOD.POST, schema, table, Object.keys(inserModule), Object.values(inserModule)).then(async (result: any) => {
+              await queryData.QueryPost(app_settings.METHOD.POST, schema, table, Object.keys(inserModule), Object.values(inserModule),req).then(async (result: any) => {
                 if (result.severity !== 'ERROR') {
                   return res.status(201).json({ message: "MODULE_REGISTER_SUCCESFULL", status: 201 })
                 }

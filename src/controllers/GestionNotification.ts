@@ -4,8 +4,8 @@ abstract class Notification {
   public async createNotification(req: Request|any,res: Response,_next: Partial<NextFunction>
   ){
     try {
-      let verifyToken = req.users.id;
-      let responsable = req.users.email;
+      let verifyToken = req.user.id;
+      let responsable = req.user.email;
       const { title, description, type } = req.body;
       let responseNotification = await new Todo().createNotificationClass(
         title,description,responsable, type,verifyToken
@@ -20,7 +20,7 @@ abstract class Notification {
 
   public async getNotification(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
-      let verifyToken = req.users.id;
+      let verifyToken = req.user.id;
         let responseNotification = await new Todo().getNotificationClass(
           verifyToken
         );
@@ -49,7 +49,7 @@ abstract class Notification {
   public estadoDeleteNotification = async (req: Request|any,res: Response,_next: Partial<NextFunction>
   ) => {
     try {
-      let verifyToken = req.users.id;
+      let verifyToken = req.user.id;
         let responseNotification = await new Todo().deleteEstado(
           verifyToken)
         res.status(200).json({ message: "ok", responseNotification });

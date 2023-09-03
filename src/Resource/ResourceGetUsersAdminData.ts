@@ -10,7 +10,7 @@ class ResourceGetUsersAdminData {
         try {
 
           let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.USERS,
-            Object.keys({idadmin:req.users.id}),Object.values({idadmin:req.users.id}),["WHERE"],[])
+            Object.keys({idadmin:req.user.id}),Object.values({idadmin:req.user.id}),["WHERE"],[],req)
           if (response.resultGet?.rows?.length > 0) {
             return res
               .status(200)

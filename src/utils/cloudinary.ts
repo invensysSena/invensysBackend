@@ -10,7 +10,7 @@ cloudinary.config({
   api_secret: claudinarySecret,
   secure: true
 });
-export async function uploadImage(filePath:any) {
+export async function uploadImage(filePath:string) {
 return  await cloudinary.uploader.upload(filePath,{
   folder: "stored",
   equalize: true,
@@ -21,7 +21,7 @@ return  await cloudinary.uploader.upload(filePath,{
       {width: 200, crop: "scale"}
       ]})}
 
-export async function deleteImage(publicId:any ){
+export async function deleteImage(publicId:string){
 
  return  await cloudinary.uploader?.destroy(publicId)!
   

@@ -6,7 +6,7 @@ abstract class ManageProviders {
 
   public async postProviders(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
       const {idCategory, name, company, email, phone, address } = req.body.data;
 
         const provider: Provider = new ProviderSchema({
@@ -15,7 +15,7 @@ abstract class ManageProviders {
         const providers = await provider.save();
         await new Todo().createNotificationClass("Se creo un nuevo un proveedor",
           name,
-          req.users.email,
+          req.user.email,
           "provider",
           tokenIdUser
         );
@@ -26,7 +26,7 @@ abstract class ManageProviders {
   }
   public async getProviders(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
+      let tokenIdUser = req.user.id;
         const providers = await ProviderSchema.find({tokenIdUser});
         return res.status(200).json(providers);
     } catch (error) {
@@ -57,8 +57,8 @@ abstract class ManageProviders {
   }
   public async deleteProviders(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.users.id;
-      let responsable = req.users.email;
+      let tokenIdUser = req.user.id;
+      let responsable = req.user.email;
         const { id } = req.params;
          await new Todo().createNotificationClass(
            "Se Elimino  un proveedor","Se elimino con exito", responsable,"provider",

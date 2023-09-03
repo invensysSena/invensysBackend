@@ -10,3 +10,5 @@ export type User = {
 }
 
 export type ErrorRequestHandler = express.ErrorRequestHandler;
+
+export type dataQuery = Array<string|object|any> 
