@@ -29,9 +29,7 @@ class QueryData
         authorization:req.headers["authorization"] ? req.headers["authorization"] : "",
         email:req?.user.email ? req.user.email : ""
 
-      }
-
-     
+      }  
         try {
            
             let columns = ["content","tables","createdate","tipomethod","action","execution"]
