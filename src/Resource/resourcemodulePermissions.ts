@@ -32,7 +32,7 @@ class ResourcemodulePermissions {
               let pathRouter = app_settings.PATH.URL+item.url
               if (pathRouter === query.pathrouter) {
                 item.permisos.forEach((item: any) => {
-                  console.log(item.nombre)
+         
                   if (item.nombre === typeaction) {
                     data.typeaction = item.nombre
                     data.description = item.description
@@ -44,9 +44,6 @@ class ResourcemodulePermissions {
                 return null
               }
             })
-
-            console.log(data)
-  
              queryData.queryGet(method,schema,table, Object.keys({idmodule,typeaction}), Object.values({idmodule,typeaction}), ["WHERE"], [],req).then(async (result: any) => {
             
                if ( result.statusText == 200) {

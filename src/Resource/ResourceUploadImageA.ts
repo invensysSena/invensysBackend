@@ -16,10 +16,9 @@ class ResourceUploadImageA
               imgurl = result.secure_url;
               imgid = result.public_id;
               let condition = Object.keys({idadmin:req.user.id,})
-              await fs.remove(req.files?.imgData.tempFilePath);
-
-                let response =  await queryData.QueryUpdate(app_settings.METHOD.PUT,app_settings.schema,app_settings.TABLES.ADMIN,
+              let response =  await queryData.QueryUpdate(app_settings.METHOD.PUT,app_settings.schema,app_settings.TABLES.ADMIN,
                 Object.keys({imgurl,imgid}),Object.values({imgurl,imgid,idadmin:req.user.id,}),['WHERE'],condition,req)
+                await fs.remove(req.files?.imgData.tempFilePath);
               
                return res.status(200).json({ message: "OK", response });
 

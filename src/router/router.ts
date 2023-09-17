@@ -8,7 +8,7 @@ import ChangeDataController from "../controllers/ChangeData";
 import passport from "passport";
 const changeData = new ChangeDataController();
 const licence = new LicenceSofteareInvensys();
-let AuthPassport = passport.authenticate("jwt",{session: false,});
+let AuthPassport = passport.authenticate("jwt",{session: false});
 class RouterUser extends LoginRegister {
   public updateAdminPass() {
     return router.put("/updateAdminPass",AuthPassport, changeData.UpdatePassAdmin);

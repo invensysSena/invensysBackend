@@ -14,9 +14,8 @@ class ResourceGetPermisions
 
       
         let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.PERMISIONS,[],[],[],[],req)
-        console.log(response.statusText)
-        if (response.statusText === 200) {  
-          console.log("entroooooooooooooooooooooooooo")       
+  
+        if (response.statusText === 200) {   
                 return res
                   .status(200)
                   .json({ message: "GET_PERMISSIONS_ALL_SUCCESFULL", data:response.resultGet?.rows  });

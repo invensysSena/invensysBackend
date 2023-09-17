@@ -5,6 +5,7 @@ import { Logger } from "../utils/Logger";
 export class ValidationTokenAndCreateToken {
 
   public verifyToken(req: any, res: Response, next: NextFunction) {
+    console.log(req.headers)
     
     const token = req.headers["authorization"];
     if (!token) return res.status(401).json({ error: "Access Denied" });
@@ -17,17 +18,13 @@ export class ValidationTokenAndCreateToken {
     }
   }
 
-  public async verifyTokenAndAdmin(req: Request | any,res: Response,next: NextFunction
-  ) {
+  public async verifyTokenAndAdmin(req: Request | any,res: Response,next: NextFunction) {
 
-    
-    Logger.info({message:JSON.stringify(req.headers)});
-    console.log(req.headers)
+    Logger().debug(req.headers);
     try {
       const Tokenid_U: string   = req.headers.authorization;
       const verifyToken:any = jwt.verify(Tokenid_U, SECRET)!;
       const tokeIdUser = verifyToken.id;
-      console.log(tokeIdUser)
 
       if (!tokeIdUser) {
         return res.status(400).json({
@@ -39,7 +36,7 @@ export class ValidationTokenAndCreateToken {
         next();
       }
     } catch (error) {
-      Logger.error({message:error});
+      Logger().error({message:error});
       return res.status(500).json({
         ok: false,
         message: "ERROR TOKEN ACCESS DENIED",

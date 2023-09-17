@@ -6,7 +6,6 @@ let app_settings = settings[0]
 class ResourceGetUsersAdminData {
     public async getUsersAdminData(req: Request|any,res: Response,_next: Partial<NextFunction>) {
       
-      console.log(req.body,"hhhhhhhhhhhhh")
         try {
 
           let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.USERS,

@@ -24,7 +24,7 @@ class RouterCategory extends Categorys {
     return router.put("/category/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.putCategory);
   }
   public DeleteCategory() {
-    return router.delete("/category/:_id",AuthPassport,isAllowed.isAllowedPermissions,passport.authenticate("jwt"),this.deleteCategory);
+    return router.delete("/category/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.deleteCategory);
   }
 }
 

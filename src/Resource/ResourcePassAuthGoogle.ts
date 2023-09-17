@@ -11,7 +11,6 @@ class ResourcePassAuthGoogle {
          try {
           const { email, name, picture } = req.query;
           let response:any;
-          Log.info({ message: JSON.stringify(req.query) })
           let columns = Object.keys({idadmin:"idadmin",rol:"rol",email})
           let querys = Object.keys({email})
           let data = Object.values({email})
@@ -19,13 +18,14 @@ class ResourcePassAuthGoogle {
          if (response?.resultGet?.rows?.length > 0) {
            response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns,req)
            const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
-          Log.info({ message: JSON.stringify(response.resultGet?.rows[0] )})
+          
            return res.status(200).json({
                     message: "LOGIN_SUCCESSFULL",
                     token,
                     auth: true,
                     rol: response?.resultGet?.rows[0].rol,
                     type: "admin",
+                    email:email
                   });
           
          }else {
@@ -46,18 +46,15 @@ class ResourcePassAuthGoogle {
           if (result.severity !== 'ERROR') {
             response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns,req)
             const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
-           Log.info({ message: JSON.stringify(response.resultGet?.rows[0]) })
-           
             return res.status(200).json({
                      message: "LOGIN_SUCCESSFULL",
                      token,
                      auth: true,
                      rol: response?.resultGet?.rows[0].rol,
                      type: "admin",
+                     email:email
                    });
           } else {
-
-            Log.debug({ message: JSON.stringify(result) })
             return res.status(400).json({ message: "ERROR_DATA_ADMIN" });
           }
         }

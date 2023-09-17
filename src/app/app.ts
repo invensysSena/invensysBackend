@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session";
 import mongoose from "mongoose";
 import { Logger } from "../utils/Logger"; 
 import path from "path";
@@ -10,6 +11,7 @@ const AppServer: express.Application = express();
 import {connect} from '../database/mongodb'
 import passportmeddleware from "../middlewares/passport";
 import passport from "passport";
+import { SECRET } from "../config/config";
 const CONFIG_APP = require('../data/settings.json');
 mongoose.set("strictQuery", true);
 class App {
@@ -25,6 +27,11 @@ class App {
       AppServer.use(await new ServerRoutes().Inicio());
       AppServer.use(passport.initialize());
       passport.use(passportmeddleware);
+      AppServer.use(session({
+        secret: SECRET,
+        resave: false,
+        saveUninitialized: false
+      }));
       await dbPg.connect()
       
       await connect()
@@ -36,7 +43,8 @@ class App {
     this.startServer();
     const port: Number = 8080;
     AppServer.listen(PORT || port, () => {
-    Logger.info({ message: `Server on port ${CONFIG_APP[0].PORT.PORT} URL ${CONFIG_APP[0].PORT.URL} APP ${CONFIG_APP[0].PATH.APP} ` })
+      console.log("conectado")
+      Logger().debug(`Server running on port ${PORT || port}`);
     });
   }
 }

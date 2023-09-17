@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import CompanySchema from "../models/modelCompany";
 class ManageCompany {
   public async postCompany(req: Request|any,res: Response,next: NextFunction) {
+
+    console.log(req.body)
     try {
       let tokenIdUser = req.user.id;
         const {tipoPersona,nit,tipoIdentificacion,numero,nombre,correo,telefono,pais,
@@ -31,7 +33,6 @@ class ManageCompany {
       console.log(req.body)
       
         const company = await CompanySchema.find({ tokenIdUser });
-        console.log(company)
         return res.status(200).json({message: "Company created successfully",
           company,
         });
@@ -40,11 +41,13 @@ class ManageCompany {
     }
   }
   public async updateCompany(req: Request|any,res: Response,_next: NextFunction) {
+    console.log(req.body,"ddd")
     try {
         const { id } = req.params;
+        console.log(id)
         const {tipoPersona,nit,tipoIdentificacion,numero,nombre,correo,telefono,pais,
-          departamento,ciudad,direccion,} = req.body;
-        const company = await CompanySchema.findByIdAndUpdate(id,
+          departamento,ciudad,direccion,} = req.body.data;
+        const company = await CompanySchema.findByIdAndUpdate(req.params._id,
           {
             tipoPersona,nit,tipoIdentificacion,numero,nombre,correo,telefono,
             pais,departamento,ciudad,direccion,

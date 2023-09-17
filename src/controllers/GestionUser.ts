@@ -26,6 +26,7 @@ import { resourceGetServiceUser } from "../Resource/ResourceGetServiceUser";
 import { Logger } from "../utils/Logger";
 import { resourcemodulePermissions } from "../Resource/resourcemodulePermissions";
 
+let log = Logger()
 abstract class LoginRegister {
   public async veryfidCode(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
@@ -36,7 +37,7 @@ abstract class LoginRegister {
   }
   public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
-      return await resourceRegisterAdmin.AdminRegister(req,res,_next,Logger);
+      return await resourceRegisterAdmin.AdminRegister(req,res,_next);
     } catch (error: any) {
       return res.status(500).json({ message: "ERROR_SERVER_CONNECT", error });
     }
@@ -50,7 +51,7 @@ abstract class LoginRegister {
   }
   public async passpAuthGoogle(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
-      return await resourcePassAuthGoogle.passpAuthGoogle(req,res,_next,Logger);
+      return await resourcePassAuthGoogle.passpAuthGoogle(req,res,_next,log);
     } catch (error) {
       return res
         .status(500)

@@ -16,7 +16,7 @@ class RouterCompany extends ManageCompany {
         return router.get('/company',AuthPassport, isAllowed.isAllowedPermissions, this.getCompany)
     }
     public UpdateCompany(){
-        return router.put('/company/:id',AuthPassport,isAllowed.isAllowedPermissions, this.updateCompany)
+        return router.put('/company/:_id',AuthPassport,isAllowed.isAllowedPermissions, this.updateCompany)
     }
     public DeleteCompany(){
         return router.delete("/company/:id",AuthPassport,isAllowed.isAllowedPermissions,this.deleteCompany);
