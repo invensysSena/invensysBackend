@@ -189,18 +189,20 @@ abstract class LoginRegister {
     }
   }
   public async uploadImageA(req: Request,res: Response,_next: Partial<NextFunction>) {
-    try {
+     try {
+    
      return await resourceUploadImageA.uploadImageA(req,res,_next);
-    } catch (error) {
-      return res.status(400).json({ message: "ERROR_TOKEN", error });
-    }
+     } catch (error) {
+       console.log(error)
+       return res.status(400).json({ message: "ERROR_DATA", error });
+     }
   }
   public async UpdateAdminAll(req: Request ,res: Response,next: Partial<NextFunction>){
     try {
       
       return await resourceUpdateAdminAll.UpdateAdminAll(req,res,next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_TOKEN" });
+      return res.status(400).json({ message: "ERROR_DATA",error });
     }
   }
   public async GetServiceUser(req: Request ,res: Response,_next: Partial<NextFunction>) {

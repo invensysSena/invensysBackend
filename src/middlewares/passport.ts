@@ -1,13 +1,10 @@
 import { Strategy, ExtractJwt } from "passport-jwt"
 import { SECRET } from "../config/config";
 import { queryData } from "../secure/DbQuery";
-import { Request,Response } from "express";
 import settings from "../data/settings.json";
 import { Logger } from "../utils/Logger";
 
 let app_settings = settings[0]
-
-let req:Request|any =  Request
 
 
 const opts = {
@@ -17,6 +14,7 @@ const opts = {
 
 export default new Strategy(opts, async(payload, done) => {
     try {
+        let req:any = payload
        
 
         let User:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys({idadmin:payload.id}),Object.values({idadmin:payload.id}),["WHERE"],[],req)

@@ -106,7 +106,7 @@ class RouterUser extends LoginRegister {
   }
 
   public getAdminDataALL() {
-    return router.get("/getAdminAll/:id",AuthPassport,this.getAdminAll);
+    return router.get("/getAdminAll/",AuthPassport,this.getAdminAll);
   }
   public UpdateAdminALL() {
     return router.put("/updateAdminALL",AuthPassport,this.UpdateAdminAll);
