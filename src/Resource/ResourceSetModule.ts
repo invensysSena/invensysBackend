@@ -10,6 +10,7 @@ class ResourceSetModule
 {
     public async setModule(req: any,res: Response,_next: Partial<NextFunction>) {
 
+      console.log(req.body)
         try {
           const fecha = moments()
 

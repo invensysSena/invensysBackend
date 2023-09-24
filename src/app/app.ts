@@ -12,7 +12,7 @@ import {connect} from '../database/mongodb'
 import passportmeddleware from "../middlewares/passport";
 import passport from "passport";
 import { SECRET } from "../config/config";
-const CONFIG_APP = require('../data/settings.json');
+import settings from "../data/settings.json"
 mongoose.set("strictQuery", true);
 class App {
   public startServer = async () => {
@@ -42,9 +42,8 @@ class App {
   public listen() {
     this.startServer();
     const port: Number = 8080;
-    AppServer.listen(PORT || port, () => {
-      console.log("conectado")
-      Logger().debug(`Server running on port ${PORT || port}`);
+    AppServer.listen(settings[0].PORT.PORT, () => {
+      Logger().info(`servico de invensys url:http://localhost:  port:${settings[0].PORT.PORT}`);
     });
   }
 }

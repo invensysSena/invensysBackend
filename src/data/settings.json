@@ -26,11 +26,11 @@
     "type": "object",
     "schema_Url_users_databases": {
       "server_users_post_login": "http://localhost:4002/users/databases",
-      "perfil": "http://localhost:5454/users/databases/perfil"
+      "perfil": "http://localhost:5001/users/databases/perfil"
     },
     "router": {
       "path": "/",
-      "perfil": "http://localhost:5454/users/databases/perfil"
+      "root": "http://localhost:5001/"
     },
     "properties": {
       "name": {
@@ -54,8 +54,8 @@
       "APP": " Invensys"
     },
     "PORT": {
-      "URL": "http://localhost:5454",
-      "PORT": 5454
+      "URL": "http://localhost:5001",
+      "PORT": 5001
     }
         
 }]

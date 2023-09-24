@@ -25,7 +25,6 @@ class Todo extends NotificationSchema {
   }
   public async getNotificationClass(id: string) {
     try {
-      console.log(id)
       return await NotificationSchema.find({ tokeIdUser: id });
     } catch (error) {
       return error;

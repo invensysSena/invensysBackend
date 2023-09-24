@@ -7,7 +7,7 @@ const router:Router = Router()
 let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterInicio extends AllModules{
     public GetModules (){
-       return router.get("/modules/:id",AuthPassport,isAllowed.isAllowedPermissions,this.getModules);
+       return router.get("/modules",AuthPassport,isAllowed.isAllowedPermissions,this.getModules);
     }
 }
 

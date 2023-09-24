@@ -88,7 +88,7 @@ class QueryData
 
     public async queryGet(METHOD: string, shema: string, vistaOrTable: string, datakeys:Array<string|object> ,
       datavalues: dataQuery ,consulta_sql: Array<string>, columns: string[],req:Request) {
-        Logger().debug({ message: JSON.stringify(req.headers) });
+  
         try {
             // Determina el tipo de método (GET o error)
             let METHOD_TYPE = METHOD === "GET" ? "SELECT" : "ERROR";
@@ -133,7 +133,7 @@ class QueryData
             }
             
         } catch (error) {
-          Logger().debug({ message: error}); // Registra errores en el registro de eventos (logger)
+          Logger().error({ message: error}); // Registra errores en el registro de eventos (logger)
             // En caso de error, devuelve un estado HTTP 400
             return { statusText: 400 };
         }
@@ -196,7 +196,7 @@ public async QueryUpdate(METHOD: string, schema: string, vistaOrTable: string, d
       return <QueryResult>updateData;
     } catch (error) {
       // Registra errores en el registro de eventos
-      Logger().debug({ message: error });
+      Logger().error({ message: error });
       return error;
     }
   }
@@ -244,7 +244,7 @@ public async QueryDelete(METHOD: string, schema: string, tableOrView: string, da
             return deleteData;
     } catch (error:any) {
         // Manejar errores y devolverlos
-        Logger().debug({message:error})
+        Logger().error({message:error})
         return error;
     }
 } 
