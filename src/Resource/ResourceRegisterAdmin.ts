@@ -10,7 +10,7 @@ import { Logger } from "winston";
 
 let app_settings = settings[0]
 class ResourceRegisterAdmin {
-    public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>,log:Logger) {
+    public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>) {
         try {
           const data: PersonRegister = {
             correo: req.query.email,
@@ -43,8 +43,6 @@ class ResourceRegisterAdmin {
                     `Creaste una cuenta de administrado: ${data.correo}`,
                     "Comienza a administrar tu negocio",data.correo,"admin",`${data.correo}`
                   );
-
-                  log.info({ message: JSON.stringify(result) })
                   return res.status(200).json({
                     message: "USER_CREATE_SUCCESFULL",
                     token,
@@ -55,10 +53,10 @@ class ResourceRegisterAdmin {
                 }
               }
               ).catch((error:any) => {
-                log.error({message:error});
+              
                 return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })});
         } catch (error: any) {
-                log.error({message:error});
+  
           return res.status(500).json({ message: "ERROR_SERVER_SERVICES", error });
         }
       }

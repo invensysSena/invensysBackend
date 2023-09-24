@@ -8,7 +8,7 @@ import ChangeDataController from "../controllers/ChangeData";
 import passport from "passport";
 const changeData = new ChangeDataController();
 const licence = new LicenceSofteareInvensys();
-let AuthPassport = passport.authenticate("jwt",{session: false,});
+let AuthPassport = passport.authenticate("jwt",{session: false});
 class RouterUser extends LoginRegister {
   public updateAdminPass() {
     return router.put("/updateAdminPass",AuthPassport, changeData.UpdatePassAdmin);
@@ -54,7 +54,7 @@ class RouterUser extends LoginRegister {
   }
   public prueba() {
     return router.post("/prueba",(req,res)=>{
-      console.log(req.query)
+   
       res.send("hola")
     });
   }
@@ -79,7 +79,7 @@ class RouterUser extends LoginRegister {
     return router.get("/countUsers/:idToken",AuthPassport,this.CountUsersAll);
   }
   public GetModuleUsers() {
-    return router.get("/getModuleUsers/:id",AuthPassport,this.getModuleUsers);
+    return router.get("/getModuleUsers",AuthPassport,this.getModuleUsers);
   }
   public GetPermisions() {
     return router.get("/getPermisions",AuthPassport,this.getPermisions);
@@ -106,7 +106,7 @@ class RouterUser extends LoginRegister {
   }
 
   public getAdminDataALL() {
-    return router.get("/getAdminAll/:id",AuthPassport,this.getAdminAll);
+    return router.get("/getAdminAll/",AuthPassport,this.getAdminAll);
   }
   public UpdateAdminALL() {
     return router.put("/updateAdminALL",AuthPassport,this.UpdateAdminAll);

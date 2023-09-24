@@ -26,6 +26,7 @@ import { resourceGetServiceUser } from "../Resource/ResourceGetServiceUser";
 import { Logger } from "../utils/Logger";
 import { resourcemodulePermissions } from "../Resource/resourcemodulePermissions";
 
+let log = Logger()
 abstract class LoginRegister {
   public async veryfidCode(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
@@ -36,7 +37,7 @@ abstract class LoginRegister {
   }
   public async AdminRegister(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
-      return await resourceRegisterAdmin.AdminRegister(req,res,_next,Logger);
+      return await resourceRegisterAdmin.AdminRegister(req,res,_next);
     } catch (error: any) {
       return res.status(500).json({ message: "ERROR_SERVER_CONNECT", error });
     }
@@ -50,7 +51,7 @@ abstract class LoginRegister {
   }
   public async passpAuthGoogle(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
-      return await resourcePassAuthGoogle.passpAuthGoogle(req,res,_next,Logger);
+      return await resourcePassAuthGoogle.passpAuthGoogle(req,res,_next,log);
     } catch (error) {
       return res
         .status(500)
@@ -103,14 +104,14 @@ abstract class LoginRegister {
     try {
       return await resourceDeleteAllUsers.deleteAllUsers(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async modulePermissions(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
       return await resourcemodulePermissions.modulesPermissions(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
 
@@ -118,7 +119,7 @@ abstract class LoginRegister {
     try {
      return await resourceCountUsersAll.CountUsersAll(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async getModuleUsers(req: any,res: Response,_next: Partial<NextFunction>){
@@ -135,42 +136,42 @@ abstract class LoginRegister {
     try {
      return await resourceGetPermisions.getPermisions(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async updateAdmin(req: Request,res: Response,_next: Partial<NextFunction>) {
     try {
      return await resourceUpdateAdmin.updateAdmin(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async deleteModule(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
      return await resourceDeleteModule.deleteModule(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async setModule(req: any,res: Response,_next: Partial<NextFunction>) {
     try {
       return await resourceSetModule.setModule(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async setPermisionModule(req: Request ,res: Response,_next: Partial<NextFunction>) {
     try {
       return await resourceSetPermisionModule.setPermisionModule(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async deletePermisionModule(req: Request ,res: Response,_next: Partial<NextFunction>){
     try {
       return await resourceDeletePermisionModule.deletePermisionModule(req,res,_next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_SESSION" });
+      return res.status(400).json({ message: "ERROR_DATA" });
     }
   }
   public async getMod(req: Request ,res: Response,_next: Partial<NextFunction>) {
@@ -188,18 +189,20 @@ abstract class LoginRegister {
     }
   }
   public async uploadImageA(req: Request,res: Response,_next: Partial<NextFunction>) {
-    try {
+     try {
+    
      return await resourceUploadImageA.uploadImageA(req,res,_next);
-    } catch (error) {
-      return res.status(400).json({ message: "ERROR_TOKEN", error });
-    }
+     } catch (error) {
+       console.log(error)
+       return res.status(400).json({ message: "ERROR_DATA", error });
+     }
   }
   public async UpdateAdminAll(req: Request ,res: Response,next: Partial<NextFunction>){
     try {
       
       return await resourceUpdateAdminAll.UpdateAdminAll(req,res,next);
     } catch (error) {
-      return res.status(400).json({ message: "ERROR_TOKEN" });
+      return res.status(400).json({ message: "ERROR_DATA",error });
     }
   }
   public async GetServiceUser(req: Request ,res: Response,_next: Partial<NextFunction>) {

@@ -17,23 +17,21 @@ class ResourceUpdateAdminAll
           let condition = Object.keys({idadmin:req.user.id,})
            await queryData.QueryUpdate(app_settings.METHOD.PUT,app_settings.schema,app_settings.TABLES.ADMIN,
           Object.keys({
-            nameadmin:req.body.data.name,
-            nombrenegocio:req.body.data.empresa,
-            telefono:req.body.data.telefono,
-            document:req.body.data.document,
+            nameadmin:req.body.name,
+            nombrenegocio:req.empresa,
+            telefono:req.body.telefono,
+            document:req.body.document,
           }),Object.values({
-            nameadmin:req.body.data.name,
-            nombrenegocio:req.body.data.empresa,
-            telefono:parseInt(req.body.data.telefono),
-            document:parseInt(req.body.data.document),
+            nameadmin:req.body.name,
+            nombrenegocio:req.body.empresa,
+            telefono:parseInt(req.body.telefono),
+            document:parseInt(req.body.document),
             idadmin:req.user.id,
 
           }),["WHERE"],condition,req)
 
           return res.status(200).json({ message: "UPDATE_DATA" });
-         
         } catch (error) {
-          console.log(error)
           return res.status(400).json({ message: "ERROR_DATA",error });
         }
       }

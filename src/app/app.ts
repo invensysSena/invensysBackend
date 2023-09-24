@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session";
 import mongoose from "mongoose";
 import { Logger } from "../utils/Logger"; 
 import path from "path";
@@ -10,7 +11,8 @@ const AppServer: express.Application = express();
 import {connect} from '../database/mongodb'
 import passportmeddleware from "../middlewares/passport";
 import passport from "passport";
-const CONFIG_APP = require('../data/settings.json');
+import { SECRET } from "../config/config";
+import settings from "../data/settings.json"
 mongoose.set("strictQuery", true);
 class App {
   public startServer = async () => {
@@ -25,6 +27,11 @@ class App {
       AppServer.use(await new ServerRoutes().Inicio());
       AppServer.use(passport.initialize());
       passport.use(passportmeddleware);
+      AppServer.use(session({
+        secret: SECRET,
+        resave: false,
+        saveUninitialized: false
+      }));
       await dbPg.connect()
       
       await connect()
@@ -35,8 +42,8 @@ class App {
   public listen() {
     this.startServer();
     const port: Number = 8080;
-    AppServer.listen(PORT || port, () => {
-    Logger.info({ message: `Server on port ${CONFIG_APP[0].PORT.PORT} URL ${CONFIG_APP[0].PORT.URL} APP ${CONFIG_APP[0].PATH.APP} ` })
+    AppServer.listen(settings[0].PORT.PORT, () => {
+      Logger().info(`servico de invensys url:http://localhost:  port:${settings[0].PORT.PORT}`);
     });
   }
 }

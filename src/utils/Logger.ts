@@ -1,6 +1,5 @@
-import { createLogger, format, transports } from "winston";
+import winston from 'winston';
 import fs from 'fs';
-import { v4 as uuidv4 } from 'uuid';
 
 const logDirectory = 'src/logs';
 
@@ -8,73 +7,77 @@ if (!fs.existsSync(logDirectory)) {
   fs.mkdirSync(logDirectory);
 }
 
+const myFormat = winston.format.printf(log => {
+  return `[Date: ${log.timestamp}] [logId: ${log.logId}] [${log.level}]: ${JSON.stringify(log.message)}`;
+});
+
 const myCustomLevels = {
   levels: {
     aud: 0,
-    error: 1,
-    warn: 2,
-    info: 3,
-    debug: 4
+    debug: 1,
+    info: 2,
+    warn: 3,
+    error: 4,
   },
   colors: {
-    aud: 'blue',
-    error: 'red',
-    warn: 'yellow',
+    debug: 'blue',
     info: 'green',
-    debug: 'white'
-  }
+    warn: 'yellow',
+    error: 'red',
+    aud: 'magenta',
+  },
 };
 
-// Configuración de formato personalizado
-const logFormat = format.combine(
-  format.colorize(),
-  format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-  format.printf(info => {
-    const uuid = uuidv4();
-    info.uuid = uuid;
-    return JSON.stringify({
-      timestamp: info.timestamp,
-      level: info.level,
-      message: info.message,
-      uuid: info.uuid
-    });
-  })
-);
+const timeFormat = { format: 'YYYY-MM-DD HH:mm:ss' };
 
-// Transportes para diferentes niveles
-const transportsConfig = [
-  new transports.Console({
-    format: format.combine(
-      format.colorize(),
-      format.simple()
+const transports: any = {
+    console: new winston.transports.Console({
+      level: 'error', // Asegúrate de que el nivel sea 'info'
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.timestamp(timeFormat),
+        myFormat
+      ),
+    }),
+  file: new winston.transports.File({
+    level: 'info',
+    filename: `${logDirectory}/ms.log`,
+    format: winston.format.combine(
+      winston.format.timestamp(timeFormat),
+      winston.format.json()
     ),
   }),
-  new transports.File({ filename: `${logDirectory}/error.log`, level: 'error' }),
-  new transports.File({ filename: `${logDirectory}/warn.log`, level: 'warn' }),
-  new transports.File({ filename: `${logDirectory}/info.log`, level: 'info' }),
-  new transports.File({ filename: `${logDirectory}/debug.log`, level: 'debug' }),
-  new transports.File({ filename: `${logDirectory}/aud.log`, level: 'aud' }),
-];
+};
 
-// Agregar transporte de rotación de archivos (opcional)
-transportsConfig.push(
-  new transports.File({
-    filename: `${logDirectory}/combined.log`,
-    format: format.combine(
-      format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-      format.json()
-    ),
-  })
-);
+const transportsList = [transports.file];
+transportsList.push(transports.console);
 
-// Crear el logger con opciones personalizadas
-export const Logger = createLogger({
+winston.addColors(myCustomLevels.colors);
+
+const logger = winston.createLogger({
   levels: myCustomLevels.levels,
-  format: logFormat,
-  transports: transportsConfig,
-  exceptionHandlers: [new transports.File({ filename: `${logDirectory}/exceptions.log` })],
-  exitOnError: false, // Evitar que el proceso se detenga en caso de excepciones no controladas
+  transports: transportsList,
 });
 
-// Ejemplo de cómo utilizar el logger para hacer debugging
-Logger.debug('Esto es un mensaje de debug');
+export function Logger(userData?: null, ip?: null) {
+  let logId = getNanoSecTimeStamp();
+  const debug = async function (this: any, ...logData: any) {
+    logger.debug({ userData, logId, ip, message: logData });
+  };
+  const info = async function (this: any, ...logData: any) {
+    logger.info({ userData, logId, ip, message: logData });
+  };
+  const warn = async (...logData: any) => {
+    logger.warn({ userData, logId, ip, message: logData });
+  };
+  const error = async (...logData: any) => {
+    logger.error({ userData, logId, ip, message: logData });
+  };
+
+  return { debug, info, warn, error };
+}
+
+function getNanoSecTimeStamp() {
+  const hrTime = process.hrtime();
+  return hrTime[0] * 1000000000 + hrTime[1];
+}

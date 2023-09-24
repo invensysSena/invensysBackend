@@ -29,27 +29,22 @@ class QueryData
         authorization:req.headers["authorization"] ? req.headers["authorization"] : "",
         email:req?.user.email ? req.user.email : ""
 
-      }
-
-     
+      }  
         try {
            
-            let columns = ["content","tables","createdate","tipomethod","action","execution"]
+            let columns = ["content","tables","createdate","tipomethod","action","execution","email","infoperson"]
             // Crear la consulta INSERT INTO
-            const queryInsert = `INSERT INTO ${schema}.${table} (conten,tables,createdate,tipomethod,action,execution) VALUES (${
+            const queryInsert = `INSERT INTO ${schema}.${table} (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES (${
               columns.map((_:string, index:number) => `$${index + 1}`).join(', ') // Crear marcadores de posición ($1, $2, etc.) para los valores
             })`;
 
-            Logger.info({ message: queryInsert });
+            Logger().debug({ query: queryInsert });
             // Ejecutar la consulta y obtener el resultado
             const resultInsert = await dbPg.getClient().query(queryInsert, Object.values(dataValues[0]));
-            console.log(resultInsert,'kkkkkkkkkk')
-            console.log(Object.values(dataValues[0]),'kkoooook')
-            Logger.info({ message: JSON.stringify(resultInsert.oid) });
             return resultInsert;
 
         } catch (error) {
-            Logger.error({ message: error }); // Registrar errores en el registro
+            Logger().error({ message: error }); // Registrar errores en el registro
             return error // Relanzar el error para que pueda ser manejado en el nivel superior
         }
       
@@ -74,24 +69,26 @@ class QueryData
         const queryInsert = `INSERT INTO
          ${schema}.${table} (${dataColumns.join(', ')}) VALUES (${dataValues.map((_, index) => `$${index + 1}`).join(', ') // Crear marcadores de posición ($1, $2, etc.) para los valores
             })`;
-          Logger.info({ message: queryInsert });
+          Logger().debug({ query: queryInsert });
   
         // Ejecutar la consulta y obtener el resultado
         const resultInsert = await dbPg.getClient().query(queryInsert, dataValues);
 
-        let data =[{content:resultInsert,table,createdate:new Date(),tipomethod:METHOD,action:resultInsert.command,execute:authorization}]
+        let data =[{content:resultInsert,table,createdate:new Date(),tipomethod:METHOD,action:resultInsert.command,execute:authorization
+        ,email:req?.user.email,infoperson:req?.user}]
         await this.ProccessQuery(METHOD,schema,"processes",Object.values(data),req)
 
-        Logger.info({ message: JSON.stringify(resultInsert.oid) });
+        Logger().debug({ consultasql: JSON.stringify(resultInsert.oid) });
         return resultInsert;
     } catch (error) {
-      Logger.error({ message: error}); // Registrar errores en el registro
+      Logger().error({ message: error}); // Registrar errores en el registro
       return error // Relanzar el error para que pueda ser manejado en el nivel superior
     }
   }
 
     public async queryGet(METHOD: string, shema: string, vistaOrTable: string, datakeys:Array<string|object> ,
-       datavalues: dataQuery ,consulta_sql: Array<string>, columns: string[],req:Request) {
+      datavalues: dataQuery ,consulta_sql: Array<string>, columns: string[],req:Request) {
+  
         try {
             // Determina el tipo de método (GET o error)
             let METHOD_TYPE = METHOD === "GET" ? "SELECT" : "ERROR";
@@ -119,14 +116,13 @@ class QueryData
             let queryGet = `${METHOD_TYPE} ${columns.length > 0 ? columns.map((item: string, index: number) =>
                 index === 0 ? item : `${item}`) : "*"} FROM ${shema}.${vistaOrTable} ${CONSULTAS_SQL_TYPE} ${consulta}`;
     
-            // Registra la consulta en el registro de eventos (logger)
-            Logger.info({ message: queryGet });
+            // Registra la consulta en el registro de eventos (logger())
+             Logger().debug({ query: queryGet });
     
             // Ejecuta la consulta en la base de datos y espera el resultado
             let resultGet = await dbPg.getClient().query(queryGet, datavalues);
     
             // Registra el resultado en el registro de eventos (logger)
-            Logger.info({ message: JSON.stringify(resultGet.oid) });
     
             // Devuelve el resultado y un estado HTTP 200 si es exitoso
            if (resultGet.rows.length !== 0) {
@@ -137,7 +133,7 @@ class QueryData
             }
             
         } catch (error) {
-          Logger.error({ message: error}); // Registra errores en el registro de eventos (logger)
+          Logger().error({ message: error}); // Registra errores en el registro de eventos (logger)
             // En caso de error, devuelve un estado HTTP 400
             return { statusText: 400 };
         }
@@ -189,18 +185,18 @@ public async QueryUpdate(METHOD: string, schema: string, vistaOrTable: string, d
     }`;
   
     // Registra la consulta en el registro de eventos
-    Logger.info({ message: queryUpdate });
+    Logger().debug({ query: queryUpdate });
   
     try {
       // Ejecuta la consulta UPDATE y devuelve los resultados
       let updateData = await dbPg.getClient().query(queryUpdate, datavalues);
-      Logger.info({ message: JSON.stringify(updateData) });
-      let data =[{content:updateData,vistaOrTable,createdate:new Date(),tipomethod:METHOD,action:updateData.command,execute:authorization}]
+      let data =[{content:updateData,vistaOrTable,createdate:new Date(),tipomethod:METHOD,action:updateData.command,execute:authorization,
+        email:req?.user.email,infoperson:req?.user}]
       await this.ProccessQuery(METHOD,schema,"processes",Object.values(data),req)
       return <QueryResult>updateData;
     } catch (error) {
       // Registra errores en el registro de eventos
-      Logger.error({ message: error });
+      Logger().error({ message: error });
       return error;
     }
   }
@@ -235,20 +231,20 @@ public async QueryDelete(METHOD: string, schema: string, tableOrView: string, da
             });
            
             queryDelete += ` WHERE ${whereConditions.join(" AND ")}`;
-            Logger.info({message:queryDelete})
+            Logger().debug({query:queryDelete})
         }
 
         // Ejecutar la consulta DELETE en la base de datos
          const deleteData:any = await dbPg.getClient().query(queryDelete, dataValues);
-         let data =[{content:deleteData,tableOrView,createdate:new Date(),tipomethod:METHOD,action:deleteData.command,execute:authorization}]
+         let data =[{content:deleteData,tableOrView,createdate:new Date(),tipomethod:METHOD,action:deleteData.command,execute:authorization,
+          email:req?.user.email,infoperson:req?.user}]
          await this.ProccessQuery(METHOD,schema,"processes",Object.values(data),req)
-         console.log(deleteData,'kk')
-                Logger.info({message:JSON.stringify(deleteData.old)})
+                Logger().debug({message:JSON.stringify(deleteData.old)})
 
             return deleteData;
     } catch (error:any) {
         // Manejar errores y devolverlos
-        Logger.error({message:error})
+        Logger().error({message:error})
         return error;
     }
 } 

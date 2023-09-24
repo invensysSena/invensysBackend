@@ -10,16 +10,19 @@ moment.locale("es");
 class ResourcemodulePermissions {
     public async modulesPermissions(req: Request|any,res: Response,_next: Partial<NextFunction>) {
 
+      console.log(req.body)
       try {
         
-        let jsonQuery = JSON.stringify(req.query)
+        let jsonQuery = JSON.stringify(req.body)
         let query:any = JSON.parse(jsonQuery)
         const fecha = moments()
 
-          let idmodule = query.idmodule
-          let path = query.pathrouter
+        console.log(query)
+          let idmodule = query.id.idmodule
+          let path = query.path.pathrouter
           let typeaction = query.method
 
+          console.log(idmodule,path,typeaction)
 
             let method = app_settings.METHOD.GET
             let table = app_settings.TABLES.PERMISIONS
@@ -30,9 +33,9 @@ class ResourcemodulePermissions {
             permissions_settings.PERMISSIONS_USER_PATH.forEach((item: any) => {
 
               let pathRouter = app_settings.PATH.URL+item.url
-              if (pathRouter === query.pathrouter) {
+              if (pathRouter === path) {
                 item.permisos.forEach((item: any) => {
-                  console.log(item.nombre)
+         
                   if (item.nombre === typeaction) {
                     data.typeaction = item.nombre
                     data.description = item.description
@@ -44,9 +47,6 @@ class ResourcemodulePermissions {
                 return null
               }
             })
-
-            console.log(data)
-  
              queryData.queryGet(method,schema,table, Object.keys({idmodule,typeaction}), Object.values({idmodule,typeaction}), ["WHERE"], [],req).then(async (result: any) => {
             
                if ( result.statusText == 200) {

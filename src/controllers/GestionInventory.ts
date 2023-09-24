@@ -9,61 +9,74 @@ import { conexion } from "../database/database";
 import TranslateBodega from "../class/TranlateBodega";
 import SubProductosModel from "../models/SubProductos.model";
 import NotificationSchema from "../models/modelNotfication";
+import { queryData } from "../secure/DbQuery";
+import settings from "../data/settings.json";
+let app_settings = settings[0]
+// es la creacion de la bodega
 class InventoryProduct {
   public async postInventory(req: Request|any, res: Response, _next: NextFunction) {
+    console.log("Hola mundo")
+    console.log(req.user)
     try {
       const { name_inventory, description } = req.body.data;
-      let typeUser: any = req.headers["typeautorization"];
+    
       let tokeIdUser = req.user.id;
       let responsable = req.user.email;
-      const conn: any = await conexion.connect();
-      if (typeUser === "administrador") {
-        conn.query("SELECT correo FROM admin WHERE idUsers = ? ",[tokeIdUser],
-          async (_err: any, rows: any, _fields: any) => {
-            if (rows) {
-              const inventory = new InventorySchema({
-                tokeIdUser,name_inventory,description,estadoInventory: "activo",
-                responsableInventory: rows[0].correo,type: "Administrador",});
-              const response = await inventory.save();
-              await new Todo().createNotificationClass(
-                "Se creo una nueva bodega",
-                name_inventory,
-                responsable,
-                "inventory",
-                tokeIdUser
-              );
-              res.status(200).json({ message: "Inventory created", response });
-            }
-          }
-        );
-      } else if (typeUser === "user") {
-        const token: any = req.headers["authorization1"];
-        const decoded: any = jwt.verify(token, SECRET);
-        const tokeIdUser1 = decoded.id1;
-        let responsable = req.user.email;
-        conn.query(
-          "SELECT correo FROM account WHERE idAccount    = ? ",
-          [tokeIdUser1],
-          async (_err: any, rows: any, _fields: any) => {
-            if (rows) {
-              const inventory = new InventorySchema({
-                tokeIdUser,name_inventory,
-                description,estadoInventory: "Activo",responsableInventory: rows[0].correo,
-                type: "Usuario",
-              });
-              const response = await inventory.save();
-              await new Todo().createNotificationClass(
-                "Se creo un nuevo inventario",
-                name_inventory,
-                responsable,
-                "inventory",
-                tokeIdUser
-              );
-              res.status(200).json({ message: "Inventory created", response });
-            }
-          }
-        );
-      }
+      if (req.user.rol === "administrador") {
+        await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys({idadmin:req.user.id}),Object.values({idadmin:req.user.id}),["WHERE"],[],req)
+        .then(async (response:any)=>{
+
+          const inventory = new InventorySchema({
+            tokeIdUser,name_inventory,description,estadoInventory: "activo",
+            responsableInventory: req.user.email,type: "administrador",});
+
+            const responseInventiry = await inventory.save();
+
+            await new Todo().createNotificationClass(
+            "Se creo una nueva bodega",
+             name_inventory,responsable, "inventory", tokeIdUser);
+             
+              res.status(200).json({ message: "Inventory created", response: responseInventiry });
+        }).catch((error:any)=>{
+          return res.status(400).json({ message: "ERROR_GET_ADMIN_ALL", data:[],error});
+        })
+        
+
+        // await queryData.queryGet("SELECT correo FROM admin WHERE idUsers = ? ",[tokeIdUser],
+        //   async (_err: any, rows: any, _fields: any) => {
+        //     if (rows) {
+        //      
+        //     }
+        //   }
+        // );
+      } else if (req.user.rol === "user") {
+      //   const token: any = req.headers["authorization1"];
+      //   const decoded: any = jwt.verify(token, SECRET);
+      //   const tokeIdUser1 = decoded.id1;
+      //   let responsable = req.user.email;
+      //   conn.query(
+      //     "SELECT correo FROM account WHERE idAccount    = ? ",
+      //     [tokeIdUser1],
+      //     async (_err: any, rows: any, _fields: any) => {
+      //       if (rows) {
+      //         const inventory = new InventorySchema({
+      //           tokeIdUser,name_inventory,
+      //           description,estadoInventory: "Activo",responsableInventory: rows[0].correo,
+      //           type: "Usuario",
+      //         });
+      //         const response = await inventory.save();
+      //         await new Todo().createNotificationClass(
+      //           "Se creo un nuevo inventario",
+      //           name_inventory,
+      //           responsable,
+      //           "inventory",
+      //           tokeIdUser
+      //         );
+      //         res.status(200).json({ message: "Inventory created", response });
+      //       }
+      //     }
+      //   );
+     }
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }

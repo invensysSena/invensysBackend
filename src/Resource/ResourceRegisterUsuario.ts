@@ -12,10 +12,10 @@ moment.locale("es");
 
 class ResourceRegisterUsuario {
   public async RegisterUsuario(req: Request | any, res: Response, _next: Partial<NextFunction>) {
-    // try {
+     try {
     const data: login = {
-      correo: req.body.postDataUserRegister.email,
-      password: req.body.postDataUserRegister.password,
+      correo: req.body.email,
+      password: req.body.password,
       authCuenta: true,
       token: '',
       refreshToken: '',
@@ -33,13 +33,12 @@ class ResourceRegisterUsuario {
     let path = { pathrouter: "", code: 0, description: "", estado: "activo", createdate: fecha }
 
     permissions_settings.PERMISSIONS_USER_PATH.forEach((item: any) => {
-      if (item.url === req.body.postDataUserRegister.modulo) {
+      if (item.url === req.body.modulo) {
         path.pathrouter = "users" + item.url
         path.code = item.id_modulo,
           path.description = item.nombre
       }
     })
-
     let dataBodyUser = { email: data.correo, password: hasPassword, datecreate: fecha,
        estado: "activo", imgurl: "url", imgid: "id", idadmin: req.user.id, dateuptate: fecha }
 
@@ -60,18 +59,24 @@ class ResourceRegisterUsuario {
                  }
                 }
                   ).catch((error: any) => {
-                    return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })
+                    return res.status(400).json({ message: "ERROR_DATA_ADMIN" })
                })
 
         }).catch((error: any) => {
-          return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })
+          return res.status(400).json({ message: "ERROR_DATA_ADMIN",  })
         }
         );
+      }else{
+        return res.status(400).json({ message: "ERROR_DATA_ADMIN",  })
       }
     }).catch((error: any) => {
-      return res.status(401).json({ message: "ERROR_DATA_ADMIN", error: error })
+      return res.status(400).json({ message: "ERROR_DATA_ADMIN",  })
     });
    
+  }
+  catch (error) {
+    return res.status(400).json({ message: "ERROR_DATA_ADMIN", error: error })
+  }
   }
 }
 

@@ -16,7 +16,7 @@ abstract class Categorys {
       
       return res.status(201).json({status: 201,message: "Categoria creada",data: dataCategory,});
     } catch (error) {
-      console.log(req.user)
+      
       console.log(error)
       return res.status(500).json({ok: false,message: "Error al crear la categoria",error});
     }

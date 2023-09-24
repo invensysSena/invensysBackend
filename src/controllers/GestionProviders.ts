@@ -2,15 +2,16 @@ import { Request, Response, NextFunction } from "express";
 import ProviderSchema from "../models/modelProviders";
 import { Provider } from "../interfaces/providers";
 import Todo from "../class/Notification.Todo";
+import { Logger } from "../utils/Logger";
 abstract class ManageProviders {
 
   public async postProviders(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      let tokenIdUser = req.user.id;
-      const {idCategory, name, company, email, phone, address } = req.body.data;
+       let tokenIdUser = req.user.id;
+       const {idCategory, name, company, email, phone, address } = req.body.data;
 
         const provider: Provider = new ProviderSchema({
-          idCategory,tokenIdUser,name,company,email,phone,address,});
+        idCategory,tokenIdUser,name,company,email,phone,address,});
 
         const providers = await provider.save();
         await new Todo().createNotificationClass("Se creo un nuevo un proveedor",
@@ -19,8 +20,10 @@ abstract class ManageProviders {
           "provider",
           tokenIdUser
         );
+        Logger().debug({ query:  "POST PRIVIDERS -> MONGOOSE"  });
         return res.status(201).json({message: "Provider created",providers});
     } catch (error) {
+      Logger().debug({ query:  "ERROR PRIVIDERS -> MONGOOSE"  });
       return res.status(500).json({message: "Internal server error",error});
     }
   }
@@ -28,6 +31,7 @@ abstract class ManageProviders {
     try {
       let tokenIdUser = req.user.id;
         const providers = await ProviderSchema.find({tokenIdUser});
+        Logger().debug({ query:  "FIND ID PRIVIDERS -> MONGOOSE"  });
         return res.status(200).json(providers);
     } catch (error) {
       return res.status(500).json({message: "Internal server error",error,});
