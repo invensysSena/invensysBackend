@@ -2111,3 +2111,1154 @@
 {"level":"debug","logId":23922564925500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-24 18:15:54"}
 {"level":"debug","logId":23922587599600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-24 18:15:54"}
 {"level":"debug","logId":23925762553800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-24 18:15:57"}
+{"level":"info","logId":116674113870300,"message":["servico de invensys url:http://localhost:  port:5001"],"timestamp":"2023-09-25 20:01:46"}
+{"level":"debug","logId":116710252500400,"message":[{"query":"SELECT email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-25 20:02:22"}
+{"level":"debug","logId":116710264346000,"message":[{"query":"SELECT idadmin,rol,email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-25 20:02:22"}
+{"level":"debug","logId":116712065685100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712071875200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712082461400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712085284700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712105983200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712109726600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712117792600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712121635900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712183835500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712186207500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712192167100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116712194984100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:24"}
+{"level":"debug","logId":116721220193400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:33"}
+{"level":"debug","logId":116721222961300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:02:33"}
+{"level":"debug","logId":116749984056900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:02"}
+{"level":"debug","logId":116753705443400,"message":[{"query":"UPDATE invensys.ADMIN SET imgurl = $1, imgid = $2 WHERE  idadmin = $3"}],"timestamp":"2023-09-25 20:03:05"}
+{"level":"debug","logId":116753710688900,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:03:05"}
+{"level":"debug","logId":116753805125600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:05"}
+{"level":"debug","logId":116753808930900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:05"}
+{"level":"debug","logId":116755599405700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755601609900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755608276300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755610775800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755670503100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755672599300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755682265300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755684457300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755746724700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755749636700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755762916600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116755765249900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:07"}
+{"level":"debug","logId":116757956674900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:10"}
+{"level":"debug","logId":116757960590400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:10"}
+{"level":"debug","logId":116757975462700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:10"}
+{"level":"debug","logId":116757978164800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:10"}
+{"level":"debug","logId":116758025987400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:10"}
+{"level":"debug","logId":116758724127800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:10"}
+{"level":"debug","logId":116759321543500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:11"}
+{"level":"debug","logId":116759942154400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:12"}
+{"level":"debug","logId":116760443417800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:12"}
+{"level":"debug","logId":116760920848000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:13"}
+{"level":"debug","logId":116764010397700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:16"}
+{"level":"debug","logId":116764321495800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:16"}
+{"level":"debug","logId":116764619993000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:16"}
+{"level":"debug","logId":116765149538300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:17"}
+{"level":"debug","logId":116766090395200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:18"}
+{"level":"debug","logId":116766094605900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:18"}
+{"level":"debug","logId":116766103076200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:18"}
+{"level":"debug","logId":116766104960100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:18"}
+{"level":"debug","logId":116766115020600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:18"}
+{"level":"debug","logId":116769514139200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:21"}
+{"level":"debug","logId":116769535328000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:21"}
+{"level":"debug","logId":116769543115500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:21"}
+{"level":"debug","logId":116772613772900,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:24"}
+{"level":"debug","logId":116772837746300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:25"}
+{"level":"debug","logId":116772856630700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:25"}
+{"level":"debug","logId":116772864217200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:25"}
+{"level":"debug","logId":116772866897900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:25"}
+{"level":"debug","logId":116775836961000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116775859807200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116775861733900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116776070796700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116776074638200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116776092454500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116776165430800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116776167211800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:28"}
+{"level":"debug","logId":116779194577100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:31"}
+{"level":"debug","logId":116779196726800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:31"}
+{"level":"debug","logId":116779202236100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:31"}
+{"level":"debug","logId":116779204919600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:31"}
+{"level":"debug","logId":116779570045700,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:31"}
+{"level":"debug","logId":116779586845700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:31"}
+{"level":"debug","logId":116782616137500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:34"}
+{"level":"debug","logId":116782633119800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:34"}
+{"level":"debug","logId":116785809411800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:37"}
+{"level":"debug","logId":116785836008600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:38"}
+{"level":"debug","logId":116789096436400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:41"}
+{"level":"debug","logId":116790911443900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:43"}
+{"level":"debug","logId":116790930941200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:43"}
+{"level":"debug","logId":116790945636500,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:43"}
+{"level":"debug","logId":116790979685600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:43"}
+{"level":"debug","logId":116790985014300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:43"}
+{"level":"debug","logId":116790988577600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:43"}
+{"level":"debug","logId":116795574905200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:47"}
+{"level":"debug","logId":116795579547900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:47"}
+{"level":"debug","logId":116795603535700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:47"}
+{"level":"debug","logId":116795612205700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:47"}
+{"level":"debug","logId":116795615781300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:47"}
+{"level":"debug","logId":116798766159300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:50"}
+{"level":"debug","logId":116798783257700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:50"}
+{"level":"debug","logId":116799656274900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:51"}
+{"level":"debug","logId":116799659074200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:51"}
+{"level":"debug","logId":116799667740700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:51"}
+{"level":"debug","logId":116799669760600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:51"}
+{"level":"debug","logId":116801954910100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:54"}
+{"level":"debug","logId":116801970852100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:54"}
+{"level":"debug","logId":116804935156000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:03:57"}
+{"level":"debug","logId":116804951721600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:03:57"}
+{"level":"debug","logId":116807863362200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:04:00"}
+{"level":"debug","logId":116812474268400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116812476544200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116812485425700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116812487925200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116812660101900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116812663330100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116812706946300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116812708868100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:04"}
+{"level":"debug","logId":116827635488500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827637475600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827646812000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827648990500,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827663543900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827666050300,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827674082400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827678640200,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827683330700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827685862200,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827695578800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116827697598700,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:04:19"}
+{"level":"debug","logId":116832175402900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832177151800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832183151300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832185553900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832295397300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832297206600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832303270500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832305418200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832402816400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832405111600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832410814900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116832412657900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:24"}
+{"level":"debug","logId":116834764521400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834766348500,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834789541400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834791832700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834793745800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834795166600,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834812207300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834814243600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834815761400,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834816951500,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834829120200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116834832655900,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:04:26"}
+{"level":"debug","logId":116837430751200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837432607300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837438483400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837440505800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837465954000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837468382700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837474877000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837477302700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837571448600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837573483700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837580345400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116837582114900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:29"}
+{"level":"debug","logId":116849154878900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849284961200,"message":[{"query":"INSERT INTO\n         invensys.USERS (email, password, datecreate, estado, imgurl, imgid, idadmin, dateuptate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849291251800,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849294932100,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849297598900,"message":[{"query":"SELECT email,iduser FROM invensys.USERS WHERE (email = $1)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849300362600,"message":[{"query":"INSERT INTO\n         invensys.MODULE (pathrouter, code, description, estado, createdate, iduser) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849306567100,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849309988300,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849430143000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116849433623800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:41"}
+{"level":"debug","logId":116863050294300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863052383200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863067533300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863070127100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863075135000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863077238500,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863087475600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863090425700,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863094878400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863097690100,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863108315600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116863110211400,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:04:55"}
+{"level":"debug","logId":116867256521300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867260974000,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (idmodule = $1)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867277499900,"message":[{"query":"INSERT INTO\n         invensys.MODULE (pathrouter, code, description, estado, createdate, iduser) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867281259100,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867284611800,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867294889200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867296868100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867306169800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867308486400,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867318528200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116867320451500,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:04:59"}
+{"level":"debug","logId":116868734859900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868738336800,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (idmodule = $1)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868741592100,"message":[{"query":"INSERT INTO\n         invensys.MODULE (pathrouter, code, description, estado, createdate, iduser) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868748055400,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868752117200,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868765988600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868767809200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868780098700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868781905900,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868796417100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116868798320000,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:00"}
+{"level":"debug","logId":116869721668800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869725301400,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (idmodule = $1)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869727735500,"message":[{"query":"INSERT INTO\n         invensys.MODULE (pathrouter, code, description, estado, createdate, iduser) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869731617000,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869735170100,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869746956800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869748801500,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869758801700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869760905900,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869770413700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116869772209500,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:01"}
+{"level":"debug","logId":116871300689700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871305738900,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (idmodule = $1)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871308849600,"message":[{"query":"INSERT INTO\n         invensys.MODULE (pathrouter, code, description, estado, createdate, iduser) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871314980500,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871318525500,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871329371800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871331052200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871340086500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871342165200,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871352729900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116871354659500,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:03"}
+{"level":"debug","logId":116872124100300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872127764700,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (idmodule = $1)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872130475200,"message":[{"query":"INSERT INTO\n         invensys.MODULE (pathrouter, code, description, estado, createdate, iduser) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872134223400,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872139256800,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872149500800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872151445600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872161329700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872163455100,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872172331000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116872174212100,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:04"}
+{"level":"debug","logId":116874470825000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874478045500,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874480419600,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874484622000,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874489969900,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874505373100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874507350900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874518703500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874520914400,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874530605000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116874532737400,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:06"}
+{"level":"debug","logId":116876195761600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876201168900,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876203095500,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876209161900,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876213742100,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876225440300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876227519900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876237410000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876239495900,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876247635100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116876249555100,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:08"}
+{"level":"debug","logId":116877685130100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877691849400,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877694197200,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877697937900,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877701763700,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877714029100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877716120400,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877725700000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877728682200,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877736762800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116877738514700,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:09"}
+{"level":"debug","logId":116878651442800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878656952900,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878659084400,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878665310500,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878668628900,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878680251900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878682306300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878691968600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878693788700,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878702388000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116878704360800,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:10"}
+{"level":"debug","logId":116881257470500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881262943100,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881264514600,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881270874900,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881275539500,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881288332800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881290368800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881302043700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881304034100,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881313960500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116881315815900,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:13"}
+{"level":"debug","logId":116883523452900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883528307000,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883530340500,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883537704600,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883541075900,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883552437700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883554404600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883564202800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883566522400,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883575585600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116883577520700,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:15"}
+{"level":"debug","logId":116886625904400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886631128700,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886632949200,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886640593600,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886644238600,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886655765600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886657647100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886669119700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886671110900,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886680613700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116886682340400,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:18"}
+{"level":"debug","logId":116892718457600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892724620400,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892726527700,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892732436500,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892736272100,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892749097900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892751090200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892762621300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892764656300,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892776561000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116892778719100,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:24"}
+{"level":"debug","logId":116893539424900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893546095600,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893548021500,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893553803200,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893557161800,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893568293700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893570274800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893580506200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893583360500,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893591882000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116893593597700,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:25"}
+{"level":"debug","logId":116894549397300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894553801200,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894555583700,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894563676300,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894567203900,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894578356700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894580420300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894589498200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894591356800,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894600214700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116894602305700,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:26"}
+{"level":"debug","logId":116896619408700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896624941600,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896626636600,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896632640100,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896635989300,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896648333900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896650127600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896661969900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896663997200,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896672754200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116896674884200,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:28"}
+{"level":"debug","logId":116897358243900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897363471800,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897365398700,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897371036700,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897374591600,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897386816800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897388703200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897398260700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897400037200,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897408233800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116897409952600,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:29"}
+{"level":"debug","logId":116898950866700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898955755300,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898957540500,"message":[{"query":"INSERT INTO\n         invensys.PERMISIONS (typeaction, modulo, description, estado, createdate, idmodule) VALUES ($1, $2, $3, $4, $5, $6)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898963452900,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898966928900,"message":[{"consultasql":"0"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898980988100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898984613400,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898995818000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116898997690200,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116899008068900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116899010007300,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-25 20:05:31"}
+{"level":"debug","logId":116900064779400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116900067918600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116900074050300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116900076448000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116900188378700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116900190127200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116900194706200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116900196345100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:32"}
+{"level":"debug","logId":116913935538400,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX1/Ie3Uqd1PCEx23SydlG/Scw2b/srx0e2k=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690346080","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:46"}
+{"level":"debug","logId":116913940870600,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX18vWZhHq1xVyuboKlE441r0BZ54cRafMPE=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690346077","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:46"}
+{"level":"debug","logId":116913947424400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:46"}
+{"level":"debug","logId":116913949431000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:46"}
+{"level":"debug","logId":116913957952000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:46"}
+{"level":"debug","logId":116913959826000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:46"}
+{"level":"debug","logId":116916142358200,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX19uF2BuuisbazOHGXCYZTYu5ie66+0AkfA=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690348298","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:48"}
+{"level":"debug","logId":116916178020800,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX1/SbyuwJsZCwjd+vNa4pUYvtAjuS8UbDws=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690348299","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:48"}
+{"level":"debug","logId":116917712911400,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX1+0+2NSRViqew/1i/TlYAcxk0vVHLSBaB4=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690349872","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:49"}
+{"level":"debug","logId":116917720199600,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX18G5Mzml3gMfeOGuIIx0uKKFHwLRmZSbfc=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690349874","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:49"}
+{"level":"debug","logId":116920430214500,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX18jTg/Z4dRUlG9/jtwvWoVeTYmlsWnxoyQ=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690352589","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:52"}
+{"level":"debug","logId":116920440318800,"message":[{"accept":"application/json","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.9,ar;q=0.8,de;q=0.7,en;q=0.6","action":"U2FsdGVkX19TU3KWIDr2fvG+nDTbU26Mrnf7O3loIX0=","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDgwNjQxLTQ4ZTgtNDk2MC05OTlkLTYxNGE4ZGM3ODBhNSIsImVtYWlsIjoib3NwaW5hb3J0aXpqdWFuZGFuaWVsMzUxQGdtYWlsLmNvbSIsImlhdCI6MTY5NTY5MDE0MiwiZXhwIjoxNjk1Nzc2NTQyfQ.tptw6sxpEZinkXzJj-PO2eilOf5e6Q0UhFU46i7jKuQ","connection":"keep-alive","dateaction":"1695690352590","host":"localhost:5001","origin":"http://localhost:3000","referer":"http://localhost:3000/","role":"administrador","sec-ch-ua":"\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"Windows\"","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}],"timestamp":"2023-09-25 20:05:52"}
+{"level":"debug","logId":116922327729400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922329888700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922336176500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922338260400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922403646400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922662676400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922672012600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922674538500,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:54"}
+{"level":"debug","logId":116922935881200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:55"}
+{"level":"debug","logId":116922938567800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:05:55"}
+{"level":"debug","logId":116928038930700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:00"}
+{"level":"debug","logId":116928042531000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:00"}
+{"level":"debug","logId":116930838393100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116930841008000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931092224400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931099532500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931106514400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931114767800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931116801000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931343573200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931352472300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116931354359700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:03"}
+{"level":"debug","logId":116950770238600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:22"}
+{"level":"debug","logId":116951312684100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:23"}
+{"level":"debug","logId":116951362750300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:23"}
+{"level":"debug","logId":116951860089400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:24"}
+{"level":"debug","logId":116956966379900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:29"}
+{"level":"debug","logId":116958951980100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116958953806800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116958960299400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116958962132200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959050183100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959052175300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959057173400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959058840200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959132921000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959135274700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959360225200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959371795400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959377233500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959413837400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959415788900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959590702100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959599278700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959601080900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959611905000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959696862200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959834673600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:31"}
+{"level":"debug","logId":116959966630200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:32"}
+{"level":"debug","logId":116959968781600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:32"}
+{"level":"debug","logId":116960002679000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:32"}
+{"level":"debug","logId":116960150357400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:32"}
+{"level":"debug","logId":116960154542700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:32"}
+{"level":"debug","logId":116968777120300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:40"}
+{"level":"debug","logId":116969049335300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:41"}
+{"level":"debug","logId":116976367864200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:48"}
+{"level":"debug","logId":116983547095600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:55"}
+{"level":"debug","logId":116983832111300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:06:55"}
+{"level":"debug","logId":116998289674500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:10"}
+{"level":"debug","logId":117001704648600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001706555900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001711565400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001713426500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001761425800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001766927500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001774681200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001776563900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:13"}
+{"level":"debug","logId":117001851011000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117001853958300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002093938400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002114274200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002123147500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002125201200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002126770300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002339750500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002349765000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002351501200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002383262400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002602025600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002611355100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002613378900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:14"}
+{"level":"debug","logId":117002931171100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:15"}
+{"level":"debug","logId":117002934833100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:15"}
+{"level":"debug","logId":117010636812400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010638732600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010644152100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010645889800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010664035500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010665811900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010670863200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010672734400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010740811400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010745958800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:22"}
+{"level":"debug","logId":117010967102100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117010979120000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117010987124400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117010989930800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117010991635200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011259744400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011266195600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011269046900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011304220400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011549624500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011557569200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011559529000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:23"}
+{"level":"debug","logId":117011882801000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:24"}
+{"level":"debug","logId":117011884567000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:24"}
+{"level":"debug","logId":117012416149000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:24"}
+{"level":"debug","logId":117012663811800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:24"}
+{"level":"debug","logId":117012724047500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:24"}
+{"level":"debug","logId":117013027785900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:25"}
+{"level":"debug","logId":117016581198100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:28"}
+{"level":"debug","logId":117031207375300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:43"}
+{"level":"debug","logId":117031465525000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:43"}
+{"level":"debug","logId":117031484235200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:43"}
+{"level":"debug","logId":117031719651900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:43"}
+{"level":"debug","logId":117032830820200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:44"}
+{"level":"debug","logId":117033091631900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:45"}
+{"level":"debug","logId":117033113048400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:45"}
+{"level":"debug","logId":117033367863500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:45"}
+{"level":"debug","logId":117034310583300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:46"}
+{"level":"debug","logId":117034530475300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:46"}
+{"level":"debug","logId":117034553695000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:46"}
+{"level":"debug","logId":117034850849700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:47"}
+{"level":"debug","logId":117040548037100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:52"}
+{"level":"debug","logId":117040550501000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:52"}
+{"level":"debug","logId":117040554869400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:52"}
+{"level":"debug","logId":117040559617900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:52"}
+{"level":"debug","logId":117040565429600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:52"}
+{"level":"debug","logId":117040567352300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:52"}
+{"level":"debug","logId":117040835396300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:52"}
+{"level":"debug","logId":117043581731000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:07:55"}
+{"level":"debug","logId":117043602588300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:07:55"}
+{"level":"debug","logId":117046420000600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:07:58"}
+{"level":"debug","logId":117170578631500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170581007000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170586461900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170588639800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170680343100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170682476000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170686983200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170690360500,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170695683100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117170697464100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:02"}
+{"level":"debug","logId":117171094059000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:03"}
+{"level":"debug","logId":117171111845500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:03"}
+{"level":"debug","logId":117174887366100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:07"}
+{"level":"debug","logId":117174892138500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:07"}
+{"level":"debug","logId":117174899802100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:07"}
+{"level":"debug","logId":117174901741500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:07"}
+{"level":"debug","logId":117174959746600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:07"}
+{"level":"debug","logId":117175257513100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:07"}
+{"level":"debug","logId":117176554331100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:08"}
+{"level":"debug","logId":117176557502600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:08"}
+{"level":"debug","logId":117176567289100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:08"}
+{"level":"debug","logId":117176569175800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:08"}
+{"level":"debug","logId":117176645187000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:08"}
+{"level":"debug","logId":117176647261700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:08"}
+{"level":"debug","logId":117176886792000,"message":[{"query":"FIND ID PRIVIDERS -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:09"}
+{"level":"debug","logId":117176891854500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:09"}
+{"level":"debug","logId":117176899688400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:09"}
+{"level":"debug","logId":117177143271200,"message":[{"query":"FIND ID PRIVIDERS -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:09"}
+{"level":"debug","logId":117177840362700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:10"}
+{"level":"debug","logId":117177842116800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:10"}
+{"level":"debug","logId":117177853430600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:10"}
+{"level":"debug","logId":117177856661600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:10"}
+{"level":"debug","logId":117177891926600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:10"}
+{"level":"debug","logId":117178582368800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:10"}
+{"level":"debug","logId":117180556304700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:12"}
+{"level":"debug","logId":117181106665900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:13"}
+{"level":"debug","logId":117181288587800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:13"}
+{"level":"debug","logId":117184888972600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:17"}
+{"level":"debug","logId":117184907079700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:17"}
+{"level":"debug","logId":117189062379800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:21"}
+{"level":"debug","logId":117189078594800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:21"}
+{"level":"debug","logId":117192678453400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117192681013600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117192746914400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117192752202000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117192766064900,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117192790129400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117192791796200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117192807345900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:24"}
+{"level":"debug","logId":117193100860400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:25"}
+{"level":"debug","logId":117193413036100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:25"}
+{"level":"debug","logId":117194022594100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:26"}
+{"level":"debug","logId":117194024452700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:26"}
+{"level":"debug","logId":117194032655700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:26"}
+{"level":"debug","logId":117194036004600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:26"}
+{"level":"debug","logId":117194039666800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:26"}
+{"level":"debug","logId":117194370904300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:26"}
+{"level":"debug","logId":117194472365100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:26"}
+{"level":"debug","logId":117196872413400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:29"}
+{"level":"debug","logId":117196888874500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:29"}
+{"level":"debug","logId":117198520941300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:30"}
+{"level":"debug","logId":117198536501100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:30"}
+{"level":"debug","logId":117198544261000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:30"}
+{"level":"debug","logId":117200101728800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:32"}
+{"level":"debug","logId":117200118173600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:32"}
+{"level":"debug","logId":117201606215200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:33"}
+{"level":"debug","logId":117201619415500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:33"}
+{"level":"debug","logId":117201625188500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:33"}
+{"level":"debug","logId":117203301622100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:35"}
+{"level":"debug","logId":117204926657600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:37"}
+{"level":"debug","logId":117204942323100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:37"}
+{"level":"debug","logId":117204949418900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:37"}
+{"level":"debug","logId":117208039070300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:10:40"}
+{"level":"debug","logId":117208056738400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:10:40"}
+{"level":"debug","logId":117242305565900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:14"}
+{"level":"debug","logId":117243253574100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:15"}
+{"level":"debug","logId":117243256041800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:15"}
+{"level":"debug","logId":117243584918200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:15"}
+{"level":"debug","logId":117243816927200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:15"}
+{"level":"debug","logId":117245169377200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:17"}
+{"level":"debug","logId":117245972960900,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:18"}
+{"level":"debug","logId":117245988446000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:18"}
+{"level":"debug","logId":117245996079400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:18"}
+{"level":"debug","logId":117247354110100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:19"}
+{"level":"debug","logId":117249120931200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:21"}
+{"level":"debug","logId":117249137862300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:21"}
+{"level":"debug","logId":117249142790400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:21"}
+{"level":"debug","logId":117252255992400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:24"}
+{"level":"debug","logId":117252269563000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:24"}
+{"level":"debug","logId":117252277252900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:24"}
+{"level":"debug","logId":117255540559800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:27"}
+{"level":"debug","logId":117255565243900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:27"}
+{"level":"debug","logId":117262501544800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:34"}
+{"level":"debug","logId":117265531474000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:37"}
+{"level":"debug","logId":117265533610700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:37"}
+{"level":"debug","logId":117265548139800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:37"}
+{"level":"debug","logId":117265549929300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:37"}
+{"level":"debug","logId":117265558653200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:37"}
+{"level":"debug","logId":117265818221400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:37"}
+{"level":"debug","logId":117265975617700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:38"}
+{"level":"debug","logId":117269190656800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:41"}
+{"level":"debug","logId":117269212412700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:41"}
+{"level":"debug","logId":117269221703500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:41"}
+{"level":"debug","logId":117272300788600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:44"}
+{"level":"debug","logId":117272323688200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:44"}
+{"level":"debug","logId":117272330281000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:44"}
+{"level":"debug","logId":117272828280800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:44"}
+{"level":"debug","logId":117272830378100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:44"}
+{"level":"debug","logId":117272839227100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117272841036200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117272868885800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117272871014500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117272877144100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117272879242000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117273018040200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117273019700000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117273071832200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117273073622800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117273181907600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117273498197300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:45"}
+{"level":"debug","logId":117275770803200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:47"}
+{"level":"debug","logId":117275785599000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:47"}
+{"level":"debug","logId":117275793091000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:47"}
+{"level":"debug","logId":117280004100300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:52"}
+{"level":"debug","logId":117280019579700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:52"}
+{"level":"debug","logId":117280028581900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:52"}
+{"level":"debug","logId":117283749806700,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:55"}
+{"level":"debug","logId":117283768002000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:55"}
+{"level":"debug","logId":117283773404100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:55"}
+{"level":"debug","logId":117286199037300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:58"}
+{"level":"debug","logId":117286216483100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:58"}
+{"level":"debug","logId":117286867848200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:11:59"}
+{"level":"debug","logId":117286886493000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:59"}
+{"level":"debug","logId":117286893569700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:59"}
+{"level":"debug","logId":117286953589100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:59"}
+{"level":"debug","logId":117286956476700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:59"}
+{"level":"debug","logId":117287170513200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:11:59"}
+{"level":"debug","logId":117290104662100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290118860200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290139320000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290141529000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290342192800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290357821000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290395462300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290599490700,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290622852300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:02"}
+{"level":"debug","logId":117290951081100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:03"}
+{"level":"debug","logId":117290968400900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:03"}
+{"level":"debug","logId":117291890192500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:04"}
+{"level":"debug","logId":117291916192600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:04"}
+{"level":"debug","logId":117292863553000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:05"}
+{"level":"debug","logId":117292865399300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:05"}
+{"level":"debug","logId":117292870999600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:05"}
+{"level":"debug","logId":117292900171500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:05"}
+{"level":"debug","logId":117293026290300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:05"}
+{"level":"debug","logId":117293608782200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:05"}
+{"level":"debug","logId":117293622751100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:05"}
+{"level":"debug","logId":117296306538000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296326179900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296331742400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296350769900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296634810400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296647325000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296664652800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296706465800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296732386100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296734368400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:08"}
+{"level":"debug","logId":117296940958300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117296973648300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117296976024700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117296981496100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117296983080300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117296987842100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117296997104000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117297023461500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117297027834800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:09"}
+{"level":"debug","logId":117299635245400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:11"}
+{"level":"debug","logId":117299647539300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:11"}
+{"level":"debug","logId":117299662271500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:11"}
+{"level":"debug","logId":117299664157000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:11"}
+{"level":"debug","logId":117299951413000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:12"}
+{"level":"debug","logId":117299963351900,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:12"}
+{"level":"debug","logId":117299976008100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:12:12"}
+{"level":"debug","logId":117299990091500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:12"}
+{"level":"debug","logId":117299991747600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:12:12"}
+{"level":"debug","logId":117430255859600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430257732100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430263470400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430265269800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430300972600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430303234600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430308484400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430310240600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430331132300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430345806400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430347588500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430355256200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430357819900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430543379500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430545610000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430620407700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430623686900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430658033500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:22"}
+{"level":"debug","logId":117430978756900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:23"}
+{"level":"debug","logId":117432480544800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:24"}
+{"level":"debug","logId":117432483331100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:24"}
+{"level":"debug","logId":117432491231500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:24"}
+{"level":"debug","logId":117432493269100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:24"}
+{"level":"debug","logId":117432600703900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:24"}
+{"level":"debug","logId":117432621521100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:24"}
+{"level":"debug","logId":117433825053600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:25"}
+{"level":"debug","logId":117433846533600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:26"}
+{"level":"debug","logId":117433851975000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:26"}
+{"level":"debug","logId":117433854084800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:26"}
+{"level":"debug","logId":117436729165100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:28"}
+{"level":"debug","logId":117436744473700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:28"}
+{"level":"debug","logId":117436751643800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:28"}
+{"level":"debug","logId":117436753956300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:28"}
+{"level":"debug","logId":117439701801200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:31"}
+{"level":"debug","logId":117439716834600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:31"}
+{"level":"debug","logId":117439721602400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:31"}
+{"level":"debug","logId":117439723708400,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:31"}
+{"level":"debug","logId":117443162490200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:35"}
+{"level":"debug","logId":117443178778300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:35"}
+{"level":"debug","logId":117443185591300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:35"}
+{"level":"debug","logId":117443187396600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:35"}
+{"level":"debug","logId":117446451649400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:38"}
+{"level":"debug","logId":117446468452700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:38"}
+{"level":"debug","logId":117449700513000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:41"}
+{"level":"debug","logId":117449716947400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:41"}
+{"level":"debug","logId":117450602130900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:42"}
+{"level":"debug","logId":117450604153800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:42"}
+{"level":"debug","logId":117450605827600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:42"}
+{"level":"debug","logId":117450648582900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:42"}
+{"level":"debug","logId":117450650496100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:42"}
+{"level":"debug","logId":117453360707600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:45"}
+{"level":"debug","logId":117453382183800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:45"}
+{"level":"debug","logId":117453383925700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:45"}
+{"level":"debug","logId":117454460131600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:46"}
+{"level":"debug","logId":117454585491500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:46"}
+{"level":"debug","logId":117454597557300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:46"}
+{"level":"debug","logId":117454610050600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:46"}
+{"level":"debug","logId":117454624371700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:46"}
+{"level":"debug","logId":117454626270200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:14:46"}
+{"level":"debug","logId":117454712229200,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-25 20:14:46"}
+{"level":"debug","logId":117479294504600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117479296437600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117479303150400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117479305084600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117479368066400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117479374478700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117479407294700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117479409452200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:11"}
+{"level":"debug","logId":117483824644900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:15"}
+{"level":"debug","logId":117483827200300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:15"}
+{"level":"debug","logId":117483835241900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:15"}
+{"level":"debug","logId":117483837067000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:16"}
+{"level":"debug","logId":117483870366300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:16"}
+{"level":"debug","logId":117483885992300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-25 20:15:16"}
+{"level":"debug","logId":163333243500500,"message":[{"query":"SELECT email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-26 08:59:27"}
+{"level":"debug","logId":163333259881500,"message":[{"query":"SELECT idadmin,rol,email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-26 08:59:27"}
+{"level":"debug","logId":163336384329100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163336388292300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163336441890400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163336444002900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163336521940900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163336523958400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163336569112900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163336571378500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:30"}
+{"level":"debug","logId":163354645027400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:48"}
+{"level":"debug","logId":163354647333700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:48"}
+{"level":"debug","logId":163354662008700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:48"}
+{"level":"debug","logId":163354667294000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:48"}
+{"level":"debug","logId":163354712903100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:48"}
+{"level":"debug","logId":163356385649100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:50"}
+{"level":"debug","logId":163356411491600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:50"}
+{"level":"debug","logId":163356414230000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:50"}
+{"level":"debug","logId":163356618764500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:50"}
+{"level":"debug","logId":163356623516200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:50"}
+{"level":"debug","logId":163359066535200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:53"}
+{"level":"debug","logId":163359071583100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:53"}
+{"level":"debug","logId":163359280282600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:53"}
+{"level":"debug","logId":163359285174600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:53"}
+{"level":"debug","logId":163359287119700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:53"}
+{"level":"debug","logId":163359513431400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:53"}
+{"level":"debug","logId":163359515833200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:53"}
+{"level":"debug","logId":163360470870400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:54"}
+{"level":"debug","logId":163360480114900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:54"}
+{"level":"debug","logId":163360689826200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:54"}
+{"level":"debug","logId":163360814248300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:54"}
+{"level":"debug","logId":163360933740300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 08:59:55"}
+{"level":"debug","logId":163616272080300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:10"}
+{"level":"debug","logId":163616498936400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:10"}
+{"level":"debug","logId":163625802912700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:19"}
+{"level":"debug","logId":163625804764700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:19"}
+{"level":"debug","logId":163625810696200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:19"}
+{"level":"debug","logId":163625812860800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:19"}
+{"level":"debug","logId":163626000882800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:20"}
+{"level":"debug","logId":163626003886100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:20"}
+{"level":"debug","logId":163626009937900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:20"}
+{"level":"debug","logId":163626011784100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:20"}
+{"level":"debug","logId":163632878463900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632880638300,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632893066500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632895028100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632911313500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632914697600,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632920306700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632923781400,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632928235600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632930496500,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632948089100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163632950151000,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:27"}
+{"level":"debug","logId":163635842510000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:29"}
+{"level":"debug","logId":163635851195500,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (idmodule = $1)"}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163635854731200,"message":[{"query":"DELETE FROM invensys.MODULE WHERE idmodule = $1"}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163635876440700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163635878517400,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163635892597500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163635894652100,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163635903492500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163635905600600,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:30"}
+{"level":"debug","logId":163640386362600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640392469300,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640394404000,"message":[{"query":"DELETE FROM invensys.PERMISIONS WHERE idpermisions = $1"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640399330600,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640407024700,"message":[{}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640421776900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640424140200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640442101900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640443996100,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640457510800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163640459277800,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:34"}
+{"level":"debug","logId":163641374579700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641380222900,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641381897700,"message":[{"query":"DELETE FROM invensys.PERMISIONS WHERE idpermisions = $1"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641383650800,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641388230200,"message":[{}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641401956500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641403829800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641415239500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641417115600,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641426688300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163641429646500,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:35"}
+{"level":"debug","logId":163642479188200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642484589000,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642486286400,"message":[{"query":"DELETE FROM invensys.PERMISIONS WHERE idpermisions = $1"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642490742200,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642494912400,"message":[{}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642522203900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642524066600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642573282000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642575248800,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642602166000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163642603861700,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:36"}
+{"level":"debug","logId":163648702827800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648706409600,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (idmodule = $1)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648707989500,"message":[{"query":"DELETE FROM invensys.MODULE WHERE idmodule = $1"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648710137600,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648713351800,"message":[{}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648726468100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648728394600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648739488300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648741400300,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648752749000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163648754544300,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:42"}
+{"level":"debug","logId":163653812100900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:47"}
+{"level":"debug","logId":163653818378600,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-26 09:04:47"}
+{"level":"debug","logId":163653820266100,"message":[{"query":"DELETE FROM invensys.PERMISIONS WHERE idpermisions = $1"}],"timestamp":"2023-09-26 09:04:47"}
+{"level":"debug","logId":163653824901800,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:04:47"}
+{"level":"debug","logId":163653828702400,"message":[{}],"timestamp":"2023-09-26 09:04:47"}
+{"level":"debug","logId":163653846167000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:47"}
+{"level":"debug","logId":163653848167600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:48"}
+{"level":"debug","logId":163653861983600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:48"}
+{"level":"debug","logId":163653864006600,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:48"}
+{"level":"debug","logId":163653874738500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:48"}
+{"level":"debug","logId":163653876876000,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:48"}
+{"level":"debug","logId":163658784400100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658791016800,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658792809800,"message":[{"query":"DELETE FROM invensys.PERMISIONS WHERE idpermisions = $1"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658797623000,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658801265100,"message":[{}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658812104600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658814551700,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658823889800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658826062500,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658835064800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163658837267800,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:52"}
+{"level":"debug","logId":163664155165800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664159170100,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664160969900,"message":[{"query":"DELETE FROM invensys.PERMISIONS WHERE idpermisions = $1"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664165162800,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664168201100,"message":[{}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664179444800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664181422600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664192469800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664194584300,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664205015700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163664206766600,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:04:58"}
+{"level":"debug","logId":163667102595900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667107214400,"message":[{"query":"SELECT * FROM invensys.PERMISIONS WHERE (idmodule = $1 AND typeaction = $2)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667109056700,"message":[{"query":"DELETE FROM invensys.PERMISIONS WHERE idpermisions = $1"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667113528500,"message":[{"query":"INSERT INTO invensys.processes (conten,tables,createdate,tipomethod,action,execution,email,infoperson) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667116630600,"message":[{}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667128490400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667130762000,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667140866800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667143301500,"message":[{"query":"SELECT * FROM invensys.MODULE WHERE (iduser = $1)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667152924300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163667155312900,"message":[{"query":"SELECT * FROM invensys.PERMISIONS  "}],"timestamp":"2023-09-26 09:05:01"}
+{"level":"debug","logId":163687752817900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:21"}
+{"level":"debug","logId":163687754912900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:21"}
+{"level":"debug","logId":163687760044600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:21"}
+{"level":"debug","logId":163687762502900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:21"}
+{"level":"debug","logId":163687838789700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:21"}
+{"level":"debug","logId":163687840707200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:21"}
+{"level":"debug","logId":163687846116900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:21"}
+{"level":"debug","logId":163687847857200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:22"}
+{"level":"debug","logId":163692229781900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:26"}
+{"level":"debug","logId":163692232086600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:26"}
+{"level":"debug","logId":163692239289100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:26"}
+{"level":"debug","logId":163692241532500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:26"}
+{"level":"debug","logId":163692249489000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:26"}
+{"level":"debug","logId":163692258516300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:26"}
+{"level":"debug","logId":163692472088800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:26"}
+{"level":"debug","logId":163694700527800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694710983300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694717976500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694720344400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694757857800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694764492100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694770119700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694772007100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694777585300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694779733600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:28"}
+{"level":"debug","logId":163694975106400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163694988728700,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695014629300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695192957900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695195232800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695201993300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695204333500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695269099600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695503435400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695678658600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695682298100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695693780100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695696559200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695754115000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163695773157200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:29"}
+{"level":"debug","logId":163696022583700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:30"}
+{"level":"debug","logId":163696137194000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:30"}
+{"level":"debug","logId":163696139702300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:30"}
+{"level":"debug","logId":163696146328300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:30"}
+{"level":"debug","logId":163696148097100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:30"}
+{"level":"debug","logId":163696187159300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:30"}
+{"level":"debug","logId":163696201929900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:30"}
+{"level":"debug","logId":163697130943200,"message":[{"query":"FIND ID PRIVIDERS -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:31"}
+{"level":"debug","logId":163697137141400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:31"}
+{"level":"debug","logId":163697351165600,"message":[{"query":"FIND ID PRIVIDERS -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:31"}
+{"level":"debug","logId":163697726864000,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:31"}
+{"level":"debug","logId":163697781380800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:31"}
+{"level":"debug","logId":163700103218700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163700105639000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163700116344800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163700118795500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163700132977600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163700135130000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163700383284100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163700601251900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:34"}
+{"level":"debug","logId":163702346778000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:36"}
+{"level":"debug","logId":163704208428400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:38"}
+{"level":"debug","logId":163704211098900,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:38"}
+{"level":"debug","logId":163704222801800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:38"}
+{"level":"debug","logId":163704224657400,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:38"}
+{"level":"debug","logId":163704232565900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:38"}
+{"level":"debug","logId":163704441211400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:38"}
+{"level":"debug","logId":163704616964400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:38"}
+{"level":"debug","logId":163707510752100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:41"}
+{"level":"debug","logId":163707529304200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:41"}
+{"level":"debug","logId":163707541068100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:41"}
+{"level":"debug","logId":163710215212600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:44"}
+{"level":"debug","logId":163710230808400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:44"}
+{"level":"debug","logId":163710237142100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:44"}
+{"level":"debug","logId":163712790225800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:46"}
+{"level":"debug","logId":163712805420700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:46"}
+{"level":"debug","logId":163712813270700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:46"}
+{"level":"debug","logId":163713233710500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713236231100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713242616000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713245087600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713305444800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713307037900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713312685200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713314464600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713434860400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713436956600,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713493988300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713497055200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713578491200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163713787390100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:47"}
+{"level":"debug","logId":163715376677600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:49"}
+{"level":"debug","logId":163715394564200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:49"}
+{"level":"debug","logId":163715405170200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:49"}
+{"level":"debug","logId":163717746986700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:51"}
+{"level":"debug","logId":163717751206600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:51"}
+{"level":"debug","logId":163717765692100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:51"}
+{"level":"debug","logId":163717767530900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:51"}
+{"level":"debug","logId":163717836536500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:51"}
+{"level":"debug","logId":163717861372400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:52"}
+{"level":"debug","logId":163718012977600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:52"}
+{"level":"debug","logId":163718047992200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:52"}
+{"level":"debug","logId":163718075062700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:52"}
+{"level":"debug","logId":163720659038500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:54"}
+{"level":"debug","logId":163720676815500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:54"}
+{"level":"debug","logId":163720683611400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:54"}
+{"level":"debug","logId":163722760139900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:56"}
+{"level":"debug","logId":163722762211700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:56"}
+{"level":"debug","logId":163722770376300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:56"}
+{"level":"debug","logId":163722772283200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:56"}
+{"level":"debug","logId":163722816743000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:56"}
+{"level":"debug","logId":163723250524500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:57"}
+{"level":"debug","logId":163723265929700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:57"}
+{"level":"debug","logId":163723271072700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:57"}
+{"level":"debug","logId":163723275529100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:57"}
+{"level":"debug","logId":163723695221900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:57"}
+{"level":"debug","logId":163724130680900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724206006100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724207896700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724214095400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724216104900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724250364300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724252190000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724261228600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724263151400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163724595172300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:58"}
+{"level":"debug","logId":163725037113000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:59"}
+{"level":"debug","logId":163725592184400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:59"}
+{"level":"debug","logId":163725593973100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:59"}
+{"level":"debug","logId":163725595637000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:59"}
+{"level":"debug","logId":163725605826900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:05:59"}
+{"level":"debug","logId":163725840069500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:05:59"}
+{"level":"debug","logId":163725853110200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:00"}
+{"level":"debug","logId":163725861931700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:00"}
+{"level":"debug","logId":163727159979800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:01"}
+{"level":"debug","logId":163727161738800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:01"}
+{"level":"debug","logId":163727352127300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:01"}
+{"level":"debug","logId":163727354151600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:01"}
+{"level":"debug","logId":163728147748700,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728166148700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728260971400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728278089900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728279964600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728330500800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728341511100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728389239500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728404432000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728405957400,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728414326800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163728503612000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:02"}
+{"level":"debug","logId":163730977793500,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:05"}
+{"level":"debug","logId":163730991296000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:05"}
+{"level":"debug","logId":163730995865400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:05"}
+{"level":"debug","logId":163730997743200,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:05"}
+{"level":"debug","logId":163733303085900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:07"}
+{"level":"debug","logId":163733445682400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:07"}
+{"level":"debug","logId":163733447172700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:07"}
+{"level":"debug","logId":163733448416700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:07"}
+{"level":"debug","logId":163733504545600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:07"}
+{"level":"debug","logId":163733704402100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:07"}
+{"level":"debug","logId":163733716373100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:07"}
+{"level":"debug","logId":163736097313800,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736111574800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736224611600,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736237914000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736268736100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736281706100,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736294985900,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736312072800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736320025100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736321757800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736325767300,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736339638500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736341342800,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736345655700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163736347120100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:10"}
+{"level":"debug","logId":163738718072400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:12"}
+{"level":"debug","logId":163738736897100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:12"}
+{"level":"debug","logId":163738738909100,"message":[{"query":"SELECT * FROM invensys.USERS WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:12"}
+{"level":"debug","logId":163738822927400,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:12"}
+{"level":"debug","logId":163738896943900,"message":[{"query":"FIND ALL MODULE -> MONGOOSE"}],"timestamp":"2023-09-26 09:06:13"}
+{"level":"debug","logId":163745969800700,"message":[{"query":"SELECT email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-26 09:06:20"}
+{"level":"debug","logId":163745971463900,"message":[{"query":"SELECT idadmin,rol,email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-26 09:06:20"}
+{"level":"debug","logId":163747762341300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747765206900,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747770930800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747772703700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747801452500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747803240600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747807704800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747809361300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747836021100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747837983200,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747842920700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163747845324000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:06:21"}
+{"level":"debug","logId":163842469804800,"message":[{"query":"SELECT email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-26 09:07:56"}
+{"level":"debug","logId":163842471500800,"message":[{"query":"SELECT idadmin,rol,email FROM invensys.ADMIN WHERE (email = $1)"}],"timestamp":"2023-09-26 09:07:56"}
+{"level":"debug","logId":163844381091800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844383947700,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844389440500,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844391626400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844420102800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844421823000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844426665300,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844428450100,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844499833000,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844501851800,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844510307400,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}
+{"level":"debug","logId":163844512167600,"message":[{"query":"SELECT * FROM invensys.ADMIN WHERE (idadmin = $1)"}],"timestamp":"2023-09-26 09:07:58"}

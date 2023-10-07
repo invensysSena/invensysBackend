@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import CategorySchema from "../models/CategoryM";
 import { category } from "../interfaces/CategoryI";
 import Todo from "../class/Notification.Todo";
+import { Logger } from "../utils/Logger";
 abstract class Categorys {
   public async createCategory(req: Partial<Request|any>,res: Response,_next: Partial<NextFunction>){
     try {
@@ -12,6 +13,7 @@ abstract class Categorys {
       let responsable = req.user.email;
       const data: category = new CategorySchema({tokeIdUser,name_category,description,imgURL,imgId,});
       const dataCategory = await data.save();
+      Logger().debug({message: `POST CATEGORY -> MONGOOSE body:${req.body} params:${req.params} query:${req.query}`})
       await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,responsable,"category",tokeIdUser);
       
       return res.status(201).json({status: 201,message: "Categoria creada",data: dataCategory,});
