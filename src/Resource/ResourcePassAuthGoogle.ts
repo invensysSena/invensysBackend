@@ -17,16 +17,9 @@ class ResourcePassAuthGoogle {
           response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys({email}),Object.values({email}),["WHERE"],Object.keys({email}),req)
          if (response?.resultGet?.rows?.length > 0) {
            response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns,req)
-           const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
+           const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,null,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
           
-           return res.status(200).json({
-                    message: "LOGIN_SUCCESSFULL",
-                    token,
-                    auth: true,
-                    rol: response?.resultGet?.rows[0].rol,
-                    type: "admin",
-                    email:email
-                  });
+           return res.status(200).json({ token,auth: true, rol: response?.resultGet?.rows[0].rol,type: "admin", email:email });
           
          }else {
           let getGlobalDataZone:any = await  globalData();
@@ -45,15 +38,8 @@ class ResourcePassAuthGoogle {
           await queryData.QueryPost(app_settings.METHOD.POST,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys(dataAllInfo),Object.values(dataAllInfo),req).then(async (result:any) => {
           if (result.severity !== 'ERROR') {
             response = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,querys,data,["WHERE"],columns,req)
-            const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
-            return res.status(200).json({
-                     message: "LOGIN_SUCCESSFULL",
-                     token,
-                     auth: true,
-                     rol: response?.resultGet?.rows[0].rol,
-                     type: "admin",
-                     email:email
-                   });
+            const token = await new ValidationTokenAndCreateToken().createTokenAdmin(req,null,response.resultGet?.rows[0].idadmin,response.resultGet?.rows[0].email,);
+            return res.status(200).json({ message: "LOGIN_SUCCESSFULL", token, auth: true, rol: response?.resultGet?.rows[0].rol,type: "admin",email:email});
           } else {
             return res.status(400).json({ message: "ERROR_DATA_ADMIN" });
           }

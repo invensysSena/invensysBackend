@@ -5,7 +5,7 @@ import Todo from "../class/Notification.Todo";
 abstract class ManageProducts {
   public async postProducts(req: Request|any, res: Response) {
     try {
-      const {iva,name,category,price,priceBuy,fechaInicio,description,fechaFin,} = req.body.data;
+      const {iva,name,category,price,priceBuy,fechaInicio,description,fechaFin,} = req.body;
       let responsable = req.user.email;
       let tokenIdUser = req.user.id;
         const product: Product = new ProductSchema({
@@ -40,7 +40,9 @@ abstract class ManageProducts {
   }
   public async getProductsId(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      const product = await ProductSchema.findById(req.params.id);
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
+      const product = await ProductSchema.findById(_id);
       return res.status(200).json({ ok: true, data: product });
     } catch (error) {
       return res
@@ -62,9 +64,11 @@ abstract class ManageProducts {
 
   public async putProducts(req: Request|any,res: Response,_next: NextFunction) {
     try {
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
       const product = await ProductSchema.findByIdAndUpdate(
-        req.params.id,
-        req.body.data,{new: true,});
+        _id,
+        req.body,{new: true,});
       return res.status(200).json({ ok: true, message: "Product Update", product });
     } catch (error) {
       return res.status(500).json({ ok: false, message: "Error en el servidor" });

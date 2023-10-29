@@ -13,17 +13,25 @@ import { queryData } from "../secure/DbQuery";
 import settings from "../data/settings.json";
 let app_settings = settings[0]
 // es la creacion de la bodega
+
+
+ /**
+ * Actualiza el correo de la bodega en el inventario.
+ * @param req - El objeto Request de Express.
+ * @param res - El objeto Response de Express.
+ * @param next - La función NextFunction de Express.
+ * @returns Una respuesta HTTP con el resultado de la actualización o un mensaje de error.
+ */
 class InventoryProduct {
   public async postInventory(req: Request|any, res: Response, _next: NextFunction) {
-    console.log("Hola mundo")
-    console.log(req.user)
     try {
-      const { name_inventory, description } = req.body.data;
+      const { name_inventory, description } = req.body;
     
       let tokeIdUser = req.user.id;
       let responsable = req.user.email;
       if (req.user.rol === "administrador") {
-        await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,Object.keys({idadmin:req.user.id}),Object.values({idadmin:req.user.id}),["WHERE"],[],req)
+        await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.ADMIN,
+          Object.keys({idadmin:req.user.id}),Object.values({idadmin:req.user.id}),["WHERE"],[],req)
         .then(async (response:any)=>{
 
           const inventory = new InventorySchema({
@@ -41,14 +49,6 @@ class InventoryProduct {
           return res.status(400).json({ message: "ERROR_GET_ADMIN_ALL", data:[],error});
         })
         
-
-        // await queryData.queryGet("SELECT correo FROM admin WHERE idUsers = ? ",[tokeIdUser],
-        //   async (_err: any, rows: any, _fields: any) => {
-        //     if (rows) {
-        //      
-        //     }
-        //   }
-        // );
       } else if (req.user.rol === "user") {
       //   const token: any = req.headers["authorization1"];
       //   const decoded: any = jwt.verify(token, SECRET);
@@ -92,21 +92,25 @@ class InventoryProduct {
     }
   }
 
-  public async putInventoryId(req: Request,res: Response,_next: NextFunction) {
+  public async putInventoryId(req: Request|any,res: Response,_next: NextFunction) {
     //actualizar inventario
 
     try {
-      const { _id } = req.params;
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
       const response = await InventorySchema.findByIdAndUpdate({ _id },
-        req.body.data,{ new: true });
+        req.body,{ new: true });
+        
       res.status(200).json({ message: "Inventory updated", response });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
   public async deleteInventoryId(req: Request|any,res: Response,_next: NextFunction) {
+   
     try {
-      const { _id } = req.params;
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
       let tokeIdUser = req.user.id;
       let responsable = req.user.email;
       const searchSubProduct = await subProductSchema.find({
@@ -152,7 +156,7 @@ class InventoryProduct {
       let tokeIdUser = req.user.id;
       const {
         name,priceCompra,priceVenta,stockMinimo,stockMaximo,unidad,
-        caducidad,idInventory,} = req.body.data;
+        caducidad,idInventory,} = req.body;
       const subProduct = new subProductSchema({
         tokenIdUser: tokeIdUser,name,priceCompra,
         priceVenta,stockMinimo,stockMaximo,unidad,caducidad,idInventory,});
@@ -162,9 +166,10 @@ class InventoryProduct {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
-  public async GetSubProducta(req: Request, res: Response, next: NextFunction) {
+  public async GetSubProducta(req: Request|any, res: Response, next: NextFunction) {
     try {
-      const { id } = req.params;
+      const parsedQuery = JSON.parse(req.query.q);
+      const id = parsedQuery.id;
       const response = await subProductSchema.find({ idInventory: id });
 
       res.status(200).json({ message: "get products", response });
@@ -176,8 +181,9 @@ class InventoryProduct {
   public async TranslateProducts(req: Request|any,res: Response,_next: NextFunction) {
     try {
       let tokeIdUser = req.user.id;
+
       const { idDestino, idOrigen, idSubProducto, cantidad, userCorreo } =
-        req.body.data;
+        req.body;
 
       const responseClass = await new TranslateBodega(
         tokeIdUser,idDestino,idOrigen,idSubProducto,cantidad,userCorreo).Initial();
@@ -188,9 +194,10 @@ class InventoryProduct {
     }
   }
 
-  public async GetTranslateProducts(req: Request,res: Response,_next: NextFunction) {
+  public async GetTranslateProducts(req: Request|any,res: Response,_next: NextFunction) {
     try {
-      const { id } = req.params;
+      const parsedQuery = JSON.parse(req.query.q);
+      const id = parsedQuery.id;
       const response = await TranslateSubPSchema.find({ idDestino: id });
       res.status(200).json({ message: "get products", response });
     } catch (error) {
@@ -198,31 +205,46 @@ class InventoryProduct {
     }
   }
 
-  public async postTranslateProductsOrigen(req: Request,res: Response,_next: NextFunction
+  public async postTranslateProductsOrigen(req: Request|any,res: Response,_next: NextFunction
   ) {
+    console.log(req.body);
+    console.log(req.query)
     try {
-      const { id } = req.params;
+      const parsedQuery = JSON.parse(req.query.q);
+      const id = parsedQuery.id;
+     
 
       const responseDataClass = new TranslateBodega(
         "","","","","",""
-      ).TranslateProduct(id, req.body.data);
+      ).TranslateProduct(id, req.body.type);
       res.status(200).json({ message: "get products", responseDataClass });
     } catch (error) {
       res.status(500).json({ message: "Error in the server", error });
     }
   }
-  public async UpdateCorreoBodega(req: Request,res: Response,_next: NextFunction
-  ): Promise<Response | Request | any> {
+
+  public async  updateCorreoBodega(req: Request, res: Response, _next: NextFunction): Promise<Response> {
     try {
-      const { id } = req.params;
-      const responseEmailUpdate = await InventorySchema.findByIdAndUpdate(
-        { _id: id },
-        {responsableInventory: req.body.data,type: "Usuario",
-        },{ new: true }
+      // Verificar si req.query.q es un arreglo y obtener el primer elemento si es así.
+      const parsedQuery = typeof req.query.q === 'string' ? JSON.parse(req.query.q) : {};
+      const id = parsedQuery.id;
+      if (!id) {
+        throw new Error("El parámetro 'id' no se encontró en la consulta.");
+      }
+  
+      // Actualizar el correo de la bodega en el inventario.
+      const responseEmailUpdate = await InventorySchema.findByIdAndUpdate({ _id: id },
+        {
+          responsableInventory: req.body.correo,
+          type: "Usuario",
+        },
+        { new: true }
       );
-      res.status(200).json({ message: "updateEmail", responseEmailUpdate });
+      // Responder con un mensaje de éxito y la respuesta de la actualización.
+      return res.status(200).json({ message: "Correo actualizado exitosamente", responseEmailUpdate });
     } catch (error) {
-      res.status(500).json({ message: "Error in the server", error });
+      // Manejar errores y responder con un mensaje de error.
+      return res.status(500).json({ message: "Error en el servidor", error: error });
     }
   }
   public async SubProductsIdAll(req: Request|any,res: Response,_next: NextFunction) {

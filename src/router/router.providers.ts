@@ -8,7 +8,7 @@ const isAllowed = new AllowedModules();
 let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterProviders extends ManageProviders {
   public GetProviders() {
-    return router.get("/providers/:id", AuthPassport,isAllowed.isAllowedPermissions, this.getProviders);
+    return router.get("/providers", AuthPassport,isAllowed.isAllowedPermissions, this.getProviders);
   }
   public GetProvidersId() {
     return router.get("/providers/:id", AuthPassport,isAllowed.isAllowedPermissions, this.getProvidersId);
@@ -17,10 +17,10 @@ class RouterProviders extends ManageProviders {
     return router.post("/providers", AuthPassport,isAllowed.isAllowedPermissions, this.postProviders);
   }
   public PutProviders() {
-    return router.put("/providers/:id", AuthPassport,isAllowed.isAllowedPermissions, this.putProviders);
+    return router.put("/providers/", AuthPassport,isAllowed.isAllowedPermissions, this.putProviders);
   }
   public DeleteProviders() {
-    return router.delete("/providers/:id", AuthPassport,isAllowed.isAllowedPermissions, this.deleteProviders);
+    return router.delete("/providers/", AuthPassport,isAllowed.isAllowedPermissions, this.deleteProviders);
   }
   public GetProvidersProducts() {
     return router.get("/providers/:id/products", AuthPassport,isAllowed.isAllowedPermissions, this.getProvidersProducts);

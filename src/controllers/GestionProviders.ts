@@ -8,7 +8,7 @@ abstract class ManageProviders {
   public async postProviders(req: Request|any,res: Response,_next: NextFunction) {
     try {
        let tokenIdUser = req.user.id;
-       const {idCategory, name, company, email, phone, address } = req.body.data;
+       const {idCategory, name, company, email, phone, address } = req.body;
 
         const provider: Provider = new ProviderSchema({
         idCategory,tokenIdUser,name,company,email,phone,address,});
@@ -48,13 +48,13 @@ abstract class ManageProviders {
   }
   public async putProviders(req: Request|any,res: Response,_next: NextFunction){
     try {
-        const { id } = req.params;
-        const { name, company, email, phone, address } = req.body.data;
-        const provider: Provider | any = {
-          name,company,email,phone,address,};
-        const providerUpdated = await ProviderSchema.findByIdAndUpdate(
-          id,provider,{ new: true });
-        return res.status(200).json(providerUpdated);
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
+      const { name, company, email, phone, address } = req.body;
+      const provider: Provider | any = {
+      name,company,email,phone,address,};
+      const providerUpdated = await ProviderSchema.findByIdAndUpdate(_id,provider,{ new: true });
+      return res.status(200).json(providerUpdated);
     } catch (error) {
       return res.status(500).json({message: "Internal server error",error,});
     }
@@ -63,11 +63,12 @@ abstract class ManageProviders {
     try {
       let tokenIdUser = req.user.id;
       let responsable = req.user.email;
-        const { id } = req.params;
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
          await new Todo().createNotificationClass(
            "Se Elimino  un proveedor","Se elimino con exito", responsable,"provider",
            tokenIdUser);
-        const providerDeleted = await ProviderSchema.findByIdAndDelete(id);
+        const providerDeleted = await ProviderSchema.findByIdAndDelete(_id);
         return res.status(200).json(providerDeleted);
     } catch (error) {
       return res.status(500).json({message: "Internal server error",});

@@ -7,8 +7,8 @@ class ResourceGetModuleUsers
 {
     public async getModuleUsers(req: Request|any,res: Response,_next: Partial<NextFunction>){
         try {
-        
-          let query = {iduser:req.query.q}
+          const parsedQuery = JSON.parse(req.query.q);
+          const query = {iduser:parsedQuery.id}
       
           let response:any = await queryData.queryGet(app_settings.METHOD.GET,app_settings.schema,app_settings.TABLES.MODULE,Object.keys(query),Object.values(query),["WHERE"],[],req)
     

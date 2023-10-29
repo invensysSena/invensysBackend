@@ -124,9 +124,7 @@ abstract class LoginRegister {
   }
   public async getModuleUsers(req: any,res: Response,_next: Partial<NextFunction>){
     try {
- return await resourceGetModuleUsers.getModuleUsers(req,res,_next);
-  
-   
+      return await resourceGetModuleUsers.getModuleUsers(req,res,_next);
     } catch (error) {
   
       return res.status(400).json({ message: "ERROR_Modules" });

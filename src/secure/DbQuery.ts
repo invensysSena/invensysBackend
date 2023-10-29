@@ -129,7 +129,8 @@ class QueryData
                 return { statusText: 200, resultGet };
             } else {
                 // En caso contrario, devuelve un estado HTTP 304
-                return { statusText: 304 };
+                Logger().debug({ message: "No se encontraron datos",resultGet });
+                return { statusText: 304,resultGet };
             }
             
         } catch (error) {

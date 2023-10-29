@@ -15,16 +15,16 @@ class RouterCategory extends Categorys {
     }), isAllowed.isAllowedPermissions,this.createCategory);
   }
   public GetCategory() {
-    return router.get("/category/:id",AuthPassport,isAllowed.isAllowedPermissions,this.getCategory);
+    return router.get("/category/",AuthPassport,isAllowed.isAllowedPermissions,this.getCategory);
   }
   public GetCategoryId() {
     return router.get("/category/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.getCategoryId);
   }
   public PutCategory() {
-    return router.put("/category/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.putCategory);
+    return router.put("/category",AuthPassport,isAllowed.isAllowedPermissions,this.putCategory);
   }
   public DeleteCategory() {
-    return router.delete("/category/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.deleteCategory);
+    return router.delete("/category",AuthPassport,isAllowed.isAllowedPermissions,this.deleteCategory);
   }
 }
 

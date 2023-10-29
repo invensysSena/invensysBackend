@@ -42,20 +42,20 @@ class ManageCompany {
   }
   public async updateCompany(req: Request|any,res: Response,_next: NextFunction) {
 
-    const parsedQuery = JSON.parse(req.query.q);
-    const _id = parsedQuery._id;
-
+    
     try {
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery._id;
         const {tipoPersona,nit,tipoIdentificacion,numero,nombre,correo,telefono,pais,
           departamento,ciudad,direccion,} = req.body;
-        const company = await CompanySchema.findByIdAndUpdate(_id,
+        await CompanySchema.findByIdAndUpdate(_id,
           {
             tipoPersona,nit,tipoIdentificacion,numero,nombre,correo,telefono,
             pais,departamento,ciudad,direccion,
           },
           { new: true }
+          );
           Logger().debug({message: `PUT CATEGORY -> MONGOOSE body:${req.body} params:${req.params} query:${req.query}`})
-        );
         return res.status(200).json({message: "Company updated successfully",});
       
     } catch (error:any) {

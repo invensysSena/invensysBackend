@@ -12,32 +12,32 @@ class RouterInventory extends InventoryProduct {
    return router.post("/inventory",AuthPassport,isAllowed.isAllowedPermissions,this.postInventory);
   }
   public GetInventory() {
-   return router.get("/inventory/:id",AuthPassport,isAllowed.isAllowedPermissions,this.getInventory);
+   return router.get("/inventory",AuthPassport,isAllowed.isAllowedPermissions,this.getInventory);
   }
   public PutInventoryId() {
-   return router.put("/inventory/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.putInventoryId);
+   return router.put("/inventory/",AuthPassport,isAllowed.isAllowedPermissions,this.putInventoryId);
   }
   
   public DeleteInventoryId() {
-   return router.delete("/inventory/:_id", AuthPassport, isAllowed.isAllowedPermissions, this.deleteInventoryId);
+   return router.delete("/inventory", AuthPassport, isAllowed.isAllowedPermissions, this.deleteInventoryId);
   }
   public UploadInsertProduct() {
    return router.post("/subProducts", AuthPassport, isAllowed.isAllowedPermissions, this.UploadInsertProducts);
   }
   public getSubProducts() {
-   return router.get("/subProducts/:id", AuthPassport, isAllowed.isAllowedPermissions, this.GetSubProducta);
+   return router.get("/subProductsId", AuthPassport, isAllowed.isAllowedPermissions, this.GetSubProducta);
   }
   public postTranslateProducts() {
    return router.post("/translateProducts", AuthPassport, isAllowed.isAllowedPermissions, this.TranslateProducts);
   }
   public getTranslateProducts() {
-   return router.get("/translateProducts/:id",  AuthPassport, isAllowed.isAllowedPermissions,this.GetTranslateProducts);
+   return router.get("/translateProducts",  AuthPassport, isAllowed.isAllowedPermissions,this.GetTranslateProducts);
   }
   public UpdateSubProducts() {
-   return router.put("/translateSubProducts/:id", AuthPassport, isAllowed.isAllowedPermissions, this.postTranslateProductsOrigen);
+   return router.put("/translateSubProducts", AuthPassport, isAllowed.isAllowedPermissions, this.postTranslateProductsOrigen);
   }
   public UpdateEmailBodega() {
-   return router.put("/updateEmailBodega/:id", passport.authenticate("jwt",{session: false,}), isAllowed.isAllowedPermissions, this.UpdateCorreoBodega);
+   return router.put("/updateEmailBodega", passport.authenticate("jwt",{session: false,}), isAllowed.isAllowedPermissions, this.updateCorreoBodega);
   }
 
   public GetAllSubProducts() {

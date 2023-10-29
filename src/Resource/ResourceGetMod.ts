@@ -1,34 +1,26 @@
-import { Request, Response, NextFunction } from "express";
-import { conexion } from "../database/database";
-import jwt from "jsonwebtoken";
-import { SECRET } from "../config/config"; // 
-import { QueryError, RowDataPacket } from "mysql2";
+import { Request, Response, NextFunction, json } from "express";
+import { queryData } from "../secure/DbQuery";
+import { globalData } from "../utils/utilFunction";
+import { ValidationTokenAndCreateToken } from "../middlewares/ValidationToken";
+import settings from "../data/settings.json";
 
+let app_settings = settings[0]
 class ResourceGetMod
 {
     public async getMod(req: Request | any,res: Response,_next: Partial<NextFunction>) {
+
         try {
-          const verifyToken: Array<any> | any = jwt.verify(req.params.id, SECRET)!;
-          const { id1 } = verifyToken;
-          if (id1) {
-            const conn: any = await conexion.connect();
-            conn.execute(
-              `CALL GET_MODULE_ACCOUNT_USER('${id1}')`,
-              (error: QueryError, rows: RowDataPacket) => {
-                if (rows) {
-                  return res
-                    .status(200)
-                    .json({ message: "GET_MODULES_USER", data: rows[0] });
-                } else {
-                  return res
-                    .status(400)
-                    .json({ message: "ERROR_GET_MODULES_USER" });
-                }
-              }
-            );
-          }
+          let response:any;
+          let querys = Object.keys({iduser:req.user.iduser})
+          let data = Object.values({iduser:req.user.iduser})
+          let schema = app_settings.schema
+          let table = app_settings.TABLES.MODULE
+          let method = app_settings.METHOD.GET
+           response = await queryData.queryGet(method,schema,table,querys,data,["WHERE"],[],req) 
+
+            return res.status(200).json({data:response.resultGet.rows });
         } catch (error) {
-          return res.status(400).json({ message: "ERROR_GET_MODULES_USER" });
+          return res.status(400).json({ error });
         }
       }
 }

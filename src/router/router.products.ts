@@ -7,10 +7,10 @@ const isAllowed = new AllowedModules();
 let AuthPassport = passport.authenticate("jwt",{session: false,});
 class RouterProducts extends ManageProducts {
   public Getproducts() {
-   return router.get("/getProducts/:_id",AuthPassport,isAllowed.isAllowedPermissions,this.getProducts);
+   return router.get("/getProducts/",AuthPassport,isAllowed.isAllowedPermissions,this.getProducts);
   }
   public GetproductsId() {
-    return router.get("/getProductsId/:id",AuthPassport,isAllowed.isAllowedPermissions,
+    return router.get("/getProductsId",AuthPassport,isAllowed.isAllowedPermissions,
     this.getProductsId);
   }
   public GetproductsIdCategory() {
@@ -21,7 +21,7 @@ class RouterProducts extends ManageProducts {
     return router.post("/createProducts",AuthPassport,isAllowed.isAllowedPermissions,this.postProducts);
   }
   public PutProducts() {
-    return router.put("/updateProducts/:id",AuthPassport,isAllowed.isAllowedPermissions,this.putProducts);
+    return router.put("/updateProducts",AuthPassport,isAllowed.isAllowedPermissions,this.putProducts);
   }
   public DeleteProduct() {
     return router.delete("/deleteProducts/:id",AuthPassport,isAllowed.isAllowedPermissions,

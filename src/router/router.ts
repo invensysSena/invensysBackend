@@ -102,7 +102,7 @@ class RouterUser extends LoginRegister {
   }
 
   public GetMod() {
-    return router.get("/getMod/:id", this.getMod);
+    return router.get("/getModulesUser",AuthPassport, this.getMod);
   }
 
   public getAdminDataALL() {

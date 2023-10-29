@@ -6,17 +6,20 @@ import { Logger } from "../utils/Logger";
 abstract class Categorys {
   public async createCategory(req: Partial<Request|any>,res: Response,_next: Partial<NextFunction>){
     try {
-      console.log(req.user,"sssssssss")
       
-      const { name_category, description, imgURL, imgId } = req.body.data;
+      const { name_category, description, imgURL, imgId } = req.body;
       let tokeIdUser = req.user.id;
       let responsable = req.user.email;
+
       const data: category = new CategorySchema({tokeIdUser,name_category,description,imgURL,imgId,});
       const dataCategory = await data.save();
+
       Logger().debug({message: `POST CATEGORY -> MONGOOSE body:${req.body} params:${req.params} query:${req.query}`})
       await new Todo().createNotificationClass("Se creo una nueva categoria",name_category,responsable,"category",tokeIdUser);
       Logger().debug({message: `POST CATEGORY -> MONGOOSE body:${req.body} params:${req.params} query:${req.query}`})
+
       return res.status(201).json({status: 201,message: "Categoria creada",data: dataCategory,});
+      
     } catch (error) {
       Logger().error({error: `ERROR POST CATEGORY -> MONGOOSE ERROR: ${error}`}) 
       
@@ -39,9 +42,11 @@ abstract class Categorys {
       return res.status(500).json({ok: false,message: "Error al obtener las categorias",error,});
     }
   }
-  public async getCategoryId(req: Request,res: Response,_next: Partial<NextFunction>){
+  public async getCategoryId(req: Request|any,res: Response,_next: Partial<NextFunction>){
     try {
-      const dataCategory = await CategorySchema.findById(req.params._id);
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
+      const dataCategory = await CategorySchema.findById(_id);
       Logger().debug({message: `GET ID CATEGORY -> MONGOOSE body:${req.body} params:${req.params} query:${req.query}`})
       return res.status(200).json({
         ok: true,
@@ -54,9 +59,11 @@ abstract class Categorys {
       });
     }
   }
-  public async putCategory(req: Request,res: Response,_next: Partial<NextFunction>) {
+  public async putCategory(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
-        const ipdateCategory = await CategorySchema.findByIdAndUpdate(req.params._id,req.body.data,{new: true,});
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
+        const ipdateCategory = await CategorySchema.findByIdAndUpdate(_id,req.body,{new: true,});
         Logger().debug({message: `PUT CATEGORY -> MONGOOSE body:${req.body} params:${req.params} query:${req.query}`})
         return res.status(200).json({
           ok: true,
@@ -71,11 +78,11 @@ abstract class Categorys {
   }
   public async deleteCategory(req: Request|any,res: Response,_next: Partial<NextFunction>) {
     try {
+      const parsedQuery = JSON.parse(req.query.q);
+      const _id = parsedQuery.id;
       let tokeIdUser = req.user.id;
       let responsable = req.user.email;
-      const dataCategory = await CategorySchema.findByIdAndDelete(
-        req.params._id
-      );
+      const dataCategory = await CategorySchema.findByIdAndDelete(_id);
       await new Todo().createNotificationClass(
         "Eliminaste una categoria",
         "Se borro con exito",responsable,
